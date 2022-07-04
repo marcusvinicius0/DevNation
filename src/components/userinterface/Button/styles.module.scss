@@ -1,0 +1,29 @@
+.button{
+    padding: 0.5rem;
+    border: none;
+    width: 19rem;
+    border-radius: 2rem;
+    color: var(--white);
+    background-color: var(--soft-blue);
+    font-size: 1.2rem;
+
+    &[disabled]{
+        cursor: not-allowed;
+        svg{
+            animation: animate 1.5s infinite;
+        }
+    }
+
+    &:hover{
+        filter: brightness(1.08);
+    }
+}
+
+@keyframes animate{
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
