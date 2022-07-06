@@ -7,9 +7,9 @@ import avatar from '../../assets/avatar.png';
 import { Link } from 'react-router-dom';
 
 import { FiSearch, FiX } from 'react-icons/fi';
-import { AiOutlineHome } from 'react-icons/ai';
+import { AiFillHome } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
-import { BsFillChatDotsFill } from 'react-icons/bs';
+import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
 import { BiMenuAltRight } from 'react-icons/bi';
 
 export default function Header() {
@@ -27,7 +27,7 @@ export default function Header() {
                 <ul>
                     <li>
                         <Link to="/dashboard">
-                            <AiOutlineHome className={styles.homeIcon} size={20} />
+                            <AiFillHome className={styles.homeIcon} size={20} />
                             Início
                         </Link>
                     </li>
@@ -45,6 +45,14 @@ export default function Header() {
                             Mensagens
                         </Link>
                     </li>
+
+                    <li>
+                        <Link to="/">
+                            <BsFillGearFill className={styles.configIcon}
+                            size={20} />
+                            Configurações
+                        </Link>
+                    </li>
                 </ul>
             </nav>
 
@@ -56,6 +64,7 @@ export default function Header() {
             </span>
 
             <div className={styles.pictureBox}>
+                <BsBellFill  size={23} color="var(--soft-gray)" />
                 <Link to="/profile">
                     <img src={avatar} alt="usuario-perfil" />
                 </Link>

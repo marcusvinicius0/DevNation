@@ -39,6 +39,7 @@
         ul {
             display: flex;
             flex-direction: row;
+            gap: 0.5rem;
         }
 
         li {
@@ -67,6 +68,13 @@
             left: 2.6rem;
             color: var(--soft-gray);
         }
+
+        .configIcon{
+            position: relative;
+            top: -0.7rem;
+            left: 3rem;
+            color: var(--soft-gray);
+        }
     }
 
     .pictureBox{
@@ -74,6 +82,13 @@
         position: absolute;
         right: 2rem;
         top: 0.8rem;
+
+        svg{
+            position: relative;
+            right: 1rem;
+            top: -0.1rem;
+            cursor: pointer;
+        }
 
         img {
             border-radius: 50%;

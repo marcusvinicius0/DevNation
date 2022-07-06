@@ -1,0 +1,105 @@
+.container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.6);
+    z-index: 99;
+}
+
+.containerModal{
+    max-width: 550px;
+    height: 370px;
+    background-color: var(--white);
+    margin: 5rem auto;
+    border-radius: 15px;
+
+    .buttonBox{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        .closeButton{
+            position: relative;
+            top: 1rem;
+            right: 1rem;
+            border: none;
+            background: none;
+        }
+    }
+
+    p{
+        position: relative;
+        top: -1rem;
+        left: 1.5rem;
+        color: var(--black);
+        font-size: 20px;
+        width: 30%;
+    }
+
+    hr{
+        opacity: 0.4;
+    }
+
+    img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        cursor: pointer;
+        margin: 1rem 0 0 1rem;
+    }
+
+    .userName{
+        position: relative;
+        top: -2rem;
+        left: 3.8rem;
+        width: 80%;
+        font-size: 15px;
+        font-weight: bold;
+        opacity: 0.8;
+    }
+
+    textarea{
+        margin: 1rem 0 0 2rem;
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+        line-height: 20.02px;
+        width: 90%;
+        height: 45%;
+        border: 0;
+        resize: none;
+    }
+
+    .publicationBox{
+        display: flex;
+        justify-content: flex-end;
+
+        .offButton{
+            position: relative;
+            cursor: not-allowed;
+            right: 1rem;
+            top: 0.6rem;
+            border: 0;
+            border-radius: 15px;
+            padding: 0.5rem;
+            background-color: var(--soft-blue);
+            color: var(--white);
+            opacity: 0.6;
+        }
+
+        button{
+            position: relative;
+            cursor: pointer;
+            right: 1rem;
+            top: 0.6rem;
+            border: 0;
+            border-radius: 15px;
+            padding: 0.5rem;
+            background-color: var(--soft-blue);
+            color: var(--white);
+        }
+    }
+
+}

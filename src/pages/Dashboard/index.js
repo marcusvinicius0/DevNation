@@ -1,20 +1,29 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
+import { Link } from 'react-router-dom';
+
 import Header from '../../components/Header';
+import PublicModal from '../../components/PublicModal';
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
-import { CgProfile } from 'react-icons/cg';
-import { FaUsers } from 'react-icons/fa';
+import { FaUsers, FaUserCircle } from 'react-icons/fa';
 import { IoLogOut } from 'react-icons/io5';
+import { FaEnvelopeOpenText } from 'react-icons/fa';
 
 import avatar from '../../assets/avatar.png';
 
 import { AuthContext } from '../../contexts/auth';
 
 export default function Dashboard() {
+    const [showPostModal, setShowPostModal] = useState(false);
+
     const { signOut } = useContext(AuthContext);
+
+    function togglePostModal() {
+        setShowPostModal(!showPostModal)
+    }
 
     return (
         <>
@@ -28,14 +37,21 @@ export default function Dashboard() {
 
                 <div className={styles.routesBox}>
 
+                    <Link to="/profile">
+                        <span>
+                            <FaUserCircle color="var(--soft-blue)" size={24} />
+                            <p>Meu perfil</p>
+                        </span>
+                    </Link>
+
                     <span>
-                        <CgProfile color="var(--soft-blue)" size={25} />
-                        <p>Meu perfil</p>
+                        <FaUsers color="var(--soft-blue)" size={24} />
+                        <p>Seguidores</p>
                     </span>
 
                     <span>
-                        <FaUsers color="var(--soft-blue)" size={25} />
-                        <p>Seguidores</p>
+                        <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
+                        <p>Meus projetos</p>
                     </span>
 
                     <span className={styles.logoutBox} onClick={signOut}>
@@ -46,13 +62,17 @@ export default function Dashboard() {
             </div>
 
 
+
+
             <div className={styles.publicationContainer}>
                 <div className={styles.contentBox}>
                     <img src={avatar} />
-                    <input
+                    <button
+                        onClick={() => togglePostModal()}
                         type="text"
-                        placeholder="No que está pensando?"
-                    />
+                    >
+                        No que você está pensando?
+                    </button>
                 </div>
                 <span>
                     <AiFillPicture size={25} color="var(--soft-blue)" />
@@ -61,8 +81,14 @@ export default function Dashboard() {
             </div>
 
             <div className={styles.feed}>
-              
+
             </div>
+
+            {showPostModal && (
+                <PublicModal
+                    close={togglePostModal}
+                />
+            )}
         </>
 
     )
