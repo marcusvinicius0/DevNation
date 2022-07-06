@@ -4,7 +4,7 @@ import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 
 import Header from '../../components/Header';
-import PublicModal from '../../components/PublicModal';
+import PublicModal from '../../components/PublicationModal';
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
@@ -61,9 +61,6 @@ export default function Dashboard() {
                 </div>
             </div>
 
-
-
-
             <div className={styles.publicationContainer}>
                 <div className={styles.contentBox}>
                     <img src={avatar} />
@@ -75,14 +72,16 @@ export default function Dashboard() {
                     </button>
                 </div>
                 <span>
-                    <AiFillPicture size={25} color="var(--soft-blue)" />
-                    <FiVideo size={25} color="var(--soft-blue)" />
+                    <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+                    <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
                 </span>
+
+                <div className={styles.feed}>
+
+                </div>
             </div>
 
-            <div className={styles.feed}>
 
-            </div>
 
             {showPostModal && (
                 <PublicModal

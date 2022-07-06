@@ -1,0 +1,54 @@
+.container{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0,0,0, 0.6);
+    z-index: 99;
+}
+
+.modalBox{
+    max-width: 700px;
+    height: 370px;
+    background-color: var(--black);
+    margin: 5rem auto;
+    border-radius: 15px;
+
+    .buttonBox{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        .closeButton{
+            position: relative;
+            top: 1rem;
+            right: 1rem;
+            border: none;
+            background: none;
+        }
+    }
+
+    p{
+        color: var(--white);
+        position: relative;
+        top: -0.5rem;
+        left: 2rem;
+        font-size: 20px;
+        width: 30%;
+    }
+
+    .pictureBox{
+        display: flex;
+        justify-content: center;
+        padding-top: 1rem;
+
+        img{
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            width: 220px;
+            height: 220px;
+        }
+    }
+}

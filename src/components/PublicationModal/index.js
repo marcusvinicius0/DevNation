@@ -11,9 +11,10 @@ export default function PublicModal({ close }) {
    const [text, setText] = useState('');
 
    const { user } = useContext(AuthContext);
-
+   
    return (
       <div className={styles.container}>
+         
          <div className={styles.containerModal}>
 
             <span className={styles.buttonBox}>
