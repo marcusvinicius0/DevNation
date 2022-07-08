@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
-import { FiX } from 'react-icons/fi';
+import { FiX, FiUpload } from 'react-icons/fi';
 
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
@@ -13,8 +13,8 @@ import { toast } from 'react-toastify';
 export default function EditProfilePictureModal({ close }) {
     const { user, setUser, storageUser } = useContext(AuthContext);
 
-    const [avatarURL, setAvatarURL] = useState(user && user.avatarUrl);
-    const [imageAvatar, setImageAvatar] = useState(null); //picture preview
+    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl); //picture preview
+    const [imageAvatar, setImageAvatar] = useState(null);
 
 
     function handleFile(e) {
@@ -24,7 +24,7 @@ export default function EditProfilePictureModal({ close }) {
 
             if (image.type === 'image/jpeg' || image.type === 'image/png') {
                 setImageAvatar(image);
-                setAvatarURL(URL.createObjectURL(e.target.files[0]))
+                setAvatarUrl(URL.createObjectURL(e.target.files[0]))
             } else {
                 toast.warning("Envie uma imagem do tipo PNG ou JPEG.")
                 setImageAvatar(null);
@@ -36,7 +36,7 @@ export default function EditProfilePictureModal({ close }) {
     async function handleUpload() {
         const currentUid = user.uid;
 
-         await firebase.storage()
+        const uploadTask = await firebase.storage()
             .ref(`images/${currentUid}/${imageAvatar.name}`)
             .put(imageAvatar)
             .then(async () => {
@@ -64,10 +64,10 @@ export default function EditProfilePictureModal({ close }) {
             })
     }
 
-    async function handleSave(e) {
+    function handleSave(e) {
         e.preventDefault();
 
-        if (avatarURL !== null) {
+        if (avatarUrl !== null) {
             handleUpload();
         }
 
@@ -77,28 +77,35 @@ export default function EditProfilePictureModal({ close }) {
         <div className={styles.container}>
             <div className={styles.modalBox}>
 
-                <span className={styles.buttonBox}>
-                    <button className={styles.closeButton} onClick={close}>
+                <div className={styles.headerModal}>
+
+                    <p>Foto do perfil</p>
+
+                    <button onClick={close}>
                         <FiX size={30} color="var(--soft-gray)" />
                     </button>
-                </span>
 
-                <span>
-                    <p>Foto do perfil</p>
-                    <hr />
-                </span>
+                </div>
 
                 <form onSubmit={handleSave}>
-                    <input type="file" accept="image/*" onChange={handleFile} /> <br />
-                    {avatarURL === null ? (
-                        <div className={styles.pictureBox}>
+
+                    <label className={styles.labelAvatar}>
+                        <span>
+                            <FiUpload className={styles.uploadIcon} color="var(--white)" size={30} />
+                        </span>
+
+
+                        <input type="file" accept="image/*" onChange={handleFile} /> <br />
+
+                        {avatarUrl === null ? (
+
                             <img src={avatar} alt="profile" />
-                        </div>
-                    ) : (
-                        <div className={styles.pictureBox}>
-                            <img src={avatarURL} alt="profile" />
-                        </div>
-                    )}
+
+                        ) :
+                            <img src={avatarUrl} alt="profile" />
+
+                        }
+                    </label>
 
                     <button type="submit">
                         Salvar alterações

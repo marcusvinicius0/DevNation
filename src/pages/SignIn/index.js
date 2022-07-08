@@ -17,7 +17,6 @@ export default function SignIn() {
     const [password, setPassword] = useState('');
 
     const { signIn, loadingAuth } = useContext(AuthContext);
-
     function handleSubmit(e){
         e.preventDefault();
 

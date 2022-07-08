@@ -16,17 +16,6 @@
             position: relative;
             right: 2.5rem;
         }
-
-        // input{
-        //     display: none;
-        // }
-
-        svg{
-            position: absolute;
-            opacity: 0.6;
-            transition: all 1s;
-            z-index: 99;
-        }
     
         .profilePic{
             border-radius: 50%;
@@ -61,7 +50,7 @@
         svg{
             position: relative;
             left: 47rem;
-            top: -7rem;
+            top: -5.5rem;
             cursor: pointer;
             transition: all 0.5s;
         }
@@ -77,7 +66,7 @@
             gap: 0.5rem;
             position: relative;
             right: 1rem;
-            top: -6rem;
+            top: -5rem;
         }
 
         .descriptionBox{
@@ -129,3 +118,4 @@
     background-color: var(--soft-gray);
     border-radius: 50%;
 }
+

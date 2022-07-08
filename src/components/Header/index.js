@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styles from './styles.module.scss';
 
 import logo from '../../assets/logo.png';
 import avatar from '../../assets/avatar.png';
 
 import { Link } from 'react-router-dom';
+
+import { AuthContext } from '../../contexts/auth';
 
 import { FiSearch, FiX } from 'react-icons/fi';
 import { AiFillHome } from 'react-icons/ai';
@@ -13,6 +15,8 @@ import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
 import { BiMenuAltRight } from 'react-icons/bi';
 
 export default function Header() {
+    const { user } = useContext(AuthContext);
+
     const [showMenu, setShowMenu] = useState(false);
 
     return (
@@ -66,7 +70,7 @@ export default function Header() {
             <div className={styles.pictureBox}>
                 <BsBellFill  size={23} color="var(--soft-gray)" />
                 <Link to="/profile">
-                    <img src={avatar} alt="usuario-perfil" />
+                   {user.avatarUrl === null ?  <img src={avatar} alt="usuario-perfil" /> :  <img src={user.avatarUrl} alt="usuario-perfil" />}
                 </Link>
             </div>
 

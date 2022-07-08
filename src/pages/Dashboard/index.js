@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 
 import { Link } from 'react-router-dom';
@@ -6,11 +6,12 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/Header';
 import PublicModal from '../../components/PublicationModal';
 
-import { AiFillPicture } from 'react-icons/ai';
+import { AiFillPicture, AiFillLike } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
-import { FaUsers, FaUserCircle } from 'react-icons/fa';
+import { FaUsers, FaUserCircle, FaCommentDots } from 'react-icons/fa';
 import { IoLogOut } from 'react-icons/io5';
 import { FaEnvelopeOpenText } from 'react-icons/fa';
+import { BsThreeDots } from 'react-icons/bs';
 
 import avatar from '../../assets/avatar.png';
 
@@ -19,20 +20,39 @@ import { AuthContext } from '../../contexts/auth';
 export default function Dashboard() {
     const [showPostModal, setShowPostModal] = useState(false);
 
-    const { signOut } = useContext(AuthContext);
+    const { signOut, user } = useContext(AuthContext);
+
+    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
+
+    const [content, setContent] = useState([]);
 
     function togglePostModal() {
         setShowPostModal(!showPostModal)
     }
+
+    // useEffect(() => {
+
+    //     function Response(){
+
+    //     }
+
+    //     Response()
+    //     setContent(Response)
+
+    // }, [])
 
     return (
         <>
             <Header />
 
             <div className={styles.sideBox}>
-                <img src={avatar} />
-                <p className={styles.userName}>Marcus Vinícius Begheli Santos</p>
-                <p className={styles.role}>Desenvolvedor Front-end • React.js</p>
+                {avatarUrl === null ?
+                    <img src={avatar} alt="foto avatar" />
+                    :
+                    <img src={avatarUrl} alt="foto usuario" />
+                }
+                <p className={styles.userName}>{user.name}</p>
+                <p className={styles.role}>{user.role}</p>
                 <hr />
 
                 <div className={styles.routesBox}>
@@ -63,7 +83,7 @@ export default function Dashboard() {
 
             <div className={styles.publicationContainer}>
                 <div className={styles.contentBox}>
-                    <img src={avatar} />
+                    {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
                     <button
                         onClick={() => togglePostModal()}
                         type="text"
@@ -78,7 +98,28 @@ export default function Dashboard() {
 
                 <div className={styles.feed}>
 
+                    {user.publication === '' ? <div></div> :
+                        <div className={styles.publicationBox}>
+                            <img src={avatarUrl === null ? avatar : avatarUrl} />
+                            <div className={styles.userInfo}>
+                                <p className={styles.userName}>{user.name}</p>
+                                <p className={styles.role}>Desenvolvedor Front-end • React.js</p>
+                            </div>
+
+                            <p className={styles.publi}>{user.publication}</p>
+                            <hr />
+                            <div className={styles.reactions}>
+                                <AiFillLike size={25} color="var(--soft-gray)" /><p>Gostei</p>
+
+                                <FaCommentDots size={22} color="var(--soft-gray)" />
+                                <p>Comentar</p>
+                            </div>
+
+                            <BsThreeDots className={styles.configIcon} size={25} color="var(--soft-gray)" />
+                        </div>}
+
                 </div>
+
             </div>
 
 

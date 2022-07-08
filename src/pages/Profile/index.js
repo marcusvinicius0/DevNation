@@ -17,7 +17,7 @@ import { RiPencilLine } from 'react-icons/ri';
 export default function Profile() {
     const { user } = useContext(AuthContext);
  
-    const [avatarURL, setAvatarURL] = useState(user.avatarUrl);
+    // const [avatarUrL, setAvatarUrL] = useState(user && user.avatarUrl);
 
     const [editProfileModal, setEditProfileModal] = useState(false);
     const [profilePictureModal, setprofilePictureModal] = useState(false);
@@ -36,21 +36,14 @@ export default function Profile() {
 
             <div className={styles.profileContainer}>
                 <span className={styles.picturesBox}>
-
                     <img src={banner} alt="banner" />
-                    
-                    {avatarURL === null ?
-                        <img className={styles.profilePic} src={avatar} alt="profile" onClick={toggleProfilePictureModal} />
-                        :
-                        <img className={styles.profilePic} src={avatarURL} alt="profile" />
-                    }
-
+                    <img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl}/>  
                 </span>
 
                 <span className={styles.infoBox}>
                     <p className={styles.name}>{user.name}</p>
-                    <p className={styles.role}>Desenvolvedor Front-end • Next.js | React.js | JavaScript</p>
-                    <p className={styles.place}>Araguari, Minas Gerais, Brasil</p>
+                    <p className={styles.role}>{user.role}</p>
+                    <p className={styles.place}>{user.location}</p>
                     <RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
                     <span className={styles.socialMedias}>
                         <img src={inLogo} alt="linkedin" width={30} height={30} />
@@ -60,6 +53,7 @@ export default function Profile() {
                     <div className={styles.descriptionBox}>
                         <h3>Sobre mim:</h3>
                         <textarea maxLength={1000}>
+                            {user.publication}
                         </textarea>
                     
                     </div>

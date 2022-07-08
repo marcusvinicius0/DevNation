@@ -41,7 +41,8 @@ function AuthProvider({ children }) {
                 name: userProfile.data().name,
                 avatarUrl: userProfile.data().avatarUrl,
                 bannerUrl: userProfile.data().bannerUrl,
-                email: value.user.email
+                email: value.user.email,
+                role: userProfile.data().role,
             };
 
             setUser(data);
@@ -70,6 +71,8 @@ function AuthProvider({ children }) {
                         name: name,
                         avatarUrl: null,
                         bannerUrl: null,
+                        publication: '',
+                        role: '',
                     })
                     .then(() => {
 
@@ -79,6 +82,8 @@ function AuthProvider({ children }) {
                             email: value.user.email,
                             avatarUrl: null,
                             bannerUrl: null,
+                            publication: '',
+                            role: '',
                         };
 
                         setUser(data);
@@ -115,6 +120,9 @@ function AuthProvider({ children }) {
                 signOut,
                 signIn,
                 loadingAuth,
+                setUser,
+                storageUser,
+                setLoadingAuth,
             }}>
             {children}
         </AuthContext.Provider>
