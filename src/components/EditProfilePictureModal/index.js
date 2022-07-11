@@ -40,7 +40,7 @@ export default function EditProfilePictureModal({ close }) {
             .ref(`images/${currentUid}/${imageAvatar.name}`)
             .put(imageAvatar)
             .then(async () => {
-                toast.success('Dados enviados com sucesso!')
+                toast.success("Dados enviados com sucesso!")
 
                 await firebase.storage().ref(`images/${currentUid}`)
                     .child(imageAvatar.name).getDownloadURL()

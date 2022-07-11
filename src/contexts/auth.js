@@ -43,6 +43,8 @@ function AuthProvider({ children }) {
                 bannerUrl: userProfile.data().bannerUrl,
                 email: value.user.email,
                 role: userProfile.data().role,
+                aboutMe: userProfile.data().aboutMe,
+                location: userProfile.data().location,
             };
 
             setUser(data);
@@ -73,6 +75,8 @@ function AuthProvider({ children }) {
                         bannerUrl: null,
                         publication: '',
                         role: '',
+                        aboutMe: '',
+                        location: '',
                     })
                     .then(() => {
 
@@ -84,6 +88,8 @@ function AuthProvider({ children }) {
                             bannerUrl: null,
                             publication: '',
                             role: '',
+                            aboutMe: '',
+                            location: '',
                         };
 
                         setUser(data);

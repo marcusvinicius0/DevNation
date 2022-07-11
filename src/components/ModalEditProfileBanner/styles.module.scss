@@ -8,7 +8,7 @@
     z-index: 99;
 }
 
-.modalBox{
+.modal{
     max-width: 750px;
     height: 370px;
     background-color: var(--black);
@@ -77,11 +77,10 @@
         }
 
         img{
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
+            width: 95%;
+            height: 100%;
             object-fit: cover;
+            border-radius: 15px;
         }
     }
-
 }

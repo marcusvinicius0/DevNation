@@ -7,8 +7,8 @@ import { FaLock } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
 
-import Input from '../../components/userinterface/Input';
-import Button from '../../components/userinterface/Button';
+import Input from '../../components/Userinterface/Input';
+import Button from '../../components/Userinterface/Button';
 
 import { AuthContext } from '../../contexts/auth';
 

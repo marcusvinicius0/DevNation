@@ -8,8 +8,8 @@ import { FaUser, FaLock, FaSpinner } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 
 
-import Input from '../../components/userinterface/Input';
-import Button from '../../components/userinterface/Button';
+import Input from '../../components/Userinterface/Input';
+import Button from '../../components/Userinterface/Button';
 
 export default function SignUp() {
     const [name, setName] = useState('');

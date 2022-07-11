@@ -4,6 +4,9 @@ import styles from './styles.module.scss';
 import Header from '../../components/Header';
 import EditProfileModal from '../../components/EditProfileModal';
 import EditProfilePictureModal from '../../components/EditProfilePictureModal';
+import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
+import NewsBox from '../../components/NewsBox';
+import ChatModal from '../../components/ChatModal';
 
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
@@ -21,6 +24,7 @@ export default function Profile() {
 
     const [editProfileModal, setEditProfileModal] = useState(false);
     const [profilePictureModal, setprofilePictureModal] = useState(false);
+    const [modalProfileBanner, setModalProfileBanner] = useState(false);
 
     function toggleEditProfileModal() {
         setEditProfileModal(!editProfileModal)
@@ -30,13 +34,17 @@ export default function Profile() {
         setprofilePictureModal(!profilePictureModal)
     }
 
+    function toggleModalProfileBanner(){
+        setModalProfileBanner(!modalProfileBanner)
+    }
+
     return (
         <>
             <Header />
 
             <div className={styles.profileContainer}>
                 <span className={styles.picturesBox}>
-                    <img src={banner} alt="banner" />
+                    <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
                     <img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl}/>  
                 </span>
 
@@ -52,8 +60,8 @@ export default function Profile() {
 
                     <div className={styles.descriptionBox}>
                         <h3>Sobre mim:</h3>
-                        <textarea maxLength={1000}>
-                            {user.publication}
+                        <textarea disabled maxLength={1000} defaultValue={user.aboutMe}>
+                            
                         </textarea>
                     
                     </div>
@@ -61,7 +69,7 @@ export default function Profile() {
 
             </div>
 
-            <RiPencilLine className={styles.editBanner} size={20} color="var(--black)" />
+            <RiPencilLine className={styles.editBanner} onClick={toggleModalProfileBanner} size={20} color="var(--black)" />
 
             {editProfileModal && (
                 <EditProfileModal
@@ -75,6 +83,14 @@ export default function Profile() {
                 />
             )}
 
+            {modalProfileBanner && (
+                <ModalEditProfileBanner
+                close={toggleModalProfileBanner}
+                />
+            )}
+
+            <NewsBox />
+            <ChatModal />
         </>
     )
 }

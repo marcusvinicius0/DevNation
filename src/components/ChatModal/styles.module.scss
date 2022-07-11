@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--white);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 260px;
+    height: 40px;
+
+    img{
+        border-radius: 50%;
+        object-fit: cover;
+        width: 33px;
+        height: 33px;
+        cursor: pointer;
+        margin: 0.3rem 0 0 0.5rem;
+    }
+
+    p{
+        padding: 0.8rem 0 0 0.2rem;
+        font-weight: 300;
+        font-size: 14px;
+    }
+
+    span{
+        position: absolute;
+        right: 0.5rem;
+        top: 0.5rem;
+        cursor: pointer;
+    }
+}

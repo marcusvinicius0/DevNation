@@ -9,8 +9,8 @@ import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 import { FaSpinner } from 'react-icons/fa';
 
-import Input from '../../components/userinterface/Input';
-import Button from '../../components/userinterface/Button';
+import Input from '../../components/Userinterface/Input';
+import Button from '../../components/Userinterface/Button';
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');

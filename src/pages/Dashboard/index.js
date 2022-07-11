@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 
 import Header from '../../components/Header';
 import PublicModal from '../../components/PublicationModal';
+import NewsBox from '../../components/NewsBox';
+import ChatModal from '../../components/ChatModal';
+
+import banner from '../../assets/banner.png';
 
 import { AiFillPicture, AiFillLike } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
@@ -30,27 +34,21 @@ export default function Dashboard() {
         setShowPostModal(!showPostModal)
     }
 
-    // useEffect(() => {
-
-    //     function Response(){
-
-    //     }
-
-    //     Response()
-    //     setContent(Response)
-
-    // }, [])
-
     return (
         <>
             <Header />
 
             <div className={styles.sideBox}>
-                {avatarUrl === null ?
-                    <img src={avatar} alt="foto avatar" />
-                    :
-                    <img src={avatarUrl} alt="foto usuario" />
-                }
+                <div className={styles.bannerBox}>
+                    <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+                </div>
+                <Link to="/profile">
+                    {avatarUrl === null ?
+                        <img src={avatar} alt="foto avatar" />
+                        :
+                        <img src={avatarUrl} alt="foto usuario" />
+                    }
+                </Link>
                 <p className={styles.userName}>{user.name}</p>
                 <p className={styles.role}>{user.role}</p>
                 <hr />
@@ -122,7 +120,11 @@ export default function Dashboard() {
 
             </div>
 
+            <NewsBox
+             />
 
+             <ChatModal 
+             />
 
             {showPostModal && (
                 <PublicModal

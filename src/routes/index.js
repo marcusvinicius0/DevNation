@@ -8,6 +8,8 @@ import ForgotPassword from '../pages/ForgotPassword';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 
+import NotFound from '../pages/NotFound';
+
 export default function MyRoutes() {
     return (
         <>
@@ -18,6 +20,8 @@ export default function MyRoutes() {
 
                 <Route exact path="/dashboard" component={Dashboard} isPrivate />
                 <Route exact path="/profile" component={Profile} isPrivate />
+
+                <Route path="*" component={NotFound}/>
             </Switch>
         </>
     )

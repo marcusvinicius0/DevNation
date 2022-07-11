@@ -75,7 +75,18 @@
         margin-top: 0.5rem;
     }
 
-    button{
+    .buttonOff{
+        border: 0;
+        border-radius: 15px;
+        height: 40px;
+        color: var(--white);
+        background-color: var(--soft-blue);
+        padding: 0.5rem;
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+    .buttonOn{
         border: 0;
         border-radius: 15px;
         height: 40px;
