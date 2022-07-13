@@ -22,7 +22,9 @@ export default function Header() {
     return (
         <header className={styles.header}>
 
-            <img className={styles.logo} src={logo} alt="logo" />
+            <Link to="/dashboard">
+                <img className={styles.logo} src={logo} alt="logo" />
+            </Link>
 
             <FiSearch className={styles.searchIcon} size={20} />
             <input type="text" placeholder="Pesquisar..." />
@@ -53,7 +55,7 @@ export default function Header() {
                     <li>
                         <Link to="/">
                             <BsFillGearFill className={styles.configIcon}
-                            size={20} />
+                                size={20} />
                             Configurações
                         </Link>
                     </li>
@@ -68,9 +70,9 @@ export default function Header() {
             </span>
 
             <div className={styles.pictureBox}>
-                <BsBellFill  size={23} color="var(--soft-gray)" />
+                <BsBellFill size={23} color="var(--soft-gray)" />
                 <Link to="/profile">
-                   {user.avatarUrl === null ?  <img src={avatar} alt="usuario-perfil" /> :  <img src={user.avatarUrl} alt="usuario-perfil" />}
+                    {user.avatarUrl === null ? <img src={avatar} alt="usuario-perfil" /> : <img src={user.avatarUrl} alt="usuario-perfil" />}
                 </Link>
             </div>
 

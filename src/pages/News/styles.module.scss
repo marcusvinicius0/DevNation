@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+    width:  900px;
+    max-height: 100%;
+    margin: 5rem 0 3rem 2rem;
+    border-radius: 15px;
+
+    img{
+        height: 60vh;
+        width: 100%;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+}
+
+.informationBox{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    // background-color: red;
+    padding: 2rem;
+    max-width: 95%;
+    border-bottom: 2rem;
+
+    h1{
+        font-size: 28px;
+    }
+
+    p{
+        line-height: 1.5rem;
+    }
+
+    .qualLinguagem{
+        width: 60%;
+        height: 40%;
+    }
+
+    .qualEscolher{
+        width: 60%;
+        height: 40%;
+    }
+
+    a{
+        color: var(--soft-blue);
+        width: 20%;
+        transition: 0.5s;
+    }
+
+    a:hover{
+        color: var(--black);
+    }
+}

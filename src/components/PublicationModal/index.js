@@ -11,10 +11,25 @@ import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 
 export default function PublicModal({ close }) {
-   const [text, setText] = useState('');
+   const [text, setText] = useState([]);
 
    const { user, setUser, storageUser, setLoadingAuth } = useContext(AuthContext);
 
+   function transformString() {
+
+      setText(...text)
+      let content = text.split()
+      
+
+      return (
+         content
+      )
+   }
+
+   // await firebase.firestore.FieldValue.arrayUnion
+
+
+   // let arrayUnion = firebase.firestore.FieldValue.arrayUnion;
 
    async function handleSave(e) {
       setLoadingAuth(true);
@@ -22,10 +37,11 @@ export default function PublicModal({ close }) {
 
       await firebase.firestore().collection('users')
          .doc(user.uid)
-         .update({
-            publication: text
+         .set({
+            ...user,
+            publication: transformString()
          })
-         .then( () => {
+         .then(() => {
             let data = {
                ...user,
                publication: text

@@ -76,6 +76,7 @@ export default function EditProfileModal({ close }) {
                         location: location
                     }
                     toast.success("Dados enviados com sucesso!");
+                    setLocation('');
                     setUser(data);
                     storageUser(data);
                 })
@@ -98,6 +99,7 @@ export default function EditProfileModal({ close }) {
                         role: role
                     }
                     toast.success("Dados enviados com sucesso!")
+                    setRole('');
                     setUser(data);
                     storageUser(data);
                 })

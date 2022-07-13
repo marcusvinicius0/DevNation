@@ -34,6 +34,17 @@ export default function Dashboard() {
         setShowPostModal(!showPostModal)
     }
 
+    useEffect(() => {
+
+        function loadContent() {
+            return user.publication
+        }
+
+        setContent(user.publication)
+        loadContent();
+
+    }, [])
+
     return (
         <>
             <Header />
@@ -96,35 +107,42 @@ export default function Dashboard() {
 
                 <div className={styles.feed}>
 
-                    {user.publication === '' ? <div></div> :
-                        <div className={styles.publicationBox}>
-                            <img src={avatarUrl === null ? avatar : avatarUrl} />
-                            <div className={styles.userInfo}>
-                                <p className={styles.userName}>{user.name}</p>
-                                <p className={styles.role}>Desenvolvedor Front-end • React.js</p>
+                    {/* {content.map(item => { */}
+                        {/* return ( */}
+                            <div className={styles.publicationBox}>
+                                <img src={avatarUrl === null ? avatar : avatarUrl} />
+                                <div className={styles.userInfo}>
+                                    <p className={styles.userName}>{user.name}</p>
+                                    <p className={styles.role}>{user.role}</p>
+                                </div>
+
+                                <p className={styles.publi}>{user.publication}</p>
+                                {/* <div className={styles.buttonReadMore}>
+                                Ler mais
+                            </div> */}
+                                <hr />
+                                <div className={styles.reactionsBox}>
+                                    <AiFillLike size={25} color="var(--soft-gray)" /><p>Gostei</p>
+
+                                    <FaCommentDots size={22} color="var(--soft-gray)" />
+                                    <p>Comentar</p>
+                                </div>
+
+                                <BsThreeDots className={styles.configIcon} size={25} color="var(--soft-gray)" />
                             </div>
+                        {/* ) */}
+                    {/* })} */}
 
-                            <p className={styles.publi}>{user.publication}</p>
-                            <hr />
-                            <div className={styles.reactions}>
-                                <AiFillLike size={25} color="var(--soft-gray)" /><p>Gostei</p>
-
-                                <FaCommentDots size={22} color="var(--soft-gray)" />
-                                <p>Comentar</p>
-                            </div>
-
-                            <BsThreeDots className={styles.configIcon} size={25} color="var(--soft-gray)" />
-                        </div>}
 
                 </div>
 
             </div>
 
             <NewsBox
-             />
+            />
 
-             <ChatModal 
-             />
+            <ChatModal
+            />
 
             {showPostModal && (
                 <PublicModal
