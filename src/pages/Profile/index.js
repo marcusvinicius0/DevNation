@@ -58,10 +58,13 @@ export default function Profile() {
                         <img src={ghLogo} alt="github" width={30} height={30} />
                     </span>
 
-                    <div className={styles.descriptionBox}>
+                    <div className={user.aboutMe === '' ?
+                    styles.descriptionBoxOff : styles.descriptionBox}>
                         <h3>Sobre mim:</h3>
-                        <textarea disabled maxLength={1000} defaultValue={user.aboutMe}>
-                            
+                        <textarea disabled maxLength={1000} 
+                        value={user.aboutMe}
+                        >
+                       
                         </textarea>
                     
                     </div>

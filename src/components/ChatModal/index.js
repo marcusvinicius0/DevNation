@@ -1,22 +1,29 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
 import avatar from '../../assets/avatar.png';
 
-import { AiOutlineArrowUp } from 'react-icons/ai';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md'
 
 import { AuthContext } from '../../contexts/auth';
 
 export default function ChatModal() {
+    const [isChatOpen, setIsChatOpen] = useState(false);
+
     const { user } = useContext(AuthContext);
 
     return (
-        <div className={styles.container}>
+        <div className={isChatOpen ? styles.chatOn : styles.container}>
+
             <img src={user.avatarUrl === null ? avatar : user.avatarUrl} />
-            <p>Mensagens</p>
-            <span>
-                <AiOutlineArrowUp size={25} color="var(--soft-gray)" />
+            <div className={styles.text}>Mensagens</div>
+            <span onClick={() => setIsChatOpen(!isChatOpen)}>
+                {isChatOpen ? <MdKeyboardArrowDown size={25} color="var(--black)" />
+                    :
+                    <MdKeyboardArrowUp size={25} color="var(--black)" />
+                }
             </span>
+
         </div>
     )
 }

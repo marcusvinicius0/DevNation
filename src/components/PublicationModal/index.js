@@ -11,25 +11,29 @@ import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 
 export default function PublicModal({ close }) {
-   const [text, setText] = useState([]);
+   const [text, setText] = useState([] || "");
 
    const { user, setUser, storageUser, setLoadingAuth } = useContext(AuthContext);
 
-   function transformString() {
+    function transformString() {
 
-      setText(...text)
       let content = text.split()
-      
 
-      return (
-         content
-      )
+     return (
+      content
+     )
    }
+
+//    docRef.update({
+//       publication: firebase.firestore.FieldValue.arrayUnion(...transformString)
+//   });
+
+   // let myContent = firebase.firestore.FieldValue.arrayUnion(transformString)
 
    // await firebase.firestore.FieldValue.arrayUnion
 
 
-   // let arrayUnion = firebase.firestore.FieldValue.arrayUnion;
+   // let arrayUnions = firebase.firestore.FieldValue.arrayUnion;
 
    async function handleSave(e) {
       setLoadingAuth(true);
@@ -48,7 +52,7 @@ export default function PublicModal({ close }) {
             }
             setUser(data);
             storageUser(data);
-            setText('');
+            setText("");
             toast.success("Publicação feita com sucesso!")
          })
    }
@@ -83,7 +87,7 @@ export default function PublicModal({ close }) {
                />
 
                <span className={styles.publicationBox}>
-                  {text === '' ? (
+                  {text === [] || text === "" ? (
                      <button className={styles.offButton}
                         disabled
                      >

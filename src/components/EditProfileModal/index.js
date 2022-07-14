@@ -31,6 +31,7 @@ export default function EditProfileModal({ close }) {
                         name: name
                     }
                     toast.success("Dados enviados com sucesso!")
+                    setName('');
                     setUser(data);
                     storageUser(data);
                 })

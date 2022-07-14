@@ -74,9 +74,10 @@
         }
 
         .logoutBox {
-            position: relative;
-            left: 10.5rem;
-            top: 1rem;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
 
             p {
                 position: relative;
@@ -85,13 +86,6 @@
         }
     }
 }
-
-
-// .feedContainer{
-//     display: flex;
-//     background-color: red;
-//     margin-top: 5rem;
-// }
 
 .publicationContainer {
     background-color: var(--white);
@@ -147,7 +141,7 @@
 .feed {
     background-color: var(--white);
     max-width: 600px;
-    height: 100vh;
+    height: 80vh;
     border-radius: 15px;
     margin: 0 auto;
 }

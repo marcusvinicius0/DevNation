@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
+
 import { Link } from 'react-router-dom';
 
 import { FaLock } from 'react-icons/fa';
@@ -17,10 +18,10 @@ export default function SignIn() {
     const [password, setPassword] = useState('');
 
     const { signIn, loadingAuth } = useContext(AuthContext);
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
 
-        if(email !== '' && password !== ''){
+        if (email !== '' && password !== '') {
             signIn(email, password)
         }
     }
@@ -60,7 +61,7 @@ export default function SignIn() {
                     <Button
                         type="submit"
                     >
-                        {loadingAuth ? ( <FaSpinner color="#FFF" size={16} />) : 'Acessar'}
+                        {loadingAuth ? (<FaSpinner color="#FFF" size={16} />) : 'Acessar'}
                     </Button>
                 </form>
 
