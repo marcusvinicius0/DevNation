@@ -40,7 +40,7 @@ export default function ForgotPassword() {
                 <div className={styles.contentContainer}>
                     <h1>Dev Social Network</h1>
                     <p>Entre em sua conta</p>
-                    <Link to="/register">
+                    <Link to="/">
                         Faça login agora mesmo!
                     </Link>
                 </div>
@@ -51,7 +51,7 @@ export default function ForgotPassword() {
                 <h2>Alterar senha</h2>
 
                 <form className={styles.form} onSubmit={handlePassword}>
-                    {/* <MdEmail className={styles.emailIcon} size={22} /> */}
+    
                     <Input
                         placeholder="Digite seu e-mail"
                         value={email}
@@ -64,6 +64,7 @@ export default function ForgotPassword() {
                         {loadingAuth ? (<FaSpinner color="#FFF" size={16} />) : 'Enviar'}
                     </Button>
                 </form>
+
             </div>
         </div>
     )

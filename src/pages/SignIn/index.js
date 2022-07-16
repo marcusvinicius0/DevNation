@@ -1,29 +1,29 @@
 import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
-
 import { Link } from 'react-router-dom';
 
-import { FaLock } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
 
 import Input from '../../components/Userinterface/Input';
 import Button from '../../components/Userinterface/Button';
 
 import { AuthContext } from '../../contexts/auth';
+import { toast } from 'react-toastify';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { signIn, loadingAuth } = useContext(AuthContext);
+    const { user, signIn, loadingAuth } = useContext(AuthContext);
+
     function handleSubmit(e) {
         e.preventDefault();
 
         if (email !== '' && password !== '') {
-            signIn(email, password)
-        }
+            signIn(email, password);
+        }  
+  
     }
 
     return (
@@ -43,14 +43,12 @@ export default function SignIn() {
                 <h2>Faça seu login!</h2>
 
                 <form className={styles.form} onSubmit={handleSubmit}>
-                    {/* <MdEmail className={styles.emailIcon} size={22} /> */}
                     <Input
                         placeholder="Digite seu e-mail"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
                     />
 
-                    {/* <FaLock className={styles.lockIcon} size={18} /> */}
                     <Input
                         placeholder="Digite sua senha"
                         type="password"

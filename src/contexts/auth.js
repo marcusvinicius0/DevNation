@@ -101,7 +101,7 @@ function AuthProvider({ children }) {
             .catch((error) => {
                 console.log(error)
                 setLoadingAuth(false);
-                toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
+                // toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
             })
     }
 

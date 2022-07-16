@@ -73,10 +73,12 @@ export default function Dashboard() {
                         </span>
                     </Link>
 
-                    <span>
-                        <FaUsers color="var(--soft-blue)" size={24} />
-                        <p>Seguidores</p>
-                    </span>
+                    <Link to="/followers">
+                        <span>
+                            <FaUsers color="var(--soft-blue)" size={24} />
+                            <p>Seguidores</p>
+                        </span>
+                    </Link>
 
                     <span>
                         <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
@@ -108,29 +110,29 @@ export default function Dashboard() {
                 <div className={styles.feed}>
 
                     {/* {content.map(item => { */}
-                        {/* return ( */}
-                            <div className={styles.publicationBox}>
-                                <img src={avatarUrl === null ? avatar : avatarUrl} />
-                                <div className={styles.userInfo}>
-                                    <p className={styles.userName}>{user.name}</p>
-                                    <p className={styles.role}>{user.role}</p>
-                                </div>
+                    {/* return ( */}
+                    <div className={styles.publicationBox}>
+                        <img src={avatarUrl === null ? avatar : avatarUrl} />
+                        <div className={styles.userInfo}>
+                            <p className={styles.userName}>{user.name}</p>
+                            <p className={styles.role}>{user.role}</p>
+                        </div>
 
-                                <p className={styles.publi}>{user.publication}</p>
-                                {/* <div className={styles.buttonReadMore}>
+                        <p className={styles.publi}>{user.publication}</p>
+                        {/* <div className={styles.buttonReadMore}>
                                 Ler mais
                             </div> */}
-                                <hr />
-                                <div className={styles.reactionsBox}>
-                                    <AiFillLike size={25} color="var(--soft-gray)" /><p>Gostei</p>
+                        <hr />
+                        <div className={styles.reactionsBox}>
+                            <AiFillLike size={25} color="var(--soft-gray)" /><p>Gostei</p>
 
-                                    <FaCommentDots size={22} color="var(--soft-gray)" />
-                                    <p>Comentar</p>
-                                </div>
+                            <FaCommentDots size={22} color="var(--soft-gray)" />
+                            <p>Comentar</p>
+                        </div>
 
-                                <BsThreeDots className={styles.configIcon} size={25} color="var(--soft-gray)" />
-                            </div>
-                        {/* ) */}
+                        <BsThreeDots className={styles.configIcon} size={25} color="var(--soft-gray)" />
+                    </div>
+                    {/* ) */}
                     {/* })} */}
 
 

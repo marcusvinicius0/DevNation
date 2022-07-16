@@ -1,5 +1,5 @@
 .profileContainer {
-    width: 60vw;
+    width: 800px;
     height: 100%;
     background-color: var(--white);
     margin: 6rem 0 0 6rem;
@@ -108,10 +108,11 @@
 }
 
 .editBanner {
-    width: 30px;
     position: relative;
     left: 47rem;
-    top: -19rem;
+    top: -18rem;
+    background-color: red;
+    width: 30px;
     cursor: pointer;
 }
 

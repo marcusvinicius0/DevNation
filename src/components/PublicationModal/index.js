@@ -20,20 +20,9 @@ export default function PublicModal({ close }) {
       let content = text.split()
 
      return (
-      content
+      {...content}
      )
    }
-
-//    docRef.update({
-//       publication: firebase.firestore.FieldValue.arrayUnion(...transformString)
-//   });
-
-   // let myContent = firebase.firestore.FieldValue.arrayUnion(transformString)
-
-   // await firebase.firestore.FieldValue.arrayUnion
-
-
-   // let arrayUnions = firebase.firestore.FieldValue.arrayUnion;
 
    async function handleSave(e) {
       setLoadingAuth(true);
@@ -43,7 +32,7 @@ export default function PublicModal({ close }) {
          .doc(user.uid)
          .set({
             ...user,
-            publication: transformString()
+            publication: transformString(),
          })
          .then(() => {
             let data = {
@@ -53,7 +42,7 @@ export default function PublicModal({ close }) {
             setUser(data);
             storageUser(data);
             setText("");
-            toast.success("Publicação feita com sucesso!")
+            toast.success("Publicação feita com sucesso!");
          })
    }
 

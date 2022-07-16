@@ -47,3 +47,14 @@ body{
     }
 }
 
+@media (min-width: 1400px){
+    html{
+        font-size: 105%;
+    }
+}
+
+@media (min-width: 1900px){
+    html{
+        font-size: 110%;
+    }
+}

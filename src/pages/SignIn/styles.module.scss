@@ -4,14 +4,16 @@
 }
 
 .logoContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: linear-gradient(to top right, #021B79, #086be4);
     min-width: 60vw;
     min-height: 100vh;
     border-top-right-radius: 10rem;
 }
 
-.contentContainer{
-    padding: 12rem 0 0 5rem;   
+.contentContainer{  
 
     h1{
         color: var(--white);
@@ -38,7 +40,6 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    // background-color: red; //se eu diminuir o height da box, paro de ter quebra de tela com os 'icons' inseridos?? - fazer teste.
     min-width: 40vw;
     min-height: 100vh;
 
@@ -48,30 +49,30 @@
         margin-bottom: 1rem;
     }
 
-    // .emailIcon{
-    //     position: relative;
-    //     top: 3.2rem;
-    //     left: 0.4rem;
-    // }
+    .emailIcon{
+        position: relative;
+        top: -11.5rem;
+        right: 8.5rem;
+    }
  
-    // .lockIcon{
-    //     position: relative;   
-    //     top: 3rem;
-    //     left: 0.4rem;
-    // }
+    .lockIcon{
+        position: relative;   
+        top: -9rem;
+        right: 8.5rem;
+    }
 
     // .userIcon{
     //     position: relative;
     //     top: -13.7rem;
     //     right: 8.5rem;
-    // }
-   
+    // }   
 }
 
 .form{
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+
 
     button{
         margin-bottom: 1rem;
@@ -104,3 +105,51 @@
 
 }
 
+@media (min-width: 1500px){
+    .contentContainer{
+        padding: 0;
+
+        h1{
+            font-size: 4rem;
+        }
+
+        p{
+            font-size: 1.9rem;
+        }
+
+        a{
+            font-size: 1.6rem;
+        }
+    }
+
+    .loginContainer{
+        h2{
+            font-size: 3.5rem;
+        }
+    }
+}
+
+@media (min-width: 1900px){
+
+    .contentContainer{
+        padding: 0;
+
+        h1{
+            font-size: 5rem;
+        }
+
+        p{
+            font-size: 2.4rem;
+        }
+
+        a{
+            font-size: 2rem;
+        }
+    }
+
+    .loginContainer{
+        h2{
+            font-size: 3.8rem;
+        }
+    }
+}

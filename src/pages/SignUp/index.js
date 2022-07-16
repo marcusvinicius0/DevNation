@@ -22,13 +22,22 @@ export default function SignUp() {
     function handleSubmit(e) {
         e.preventDefault();
 
-        if(password !== passwordAgain){
+        if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
+            signUp(name, email, password)
+        } else {
+            toast.warning("Preencha todos os campos.")
+            return null;
+        }
+
+        if (password !== passwordAgain) {
             toast.error("As senhas não são iguais.")
             return null;
         }
 
-        if (name !== '' && email !== '' && password !== '') {
-            signUp(name, email, password)
+
+        if (password <= 5 && passwordAgain <= 5) {
+            toast.warning("A senha precisa conter no mínimo 6 caracteres.")
+            return null;
         }
 
     }
@@ -36,8 +45,8 @@ export default function SignUp() {
     return (
         <div className={styles.mainContainer}>
             <div className={styles.logoContainer}>
-                <div className={styles.contentContainer}>           
-                   <h1>Dev Social Network</h1>
+                <div className={styles.contentContainer}>
+                    <h1>Dev Social Network</h1>
                     <p>Já possui uma conta?</p>
                     <Link to="/">
                         Faça login agora mesmo!

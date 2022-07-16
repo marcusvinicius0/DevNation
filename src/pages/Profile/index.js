@@ -46,6 +46,7 @@ export default function Profile() {
                 <div className={styles.picturesBox}>
                     <img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
                     <img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} />
+
                     <div className={styles.editBanner}>
                         <RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
                     </div>
