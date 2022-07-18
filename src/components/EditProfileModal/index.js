@@ -99,7 +99,7 @@ export default function EditProfileModal({ close }) {
                         ...user,
                         role: role
                     }
-                    toast.success("Dados enviados com sucesso!")
+                    toast.success("Dados enviados com sucesso!");
                     setRole('');
                     setUser(data);
                     storageUser(data);

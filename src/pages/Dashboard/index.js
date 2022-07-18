@@ -7,6 +7,7 @@ import Header from '../../components/Header';
 import PublicModal from '../../components/PublicationModal';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
+import ModalEditPublication from '../../components/ModalEditPublication';
 
 import banner from '../../assets/banner.png';
 
@@ -23,6 +24,7 @@ import { AuthContext } from '../../contexts/auth';
 
 export default function Dashboard() {
     const [showPostModal, setShowPostModal] = useState(false);
+    const [editPublication, setEditPublication] = useState(false);
 
     const { signOut, user } = useContext(AuthContext);
 
@@ -30,20 +32,25 @@ export default function Dashboard() {
 
     const [content, setContent] = useState([]);
 
+
+    function toggleEditPublication() {
+        setEditPublication(!editPublication)
+    };
+
     function togglePostModal() {
         setShowPostModal(!showPostModal)
-    }
+    };
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        function loadContent() {
-            return user.publication
-        }
+    //     function loadContent() {
+    //         return user.publication
+    //     }
 
-        setContent(user.publication)
-        loadContent();
+    //     setContent(user.publication)
+    //     loadContent();
 
-    }, [])
+    // }, [])
 
     return (
         <>
@@ -111,7 +118,7 @@ export default function Dashboard() {
 
                     {/* {content.map(item => { */}
                     {/* return ( */}
-                    <div className={styles.publicationBox}>
+                    {user.publication === [] ? <div></div> : <div className={styles.publicationBox}>
                         <img src={avatarUrl === null ? avatar : avatarUrl} />
                         <div className={styles.userInfo}>
                             <p className={styles.userName}>{user.name}</p>
@@ -130,8 +137,8 @@ export default function Dashboard() {
                             <p>Comentar</p>
                         </div>
 
-                        <BsThreeDots className={styles.configIcon} size={25} color="var(--soft-gray)" />
-                    </div>
+                        <BsThreeDots onClick={() => toggleEditPublication()} className={styles.configIcon} size={25} color="var(--soft-gray)" />
+                    </div>}
                     {/* ) */}
                     {/* })} */}
 
@@ -149,6 +156,12 @@ export default function Dashboard() {
             {showPostModal && (
                 <PublicModal
                     close={togglePostModal}
+                />
+            )}
+
+            {editPublication && (
+                <ModalEditPublication
+                    close={toggleEditPublication}
                 />
             )}
         </>
