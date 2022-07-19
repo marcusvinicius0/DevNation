@@ -19,7 +19,7 @@ import { RiPencilLine } from 'react-icons/ri';
 
 export default function Profile() {
     const { user } = useContext(AuthContext);
- 
+
     // const [avatarUrL, setAvatarUrL] = useState(user && user.avatarUrl);
 
     const [editProfileModal, setEditProfileModal] = useState(false);
@@ -30,11 +30,11 @@ export default function Profile() {
         setEditProfileModal(!editProfileModal)
     }
 
-    function toggleProfilePictureModal(){
+    function toggleProfilePictureModal() {
         setprofilePictureModal(!profilePictureModal)
     }
 
-    function toggleModalProfileBanner(){
+    function toggleModalProfileBanner() {
         setModalProfileBanner(!modalProfileBanner)
     }
 
@@ -43,33 +43,39 @@ export default function Profile() {
             <Header />
 
             <div className={styles.profileContainer}>
-                <span className={styles.picturesBox}>
-                    <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-                    <img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl}/>  
-                </span>
+                <div className={styles.picturesBox}>
+                    <img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+                    <img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} />
+
+                    <div className={styles.editBanner}>
+                        <RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
+                    </div>
+                </div>
 
                 <span className={styles.infoBox}>
+                    <RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
                     <p className={styles.name}>{user.name}</p>
                     <p className={styles.role}>{user.role}</p>
                     <p className={styles.place}>{user.location}</p>
-                    <RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
+
                     <span className={styles.socialMedias}>
                         <img src={inLogo} alt="linkedin" width={30} height={30} />
                         <img src={ghLogo} alt="github" width={30} height={30} />
                     </span>
 
-                    <div className={styles.descriptionBox}>
+                    <div className={user.aboutMe === '' ?
+                        styles.descriptionBoxOff : styles.descriptionBox}>
                         <h3>Sobre mim:</h3>
-                        <textarea disabled maxLength={1000} defaultValue={user.aboutMe}>
-                            
+                        <textarea disabled maxLength={1000}
+                            value={user.aboutMe}
+                        >
+
                         </textarea>
-                    
+
                     </div>
                 </span>
 
             </div>
-
-            <RiPencilLine className={styles.editBanner} onClick={toggleModalProfileBanner} size={20} color="var(--black)" />
 
             {editProfileModal && (
                 <EditProfileModal
@@ -79,13 +85,13 @@ export default function Profile() {
 
             {profilePictureModal && (
                 <EditProfilePictureModal
-                close={toggleProfilePictureModal}
+                    close={toggleProfilePictureModal}
                 />
             )}
 
             {modalProfileBanner && (
                 <ModalEditProfileBanner
-                close={toggleModalProfileBanner}
+                    close={toggleModalProfileBanner}
                 />
             )}
 

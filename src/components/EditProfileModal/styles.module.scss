@@ -1,14 +1,14 @@
-.container{
-   position: fixed;
-   top: 0;
-   bottom: 0;
-   right: 0;
-   left: 0;
-   background: rgba(0,0,0, 0.6);
-   z-index: 99;
+.container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
 }
 
-.modalBox{
+.modalBox {
     max-width: 650px;
     height: 520px;
     background-color: var(--white);
@@ -16,11 +16,11 @@
     border-radius: 15px;
 }
 
-.buttonBox{
+.buttonBox {
     display: flex;
     justify-content: flex-end;
 
-    button{
+    button {
         position: relative;
         top: 1rem;
         right: 1rem;
@@ -29,9 +29,9 @@
     }
 }
 
-.header{
-    
-    p{
+.header {
+
+    p {
         position: relative;
         top: -0.5rem;
         left: 2rem;
@@ -39,17 +39,17 @@
         width: 30%;
     }
 
-    hr{
+    hr {
         opacity: 0.4;
     }
 }
 
 
 
-.formBox{
+.formBox {
     margin: 2rem 0 0 2rem;
-    
-    form{
+
+    form {
         display: flex;
         justify-content: flex-start;
         align-items: flex-start;
@@ -57,7 +57,7 @@
         gap: 1rem;
     }
 
-    input{
+    input {
         height: 40px;
         width: 30rem;
         border-radius: 15px;
@@ -66,7 +66,7 @@
         margin-top: 0.5rem;
     }
 
-    textarea{
+    textarea {
         width: 30rem;
         height: 80px;
         padding: 1rem 0 0 1rem;
@@ -75,7 +75,20 @@
         margin-top: 0.5rem;
     }
 
-    .buttonOff{
+    textarea::-webkit-scrollbar {
+        width: 10px;
+        background-color: var(--whitesmoke);
+    }
+
+    textarea::-webkit-scrollbar-thumb:vertical {
+        background: var(--soft-gray);
+        cursor: pointer;
+        border-radius: 10px;
+        -moz-border-radius: 30px;
+        -webkit-border-radius: 20px;
+    }
+
+    .buttonOff {
         border: 0;
         border-radius: 15px;
         height: 40px;
@@ -86,7 +99,7 @@
         opacity: 0.5;
     }
 
-    .buttonOn{
+    .buttonOn {
         border: 0;
         border-radius: 15px;
         height: 40px;

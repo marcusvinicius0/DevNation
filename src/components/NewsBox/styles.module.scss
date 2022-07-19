@@ -1,15 +1,10 @@
 .container {
     display: flex;
-    position: absolute;
     flex-direction: column;
     width: 300px;
     height: 430px;
     border-radius: 15px;
     background-color: var(--white);
-    right: 3rem;
-    top: 5.2rem;
-		border: 1px solid rgb(0,0,0,0.15);
-		padding: 0.5rem;
 
     .logoBox{
         width: 100%;

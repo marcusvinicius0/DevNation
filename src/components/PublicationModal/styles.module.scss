@@ -1,26 +1,26 @@
-.container{
+.container {
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
-    background: rgba(0,0,0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 99;
 }
 
-.containerModal{
+.containerModal {
     max-width: 550px;
     height: 370px;
     background-color: var(--white);
     margin: 5rem auto;
     border-radius: 15px;
 
-    .buttonBox{
+    .buttonBox {
         display: flex;
         justify-content: flex-end;
         align-items: flex-end;
 
-        .closeButton{
+        .closeButton {
             position: relative;
             top: 1rem;
             right: 1rem;
@@ -29,7 +29,7 @@
         }
     }
 
-    p{
+    p {
         position: relative;
         top: -1rem;
         left: 1.5rem;
@@ -38,7 +38,7 @@
         width: 30%;
     }
 
-    hr{
+    hr {
         opacity: 0.4;
     }
 
@@ -51,7 +51,7 @@
         margin: 1rem 0 0 1rem;
     }
 
-    .userName{
+    .userName {
         position: relative;
         top: -2rem;
         left: 3.8rem;
@@ -61,7 +61,7 @@
         opacity: 0.8;
     }
 
-    textarea{
+    textarea {
         margin: 1rem 0 0 2rem;
         padding-left: 1rem;
         padding-top: 0.5rem;
@@ -72,12 +72,24 @@
         font-size: 15px;
     }
 
-    .publicationBox{
-        
+    textarea::-webkit-scrollbar {
+        width: 10px;
+        background-color: var(--whitesmoke);
+    }
+
+    textarea::-webkit-scrollbar-thumb:vertical {
+        background: var(--soft-gray);
+        border-radius: 10px;
+        -moz-border-radius: 30px;
+        -webkit-border-radius: 20px;
+    }
+
+    .publicationBox {
+
         display: flex;
         justify-content: flex-end;
 
-        .offButton{
+        .offButton {
             position: relative;
             cursor: not-allowed;
             right: 1rem;
@@ -90,7 +102,7 @@
             opacity: 0.6;
         }
 
-        button{
+        button {
             position: relative;
             cursor: pointer;
             right: 1rem;

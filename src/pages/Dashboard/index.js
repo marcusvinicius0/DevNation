@@ -8,6 +8,7 @@ import Header from '../../components/Header';
 import PublicModal from '../../components/PublicationModal';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
+import ModalEditPublication from '../../components/ModalEditPublication';
 
 import banner from '../../assets/banner.png';
 
@@ -23,14 +24,18 @@ import { AuthContext } from '../../contexts/auth';
 import Feed from '../../components/Feed';
 
 export default function Dashboard() {
-		const { signOut, user } = useContext(AuthContext);
-		const [showPostModal, setShowPostModal] = useState(false);
+
     const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
 		const [publications, setPublications] = useState([])
 
+
+    function toggleEditPublication() {
+        setEditPublication(!editPublication)
+    };
+
     function togglePostModal() {
         setShowPostModal(!showPostModal)
-    }
+    };
 
     return (
         <>
@@ -55,10 +60,7 @@ export default function Dashboard() {
                             <p>Meu perfil</p>
                         </span>
                     </Link>
-                    <span>
-                        <FaUsers color="var(--soft-blue)" size={24} />
-                        <p>Seguidores</p>
-                    </span>
+
                     <span>
                         <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
                         <p>Meus projetos</p>
@@ -83,6 +85,7 @@ export default function Dashboard() {
                     <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
                     <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
                 </span>
+
             </div>
 
 						<Feed publications={publications} />
@@ -92,6 +95,12 @@ export default function Dashboard() {
             {showPostModal && (
                 <PublicModal
                     close={togglePostModal}
+                />
+            )}
+
+            {editPublication && (
+                <ModalEditPublication
+                    close={toggleEditPublication}
                 />
             )}
         </>

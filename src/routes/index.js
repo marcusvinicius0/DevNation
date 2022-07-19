@@ -7,6 +7,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
+import Followers from '../pages/Followers';
 
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
@@ -26,6 +27,8 @@ export default function MyRoutes() {
 
                 <Route exact path="/dashboard" component={Dashboard} isPrivate />
                 <Route exact path="/profile" component={Profile} isPrivate />
+                <Route exact path="/followers" component={Followers} isPrivate />
+
                 <Route exact path="/news" component={News} isPrivate />
                 <Route exact path="/news/alura" component={NewsAlura} isPrivate />
                 <Route exact path="/news/law-project" component={NewsLawProject} isPrivate />

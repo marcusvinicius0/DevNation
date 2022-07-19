@@ -38,7 +38,7 @@ export default function Header() {
                     </li>
 
                     <li>
-                        <Link to="/">
+                        <Link to="/followers">
                             <FaUsers className={styles.usersIcon} size={20} />
                             Seguidores
                         </Link>

@@ -7,22 +7,37 @@ import { Link } from 'react-router-dom';
 import { FaUser, FaLock, FaSpinner } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 
-
 import Input from '../../components/Userinterface/Input';
 import Button from '../../components/Userinterface/Button';
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [passwordAgain, setPasswordAgain] = useState('');
 
     const { signUp, loadingAuth } = useContext(AuthContext);
 
-    function handleSubmit(e){
+    function handleSubmit(e) {
         e.preventDefault();
-        
-        if(name !== '' && email !== '' && password !== ''){
+
+        if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
             signUp(name, email, password)
+        } else {
+            toast.warning("Preencha todos os campos.")
+            return null;
+        }
+
+        if (password !== passwordAgain) {
+            toast.error("As senhas não são iguais.")
+            return null;
+        }
+
+
+        if (password <= 5 && passwordAgain <= 5) {
+            toast.warning("A senha precisa conter no mínimo 6 caracteres.")
+            return null;
         }
 
     }
@@ -45,9 +60,9 @@ export default function SignUp() {
                 <FaLock className={styles.lockIcon} size={18} /> */}
                 <h2>Cadastre-se!</h2>
                 <form
-                 className={styles.form}
-                 onSubmit={handleSubmit}
-                 >
+                    className={styles.form}
+                    onSubmit={handleSubmit}
+                >
 
                     <Input
                         placeholder="Digite seu nome"
@@ -68,6 +83,13 @@ export default function SignUp() {
                         type="password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                    />
+
+                    <Input
+                        placeholder="Digite sua senha novamente"
+                        type="password"
+                        value={passwordAgain}
+                        onChange={(event) => setPasswordAgain(event.target.value)}
                     />
 
                     <Button

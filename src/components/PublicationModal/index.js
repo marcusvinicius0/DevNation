@@ -11,20 +11,11 @@ import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 
 export default function PublicModal({ close }) {
-   const [text, setText] = useState([]);
-   const { user } = useContext(AuthContext);
+
 
    async function handleSave(e) {
       e.preventDefault();
-      await firebase.firestore().collection('publications')
-					.add({
-						publication: text,
-						user_id: user.uid,
-						created: new Date()
-					})
-         .then(() => {
-            setText('');
-            toast.success("Publicação feita com sucesso!")
+
          })
    }
 
@@ -51,7 +42,7 @@ export default function PublicModal({ close }) {
                   placeholder="No que você está pensando?"
                />
                <span className={styles.publicationBox}>
-                  {text === '' ? (
+                  {text === [] || text === "" ? (
                      <button className={styles.offButton}
                         disabled
                      >

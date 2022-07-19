@@ -93,7 +93,7 @@ export default function ModalEditProfileBanner({ close }) {
 
                     <label className={styles.labelAvatar}>
                         <span>
-                            <FiUpload className={styles.uploadIcon} color="var(--white)" size={30} />
+                            <FiUpload className={styles.uploadIcon} color="var(--soft-gray)" size={30} />
                         </span>
 
 
