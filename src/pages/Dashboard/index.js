@@ -24,9 +24,11 @@ import { AuthContext } from '../../contexts/auth';
 import Feed from '../../components/Feed';
 
 export default function Dashboard() {
-
+		const { signOut, user } = useContext(AuthContext);
+		const [showPostModal, setShowPostModal] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
 		const [publications, setPublications] = useState([])
+		const [editPublication, setEditPublication] = useState(false)
 
 
     function toggleEditPublication() {
@@ -62,6 +64,19 @@ export default function Dashboard() {
                     </Link>
 
                     <span>
+                        <FaUsers color="var(--soft-blue)" size={24} />
+                        <p>Seguidores</p>
+                    </span>
+
+
+                    <Link to="/followers">
+                        <span>
+                            <FaUsers color="var(--soft-blue)" size={24} />
+                            <p>Seguidores</p>
+                        </span>
+                    </Link>
+
+                    <span>
                         <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
                         <p>Meus projetos</p>
                     </span>
@@ -85,10 +100,9 @@ export default function Dashboard() {
                     <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
                     <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
                 </span>
-
             </div>
 
-						<Feed publications={publications} />
+						<Feed  />
             <NewsBox />
             <ChatModal />
 

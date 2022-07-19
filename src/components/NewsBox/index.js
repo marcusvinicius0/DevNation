@@ -2,8 +2,6 @@ import styles from './styles.module.scss';
 
 import logonews from '../../assets/logonews.png';
 
-import News from '../../pages/News';
-
 import { BsFillCalendarCheckFill } from 'react-icons/bs';
 import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
