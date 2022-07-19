@@ -1,10 +1,18 @@
 .profileContainer {
-    width: 800px;
+    max-width: 900px;
+		width: 100%;
     height: 100%;
-    background-color: var(--white);
-    margin: 6rem 0 0 6rem;
+    margin: 5rem 0 0 6rem;
     border-radius: 15px;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
 
+		.contentProfile {
+			background: var(--white);
+			border: 1px solid rgb(0,0,0,0.15);
+			border-radius: 15px;
+		}
 
     .picturesBox {
         height: 200px;
@@ -52,7 +60,7 @@
 
         svg {
             position: relative;
-            left: 47rem;
+            left: 53rem;
             cursor: pointer;
             transition: all 0.5s;
         }
@@ -70,47 +78,102 @@
             right: 1rem;
             top: -2rem;
         }
-
-        .descriptionBoxOff {
-            display: none;
-        }
-
-        .descriptionBox {
-            padding-left: 2rem;
-
-            textarea {
-                width: 80%;
-                height: 130px;
-                padding: 0.5rem 0 0 1rem;
-                resize: none;
-                border: none;
-                height: 120px;
-                overflow-y: auto;
-                cursor: pointer;
-            }
-
-            textarea::-webkit-scrollbar {
-                height: 20px;
-                width: 5px;
-                background-color: var(--whitesmoke);
-            }
-
-            textarea::-webkit-scrollbar-thumb:vertical {
-                background: var(--soft-gray);
-                height: 20px;
-                border-radius: 20px;
-                -moz-border-radius: 30px;
-                -webkit-border-radius: 20px;
-            }
-        }
     }
+
+		.aboutMe {
+			width: 100%;
+			padding: 1rem;
+			background: var(--white);
+			border: 1px solid rgb(0,0,0,0.15);
+			border-radius: 15px;
+			position: relative;
+
+			h1 {
+				font-size: 1.2rem;
+				font-weight: 600;
+			}
+
+			p {
+				margin-top: 1rem;
+				font-size: 0.9rem;
+				font-weight: 400;
+			}
+
+			button {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				background: 0;
+				border: 0;
+				outline: 0;
+				width: 2rem;
+				height: 2rem;
+				border-radius: 100%;
+			}
+		}
+
+		.posts {
+			display: flex;
+			flex-direction: column;
+			gap: 0.5rem;
+			
+			.post {
+				background: var(--white);
+				border-radius: 0.5rem;
+				padding: 1rem;
+				border: 1px solid rgb(0,0,0,0.15);
+			
+				header {
+					height: 3rem;
+					width: 100%;
+					display: flex;
+					align-items: center;
+					gap: 1rem;
+			
+					img {
+						width: 50px;
+						height: 50px;
+						border-radius: 100%;
+					}
+			
+					div {
+						display: flex;
+						flex-direction: column;
+			
+						span {
+							font-weight: 600;
+							font-size: 0.95rem;
+							line-height: 1rem;
+						}
+			
+						p {
+							font-weight: 400;
+							font-size: 0.65rem;
+						}
+			
+						time {
+							font-weight: 400;
+							font-size: 0.65rem;
+						}
+					}
+			
+				}
+			
+				.contentPost {
+					p {
+						font-size: 0.95rem;
+						padding: 1rem 0 0.5rem 0;
+					}
+				}
+			}
+		}
 
 }
 
 .editBanner {
     position: relative;
-    left: 47rem;
-    top: -18rem;
+    left: 53rem;
+    top: -19rem;
     width: 30px;
     cursor: pointer;
 }

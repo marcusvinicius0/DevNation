@@ -1,5 +1,6 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
+import firebase from 'firebase';
 
 import Header from '../../components/Header';
 import EditProfileModal from '../../components/EditProfileModal';
@@ -20,11 +21,35 @@ import { RiPencilLine } from 'react-icons/ri';
 export default function Profile() {
     const { user } = useContext(AuthContext);
 
-    // const [avatarUrL, setAvatarUrL] = useState(user && user.avatarUrl);
-
     const [editProfileModal, setEditProfileModal] = useState(false);
     const [profilePictureModal, setprofilePictureModal] = useState(false);
     const [modalProfileBanner, setModalProfileBanner] = useState(false);
+		const [publicationsProfile, setPublicationsProfile] = useState([])
+
+		useEffect( () => {
+			async function loadPosts() {
+				await firebase.firestore().collection('publications')
+				.orderBy('created', 'desc')
+				.get()
+				.then( (snapshot) => {
+					let arrayPublications = [];
+
+					snapshot.forEach( (doc) => {
+						if(doc.data().user_id === user.uid) {
+							let data = {
+								publication: doc.data().publication,
+								created: doc.data().created,
+								user_id: user.uid,
+								id: doc.id
+							}
+							arrayPublications.push(data)
+						}
+					})
+					setPublicationsProfile(arrayPublications)
+				})
+			}
+			loadPosts()
+		}, [])
 
     function toggleEditProfileModal() {
         setEditProfileModal(!editProfileModal)
@@ -43,38 +68,54 @@ export default function Profile() {
             <Header />
 
             <div className={styles.profileContainer}>
-                <div className={styles.picturesBox}>
-                    <img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-                    <img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} />
+                <div className={styles.contentProfile}>
+									<div className={styles.picturesBox}>
+											<img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+											<img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Foto de perfil" />
 
-                    <div className={styles.editBanner}>
-                        <RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
-                    </div>
-                </div>
+											<div className={styles.editBanner}>
+													<RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
+											</div>
+									</div>
 
-                <span className={styles.infoBox}>
-                    <RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
-                    <p className={styles.name}>{user.name}</p>
-                    <p className={styles.role}>{user.role}</p>
-                    <p className={styles.place}>{user.location}</p>
+									<span className={styles.infoBox}>
+											<RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
+											<p className={styles.name}>{user.name}</p>
+											<p className={styles.role}>{user.role}</p>
+											<p className={styles.place}>{user.location}</p>
 
-                    <span className={styles.socialMedias}>
-                        <img src={inLogo} alt="linkedin" width={30} height={30} />
-                        <img src={ghLogo} alt="github" width={30} height={30} />
-                    </span>
-
-                    <div className={user.aboutMe === '' ?
-                        styles.descriptionBoxOff : styles.descriptionBox}>
-                        <h3>Sobre mim:</h3>
-                        <textarea disabled maxLength={1000}
-                            value={user.aboutMe}
-                        >
-
-                        </textarea>
-
-                    </div>
-                </span>
-
+											<span className={styles.socialMedias}>
+													<img src={inLogo} alt="linkedin" width={30} height={30} />
+													<img src={ghLogo} alt="github" width={30} height={30} />
+											</span>
+									</span>
+								</div>
+								<div className={styles.aboutMe}>
+									<h1>Sobre mim</h1>
+									{user.aboutMe === '' ? (
+										<p>Sem informações.</p>
+									) : (
+										<p>{user.aboutMe}</p>
+									)}
+									<button type="button"><RiPencilLine size={22} /></button>
+								</div>
+								<div className={styles.posts}>
+										{publicationsProfile.map( (publication) => (
+											<div key={publication.id} className={styles.post}>
+												<header>
+													<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
+													<div>
+														<span >{user.name}</span>
+														<p>{user.role}</p>
+														<time>Há 1h</time>
+													</div>
+												</header>
+												<div className={styles.contentPost}>
+													<p>{publication.publication}</p>
+												</div>
+										</div>
+										))}
+								</div>
             </div>
 
             {editProfileModal && (

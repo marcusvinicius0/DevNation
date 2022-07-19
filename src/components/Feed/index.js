@@ -13,9 +13,7 @@ export default function Feed() {
 	const { user } = useContext(AuthContext);
 
 	useEffect(() => {
-
 		async function loadPublications() {
-
 			await firebase.firestore().collection('publications')
 				.orderBy('created', 'desc')
 				.get()
@@ -35,7 +33,6 @@ export default function Feed() {
 									user_role: snap.data().role,
 									avatarUrl: snap.data().avatarUrl,
 									bannerUrl: snap.data().bannerUrl,
-									id: doc.id
 								}
 								arrayPublications.push(data)
 							})
@@ -48,11 +45,13 @@ export default function Feed() {
 
 	}, []);
 
+	function teste() {
+		console.log(publications)
+	}
+
 	return (
 		<div className={styles.feed}>
-
-			{publications.map((publication) => {
-				return (
+			{publications.map((publication) => (
 					<div key={publication.id} className={styles.post}>
 						<header>
 							<img src={publication.avatarUrl} alt="Avatar foto" />
@@ -66,8 +65,7 @@ export default function Feed() {
 							<p>{publication.publication}</p>
 						</div>
 					</div>
-				)
-			})}
+			))}
 
 		</div>
 	)
