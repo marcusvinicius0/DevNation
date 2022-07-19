@@ -45,7 +45,7 @@ export default function Header() {
                     </li>
 
                     <li>
-                        <Link to="/">
+                        <Link to="/message">
                             <BsFillChatDotsFill className={styles.chatIcon} size={20} />
                             Mensagens
                         </Link>

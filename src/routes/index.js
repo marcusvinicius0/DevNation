@@ -15,6 +15,8 @@ import NewsLawProject from '../pages/News/projetoLei';
 import NewsMetaVerso from '../pages/News/metaverso';
 import NewsDevelopers from '../pages/News/desenvolvedores';
 
+import Message from '../pages/Message';
+
 import NotFound from '../pages/NotFound';
 
 export default function MyRoutes() {
@@ -35,7 +37,9 @@ export default function MyRoutes() {
                 <Route exact path="/news/metaverso" component={NewsMetaVerso} isPrivate />
                 <Route exact path="/news/developers-lack" component={NewsDevelopers} isPrivate />
 
-                <Route path="*" component={NotFound} />
+                <Route exact path="/message" component={Message} isPrivate />
+
+                    <Route path="*" component={NotFound} />
             </Switch>
         </>
     )

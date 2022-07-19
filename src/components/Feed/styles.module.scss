@@ -1,11 +1,17 @@
 .feed {
 	max-width: 600px;
-	height: 100vh;
+	height: 100vw;
 	border-radius: 15px;
 	margin: 0 auto;
 	display: flex;
 	flex-direction: column;
+	background-color: var(--white);
 	gap: 1rem;
+	padding: 1rem;
+}
+
+.feedOff{
+	background-color: red;
 }
 
 .post {
@@ -47,6 +53,7 @@
 				font-size: 0.65rem;
 			}
 		}
+
 	}
 
 	.contentPost {

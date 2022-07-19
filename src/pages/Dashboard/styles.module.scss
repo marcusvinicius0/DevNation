@@ -109,7 +109,7 @@
 					cursor: pointer;
 			}
 	
-			button {
+			.publication{
 					width: 30rem;
 					height: 40px;
 					border: 1px solid rgba(0, 0, 0, 0.2);
@@ -117,9 +117,14 @@
 					cursor: pointer;
 					transition: all 0.5s;
 					margin-top: 0.4rem;
+                    padding: 0.5rem 0 0 1rem;
+
+                    p{
+                        font-size: 14px;
+                    }
 			}
 	
-			input:hover {
+			.publication:hover {
 					background-color: rgba(0, 0, 0, 0.1);
 			}
     }
@@ -137,10 +142,3 @@
     }
 }
 
-.feed {
-    background-color: var(--white);
-    max-width: 600px;
-    height: 80vh;
-    border-radius: 15px;
-    margin: 0 auto;
-}

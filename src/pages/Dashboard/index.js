@@ -24,11 +24,10 @@ import { AuthContext } from '../../contexts/auth';
 import Feed from '../../components/Feed';
 
 export default function Dashboard() {
-		const { signOut, user } = useContext(AuthContext);
-		const [showPostModal, setShowPostModal] = useState(false);
+    const { signOut, user } = useContext(AuthContext);
+    const [showPostModal, setShowPostModal] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
-		const [publications, setPublications] = useState([])
-		const [editPublication, setEditPublication] = useState(false)
+    const [editPublication, setEditPublication] = useState(false)
 
 
     function toggleEditPublication() {
@@ -38,7 +37,7 @@ export default function Dashboard() {
     function togglePostModal() {
         setShowPostModal(!showPostModal)
     };
-
+    
     return (
         <>
             <Header />
@@ -63,12 +62,6 @@ export default function Dashboard() {
                         </span>
                     </Link>
 
-                    <span>
-                        <FaUsers color="var(--soft-blue)" size={24} />
-                        <p>Seguidores</p>
-                    </span>
-
-
                     <Link to="/followers">
                         <span>
                             <FaUsers color="var(--soft-blue)" size={24} />
@@ -89,12 +82,13 @@ export default function Dashboard() {
             <div className={styles.publicationContainer}>
                 <div className={styles.contentBox}>
                     {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
-                    <button
+                    <div
+                        className={styles.publication}
                         onClick={() => togglePostModal()}
-                        type="text"
+
                     >
-                        No que você está pensando?
-                    </button>
+                        <p>No que você está pensando?</p>
+                    </div>
                 </div>
                 <span>
                     <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
@@ -102,7 +96,7 @@ export default function Dashboard() {
                 </span>
             </div>
 
-						<Feed  />
+            <Feed />
             <NewsBox />
             <ChatModal />
 

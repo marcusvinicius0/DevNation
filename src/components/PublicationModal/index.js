@@ -23,7 +23,7 @@ export default function PublicModal({ close }) {
 						created: new Date()
 					})
          .then(() => {
-            setText('');
+            setText([]);
             toast.success("Publicação feita com sucesso!")
 				 })
    }
@@ -39,6 +39,7 @@ export default function PublicModal({ close }) {
             <span>
                <p>Criar publicação</p>
             </span>
+            <hr/>
             <span>
                <img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="profile-pic" />
                <p className={styles.userName}>{user.name}</p>
@@ -58,7 +59,7 @@ export default function PublicModal({ close }) {
                         Publicar
                      </button>
                   ) : (
-                     <button type="submit">Publicar</button>
+                     <button className={styles.onButton} type="submit">Publicar</button>
                   )}
                </span>
             </form>
