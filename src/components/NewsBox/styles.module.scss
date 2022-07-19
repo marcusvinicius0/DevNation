@@ -2,12 +2,9 @@
     display: flex;
     flex-direction: column;
     width: 300px;
-    height: 400px;
+    height: 430px;
     border-radius: 15px;
     background-color: var(--white);
-    position: absolute;
-    right: 2rem;
-    top: 5rem;
 
     .logoBox{
         width: 100%;
@@ -31,24 +28,30 @@
 
     .contentBox{
         display: flex;
-        gap: 0.7rem;
+        gap: 1rem;
         flex-direction: column;
         margin-top: 2rem;
         padding-left: 0.5rem;
 
         .box{
             cursor: pointer;
-            width: 97%;
-            height: 50px;
+            width: 100%;
+            height: 3rem;
             transition: all .5s;
-            // background-color: red;
 
             .title{
                 width: 95%;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
+								font-size: 0.9rem;
             }
+
+						p {
+							text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+						}
         }
 
         .box:hover{

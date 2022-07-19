@@ -16,7 +16,6 @@ import { BiMenuAltRight } from 'react-icons/bi';
 
 export default function Header() {
     const { user } = useContext(AuthContext);
-
     const [showMenu, setShowMenu] = useState(false);
 
     return (
