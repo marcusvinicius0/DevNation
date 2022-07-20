@@ -16,7 +16,7 @@ import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
 import { FaUsers, FaUserCircle } from 'react-icons/fa';
 import { IoLogOut } from 'react-icons/io5';
-import { FaEnvelopeOpenText } from 'react-icons/fa';
+import { FaEnvelopeOpenText, FaBook } from 'react-icons/fa';
 
 import avatar from '../../assets/avatar.png';
 
@@ -24,97 +24,107 @@ import { AuthContext } from '../../contexts/auth';
 import Feed from '../../components/Feed';
 
 export default function Dashboard() {
-    const { signOut, user } = useContext(AuthContext);
-    const [showPostModal, setShowPostModal] = useState(false);
-    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
-    const [editPublication, setEditPublication] = useState(false)
+   const { signOut, user } = useContext(AuthContext);
+   const [showPostModal, setShowPostModal] = useState(false);
+   const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
+   const [editPublication, setEditPublication] = useState(false)
 
 
-    function toggleEditPublication() {
-        setEditPublication(!editPublication)
-    };
+   function toggleEditPublication() {
+      setEditPublication(!editPublication)
+   };
 
-    function togglePostModal() {
-        setShowPostModal(!showPostModal)
-    };
+   function togglePostModal() {
+      setShowPostModal(!showPostModal)
+   };
 
-    return (
-        <>
-            <Header />
-            <div className={styles.sideBox}>
-                <div className={styles.bannerBox}>
-                    <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-                </div>
-                <div className={styles.pictureBox}>
-                    <Link to="/profile">
-                        {avatarUrl === null ?
-                            <img src={avatar} alt="foto avatar" />
-                            :
-                            <img src={avatarUrl} alt="foto usuario" />
-                        }
-                    </Link>
-                </div>
-                <p className={styles.userName}>{user.name}</p>
-                <p className={styles.role}>{user.role}</p>
-                <hr />
-                <div className={styles.routesBox}>
-                    <Link to="/profile">
-                        <span>
-                            <FaUserCircle color="var(--soft-blue)" size={24} />
-                            <p>Meu perfil</p>
-                        </span>
-                    </Link>
-
-                    <Link to="/followers">
-                        <span>
-                            <FaUsers color="var(--soft-blue)" size={24} />
-                            <p>Seguidores</p>
-                        </span>
-                    </Link>
-
-                    <span>
-                        <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
-                        <p>Meus projetos</p>
-                    </span>
-                    <span className={styles.logoutBox} onClick={signOut}>
-                        <IoLogOut color="var(--soft-blue)" size={25} />
-                        <p>Sair</p>
-                    </span>
-                </div>
+   return (
+      <>
+         <Header />
+         <div className={styles.sideBox}>
+            <div className={styles.bannerBox}>
+               <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
             </div>
-            <div className={styles.publicationContainer}>
-                <div className={styles.contentBox}>
-                    {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
-                    <div
-                        className={styles.publication}
-                        onClick={() => togglePostModal()}
-
-                    >
-                        <p>No que você está pensando?</p>
-                    </div>
-                </div>
-                <span>
-                    <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-                    <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-                </span>
+            <div className={styles.pictureBox}>
+               <Link to="/profile">
+                  {avatarUrl === null ?
+                     <img src={avatar} alt="foto avatar" />
+                     :
+                     <img src={avatarUrl} alt="foto usuario" />
+                  }
+               </Link>
             </div>
+            <p className={styles.userName}>{user.name}</p>
+            <p className={styles.role}>{user.role}</p>
+            <hr />
+            <div className={styles.routesBox}>
+               <Link to="/profile">
+                  <span>
+                     <FaUserCircle color="var(--soft-blue)" size={24} />
+                     <p>Meu perfil</p>
+                  </span>
+               </Link>
 
-            <Feed />
-            <NewsBox />
-            <ChatModal />
+               <Link to="/followers">
+                  <span>
+                     <FaUsers color="var(--soft-blue)" size={24} />
+                     <p>Seguidores</p>
+                  </span>
+               </Link>
 
-            {showPostModal && (
-                <PublicModal
-                    close={togglePostModal}
-                />
-            )}
+               <Link to="/dashboard">
+                  <span>
+                     <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
+                     <p>Meus projetos</p>
+                  </span>
+               </Link>
 
-            {editPublication && (
-                <ModalEditPublication
-                    close={toggleEditPublication}
-                />
-            )}
-        </>
+               <Link to="/repositories">
+                  <span>
+                     <FaBook color="var(--soft-blue)" size={22} />
+                     <p>Encontrar repositórios</p>
+                  </span>
+               </Link>
 
-    )
+               <div className={styles.logoutBox} onClick={signOut}>
+                  <IoLogOut color="var(--soft-blue)" size={25} />
+                  <p>Sair</p>
+               </div>
+            </div>
+         </div>
+         <div className={styles.publicationContainer}>
+            <div className={styles.contentBox}>
+               {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
+               <div
+                  className={styles.publication}
+                  onClick={() => togglePostModal()}
+
+               >
+                  <p>No que você está pensando?</p>
+               </div>
+            </div>
+            <span>
+               <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+               <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+            </span>
+         </div>
+
+         <Feed />
+         <NewsBox />
+         <ChatModal />
+
+         {showPostModal && (
+            <PublicModal
+               close={togglePostModal}
+            />
+         )}
+
+         {editPublication && (
+            <ModalEditPublication
+               close={toggleEditPublication}
+            />
+         )}
+      </>
+
+   )
 }

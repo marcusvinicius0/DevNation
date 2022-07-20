@@ -8,6 +8,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Followers from '../pages/Followers';
+import Repositories from '../pages/Repositories';
 
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
@@ -16,7 +17,6 @@ import NewsMetaVerso from '../pages/News/metaverso';
 import NewsDevelopers from '../pages/News/desenvolvedores';
 
 import Message from '../pages/Message';
-
 import NotFound from '../pages/NotFound';
 
 export default function MyRoutes() {
@@ -30,6 +30,7 @@ export default function MyRoutes() {
                 <Route exact path="/dashboard" component={Dashboard} isPrivate />
                 <Route exact path="/profile" component={Profile} isPrivate />
                 <Route exact path="/followers" component={Followers} isPrivate />
+                <Route exact path="/repositories" component={Repositories} isPrivate />
 
                 <Route exact path="/news" component={News} isPrivate />
                 <Route exact path="/news/alura" component={NewsAlura} isPrivate />
@@ -39,7 +40,7 @@ export default function MyRoutes() {
 
                 <Route exact path="/message" component={Message} isPrivate />
 
-                    <Route path="*" component={NotFound} />
+                <Route path="*" component={NotFound} />
             </Switch>
         </>
     )

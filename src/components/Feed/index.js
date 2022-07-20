@@ -5,10 +5,8 @@ import firebase from 'firebase';
 import { AuthContext } from '../../contexts/auth';
 
 import { BsThreeDots } from 'react-icons/bs';
-// import { isPast, format } from "date-fns";
-// import ptBR from 'date-fns/locale/pt-BR';
 
-export default function Feed() {
+export default function Feed(key) {
 	const [publications, setPublications] = useState([])
 	const { user } = useContext(AuthContext);
 
@@ -46,10 +44,6 @@ export default function Feed() {
 
 	}, []);
 
-	function teste() {
-		console.log(publications)
-	}
-
 	return (
 		<div className={styles.feed}>
 			{publications.map((publication) => (
@@ -67,7 +61,6 @@ export default function Feed() {
 					</div>
 				</div>
 			))}
-
 		</div>
 	)
 }
