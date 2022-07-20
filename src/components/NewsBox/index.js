@@ -46,7 +46,7 @@ export default function NewsBox() {
                     </p>
                     <Link to="/news/law-project">
                         <span>
-                            <BsFillCalendarCheckFill size={15} color="var(--soft-gray)" />
+                            <BsFillCalendarCheckFill size={20} color="var(--soft-gray)" />
                             <p>11 de julho de 2022</p>
                             <HiOutlinePencilAlt size={15} color="var(--soft-gray)" />
                             <p>Ana Prado, redação In notícias</p>

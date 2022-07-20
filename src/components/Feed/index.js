@@ -52,19 +52,19 @@ export default function Feed() {
 	return (
 		<div className={styles.feed}>
 			{publications.map((publication) => (
-					<div key={publication.id} className={styles.post}>
-						<header>
-							<img src={publication.avatarUrl} alt="Avatar foto" />
-							<div>
-								<span >{publication.user_name}</span>
-								<p>{publication.user_role}</p>
-								<time>Há 1h</time>
-							</div>
-						</header>
-						<div className={styles.contentPost}>
-							<p>{publication.publication}</p>
+				<div key={publication.id} className={styles.post}>
+					<header>
+						<img src={publication.avatarUrl} alt="Avatar foto" />
+						<div>
+							<span >{publication.user_name}</span>
+							<p>{publication.user_role}</p>
+							<time>Há 1h</time>
 						</div>
+					</header>
+					<div className={styles.contentPost}>
+						<p>{publication.publication}</p>
 					</div>
+				</div>
 			))}
 
 		</div>

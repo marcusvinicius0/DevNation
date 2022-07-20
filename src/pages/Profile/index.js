@@ -19,23 +19,23 @@ import { AuthContext } from '../../contexts/auth';
 import { RiPencilLine } from 'react-icons/ri';
 
 export default function Profile() {
-    const { user } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 
-    const [editProfileModal, setEditProfileModal] = useState(false);
-    const [profilePictureModal, setprofilePictureModal] = useState(false);
-    const [modalProfileBanner, setModalProfileBanner] = useState(false);
-		const [publicationsProfile, setPublicationsProfile] = useState([])
+	const [editProfileModal, setEditProfileModal] = useState(false);
+	const [profilePictureModal, setprofilePictureModal] = useState(false);
+	const [modalProfileBanner, setModalProfileBanner] = useState(false);
+	const [publicationsProfile, setPublicationsProfile] = useState([])
 
-		useEffect( () => {
-			async function loadPosts() {
-				await firebase.firestore().collection('publications')
+	useEffect(() => {
+		async function loadPosts() {
+			await firebase.firestore().collection('publications')
 				.orderBy('created', 'desc')
 				.get()
-				.then( (snapshot) => {
+				.then((snapshot) => {
 					let arrayPublications = [];
 
-					snapshot.forEach( (doc) => {
-						if(doc.data().user_id === user.uid) {
+					snapshot.forEach((doc) => {
+						if (doc.data().user_id === user.uid) {
 							let data = {
 								publication: doc.data().publication,
 								created: doc.data().created,
@@ -47,97 +47,98 @@ export default function Profile() {
 					})
 					setPublicationsProfile(arrayPublications)
 				})
-			}
-			loadPosts()
-		}, [])
+		}
+		loadPosts()
+	}, [])
 
-    function toggleEditProfileModal() {
-        setEditProfileModal(!editProfileModal)
-    }
+	function toggleEditProfileModal() {
+		setEditProfileModal(!editProfileModal)
+	}
 
-    function toggleProfilePictureModal() {
-        setprofilePictureModal(!profilePictureModal)
-    }
+	function toggleProfilePictureModal() {
+		setprofilePictureModal(!profilePictureModal)
+	}
 
-    function toggleModalProfileBanner() {
-        setModalProfileBanner(!modalProfileBanner)
-    }
+	function toggleModalProfileBanner() {
+		setModalProfileBanner(!modalProfileBanner)
+	}
 
-    return (
-        <>
-            <Header />
+	return (
+		<>
+			<Header />
 
-            <div className={styles.profileContainer}>
-                <div className={styles.contentProfile}>
-									<div className={styles.picturesBox}>
-											<img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-											<img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Foto de perfil" />
+			<div className={styles.profileContainer}>
+				<div className={styles.contentProfile}>
+					<div className={styles.picturesBox}>
+						<img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+						<img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Foto de perfil" />
 
-											<div className={styles.editBanner}>
-													<RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
-											</div>
-									</div>
+						<div className={styles.editBanner}>
+							<RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
+						</div>
+					</div>
 
-									<span className={styles.infoBox}>
-											<RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
-											<p className={styles.name}>{user.name}</p>
-											<p className={styles.role}>{user.role}</p>
-											<p className={styles.place}>{user.location}</p>
+					<span className={styles.infoBox}>
+						<RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
+						<p className={styles.name}>{user.name}</p>
+						<p className={styles.role}>{user.role}</p>
+						<p className={styles.place}>{user.location}</p>
 
-											<span className={styles.socialMedias}>
-													<img src={inLogo} alt="linkedin" width={30} height={30} />
-													<img src={ghLogo} alt="github" width={30} height={30} />
-											</span>
-									</span>
+						<span className={styles.socialMedias}>
+							<img src={inLogo} alt="linkedin" width={30} height={30} />
+							<img src={ghLogo} alt="github" width={30} height={30} />
+						</span>
+					</span>
+				</div>
+				<div className={styles.aboutMe}>
+					<h1>Sobre mim</h1>
+					{user.aboutMe === '' ? (
+						<p>Sem informações.</p>
+					) : (
+						<p>{user.aboutMe}</p>
+					)}
+					<button type="button"><RiPencilLine size={22} /></button>
+				</div>
+				<div className={styles.posts}>
+					<h3>Minhas publicações</h3>
+					{publicationsProfile.map((publication) => (
+						<div key={publication.id} className={styles.post}>
+							<header>
+								<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
+								<div>
+									<span>{user.name}</span>
+									<p>{user.role}</p>
+									<time>Há 1h</time>
 								</div>
-								<div className={styles.aboutMe}>
-									<h1>Sobre mim</h1>
-									{user.aboutMe === '' ? (
-										<p>Sem informações.</p>
-									) : (
-										<p>{user.aboutMe}</p>
-									)}
-									<button type="button"><RiPencilLine size={22} /></button>
-								</div>
-								<div className={styles.posts}>
-										{publicationsProfile.map( (publication) => (
-											<div key={publication.id} className={styles.post}>
-												<header>
-													<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
-													<div>
-														<span >{user.name}</span>
-														<p>{user.role}</p>
-														<time>Há 1h</time>
-													</div>
-												</header>
-												<div className={styles.contentPost}>
-													<p>{publication.publication}</p>
-												</div>
-										</div>
-										))}
-								</div>
-            </div>
+							</header>
+							<div className={styles.contentPost}>
+								<p>{publication.publication}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
 
-            {editProfileModal && (
-                <EditProfileModal
-                    close={toggleEditProfileModal}
-                />
-            )}
+			{editProfileModal && (
+				<EditProfileModal
+					close={toggleEditProfileModal}
+				/>
+			)}
 
-            {profilePictureModal && (
-                <EditProfilePictureModal
-                    close={toggleProfilePictureModal}
-                />
-            )}
+			{profilePictureModal && (
+				<EditProfilePictureModal
+					close={toggleProfilePictureModal}
+				/>
+			)}
 
-            {modalProfileBanner && (
-                <ModalEditProfileBanner
-                    close={toggleModalProfileBanner}
-                />
-            )}
+			{modalProfileBanner && (
+				<ModalEditProfileBanner
+					close={toggleModalProfileBanner}
+				/>
+			)}
 
-            <NewsBox />
-            <ChatModal />
-        </>
-    )
+			<NewsBox />
+			<ChatModal />
+		</>
+	)
 }

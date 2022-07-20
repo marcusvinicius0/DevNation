@@ -37,7 +37,7 @@ export default function Dashboard() {
     function togglePostModal() {
         setShowPostModal(!showPostModal)
     };
-    
+
     return (
         <>
             <Header />
@@ -45,15 +45,18 @@ export default function Dashboard() {
                 <div className={styles.bannerBox}>
                     <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
                 </div>
-                <Link to="/profile">
-                    {avatarUrl === null ?
-                        <img src={avatar} alt="foto avatar" />
-                        :
-                        <img src={avatarUrl} alt="foto usuario" />
-                    }
-                </Link>
+                <div className={styles.pictureBox}>
+                    <Link to="/profile">
+                        {avatarUrl === null ?
+                            <img src={avatar} alt="foto avatar" />
+                            :
+                            <img src={avatarUrl} alt="foto usuario" />
+                        }
+                    </Link>
+                </div>
                 <p className={styles.userName}>{user.name}</p>
                 <p className={styles.role}>{user.role}</p>
+                <hr />
                 <div className={styles.routesBox}>
                     <Link to="/profile">
                         <span>
