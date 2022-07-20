@@ -11,27 +11,33 @@ import { toast } from 'react-toastify';
 export default function EditProfileModal({ close }) {
     const { user, storageUser, setUser } = useContext(AuthContext)
 
-    const [name, setName] = useState('');
-    const [role, setRole] = useState('');
-    const [location, setLocation] = useState('');
-    const [aboutMe, setAboutMe] = useState('');
+    const [name, setName] = useState(user.name ? user.name : "");
+    const [role, setRole] = useState(user.role ? user.role : "");
+    const [location, setLocation] = useState(user.location ? user.location : "");
+    const [aboutMe, setAboutMe] = useState(user.aboutMe ? user.aboutMe : "");
+	 const [linkedin, setLinkedin] = useState("");
+	 const [github, setGithub] = useState("");
 
     async function handleSave(e) {
         e.preventDefault();
 
-        if (role === '' && location === '' && aboutMe === '' && name !== '') {
-            await firebase.firestore().collection('users')
+		  await firebase.firestore().collection('users')
                 .doc(user.uid)
                 .update({
-                    name: name
+                    name,
+						  role,
+						  location,
+						  aboutMe
                 })
                 .then(() => {
                     let data = {
                         ...user,
-                        name: name
+                        name,
+								role, 
+								location, 
+								aboutMe
                     }
                     toast.success("Dados enviados com sucesso!")
-                    setName('');
                     setUser(data);
                     storageUser(data);
                 })
@@ -41,111 +47,32 @@ export default function EditProfileModal({ close }) {
                     setName(null);
                     return null;
                 })
-        }
-        else if (role === '' && location === '' && name === '' && aboutMe !== '') {
-            await firebase.firestore().collection('users')
-                .doc(user.uid)
-                .update({
-                    aboutMe: aboutMe
-                })
-                .then(() => {
-                    let data = {
-                        ...user,
-                        aboutMe: aboutMe
-                    }
-                    toast.success("Dados enviados com sucesso!")
-                    setUser(data);
-                    storageUser(data);
-                    setAboutMe('');
-                })
-                .catch((err) => {
-                    toast.error("Oops, algo deu errado. Tente novamente mais tarde.")
-                    console.log(err)
-                    setAboutMe(null);
-                    return null;
-                })
-        }
-        else if (role === '' && name === '' && aboutMe === '' && location !== '') {
-            await firebase.firestore().collection('users')
-                .doc(user.uid)
-                .update({
-                    location: location
-                })
-                .then(() => {
-                    let data = {
-                        ...user,
-                        location: location
-                    }
-                    toast.success("Dados enviados com sucesso!");
-                    setLocation('');
-                    setUser(data);
-                    storageUser(data);
-                })
-                .catch((err) => {
-                    toast.error("Oops, algo deu errado. Tente novamente mais tarde.")
-                    console.log(err);
-                    setLocation(null);
-                    return null;
-                })
-        }
-        else if (name === '' && aboutMe === '' && location === '' && role !== '') {
-            await firebase.firestore().collection('users')
-                .doc(user.uid)
-                .update({
-                    role: role
-                })
-                .then(() => {
-                    let data = {
-                        ...user,
-                        role: role
-                    }
-                    toast.success("Dados enviados com sucesso!");
-                    setRole('');
-                    setUser(data);
-                    storageUser(data);
-                })
-                .catch((err) => {
-                    toast.error("Oops, algo deu errado. Tente novamente mais tarde.")
-                    console.log(err);
-                    setUser(null);
-                    return null;
-                })
-        }
     }
 
     return (
 
         <div className={styles.container}>
             <div className={styles.modalBox}>
-                <span className={styles.buttonBox}>
-                    <button className={styles.closeButton} onClick={close}>
-                        <FiX size={30} color="var(--soft-gray)" />
-                    </button>
-                </span>
-
-
-                <span className={styles.header}>
-                    <p>Editar introdução</p>
-                    <hr />
-                </span>
-
-                <div className={styles.formBox}>
+					<header>
+						<h2>Editar perfil</h2>
+						<button onClick={close} type="button">
+							<FiX size={22} />
+						</button>
+					</header>
+               <div className={styles.formBox}>
                     <form onSubmit={handleSave}>
                         <label>
                             <p>Nome</p>
                             <input type="text" value={name} onChange={event => setName(event.target.value)} />
                         </label>
-
                         <label>
                             <p>Função</p>
                             <input type="text" value={role} onChange={event => setRole(event.target.value)} />
                         </label>
-
                         <label>
                             <p>Localização</p>
                             <input type="text" value={location} onChange={event => setLocation(event.target.value)} />
                         </label>
-
                         <label>
                             <p>Sobre mim</p>
                             <textarea
@@ -156,7 +83,14 @@ export default function EditProfileModal({ close }) {
                                 {aboutMe}
                             </textarea>
                         </label>
-
+								<label>
+                            <p>Linkedin</p>
+                            <input type="text" value={linkedin} onChange={event => setLinkedin(event.target.value)} />
+                        </label>
+								<label>
+                            <p>GitHub</p>
+                            <input type="text" value={github} onChange={event => setGithub(event.target.value)} />
+                        </label>
                         {name === '' && role === '' && location === '' && aboutMe === '' ?
                             <button className={styles.buttonOff} type="submit" disabled>
                                 Salvar dados
@@ -166,7 +100,6 @@ export default function EditProfileModal({ close }) {
                                 Salvar dados
                             </button>
                         }
-
                     </form>
                 </div>
             </div>
