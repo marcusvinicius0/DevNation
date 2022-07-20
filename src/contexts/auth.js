@@ -6,6 +6,7 @@ export const AuthContext = createContext({});
 
 function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
+    const [users, setUsers] = useState([]);
     const [loadingAuth, setLoadingAuth] = useState(false);
     const [loading, setLoading] = useState(true);
 
@@ -24,6 +25,29 @@ function AuthProvider({ children }) {
 
         loadStorage();
 
+    }, [])
+
+    useEffect( () => {
+        async function loadUsers() {
+            await firebase.firestore().collection('users')
+            .get()
+            .then( snapshot => {
+                let allUsers = []
+
+                snapshot.forEach( user => {
+                    allUsers.push({
+                        id: user.id,
+                        name: user.data().name,
+                        avatarUrl: user.data().avatarUrl,
+                        title: user.data().title
+                    })
+                })
+                
+                setUsers(allUsers)
+            })
+
+        }
+        loadUsers();
     }, [])
 
     async function signIn(email, password){
@@ -57,9 +81,7 @@ function AuthProvider({ children }) {
             console.log(error)
             setLoadingAuth(false);
             toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
-        })
-
-
+        })  
     }
 
     async function signUp(name, email, password) {
@@ -129,6 +151,7 @@ function AuthProvider({ children }) {
                 setUser,
                 storageUser,
                 setLoadingAuth,
+                users,
             }}>
             {children}
         </AuthContext.Provider>

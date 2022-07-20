@@ -17,6 +17,7 @@ export default function Feed() {
 			await firebase.firestore().collection('publications')
 				.orderBy('created', 'desc')
 				.get()
+		
 				.then((snapshot) => {
 					let arrayPublications = [];
 

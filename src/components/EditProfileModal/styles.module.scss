@@ -10,9 +10,9 @@
 
 .modalBox {
     max-width: 650px;
-    height: 520px;
+    height: 530px;
     background-color: var(--white);
-    margin: 5rem auto;
+    margin: 4rem auto;
     border-radius: 15px;
 }
 
@@ -33,7 +33,7 @@
 
     p {
         position: relative;
-        top: -0.5rem;
+        top: -1rem;
         left: 2rem;
         font-size: 20px;
         width: 30%;
@@ -47,7 +47,7 @@
 
 
 .formBox {
-    margin: 2rem 0 0 2rem;
+    margin: 0.5rem 0 0 2rem;
 
     form {
         display: flex;

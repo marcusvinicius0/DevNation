@@ -46,13 +46,14 @@ export default function PublicModal({ close }) {
             </span>
             <form onSubmit={handleSave}>
                <textarea
+                  className={styles.textArea}
                   value={text}
                   onChange={(event) => setText(event.target.value)}
                   wrap="hard"
                   placeholder="No que você está pensando?"
                />
                <span className={styles.publicationBox}>
-                  {text === [] || text === "" ? (
+                  {styles.textArea === "" ? (
                      <button className={styles.offButton}
                         disabled
                      >
