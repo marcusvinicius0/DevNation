@@ -38,6 +38,7 @@ export default function Dashboard() {
       setShowPostModal(!showPostModal)
    };
 
+<<<<<<< HEAD
    return (
       <>
          <Header />
@@ -71,6 +72,74 @@ export default function Dashboard() {
                      <p>Seguidores</p>
                   </span>
                </Link>
+=======
+    return (
+		<>
+			<Header />
+        <div className={styles.dashboard}>
+            <div className={styles.sideBox}>
+                <div className={styles.bannerBox}>
+                    <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+                </div>
+                <div className={styles.pictureBox}>
+                    <Link to="/profile">
+                        {avatarUrl === null ?
+                            <img src={avatar} alt="foto avatar" />
+                            :
+                            <img src={avatarUrl} alt="foto usuario" />
+                        }
+                    </Link>
+                </div>
+                <p className={styles.userName}>{user.name}</p>
+                <p className={styles.role}>{user.role}</p>
+                <hr />
+                <div className={styles.routesBox}>
+                    <Link to="/profile">
+                        <span>
+                            <FaUserCircle color="var(--soft-blue)" size={24} />
+                            <p>Meu perfil</p>
+                        </span>
+                    </Link>
+
+                    <Link to="/followers">
+                        <span>
+                            <FaUsers color="var(--soft-blue)" size={24} />
+                            <p>Seguidores</p>
+                        </span>
+                    </Link>
+
+                    <span>
+                        <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
+                        <p>Meus projetos</p>
+                    </span>
+                    <span className={styles.logoutBox} onClick={signOut}>
+                        <IoLogOut color="var(--soft-blue)" size={25} />
+                        <p>Sair</p>
+                    </span>
+                </div>
+            </div>
+            <div className={styles.mainFeedContainer}>
+                <div className={styles.createPublicationContainer}>
+						<div className={styles.contentBox}>
+							{avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
+							<div
+									className={styles.publication}
+									onClick={() => togglePostModal()}
+
+							>
+									<p>No que você está pensando?</p>
+							</div>
+						</div>
+						<span>
+							<AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+							<FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+						</span>
+					 </div>
+					 <Feed />
+            </div>
+				<NewsBox />
+            <ChatModal />
+>>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240
 
                <Link to="/dashboard">
                   <span>
@@ -79,6 +148,7 @@ export default function Dashboard() {
                   </span>
                </Link>
 
+<<<<<<< HEAD
                <Link to="/repositories">
                   <span>
                      <FaBook color="var(--soft-blue)" size={22} />
@@ -127,4 +197,14 @@ export default function Dashboard() {
       </>
 
    )
+=======
+            {editPublication && (
+                <ModalEditPublication
+                    close={toggleEditPublication}
+                />
+            )}
+        </div>
+		</>
+    )
+>>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240
 }

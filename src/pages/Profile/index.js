@@ -66,57 +66,61 @@ export default function Profile() {
 	return (
 		<>
 			<Header />
+			<div className={styles.container}>
+				<div className={styles.profileContainer}>
+					<div className={styles.contentProfile}>
+						<div className={styles.picturesBox}>
+							<img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+							<img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Foto de perfil" />
 
-			<div className={styles.profileContainer}>
-				<div className={styles.contentProfile}>
-					<div className={styles.picturesBox}>
-						<img className={styles.banner} src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-						<img onClick={toggleProfilePictureModal} className={styles.profilePic} src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Foto de perfil" />
+							<button className={styles.editBanner} onClick={toggleModalProfileBanner}>
+								<RiPencilLine size={25} color="var(--black)" />
+							</button>
+						</div>
 
-						<div className={styles.editBanner}>
-							<RiPencilLine onClick={toggleModalProfileBanner} size={25} color="var(--black)" />
+						<div className={styles.infoBox}>
+							<button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
+								<RiPencilLine size={25} color="var(--black)" />
+							</button>
+							<p className={styles.name}>{user.name}</p>
+							<p className={styles.role}>{user.role}</p>
+							<p className={styles.place}>{user.location}</p>
+
+							<span className={styles.socialMedias}>
+								<img src={inLogo} alt="linkedin" width={30} height={30} />
+								<img src={ghLogo} alt="github" width={30} height={30} />
+							</span>
 						</div>
 					</div>
-
-					<span className={styles.infoBox}>
-						<RiPencilLine onClick={toggleEditProfileModal} size={30} color="var(--black)" />
-						<p className={styles.name}>{user.name}</p>
-						<p className={styles.role}>{user.role}</p>
-						<p className={styles.place}>{user.location}</p>
-
-						<span className={styles.socialMedias}>
-							<img src={inLogo} alt="linkedin" width={30} height={30} />
-							<img src={ghLogo} alt="github" width={30} height={30} />
-						</span>
-					</span>
-				</div>
-				<div className={styles.aboutMe}>
-					<h1>Sobre mim</h1>
-					{user.aboutMe === '' ? (
-						<p>Sem informações.</p>
-					) : (
-						<p>{user.aboutMe}</p>
-					)}
-					<button type="button"><RiPencilLine size={22} /></button>
-				</div>
-				<div className={styles.posts}>
-					<h3>Minhas publicações</h3>
-					{publicationsProfile.map((publication) => (
-						<div key={publication.id} className={styles.post}>
-							<header>
-								<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
-								<div>
-									<span>{user.name}</span>
-									<p>{user.role}</p>
-									<time>Há 1h</time>
+					<div className={styles.aboutMe}>
+						<h1>Sobre mim</h1>
+						{user.aboutMe === '' ? (
+							<p>Sem informações.</p>
+						) : (
+							<p>{user.aboutMe}</p>
+						)}
+						<button type="button"><RiPencilLine size={22} /></button>
+					</div>
+					<div className={styles.posts}>
+						<h3>Minhas publicações</h3>
+						{publicationsProfile.map((publication) => (
+							<div key={publication.id} className={styles.post}>
+								<header>
+									<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
+									<div>
+										<span>{user.name}</span>
+										<p>{user.role}</p>
+										<time>Há 1h</time>
+									</div>
+								</header>
+								<div className={styles.contentPost}>
+									<p>{publication.publication}</p>
 								</div>
-							</header>
-							<div className={styles.contentPost}>
-								<p>{publication.publication}</p>
 							</div>
-						</div>
-					))}
+						))}
+					</div>
 				</div>
+				<NewsBox />
 			</div>
 
 			{editProfileModal && (
@@ -136,8 +140,6 @@ export default function Profile() {
 					close={toggleModalProfileBanner}
 				/>
 			)}
-
-			<NewsBox />
 			<ChatModal />
 		</>
 	)
