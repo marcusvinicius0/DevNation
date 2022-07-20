@@ -39,8 +39,9 @@ export default function Dashboard() {
     };
 
     return (
-        <>
-            <Header />
+		<>
+			<Header />
+        <div className={styles.dashboard}>
             <div className={styles.sideBox}>
                 <div className={styles.bannerBox}>
                     <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
@@ -82,25 +83,26 @@ export default function Dashboard() {
                     </span>
                 </div>
             </div>
-            <div className={styles.publicationContainer}>
-                <div className={styles.contentBox}>
-                    {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
-                    <div
-                        className={styles.publication}
-                        onClick={() => togglePostModal()}
+            <div className={styles.mainFeedContainer}>
+                <div className={styles.createPublicationContainer}>
+						<div className={styles.contentBox}>
+							{avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
+							<div
+									className={styles.publication}
+									onClick={() => togglePostModal()}
 
-                    >
-                        <p>No que você está pensando?</p>
-                    </div>
-                </div>
-                <span>
-                    <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-                    <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-                </span>
+							>
+									<p>No que você está pensando?</p>
+							</div>
+						</div>
+						<span>
+							<AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+							<FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+						</span>
+					 </div>
+					 <Feed />
             </div>
-
-            <Feed />
-            <NewsBox />
+				<NewsBox />
             <ChatModal />
 
             {showPostModal && (
@@ -114,7 +116,7 @@ export default function Dashboard() {
                     close={toggleEditPublication}
                 />
             )}
-        </>
-
+        </div>
+		</>
     )
 }

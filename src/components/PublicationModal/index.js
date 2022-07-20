@@ -2,6 +2,9 @@ import { useState, useContext } from 'react';
 import styles from './styles.module.scss';
 
 import { FiX } from 'react-icons/fi';
+import { BiWorld, BiCaretDown } from 'react-icons/bi'
+import { FaBriefcase, FaChartBar } from 'react-icons/fa'
+import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
 import firebase from 'firebase';
 
@@ -11,7 +14,7 @@ import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
 
 export default function PublicModal({ close }) {
-   const [text, setText] = useState([]);
+   const [text, setText] = useState("");
    const { user } = useContext(AuthContext);
 
    async function handleSave(e) {
@@ -28,41 +31,44 @@ export default function PublicModal({ close }) {
 				 })
    }
 
+	function coming() {
+		toast.warning("Em breve...")
+	}
+
    return (
       <div className={styles.container}>
          <div className={styles.containerModal}>
-            <span className={styles.buttonBox}>
-               <button className={styles.closeButton} onClick={close}>
-                  <FiX size={30} color="var(--soft-gray)" />
-               </button>
-            </span>
-            <span>
-               <p>Criar publicação</p>
-            </span>
-            <hr/>
-            <span>
+				<header>
+					<h2>Criar publicação</h2>
+					<button onClick={close} type="button">
+						<FiX size={22} />
+					</button>
+				</header>
+            <div className={styles.infoUser}>
                <img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="profile-pic" />
-               <p className={styles.userName}>{user.name}</p>
-            </span>
+               <div>
+						<p className={styles.userName}>{user.name}</p>
+						<button>
+							<BiWorld />
+							<span>Todos</span>
+							<BiCaretDown />
+						</button>
+					</div>
+            </div>
             <form onSubmit={handleSave}>
-               <textarea
-                  className={styles.textArea}
-                  value={text}
-                  onChange={(event) => setText(event.target.value)}
-                  wrap="hard"
-                  placeholder="No que você está pensando?"
-               />
-               <span className={styles.publicationBox}>
-                  {styles.textArea === "" ? (
-                     <button className={styles.offButton}
-                        disabled
-                     >
-                        Publicar
-                     </button>
-                  ) : (
-                     <button className={styles.onButton} type="submit">Publicar</button>
-                  )}
-               </span>
+               <textarea placeholder="No que você está pensando?" value={text} onChange={(e) => setText(e.target.value)}/>
+					<div className={styles.formActions}>
+						<div className={styles.tools}>
+							<button type="button" onClick={coming}><FaChartBar size={20} /></button>
+							<button type="button" onClick={coming}><FaBriefcase size={20} /></button>
+							<button type="button" onClick={coming}><IoEllipsisHorizontalSharp size={20} /></button>
+						</div>
+						{text === "" ? (
+							<button type="submit" className={styles.buttonToHandlePublication} disabled>Publicar</button>
+						) : (
+							<button type="submit" className={styles.buttonToHandlePublication}>Publicar</button>
+						)}
+					</div>
             </form>
          </div>
       </div>
