@@ -1,36 +1,32 @@
 .dashboard {
-	padding-top: 5rem;
-	display: flex;
-	width: 95%;
-	margin: 0 auto;
-	justify-content: space-between;
-	flex-wrap: wrap;
+    padding-top: 5rem;
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .sideBox {
-<<<<<<< HEAD
-    width: 300px;
-    height: 410px;
-=======
-	 width: 100%;
-	 max-width: 300px;
-    height: 380px;
->>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240
+    width: 100%;
+    max-width: 300px;
+    height: 450px;
     background-color: var(--white);
-    border-radius: 15px;
+    border-radius: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.08);
 
     .bannerBox {
         z-index: 99;
         width: 100%;
-        height: 50px;
+        height: 30px;
 
         img {
             width: 100%;
             height: 70px;
             object-fit: cover;
             margin: 0 auto;
-            border-radius: 15px;
+            border-radius: 0.5rem 0.5rem 0 0;
         }
     }
 
@@ -40,9 +36,11 @@
         align-items: center;
 
         img {
-            width: 55px;
-            height: 55px;
+            position: relative;    
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
+            border: 2px solid #fff;
             object-fit: cover;
             cursor: pointer;
             z-index: 2;
@@ -55,7 +53,9 @@
     }
 
     .role {
-        color: rgba(0, 0, 0, 0.6);
+        padding: 0 10px;
+        margin-top: 5px;
+        color: #666666;
         opacity: 0.7;
         font-size: 14px;
         text-align: center;
@@ -67,20 +67,25 @@
     }
 
     .routesBox {
-        margin: 0 0 0 1rem;
         display: flex;
         flex-direction: column;
-        max-width: 90%;
-
+        gap: 10px;
+        max-width: 95%;
+        margin: 0 auto;
+  
         span {
             display: flex;
+            align-items: center;
+            height: 35px;
             flex-direction: row;
-            transition: all .5s;
-            padding: 0.5rem;
+            cursor: pointer;
+            transition: all 0.5s;
+            padding: 10px;
         }
 
-        span:hover {
+        span:hover{
             background-color: var(--whitesmoke);
+            border-radius: 0.5rem;
         }
 
         svg {
@@ -90,14 +95,16 @@
         p {
             padding-left: 0.2rem;
             color: var(--black);
+            font-size: 15px;
             opacity: 0.8;
         }
 
         .logoutBox {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-around;
             align-self: flex-end;
-            width: 60px;
+            padding: 5px;
+            width: 77px;
             cursor: pointer;
 
             p {
@@ -105,133 +112,118 @@
                 right: 0.4rem;
             }
         }
+
+        .logoutBox:hover {
+            background-color: var(--whitesmoke);
+            border-radius: 0.5rem;
+        }
+    }
+}
+
+footer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+
+    a{
+        text-align: center;
+        font-size: 12px;
+        opacity: 0.9;
+        margin-top: 10px;
+    }
+
+    span{
+        display: flex;
+        flex-direction: row;
+        margin-top: 5px;
+
+        p{
+            padding: 0.9rem 0 0 0.3rem;
+            font-size: 12px;
+        }
     }
 }
 
 .mainFeedContainer {
     background-color: var(--white);
     max-width: 600px;
-	 width: 100%;
+    width: 100%;
     height: 8rem;
-    border-radius: 15px;
-<<<<<<< HEAD
-    margin: 5rem auto 1rem auto;
+    border-radius: 0.5rem;
     border: 1px solid rgba(0, 0, 0, 0.15);
-=======
-	 border: 1px solid rgba(0, 0, 0, 0.15);
-	 display: flex;
-	 flex-direction: column;
->>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.08);
 
-	 .createPublicationContainer {
 
-<<<<<<< HEAD
-        img {
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            cursor: pointer;
-        }
+    .createPublicationContainer {
 
-        .publication {
-            width: 30rem;
-            height: 40px;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.5s;
-            margin-top: 0.4rem;
-            padding: 0.5rem 0 0 1rem;
+        .contentBox {
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+            padding: 1rem 0 3rem 1rem;
 
-            p {
-                font-size: 14px;
+            img {
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                cursor: pointer;
+            }
+
+            .publication {
+                width: 30rem;
+                height: 40px;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 15px;
+                cursor: pointer;
+                transition: all 0.5s;
+                margin-top: 0.4rem;
+                padding: 0.5rem 0 0 1rem;
+
+                p {
+                    font-size: 14px;
+                }
+            }
+
+            .publication:hover {
+                background-color: rgba(0, 0, 0, 0.1);
             }
         }
 
-        .publication:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        }
-    }
+        span {
+            position: relative;
+            top: -2rem;
+            left: 5.5rem;
 
-    span {
-        display: flex;
-        gap: 2rem;
-        position: relative;
-        top: -2rem;
-        left: 5.5rem;
-
-        svg {
-            cursor: pointer;
+            svg {
+                cursor: pointer;
+                margin-right: 20px;
+            }
         }
     }
 }
-=======
-		.contentBox {
-			display: flex;
-			flex-direction: row;
-			gap: 1rem;
-			padding: 1rem 0 3rem 1rem;
- 
-				 img {
-					 border-radius: 50%;
-					 width: 50px;
-					 height: 50px;
-					 object-fit: cover;
-					 cursor: pointer;
-			 }
-	 
-			 .publication{
-					 width: 30rem;
-					 height: 40px;
-					 border: 1px solid rgba(0, 0, 0, 0.2);
-					 border-radius: 15px;
-					 cursor: pointer;
-					 transition: all 0.5s;
-					 margin-top: 0.4rem;
-					 padding: 0.5rem 0 0 1rem;
- 
-							p{
-								 font-size: 14px;
-							}
-			 }
-	 
-			 .publication:hover {
-					 background-color: rgba(0, 0, 0, 0.1);
-			 }
-	  }
- 
-	  span {
-			display: flex;
-			gap: 2rem;
-			position: relative;
-			top: -2rem;
-			left: 5.5rem;
- 
-			svg {
-				 cursor: pointer;
-			}
-	  }
-	 }
 
+hr {
+    opacity: 0.7;
 }
 
 @media (max-width: 1275px) {
-	.sideBox {
-		margin-bottom: 1rem;
-	}
+    .sideBox {
+        margin-bottom: 1rem;
+    }
 }
 
 @media (max-width: 970px) {
-	.sideBox {
-		display: none;
-		margin-bottom: 0;
-	}
+    .sideBox {
+        display: none;
+        margin-bottom: 0;
+    }
 
-	.mainFeedContainer {
-		margin: 0 auto;
-		width: 90%;
-	}
+    .mainFeedContainer {
+        margin: 0 auto;
+        width: 90%;
+    }
 }
-
->>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240

@@ -11,6 +11,7 @@ import ChatModal from '../../components/ChatModal';
 import ModalEditPublication from '../../components/ModalEditPublication';
 
 import banner from '../../assets/banner.png';
+import logo from '../../assets/logo.png';
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
@@ -27,7 +28,7 @@ export default function Dashboard() {
    const { signOut, user } = useContext(AuthContext);
    const [showPostModal, setShowPostModal] = useState(false);
    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
-   const [editPublication, setEditPublication] = useState(false)
+   const [editPublication, setEditPublication] = useState(false);
 
 
    function toggleEditPublication() {
@@ -38,173 +39,111 @@ export default function Dashboard() {
       setShowPostModal(!showPostModal)
    };
 
-<<<<<<< HEAD
    return (
       <>
          <Header />
-         <div className={styles.sideBox}>
-            <div className={styles.bannerBox}>
-               <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-            </div>
-            <div className={styles.pictureBox}>
-               <Link to="/profile">
-                  {avatarUrl === null ?
-                     <img src={avatar} alt="foto avatar" />
-                     :
-                     <img src={avatarUrl} alt="foto usuario" />
-                  }
-               </Link>
-            </div>
-            <p className={styles.userName}>{user.name}</p>
-            <p className={styles.role}>{user.role}</p>
-            <hr />
-            <div className={styles.routesBox}>
-               <Link to="/profile">
-                  <span>
-                     <FaUserCircle color="var(--soft-blue)" size={24} />
-                     <p>Meu perfil</p>
-                  </span>
-               </Link>
-
-               <Link to="/followers">
-                  <span>
-                     <FaUsers color="var(--soft-blue)" size={24} />
-                     <p>Seguidores</p>
-                  </span>
-               </Link>
-=======
-    return (
-		<>
-			<Header />
-        <div className={styles.dashboard}>
-            <div className={styles.sideBox}>
-                <div className={styles.bannerBox}>
-                    <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-                </div>
-                <div className={styles.pictureBox}>
-                    <Link to="/profile">
+         <div className={styles.dashboard}>
+            <div className={styles.containerTeste}>
+               <div className={styles.sideBox}>
+                  <div className={styles.bannerBox}>
+                     <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+                  </div>
+                  <div className={styles.pictureBox}>
+                     <Link to="/profile">
                         {avatarUrl === null ?
-                            <img src={avatar} alt="foto avatar" />
-                            :
-                            <img src={avatarUrl} alt="foto usuario" />
+                           <img src={avatar} alt="foto avatar" />
+                           :
+                           <img src={avatarUrl} alt="foto usuario" />
                         }
-                    </Link>
-                </div>
-                <p className={styles.userName}>{user.name}</p>
-                <p className={styles.role}>{user.role}</p>
-                <hr />
-                <div className={styles.routesBox}>
-                    <Link to="/profile">
+                     </Link>
+                  </div>
+                  <p className={styles.userName}>{user.name}</p>
+                  <p className={styles.role}>{user.role}</p>
+                  <hr />
+                  <div className={styles.routesBox}>
+                     <Link to="/profile">
                         <span>
-                            <FaUserCircle color="var(--soft-blue)" size={24} />
-                            <p>Meu perfil</p>
+                           <FaUserCircle color="var(--soft-blue)" size={24} />
+                           <p>Meu perfil</p>
                         </span>
-                    </Link>
+                     </Link>
 
-                    <Link to="/followers">
+                     <Link to="/followers">
                         <span>
-                            <FaUsers color="var(--soft-blue)" size={24} />
-                            <p>Seguidores</p>
+                           <FaUsers color="var(--soft-blue)" size={24} />
+                           <p>Seguidores</p>
                         </span>
-                    </Link>
+                     </Link>
 
-                    <span>
-                        <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
-                        <p>Meus projetos</p>
-                    </span>
-                    <span className={styles.logoutBox} onClick={signOut}>
+                     <Link to="/myprojects">
+                        <span>
+                           <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
+                           <p>Meus projetos</p>
+                        </span>
+                     </Link>
+
+                     <Link to="/repositories">
+                        <span>
+                           <FaBook color="var(--soft-blue)" size={22} />
+                           <p>Encontrar repositórios</p>
+                        </span>
+                     </Link>
+
+                     <div className={styles.logoutBox} onClick={signOut}>
                         <IoLogOut color="var(--soft-blue)" size={25} />
                         <p>Sair</p>
-                    </span>
-                </div>
+                     </div>
+                  </div>
+               </div>
+
+               <footer>
+                     <Link to="/dashboard">Sobre o projeto</Link>
+                     <Link to="/contributors">Contribuidores</Link>
+                     <span>
+                        <img src={logo} alt="logo" width={100} height={40} />
+                        <p>DevSocial Corporation © 2022</p>
+                     </span>
+                  </footer>
             </div>
+
             <div className={styles.mainFeedContainer}>
-                <div className={styles.createPublicationContainer}>
-						<div className={styles.contentBox}>
-							{avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
-							<div
-									className={styles.publication}
-									onClick={() => togglePostModal()}
+               <div className={styles.createPublicationContainer}>
+                  <div className={styles.contentBox}>
+                     {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
+                     <div
+                        className={styles.publication}
+                        onClick={() => togglePostModal()}
 
-							>
-									<p>No que você está pensando?</p>
-							</div>
-						</div>
-						<span>
-							<AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-							<FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-						</span>
-					 </div>
-					 <Feed />
+                     >
+                        <p>No que você está pensando?</p>
+                     </div>
+                  </div>
+                  <span>
+                     <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+                     <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
+                  </span>
+               </div>
+
+               <hr />
+
+               <Feed />
             </div>
-				<NewsBox />
+
+            <NewsBox />
             <ChatModal />
->>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240
 
-               <Link to="/dashboard">
-                  <span>
-                     <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
-                     <p>Meus projetos</p>
-                  </span>
-               </Link>
-
-<<<<<<< HEAD
-               <Link to="/repositories">
-                  <span>
-                     <FaBook color="var(--soft-blue)" size={22} />
-                     <p>Encontrar repositórios</p>
-                  </span>
-               </Link>
-
-               <div className={styles.logoutBox} onClick={signOut}>
-                  <IoLogOut color="var(--soft-blue)" size={25} />
-                  <p>Sair</p>
-               </div>
-            </div>
-         </div>
-         <div className={styles.publicationContainer}>
-            <div className={styles.contentBox}>
-               {avatarUrl === null ? <img src={avatar} alt="user-profile" /> : <img src={avatarUrl} alt="user-profile" />}
-               <div
-                  className={styles.publication}
-                  onClick={() => togglePostModal()}
-
-               >
-                  <p>No que você está pensando?</p>
-               </div>
-            </div>
-            <span>
-               <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-               <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-            </span>
-         </div>
-
-         <Feed />
-         <NewsBox />
-         <ChatModal />
-
-         {showPostModal && (
-            <PublicModal
-               close={togglePostModal}
-            />
-         )}
-
-         {editPublication && (
-            <ModalEditPublication
-               close={toggleEditPublication}
-            />
-         )}
-      </>
-
-   )
-=======
-            {editPublication && (
-                <ModalEditPublication
-                    close={toggleEditPublication}
-                />
+            {showPostModal && (
+               <PublicModal
+                  close={togglePostModal}
+               />
             )}
-        </div>
-		</>
-    )
->>>>>>> 73f170c57e0c3e56133af234b216df85aa22d240
+
+            {editPublication && (
+               <ModalEditPublication
+                  close={toggleEditPublication}
+               />
+            )}
+         </div>
+      </>
+   )
 }

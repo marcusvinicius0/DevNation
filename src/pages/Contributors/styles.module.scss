@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+
+.container{
+   margin: 5rem auto;
+   width: 900px;
+   height: 100%;
+   background-color: var(--white);
+   padding: 1rem;
+
+   header{
+      display: flex;
+      flex-direction: row;
+      background-color: var(--whitesmoke);
+      border-radius: 10px;
+   }
+
+   h1{
+      font-size: 33px;
+      padding: 1rem;
+      width: 85%;
+      border-radius: 15px;
+      color: var(--black);
+      text-align: flex-start;
+      font-family: 'Roboto', serif;
+      z-index: 3;
+   }
+
+   .gold{
+      position: absolute;
+      z-index: 2;
+      right: 13.7rem;
+   }
+}

@@ -129,14 +129,13 @@ function AuthProvider({ children }) {
 
     function storageUser(data) {
         localStorage.setItem('UserSystem', JSON.stringify(data));
-    }
+    };
 
     async function signOut(){
         await firebase.auth().signOut();
         localStorage.removeItem('UserSystem');
         setUser(null);
-    }
-
+    };
 
     return (
         <AuthContext.Provider

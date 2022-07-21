@@ -2,7 +2,6 @@ import { useCallback, useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
-import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 
 import githubLogo from '../../assets/github.png';
@@ -19,31 +18,31 @@ export default function Repositories() {
    const [loading, setLoading] = useState(false);
    const [alert, setAlert] = useState(null);
 
+   // buscar
    useEffect(() => {
-
       const repoStorage = localStorage.getItem('repos');
 
       if (repoStorage) {
          setRepositories(JSON.parse(repoStorage));
       }
-
    }, []);
 
+   //salvar
    useEffect(() => {
-
       localStorage.setItem('repos', JSON.stringify(repositories));
-
    }, [repositories]);
+
 
    const handleSubmit = useCallback((e) => {
       e.preventDefault();
 
       async function submit() {
          setLoading(true);
+         setAlert(null);
          try {
             if (text === "") {
                setAlert(true);
-               toast.warning("Você precisa indicar um repositório");
+               toast.warning("Você precisa indicar um repositório.");
                throw new Error("Você precisa indicar um repositório!");
             }
 
@@ -64,11 +63,10 @@ export default function Repositories() {
 
             setRepositories([...repositories, data]);
             setText('');
-
          } catch (error) {
+            setAlert(true);
             console.log(error);
          } finally {
-            localStorage.setItem('repos', JSON.stringify(repositories));
             setLoading(false);
          }
       }
@@ -83,7 +81,6 @@ export default function Repositories() {
    }
 
    const handleDelete = useCallback((repo) => {
-
       const find = repositories.filter(r => r.name !== repo);
       setRepositories(find);
 
@@ -95,10 +92,10 @@ export default function Repositories() {
 
          <div className={styles.container}>
             <span>
-               <h1>Meus repositórios</h1>
+               <h1>Encontre repositórios</h1>
                <img src={githubLogo} alt="github" width={30} height={30} />
             </span>
-            <hr />
+            <hr /> 
 
             <div className={styles.searchBox}>
                <img src={githubLogo} alt="github" width={30} height={30} />
@@ -150,7 +147,6 @@ export default function Repositories() {
             </div>
          </div>
 
-         <NewsBox />
          <ChatModal />
       </>
    )

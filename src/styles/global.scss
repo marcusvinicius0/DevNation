@@ -6,6 +6,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+#root {
+    min-height: 100vh;
+}
+
 :root{
     --white: #FFF;
     --whitesmoke: whitesmoke;
@@ -14,6 +18,7 @@
 
     --soft-blue: #399BE5;
     --blue-300: rgb(65, 65, 219);
+    --blue-500: #0745B7;
 
     --red-500: rgb(253, 33, 33);
 }

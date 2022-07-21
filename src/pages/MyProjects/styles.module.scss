@@ -1,0 +1,31 @@
+.containerMyProjects {
+   margin: 5rem auto;
+   width: 85%;
+
+   header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h1 {
+         font-size: 1.2rem;
+         font-weight: 500;
+      }
+
+      button {
+         font-size: 1rem;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         gap: 0.4rem;
+         padding: 0.3rem 1.7rem;
+         background: var(--soft-blue);
+         font-weight: 600;
+         color: #fff;
+         border: 0;
+         outline: 0;
+         border-radius: 1rem;
+      }
+   }
+}

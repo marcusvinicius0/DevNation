@@ -11,11 +11,12 @@ export default function Feed(key) {
 	const { user } = useContext(AuthContext);
 
 	useEffect(() => {
+
 		async function loadPublications() {
 			await firebase.firestore().collection('publications')
 				.orderBy('created', 'desc')
 				.get()
-		
+
 				.then((snapshot) => {
 					let arrayPublications = [];
 
@@ -35,9 +36,9 @@ export default function Feed(key) {
 								}
 								arrayPublications.push(data)
 							})
+							setPublications(arrayPublications)
 					})
-					setPublications(arrayPublications)
-				})
+				})		
 		}
 
 		loadPublications();

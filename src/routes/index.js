@@ -9,6 +9,7 @@ import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import Followers from '../pages/Followers';
 import Repositories from '../pages/Repositories';
+import Contributors from '../pages/Contributors';
 
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
@@ -16,8 +17,11 @@ import NewsLawProject from '../pages/News/projetoLei';
 import NewsMetaVerso from '../pages/News/metaverso';
 import NewsDevelopers from '../pages/News/desenvolvedores';
 
+import MyProjects from '../pages/MyProjects'
+
 import Message from '../pages/Message';
 import NotFound from '../pages/NotFound';
+
 
 export default function MyRoutes() {
     return (
@@ -31,6 +35,7 @@ export default function MyRoutes() {
                 <Route exact path="/profile" component={Profile} isPrivate />
                 <Route exact path="/followers" component={Followers} isPrivate />
                 <Route exact path="/repositories" component={Repositories} isPrivate />
+                <Route exact path="/contributors" component={Contributors} isPrivate />
 
                 <Route exact path="/news" component={News} isPrivate />
                 <Route exact path="/news/alura" component={NewsAlura} isPrivate />
@@ -38,6 +43,7 @@ export default function MyRoutes() {
                 <Route exact path="/news/metaverso" component={NewsMetaVerso} isPrivate />
                 <Route exact path="/news/developers-lack" component={NewsDevelopers} isPrivate />
 
+                <Route exact path="/myprojects" component={MyProjects} isPrivate />
                 <Route exact path="/message" component={Message} isPrivate />
 
                 <Route path="*" component={NotFound} />
