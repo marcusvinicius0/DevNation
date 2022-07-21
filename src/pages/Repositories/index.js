@@ -6,6 +6,8 @@ import ChatModal from '../../components/ChatModal';
 
 import githubLogo from '../../assets/github.png';
 
+import { Link } from 'react-router-dom';
+
 import { AiOutlinePlus } from 'react-icons/ai';
 import { FaSpinner, FaBars, FaTrash } from 'react-icons/fa';
 
@@ -95,7 +97,7 @@ export default function Repositories() {
                <h1>Encontre repositórios</h1>
                <img src={githubLogo} alt="github" width={30} height={30} />
             </span>
-            <hr /> 
+            <hr />
 
             <div className={styles.searchBox}>
                <img src={githubLogo} alt="github" width={30} height={30} />
@@ -139,9 +141,9 @@ export default function Repositories() {
                         </button>
                         {repo.name}
                      </span>
-                     <a href="">
+                     <Link to={`/repository/${encodeURIComponent(repo.name)}`}>
                         <FaBars size={20} />
-                     </a>
+                     </Link>
                   </li>
                ))}
             </div>

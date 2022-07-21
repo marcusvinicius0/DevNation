@@ -10,6 +10,7 @@ import Profile from '../pages/Profile';
 import Followers from '../pages/Followers';
 import Repositories from '../pages/Repositories';
 import Contributors from '../pages/Contributors';
+import Repository from '../pages/Repository';
 
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
@@ -21,7 +22,6 @@ import MyProjects from '../pages/MyProjects'
 
 import Message from '../pages/Message';
 import NotFound from '../pages/NotFound';
-
 
 export default function MyRoutes() {
     return (
@@ -35,6 +35,7 @@ export default function MyRoutes() {
                 <Route exact path="/profile" component={Profile} isPrivate />
                 <Route exact path="/followers" component={Followers} isPrivate />
                 <Route exact path="/repositories" component={Repositories} isPrivate />
+                <Route exact path="/repository/:repository" component={Repository} isPrivate />
                 <Route exact path="/contributors" component={Contributors} isPrivate />
 
                 <Route exact path="/news" component={News} isPrivate />
