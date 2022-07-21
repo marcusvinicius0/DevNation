@@ -12,10 +12,12 @@ import avatar from '../../assets/avatar.png';
 
 import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify';
+import { usePublications } from '../../hooks/usePublications';
 
 export default function PublicModal({ close }) {
    const [text, setText] = useState("");
    const { user } = useContext(AuthContext);
+	const { loadPublications } =  usePublications();
 
    async function handleSave(e) {
       e.preventDefault();
@@ -29,6 +31,8 @@ export default function PublicModal({ close }) {
             setText([]);
             toast.success("Publicação feita com sucesso!")
 				 })
+				loadPublications();
+				close();
    }
 
 	function coming() {

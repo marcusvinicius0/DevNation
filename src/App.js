@@ -4,14 +4,17 @@ import MyRoutes from "./routes";
 import { ToastContainer } from 'react-toastify';
 
 import AuthProvider from './contexts/auth';
+import PublicationsProvider from './hooks/usePublications';
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <ToastContainer autoClose={3000} />
-        <MyRoutes />
-      </BrowserRouter>
+		<PublicationsProvider>
+			<BrowserRouter>
+			<ToastContainer autoClose={3000} />
+			<MyRoutes />
+			</BrowserRouter>
+		</PublicationsProvider>
     </AuthProvider>
   );
 }

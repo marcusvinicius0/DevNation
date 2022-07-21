@@ -4,3 +4,6 @@
 
 >*Em desenvolvimento* <br/><br/>
  O projeto consiste em uma rede social de desenvolvedores onde poderá conversar, seguir, guardar projetos, editar perfil e outras funcionalidades, além é claro de fazer uma publicação!
+ 
+ Tecnologias:
+[Swiper](https://swiperjs.com/react)
