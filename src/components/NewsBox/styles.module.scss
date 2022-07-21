@@ -65,15 +65,13 @@
         span {
             display: flex;
             flex-direction: row;
-
-            svg {
-                margin: 0.5rem 0 0 0.5rem;
-            }
+				align-items: center;
 
             p {
-                padding: 0.4rem 0 0 0.5rem;
                 font-size: 11px;
-
+					 width: 150px;
+					 margin-left: 5px;
+					 margin-top: 2px;
             }
         }
 

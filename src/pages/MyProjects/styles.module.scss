@@ -1,31 +1,102 @@
 .containerMyProjects {
    margin: 5rem auto;
-   width: 85%;
+   width: 90%;
+	display: flex;
+	gap: 1rem;
 
-   header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+   .contentMyProjects {
+		width: 948px;
 
-      h1 {
-         font-size: 1.2rem;
-         font-weight: 500;
-      }
+		header {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+	
+			h1 {
+				font-size: 1.2rem;
+				font-weight: 500;
+			}
+	
+			button {
+				font-size: 1rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.4rem;
+				padding: 0.3rem 1.7rem;
+				background: var(--soft-blue);
+				font-weight: 600;
+				color: #fff;
+				border: 0;
+				outline: 0;
+				border-radius: 1rem;
+			}
+		}
 
-      button {
-         font-size: 1rem;
-         display: flex;
-         align-items: center;
-         justify-content: center;
-         gap: 0.4rem;
-         padding: 0.3rem 1.7rem;
-         background: var(--soft-blue);
-         font-weight: 600;
-         color: #fff;
-         border: 0;
-         outline: 0;
-         border-radius: 1rem;
-      }
-   }
+		.cardsProjects {
+			display: flex;
+			justify-content: center;
+			gap: 1rem;
+			flex-wrap: wrap;
+			margin-top: 1rem;
+
+			.card {
+				width: 290px;
+				height: 280px;
+				padding: 1rem;
+				background: #fff;
+				border-radius: 1rem;
+				border: 1px solid rgb(0,0,0,0.15);
+				position: relative;
+				transition: 0.4s;
+
+				img {
+					width: 100%;
+					height: 8rem;
+					object-fit: cover;
+					border-radius: 1rem;
+				}
+
+				.infosCard {
+					height: 4rem;
+
+					span {
+						font-weight: 700;
+						font-size: 1.1rem;
+					}
+
+					p {
+						font-weight: 400;
+						font-size: 0.8rem;
+					}
+				}
+
+				.buttonsCard {
+					display: grid;
+					grid-template-columns: 1fr 1fr;
+					gap: 0.3rem;
+					justify-content: center;
+					position: absolute;
+					bottom: 0.6rem;
+					left: 1rem;
+					right: 1rem;
+
+					button {
+						background: var(--soft-blue);
+						color: #fff;
+						border: 0;
+						outline: 0;
+						border-radius: 0.5rem;
+						font-weight: 600;
+						padding: 0.3rem 0;
+					}
+				}
+
+				&:hover {
+					box-shadow: var(--soft-blue) 0px 5px 15px;
+				}
+			}
+		}
+	}
 }
