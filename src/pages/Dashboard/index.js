@@ -23,6 +23,7 @@ import avatar from '../../assets/avatar.png';
 
 import { AuthContext } from '../../contexts/auth';
 import Feed from '../../components/Feed';
+import Sidebox from '../../components/Sidebox';
 
 export default function Dashboard() {
    const { signOut, user } = useContext(AuthContext);
@@ -44,66 +45,7 @@ export default function Dashboard() {
          <Header />
          <div className={styles.dashboard}>
             <div className={styles.containerTeste}>
-               <div className={styles.sideBox}>
-                  <div className={styles.bannerBox}>
-                     <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
-                  </div>
-                  <div className={styles.pictureBox}>
-                     <Link to="/profile">
-                        {avatarUrl === null ?
-                           <img src={avatar} alt="foto avatar" />
-                           :
-                           <img src={avatarUrl} alt="foto usuario" />
-                        }
-                     </Link>
-                  </div>
-                  <p className={styles.userName}>{user.name}</p>
-                  <p className={styles.role}>{user.role}</p>
-                  <hr />
-                  <div className={styles.routesBox}>
-                     <Link to="/profile">
-                        <span>
-                           <FaUserCircle color="var(--soft-blue)" size={24} />
-                           <p>Meu perfil</p>
-                        </span>
-                     </Link>
-
-                     <Link to="/followers">
-                        <span>
-                           <FaUsers color="var(--soft-blue)" size={24} />
-                           <p>Seguidores</p>
-                        </span>
-                     </Link>
-
-                     <Link to="/myprojects">
-                        <span>
-                           <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
-                           <p>Meus projetos</p>
-                        </span>
-                     </Link>
-
-                     <Link to="/repositories">
-                        <span>
-                           <FaBook color="var(--soft-blue)" size={22} />
-                           <p>Encontrar repositórios</p>
-                        </span>
-                     </Link>
-
-                     <div className={styles.logoutBox} onClick={signOut}>
-                        <IoLogOut color="var(--soft-blue)" size={25} />
-                        <p>Sair</p>
-                     </div>
-                  </div>
-               </div>
-
-               <footer>
-                     <Link to="/dashboard">Sobre o projeto</Link>
-                     <Link to="/contributors">Contribuidores</Link>
-                     <span>
-                        <img src={logo} alt="logo" width={100} height={40} />
-                        <p>DevSocial Corporation © 2022</p>
-                     </span>
-                  </footer>
+					<Sidebox />
             </div>
 
             <div className={styles.mainFeedContainer}>
@@ -118,10 +60,24 @@ export default function Dashboard() {
                         <p>No que você está pensando?</p>
                      </div>
                   </div>
-                  <span>
-                     <AiFillPicture size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-                     <FiVideo size={25} color="var(--soft-blue)" onClick={() => togglePostModal()} />
-                  </span>
+                  <div className={styles.contentActions}>
+							<button onClick={() => togglePostModal()}>
+								<AiFillPicture size={22} color="var(--soft-blue)"/>
+								<span>Foto</span>
+							</button>
+							<button onClick={() => togglePostModal()}>
+								<FiVideo size={22} color="var(--soft-blue)"/>
+								<span>Vídeo</span>
+							</button>
+							<button onClick={() => togglePostModal()}>
+								<AiFillPicture size={22} color="var(--soft-blue)"/>
+								<span>Projeto</span>
+							</button>
+							<button onClick={() => togglePostModal()}>
+								<AiFillPicture size={22} color="var(--soft-blue)" />
+								<span>Repositório</span>
+							</button>
+                  </div>
                </div>
 
                <hr />
@@ -129,7 +85,17 @@ export default function Dashboard() {
                <Feed />
             </div>
 
-            <NewsBox />
+            <div>
+					<NewsBox />
+					<footer>
+                  <Link to="/dashboard">Sobre o projeto</Link>
+                  <Link to="/contributors">Contribuidores</Link>
+                  <span>
+                     <img src={logo} alt="logo" width={100} height={40} />
+                     <p>DevSocial Corporation © 2022</p>
+                  </span>
+               </footer>
+				</div>
             <ChatModal />
 
             {showPostModal && (
