@@ -8,6 +8,7 @@ import EditProfilePictureModal from '../../components/EditProfilePictureModal';
 import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
+import ProjectsProfile from '../../components/ProjectsProfile';
 
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
@@ -101,6 +102,7 @@ export default function Profile() {
 						)}
 						<button type="button"><RiPencilLine size={22} /></button>
 					</div>
+					<ProjectsProfile />
 					<div className={styles.posts}>
 						<h3>Minhas publicações</h3>
 						{publicationsProfile.map((publication) => (

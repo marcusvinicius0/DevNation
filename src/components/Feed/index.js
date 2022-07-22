@@ -1,9 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import styles from './styles.module.scss';
 
-import firebase from 'firebase';
-import { AuthContext } from '../../contexts/auth';
-
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { MdFavoriteBorder } from 'react-icons/md'
 import { BiTrash } from 'react-icons/bi'
@@ -11,57 +8,29 @@ import { BiTrash } from 'react-icons/bi'
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { usePublications } from "../../hooks/usePublications";
+import { AuthContext } from "../../contexts/auth";
+
 
 const ITEM_HEIGHT = 48;
 
-export default function Feed(key) {
-	const [publications, setPublications] = useState([]);
-	const [popoverIsActive, setPopoverIsActive] = useState(0);
+export default function Feed() {
+	const [popoverActive, setPopoverActive] = useState(0);
 	const [anchorEl, setAnchorEl] = useState(null);
   	const open = Boolean(anchorEl);
 
-  	const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  	};
-  	const handleClose = () => {
-    setAnchorEl(null);
-  	};
+	const { user } = useContext(AuthContext)
+	const { publications, loadPublications, handleDeletePublication } = usePublications()
 
-	const { user } = useContext(AuthContext);
+  	const handleClick = (event) => setAnchorEl(event.currentTarget);
+  	const handleClose = () => setAnchorEl(null);
+
+	async function handleDelete() {
+		await handleDeletePublication(popoverActive.publication_id);
+	}
 
 	useEffect(() => {
-
-		async function loadPublications() {
-			await firebase.firestore().collection('publications')
-				.orderBy('created', 'desc')
-				.get()
-
-				.then((snapshot) => {
-					let arrayPublications = [];
-
-					snapshot.forEach(async (doc) => {
-						await firebase.firestore().collection('users')
-							.doc(doc.data().user_id)
-							.get()
-							.then((snap) => {
-								let data = {
-									created: doc.data().created,
-									publication: doc.data().publication,
-									user_id: doc.data().user_id,
-									user_name: snap.data().name,
-									user_role: snap.data().role,
-									avatarUrl: snap.data().avatarUrl,
-									bannerUrl: snap.data().bannerUrl,
-								}
-								arrayPublications.push(data)
-							})
-							setPublications(arrayPublications)
-					})
-				})		
-		}
-
 		loadPublications();
-
 	}, []);
 
 	return (
@@ -88,7 +57,10 @@ export default function Feed(key) {
 						onClick={handleClick}
 						className={styles.buttonToSeeActions}
       			>
-        				<IoEllipsisHorizontalSharp />
+        				<IoEllipsisHorizontalSharp onClick={() => setPopoverActive({
+							publication_id: publication.id,
+							user_id: publication.user_id
+						})} />
       			</IconButton>
 				</div>
 			))}
@@ -105,9 +77,16 @@ export default function Feed(key) {
 						maxHeight: ITEM_HEIGHT * 4.5,
 						width: '20ch',
 					},
-				}}
-			>
-				<MenuItem><button className={styles.buttonActionMenu}><BiTrash /> Excluir publicação</button></MenuItem>
+				}}>
+				{user.uid === popoverActive.user_id && ( 
+				<MenuItem>
+					<button 
+						className={styles.buttonActionMenu} 
+						onClick={handleDelete}>
+							<BiTrash /> Excluir publicação
+					</button>
+				</MenuItem>
+				)}
 				<MenuItem><button className={styles.buttonActionMenu}><MdFavoriteBorder /> Favoritar publicação</button></MenuItem>
 			</Menu>
 		</div>
