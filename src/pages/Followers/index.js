@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
-import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 
 import { Link } from 'react-router-dom';
@@ -132,8 +131,7 @@ export default function Followers() {
 
                 </div>
             </div>
-
-            <NewsBox />
+            
             <ChatModal />
 
         </>

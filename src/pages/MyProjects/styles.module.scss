@@ -14,7 +14,7 @@
 			align-items: center;
 	
 			h1 {
-				font-size: 1.2rem;
+				font-size: 1.8rem;
 				font-weight: 500;
 			}
 	
@@ -59,7 +59,8 @@
 				}
 
 				.infosCard {
-					height: 4rem;
+					height: 5rem;
+					width: 100%;
 
 					span {
 						font-weight: 700;
@@ -69,7 +70,22 @@
 					p {
 						font-weight: 400;
 						font-size: 0.8rem;
+						height: 50px;
+						overflow: auto;
 					}
+		
+					p::-webkit-scrollbar {
+						height: 20px;
+						width: 20px;
+				  }
+		
+				  p::-webkit-scrollbar-thumb:vertical {
+						background-color: var(--soft-purple);
+						height: 20px;
+						border-radius: 20px;
+						-moz-border-radius: 20px;
+						-webkit-border-radius: 20px;
+				  }
 				}
 
 				.buttonsCard {
@@ -93,9 +109,34 @@
 					}
 				}
 
+				.buttonToDeleteProject {
+					background: var(--soft-blue);
+					position: absolute;
+					top: 0rem;
+					right: 0rem;
+					border-radius: 100%;
+					color: #fff;
+					width: 40px;
+					height: 40px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					border: 0;
+					opacity: 0;
+					transition: 0.3s;
+				}
+
 				&:hover {
 					box-shadow: var(--soft-blue) 0px 5px 15px;
+
+					.buttonToDeleteProject {
+						opacity: 1;
+						top: 1rem;
+						right: 1rem;
+					}
 				}
+
+				
 			}
 		}
 	}

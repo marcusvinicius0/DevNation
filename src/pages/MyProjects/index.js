@@ -4,13 +4,14 @@ import firebase from 'firebase';
 
 import Header from '../../components/Header'
 import AddProjectModal from '../../components/AddProjectModal'
-
 import Sidebox from '../../components/Sidebox'
 
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiTrash } from 'react-icons/fi';
+import { BsTrash } from 'react-icons/bs'
 
 import developers from '../../assets/developers.jpg'
 import { AuthContext } from '../../contexts/auth';
+import { toast } from 'react-toastify'
 
 export default function MyProjects() {
 	const { user } = useContext(AuthContext)
@@ -42,6 +43,17 @@ export default function MyProjects() {
 				}
 			})
 			setProjects(arrayProjects)
+		})
+	}
+
+	async function handleDeleteProject(id) {
+		await firebase.firestore().collection('projects')
+		.doc(id)
+		.delete()
+		.then( (res) => {
+			console.log(res)
+			toast.success('Projeto deletado com sucesso.')
+			loadProjects();
 		})
 	}
 
@@ -78,6 +90,9 @@ export default function MyProjects() {
 									<button><a href={project.liveLink} target="_blank">Ver aplicação</a></button>
 									<button><a href={project.repo} target="_blank">Ver repositório</a></button>
 								</div>
+								<button className={styles.buttonToDeleteProject} onClick={() => handleDeleteProject(project.id)}>
+									<BsTrash size={19} />
+								</button>
 							</div>
 						))}
 					</div>

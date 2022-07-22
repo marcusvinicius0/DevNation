@@ -73,10 +73,18 @@
     flex-direction: column;
     gap: 1.2rem;
 
-
     button{
         margin-bottom: 1rem;
     }
+}
+
+.errorInput{
+    border-radius: 15px;
+    height: 40px;
+    width: 19rem;
+    background-color: var(--white);
+    padding-left: 1rem;
+    border: 1px solid var(--red-500);
 }
 
 @media (max-width: 920px){

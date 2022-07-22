@@ -1,8 +1,11 @@
 import styles from './styles.module.scss';
 
 import Header from "../../components/Header"
-import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
+
+import { FaArrowLeft } from 'react-icons/fa';
+
+import { Link } from 'react-router-dom';
 
 import projetoLei from '../../assets/projeto-lei.jpg';
 
@@ -11,7 +14,9 @@ export default function NewsLawProject() {
         <>
             <Header />
             <div className={styles.container}>
-
+                <Link className={styles.buttonBack} to="/dashboard">
+                    <FaArrowLeft color="var(--soft-blue)" size={30} />
+                </Link>
                 <img src={projetoLei} alt="mulher-trabalhando" />
 
                 <div className={styles.informationBox}>
@@ -34,7 +39,6 @@ export default function NewsLawProject() {
 
             </div>
 
-            <NewsBox />
             <ChatModal />
         </>
     )

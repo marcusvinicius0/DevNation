@@ -73,7 +73,7 @@ export default function AddProjectModal({closeModal, reloadProjects}) {
 	function handleFile(e) {
 		if(e.target.files[0]) {
 			const image = e.target.files[0]
-			if(image.type === 'image/jpeg' || image.type === 'image/png' || image.type === 'image/jpg') {
+			if(image.type === 'image/jpeg' || image.type === 'image/png' || image.type === 'image/jpg' || image.type === 'image/gif') {
 				setImageProject(image)
 				setImageProjectUrl(URL.createObjectURL(image))
 			} else {

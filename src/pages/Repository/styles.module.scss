@@ -8,7 +8,6 @@
 }
 
 .ownerBox{
-   margin-top: 2rem;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -29,8 +28,20 @@
    }
 }
 
+.filterBox{
+   margin: 15px 0;
+
+   button{
+      outline: 0;
+      border: 0;
+      padding: 8px;
+      border-radius: 4px;
+      margin: 0 3px;
+   }
+}
+
 .issuesBox{
-   margin-top: 6rem;
+   margin-top: 4rem;
    padding-top: 20px;
    border-top: 1px solid var(--black);
 
@@ -84,4 +95,32 @@
          }
       }
    }
+}
+
+.navigateBox{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+
+   button{
+      outline: 0;
+      border: 0;
+      background-color: var(--soft-blue);
+      color: var(--white);
+      padding: 5px 10px;
+      border-radius: 4px;
+
+      &:disabled{
+         cursor: not-allowed;
+         opacity: 0.5;
+      }
+   }
+}
+
+.loading{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin: 5rem auto;
 }

@@ -2,7 +2,7 @@
 	background: #fff;
 	border: 1px solid rgb(0,0,0,0.15);
 	border-radius: 1rem;
-	padding: 1rem;
+	padding: 1rem 2rem;
 
 	header {
 		display: flex;
@@ -14,6 +14,20 @@
 		h1 {
 			font-size: 1.1rem;
 			font-weight: 600;
+		}
+
+		button {
+			background: none;
+			border: 0;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			color: rgb(0,0,0,0.7);
+			text-decoration: underline;
+			font-weight: 600;
+			font-size: 0.8rem;
+			padding: 0.2rem 1.5rem;
+			border-radius: 1rem;
 		}
 	}
 }

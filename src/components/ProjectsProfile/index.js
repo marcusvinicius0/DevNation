@@ -96,17 +96,17 @@ export default function ProjectsProfile() {
 					{projects.map( project => (
 						<SwiperSlide>
 							<div className={styles.card}>
-							<img src={project.imageProjectUrl} alt="Foto projeto" />
-							<div className={styles.infosCard}>
-								<span>{project.title}</span>
-								<p>{project.description}</p>
+								<img src={project.imageProjectUrl} alt="Foto projeto" />
+								<div className={styles.infosCard}>
+									<span>{project.title}</span>
+									<p>{project.description}</p>
+								</div>
+								<div className={styles.buttonsCard}> 
+									<button><a href={project.liveLink} target="_blank">Ver aplicação</a></button>
+									<button><a href={project.repo} target="_blank">Ver repositório</a></button>
+								</div>
 							</div>
-							<div className={styles.buttonsCard}> 
-								<button><a href={project.liveLink} target="_blank">Ver aplicação</a></button>
-								<button><a href={project.repo} target="_blank">Ver repositório</a></button>
-							</div>
-						</div>
-						</SwiperSlide>
+							</SwiperSlide>
 					))}
 				</ul>
 			 </Swiper>

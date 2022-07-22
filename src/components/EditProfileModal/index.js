@@ -15,51 +15,51 @@ export default function EditProfileModal({ close }) {
     const [role, setRole] = useState(user.role ? user.role : "");
     const [location, setLocation] = useState(user.location ? user.location : "");
     const [aboutMe, setAboutMe] = useState(user.aboutMe ? user.aboutMe : "");
-	 const [linkedin, setLinkedin] = useState("");
-	 const [github, setGithub] = useState("");
+    const [linkedin, setLinkedin] = useState("");
+    const [github, setGithub] = useState("");
 
     async function handleSave(e) {
         e.preventDefault();
 
-		  await firebase.firestore().collection('users')
-                .doc(user.uid)
-                .update({
+        await firebase.firestore().collection('users')
+            .doc(user.uid)
+            .update({
+                name,
+                role,
+                location,
+                aboutMe
+            })
+            .then(() => {
+                let data = {
+                    ...user,
                     name,
-						  role,
-						  location,
-						  aboutMe
-                })
-                .then(() => {
-                    let data = {
-                        ...user,
-                        name,
-								role, 
-								location, 
-								aboutMe
-                    }
-                    toast.success("Dados enviados com sucesso!")
-                    setUser(data);
-                    storageUser(data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
-                    setName(null);
-                    return null;
-                })
+                    role,
+                    location,
+                    aboutMe
+                }
+                toast.success("Dados enviados com sucesso!")
+                setUser(data);
+                storageUser(data);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
+                setName(null);
+                return null;
+            })
     }
 
     return (
 
         <div className={styles.container}>
             <div className={styles.modalBox}>
-					<header>
-						<h2>Editar perfil</h2>
-						<button onClick={close} type="button">
-							<FiX size={22} />
-						</button>
-					</header>
-               <div className={styles.formBox}>
+                <header>
+                    <h2>Editar perfil</h2>
+                    <button onClick={close} type="button">
+                        <FiX size={22} />
+                    </button>
+                </header>
+                <div className={styles.formBox}>
                     <form onSubmit={handleSave}>
                         <label>
                             <p>Nome</p>
@@ -83,11 +83,11 @@ export default function EditProfileModal({ close }) {
                                 {aboutMe}
                             </textarea>
                         </label>
-								<label>
+                        <label>
                             <p>Linkedin</p>
                             <input type="text" value={linkedin} onChange={event => setLinkedin(event.target.value)} />
                         </label>
-								<label>
+                        <label>
                             <p>GitHub</p>
                             <input type="text" value={github} onChange={event => setGithub(event.target.value)} />
                         </label>
