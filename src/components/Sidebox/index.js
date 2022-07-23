@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 import banner from "../../assets/banner.png";
 
-import { FaUsers, FaUserCircle } from "react-icons/fa";
+import { FaUsers, FaUserCircle, FaEnvelopeOpenText, FaBook } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { FaEnvelopeOpenText, FaBook } from "react-icons/fa";
+import { BsBookmarkFill, BsBookmark } from 'react-icons/bs'
 
 import avatar from "../../assets/avatar.png";
 
@@ -62,6 +62,13 @@ export default function Sidebox() {
           <span>
             <FaBook color="var(--soft-blue)" size={22} />
             <p>Encontrar repositórios</p>
+          </span>
+        </Link>
+
+		  <Link to="/repositories">
+          <span>
+            <BsBookmarkFill color="var(--soft-blue)" size={22} />
+            <p>Salvos</p>
           </span>
         </Link>
 

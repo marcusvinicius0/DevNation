@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { MdFavoriteBorder } from 'react-icons/md'
 import { BiTrash } from 'react-icons/bi'
+import { BsBookmark } from 'react-icons/bs'
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -27,6 +28,10 @@ export default function Feed() {
 
 	async function handleDelete() {
 		await handleDeletePublication(popoverActive.publication_id);
+	}
+
+	function handleSavePublication() {
+		console.log("Publication to save: "+ popoverActive.publication_id)
 	}
 
 	useEffect(() => {
@@ -87,7 +92,7 @@ export default function Feed() {
 					</button>
 				</MenuItem>
 				)}
-				<MenuItem><button className={styles.buttonActionMenu}><MdFavoriteBorder /> Favoritar publicação</button></MenuItem>
+				<MenuItem><button className={styles.buttonActionMenu} onClick={handleSavePublication}><BsBookmark /> Salvar publicação</button></MenuItem>
 			</Menu>
 		</div>
 	)
