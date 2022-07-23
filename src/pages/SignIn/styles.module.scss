@@ -94,14 +94,10 @@
 
     .logoContainer{
         min-width: 100vw;
-        min-height: 50vh;
+        min-height: 44vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 10rem;
-
-        .contentContainer{
-            padding-top: 6rem;
-            padding-left: 2rem;
-        }
+        padding-left: 1.5rem;
     }
 
     .loginContainer{

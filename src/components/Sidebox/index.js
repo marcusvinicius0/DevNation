@@ -9,6 +9,7 @@ import { IoLogOut } from "react-icons/io5";
 import { BsBookmarkFill, BsBookmark } from 'react-icons/bs'
 
 import avatar from "../../assets/avatar.png";
+import {toast} from 'react-toastify';
 
 import { AuthContext } from "../../contexts/auth";
 
@@ -44,7 +45,7 @@ export default function Sidebox() {
           </span>
         </Link>
 
-        <Link to="/followers">
+        <Link to="/" onClick={() => toast.warning("Em breve...")}>
           <span>
             <FaUsers color="var(--soft-blue)" size={24} />
             <p>Seguidores</p>
@@ -65,7 +66,7 @@ export default function Sidebox() {
           </span>
         </Link>
 
-		  <Link to="/repositories">
+		  <Link to="/" onClick={() => toast.warning("Em breve...")}>
           <span>
             <BsBookmarkFill color="var(--soft-blue)" size={22} />
             <p>Salvos</p>

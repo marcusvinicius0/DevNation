@@ -1,36 +1,73 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
-
-
 .container{
    margin: 5rem auto;
-   width: 900px;
-   height: 100%;
+   width: 800px;
+   height: 95vh;
    background-color: var(--white);
    padding: 1rem;
+   border-top-left-radius: 15px;
+   border-top-right-radius: 15px;
 
    header{
       display: flex;
       flex-direction: row;
       background-color: var(--whitesmoke);
       border-radius: 10px;
+      margin-bottom: 1rem;
    }
 
+
    h1{
-      font-size: 33px;
-      padding: 1rem;
-      width: 85%;
+      font-size: 30px;
+      padding: 2rem 1rem 1rem 1rem;
       border-radius: 15px;
-      color: var(--black);
-      text-align: flex-start;
-      font-family: 'Roboto', serif;
+      color: var(--blue-500);
+      text-align: center;
       z-index: 3;
    }
 
-   .gold{
-      position: absolute;
-      z-index: 2;
-      right: 13.7rem;
+   img{
+      object-fit: cover;
+      margin: 0.5rem;
+   }
+
+
+   hr{
+      border: 1px solid var(--whitesmoke);
+      margin-bottom: 1rem;
+   }
+}
+
+@media (max-width: 870px){
+   .container{
+      width: 90%;
+      height: 100%;
+      
+
+      header{
+         flex-direction: column-reverse;
+         align-items: center;
+      }
+
+      h1{
+         font-size: 29px;
+      }
+
+   }
+}
+
+@media (max-width: 580px){
+   .container{
+
+      h1{
+         font-size: 22px;
+      }
+   }
+}
+
+
+
+@media(min-width: 1700px){
+   .container{
+      margin: 10rem auto;
    }
 }
