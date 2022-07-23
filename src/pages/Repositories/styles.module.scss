@@ -1,7 +1,7 @@
 .container{
    background-color: var(--white);
-   width: 80%;
-   height: 75vh;
+   width: 65%;
+   height: 80vh;
    margin: 5rem 0 3rem 2rem;
    border-radius: 15px;
 
@@ -70,14 +70,13 @@
 
    form{
       display: flex;
-      width: 100%;
    }
 
    input{
       margin: 0.5rem 0 0 1rem;
       border: 1px solid var(--black);
       height: 40px;
-      width: 90%;
+      width: 55vw;
       padding: 0.5rem;
    }
 
@@ -118,11 +117,5 @@
           transform: rotate(360deg);
       }
   }
-}
-
-@media (max-width: 650px){
-   .container{
-      min-width: 75%;
-   }
 }
 
