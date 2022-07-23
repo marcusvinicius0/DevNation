@@ -9,6 +9,7 @@ import PublicModal from '../../components/PublicationModal';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 import ModalEditPublication from '../../components/ModalEditPublication';
+import JoinDiscord from '../../components/JoinDiscord'
 
 import banner from '../../assets/banner.png';
 import logo from '../../assets/logo.png';
@@ -87,6 +88,7 @@ export default function Dashboard() {
 
             <div>
 					<NewsBox />
+					<JoinDiscord />
 					<footer>
                   <Link to="/dashboard">Sobre o projeto</Link>
                   <Link to="/contributors">Contribuidores</Link>

@@ -1,40 +1,59 @@
-.box{
-   margin-top: 20px;
+.box {
    display: flex;
    flex-direction: row;
 
-      img{
-         width: 60px;
-         height: 60px;
-         border-radius: 50%;
-         object-fit: cover;
-      }
-   
+   img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+   }
 
-   .contributorInfo{
+
+   .contributorInfo {
       display: flex;
       flex-direction: column;
       margin: 0 0 0 0.5rem;
 
-      p{
+      p {
          font-size: 14px;
       }
    }
 }
 
-.contactBox{
+.contactBox {
    position: relative;
    left: 5rem;
    top: -1.2rem;
    display: flex;
    align-items: center;
    gap: 0.5rem;
+   width: 15%;
 
-   & + .contactBox{
-      border-top: 1px solid red;
-   }
-   
-   p{
+   p {
       font-size: 13px;
+   }
+}
+
+@media (max-width: 870px) {
+   .box {
+
+      p {
+         text-overflow: ellipsis;
+         overflow: hidden;
+         white-space: wrap;
+         width: 95%;
+      }
+   }
+
+
+   .contactBox {
+      top: -0.3rem;
+   }
+}
+
+@media (max-width: 570px){
+   .contactBox{
+      top: 0.1rem;
    }
 }

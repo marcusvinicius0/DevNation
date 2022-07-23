@@ -13,6 +13,8 @@ import { FaSpinner, FaBars, FaTrash } from 'react-icons/fa';
 
 import api from '../../services/api';
 import { toast } from 'react-toastify';
+import NewsBox from '../../components/NewsBox';
+import JoinDiscord from '../../components/JoinDiscord';
 
 export default function Repositories() {
    const [text, setText] = useState('');
@@ -29,7 +31,6 @@ export default function Repositories() {
       }
    }, []);
 
-   //salvar
    useEffect(() => {
       localStorage.setItem('repos', JSON.stringify(repositories));
    }, [repositories]);
@@ -93,61 +94,67 @@ export default function Repositories() {
          <Header />
 
          <div className={styles.container}>
-            <span>
-               <h1>Encontre repositórios</h1>
-               <img src={githubLogo} alt="github" width={30} height={30} />
-            </span>
-            <hr />
+				<div className={styles.containerRepositories}>
+					<span>
+						<h1>Encontre repositórios</h1>
+						<img src={githubLogo} alt="github" width={30} height={30} />
+					</span>
+					<hr />
 
-            <div className={styles.searchBox}>
-               <img src={githubLogo} alt="github" width={30} height={30} />
+					<div className={styles.searchBox}>
+						<img src={githubLogo} alt="github" width={30} height={30} />
 
-               <span>
-                  <form onSubmit={handleSubmit} error={alert}>
-                     {alert ? <input
-                        type="text"
-                        className={styles.errorInput}
-                        placeholder="Adicionar repositórios"
-                        value={text}
-                        onChange={handleInputChange}
-                     /> :
-                        <input
-                           type="text"
-                           placeholder="Adicionar repositórios"
-                           value={text}
-                           onChange={handleInputChange}
-                        />
-                     }
+						<span>
+							<form onSubmit={handleSubmit} error={alert}>
+								{alert ? <input
+									type="text"
+									className={styles.errorInput}
+									placeholder="Adicionar repositórios"
+									value={text}
+									onChange={handleInputChange}
+								/> :
+									<input
+										type="text"
+										placeholder="Adicionar repositórios"
+										value={text}
+										onChange={handleInputChange}
+									/>
+								}
 
-                     {loading ?
-                        <button className={styles.buttonOff} type="submit" disabled>
-                           <FaSpinner size={20} color="var(--white)" />
-                        </button>
-                        :
-                        <button type="submit">
-                           <AiOutlinePlus size={20} color="var(--white)" />
-                        </button>
-                     }
-                  </form>
-               </span>
-            </div>
+								{loading ?
+									<button className={styles.buttonOff} type="submit" disabled>
+										<FaSpinner size={20} color="var(--white)" />
+									</button>
+									:
+									<button type="submit">
+										<AiOutlinePlus size={20} color="var(--white)" />
+									</button>
+								}
+							</form>
+						</span>
+					</div>
 
-            <div className={styles.repositoriesBox}>
-               {repositories.map(repo => (
-                  <li key={repo.name}>
-                     <span>
-                        <button type="button" onClick={() => handleDelete(repo.name)}>
-                           <FaTrash size={14} color="var(--red-500)" />
-                        </button>
-                        {repo.name}
-                     </span>
-                     <Link to={`/repository/${encodeURIComponent(repo.name)}`}>
-                        <FaBars size={20} />
-                     </Link>
-                  </li>
-               ))}
-            </div>
-         </div>
+					<div className={styles.repositoriesBox}>
+						{repositories.map(repo => (
+							<li key={repo.name}>
+								<span>
+									<button type="button" onClick={() => handleDelete(repo.name)}>
+										<FaTrash size={14} color="var(--red-500)" />
+									</button>
+									{repo.name}
+								</span>
+								<Link to={`/repository/${encodeURIComponent(repo.name)}`}>
+									<FaBars size={20} />
+								</Link>
+							</li>
+						))}
+					</div>
+				</div>
+				<div styles={styles.containerSideinfo}>
+					<NewsBox />
+					<JoinDiscord />
+				</div>
+			</div>
 
          <ChatModal />
       </>
