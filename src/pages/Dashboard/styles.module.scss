@@ -107,6 +107,10 @@ footer {
             }
         }
     }
+
+	 @media (max-width: 970px) {
+		max-width: 100%;
+	 }
 }
 
 hr {

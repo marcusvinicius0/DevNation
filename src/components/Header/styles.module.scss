@@ -7,25 +7,64 @@
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     background-color: var(--white);
     top: 0;
+	 align-items: center;
 
     .logo {
         padding-left: 2rem;
     }
 
-    .searchIcon {
-        position: relative;
-        top: 1.3rem;
-        left: 3.5rem;
-    }
+    .inputSearchUsers {
+		display: flex;
+		background-color: #EEF3F8;
+		height: 35px;
+		margin-left: 3rem;
+		align-items: center;
+		padding: 0 1rem;
+		gap: 1rem;
+		position: relative;
 
-    input {
-        min-width: 20vw;
-        height: 35px;
-        background-color: #EEF3F8;
-        margin: 0.8rem 0 0 2rem;
-        border: none;
-        padding-left: 2rem;
-    }
+		.searchIcon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+ 
+		input {
+				min-width: 20vw;
+				background-color: #EEF3F8;
+				border: none;
+		}
+
+		.searchBox{
+			position: absolute;
+			top: 2.5rem;
+			left: 0rem;
+			width: 30rem;
+			background-color: #fff;
+			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+			border-radius: 0.5rem;
+
+			ul {
+				display: flex;
+				flex-direction: column;
+
+				a {
+					width: 100%;
+					display: flex;
+					padding: 0.8rem;
+					align-items: center;
+					gap: 0.1rem;
+
+					img {
+						width: 30px;
+						height: 30px;
+						border-radius: 100%;
+					}
+				}
+			}
+	  }
+
+	 }
 
     .menuHamb {
         display: none;
@@ -34,44 +73,21 @@
 
     .navegation {
         margin-left: 5rem;
-        padding-top: 1.8rem;
 
         ul {
             display: flex;
-            gap: 0.2rem;
+            gap: 2rem;
         }
 
         li {
             color: var(--soft-gray);
-            font-size: 12px;
-        }
+            font-size: 12px; 
 
-        .homeIcon {
-            position: relative;
-            top: -0.7rem;
-            left: 1.6rem;
-            color: var(--soft-gray);
-        }
-
-        .usersIcon {
-            position: relative;
-            top: -0.7rem;
-            left: 2.7rem;
-            color: var(--soft-gray);
-        }
-
-        .chatIcon {
-            position: relative;
-            top: -0.7rem;
-            left: 2.6rem;
-            color: var(--soft-gray);
-        }
-
-        .configIcon{
-            position: relative;
-            top: -0.7rem;
-            left: 3.3rem;
-            color: var(--soft-gray);
+				a {
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+				}
         }
     }
 
@@ -149,42 +165,6 @@
         }
     }
     
-}
-
-.searchBox{
-    position: relative;
-    right: 44rem;
-    top: 3.1rem;
-    width: 17.5rem;
-    background-color: #EEF3F8;
-    height: 300%;
-}
-
-.searchBox ul{
-    display: flex;
-    flex-direction: column;
-}
-
-.searchBox img{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin-left: auto;
-}
-
-.searchBox a{
-    cursor: pointer;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    border-top: 1px solid rgba(0,0,0,0.15);
-    transition: 0.25s;
-    gap: 3px;
-    font-size: 0.8rem;
-}
-
-.searchBox a:hover { 
-    background: rgba(0,0,0,0.1);
 }
 
 

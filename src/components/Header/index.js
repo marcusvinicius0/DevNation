@@ -13,6 +13,7 @@ import { AiFillHome } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
 import { BiMenuAltRight } from 'react-icons/bi';
+import { toast} from 'react-toastify'
 
 export default function Header() {
    const { user, users } = useContext(AuthContext);
@@ -23,26 +24,27 @@ export default function Header() {
    const [userFilters, setUserFilters] = useState([]);
 
    function usersFilter(value) {
-
       let filterUsers = []
 
       users.forEach((item) => {
          if (String(item.name).toLowerCase().includes(value.toLowerCase())) {
             filterUsers.push(item)
             setUserFilters(filterUsers)
-
          }
       })
 
    }
 
    function hiddingContent() {
-
       if (searchBarBox !== false) {
          return (
             <ul>
                {userFilters.map(item => (
-                  <Link onClick={() => { }} to={`/users/${item.id}`} key={item.id}> <FiSearch /> {item.name} <img src={item.avatarUrl} /> </Link>
+                  <Link onClick={() => { }} to={`/users/${item.id}`} key={item.id}> 
+							<FiSearch /> 
+							<img src={item.avatarUrl} /> 
+							<span>{item.name}</span>
+						</Link>
                ))}
                {text !==  "" ?
                 <Link className="linkToSeeMoreResults" to="/">Ver mais resultados</Link>
@@ -60,7 +62,7 @@ export default function Header() {
    }
 
 
-   function searchValue(e) { //alterando valor do input
+   function searchValue(e) { 
       setText(e.target.value)
       usersFilter(e.target.value)
    }
@@ -74,42 +76,43 @@ export default function Header() {
                <img className={styles.logo} src={logo} alt="logo" />
             </Link>
 
-            <FiSearch className={styles.searchIcon} size={20} />
-            <input
-               type="text"
-               placeholder="Pesquisar..."
-               value={text}
-               onChange={(e) => searchValue(e)}
-               onClick={() => setSearchBarBox(!searchBarBox)}
-            />
+				<div className={styles.inputSearchUsers}>
+					<FiSearch className={styles.searchIcon} size={20} />
+					<input
+						type="text"
+						placeholder="Pesquisar..."
+						value={text}
+						onChange={(e) => searchValue(e)}
+						onClick={() => setSearchBarBox(!searchBarBox)}
+					/>
+					<div onMouseLeave={() => setSearchBarBox(!searchBarBox)} className={searchBarBox || text !== "" ? styles.searchBox : styles.searchBoxOff}>
+               	{hiddingContent()}
+            	</div>
+				</div>
 
             <nav className={showMenu ? styles.menuOn : styles.navegation}>
                <ul>
                   <li>
                      <Link to="/dashboard">
-                        <AiFillHome className={styles.homeIcon} size={20} />
+                        <AiFillHome  size={20} />
                         Início
                      </Link>
                   </li>
-
                   <li>
-                     <Link to="/followers">
-                        <FaUsers className={styles.usersIcon} size={20} />
+                     <Link to="/" onClick={() => toast.warning("Em breve...")}>
+                        <FaUsers  size={20} />
                         Seguidores
                      </Link>
                   </li>
-
                   <li>
-                     <Link to="/message">
-                        <BsFillChatDotsFill className={styles.chatIcon} size={20} />
+                     <Link to="/" onClick={() => toast.warning("Em breve...")}>
+                        <BsFillChatDotsFill  size={20} />
                         Mensagens
                      </Link>
                   </li>
-
                   <li>
                      <Link to="/">
-                        <BsFillGearFill className={styles.configIcon}
-                           size={20} />
+                        <BsFillGearFill size={20} />
                         Configurações
                      </Link>
                   </li>
@@ -128,10 +131,6 @@ export default function Header() {
                <Link to="/profile">
                   {user.avatarUrl === null ? <img src={avatar} alt="usuario-perfil" /> : <img src={user.avatarUrl} alt="usuario-perfil" />}
                </Link>
-            </div>
-
-            <div onMouseLeave={() => setSearchBarBox(!searchBarBox)} className={searchBarBox || text !== "" ? styles.searchBox : styles.searchBoxOff}>
-               {hiddingContent()}
             </div>
          </header>
       </>

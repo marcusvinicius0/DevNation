@@ -29,7 +29,7 @@ const breakpoints = {
 	}
  }
 
-export default function ProjectsProfile() {
+export default function ProjectsProfile({user_id}) {
 	const { user } = useContext(AuthContext)
 	const [projects, setProjects] = useState([])
 
@@ -39,21 +39,21 @@ export default function ProjectsProfile() {
 			.get()
 			.then( (snapshot) => {
 				let arrayProjects = [];
-			snapshot.forEach( (doc) => {
-				if(doc.data().user_id === user.uid) {
-					let data = {
-						repo: doc.data().repo,
-						user_id: doc.data().user_id,
-						imageProjectUrl: doc.data().imageProjectUrl,
-						liveLink: doc.data().liveLink,
-						description: doc.data().description,
-						title: doc.data().title,
-						id: doc.id
+				snapshot.forEach( (doc) => {
+					if(doc.data().user_id === user_id) {
+						let data = {
+							repo: doc.data().repo,
+							user_id: doc.data().user_id,
+							imageProjectUrl: doc.data().imageProjectUrl,
+							liveLink: doc.data().liveLink,
+							description: doc.data().description,
+							title: doc.data().title,
+							id: doc.id
+						}
+						arrayProjects.push(data)
 					}
-					arrayProjects.push(data)
-				}
-			})
-			setProjects(arrayProjects)
+				})
+				setProjects(arrayProjects)
 			})
 		}
 		loadProjects();
@@ -78,8 +78,8 @@ export default function ProjectsProfile() {
 							<p>{project.description}</p>
 						</div>
 						<div className={styles.buttonsCard}> 
-							<button><a href={project.liveLink} target="_blank">Ver aplicação</a></button>
-							<button><a href={project.repo} target="_blank">Ver repositório</a></button>
+							<button><a href={project.liveLink} target="_blank" rel="noreferrer">Ver aplicação</a></button>
+							<button><a href={project.repo} target="_blank" rel="noreferrer">Ver repositório</a></button>
 						</div>
 					</div>
 				))}
@@ -102,8 +102,8 @@ export default function ProjectsProfile() {
 									<p>{project.description}</p>
 								</div>
 								<div className={styles.buttonsCard}> 
-									<button><a href={project.liveLink} target="_blank">Ver aplicação</a></button>
-									<button><a href={project.repo} target="_blank">Ver repositório</a></button>
+									<button><a href={project.liveLink} target="_blank" rel="noreferrer">Ver aplicação</a></button>
+									<button><a href={project.repo} target="_blank" rel="noreferrer">Ver repositório</a></button>
 								</div>
 							</div>
 							</SwiperSlide>

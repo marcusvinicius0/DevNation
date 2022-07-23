@@ -5,7 +5,11 @@ import contributorOne from '../../assets/joao.png';
 import contributorTwo from '../../assets/matheus.png';
 import contributorThree from '../../assets/marcus.jpeg';
 
+<<<<<<< HEAD
 import bannerStar from '../../assets/bannerStar.png';
+=======
+import bannerStar from '../../assets/bannerStar.jpeg';
+>>>>>>> cfc4806c1f5ce8f6868e0ac5b7765b981564d856
 
 import ContributorsBox from '../../components/ContributorsBox';
 
