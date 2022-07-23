@@ -22,15 +22,7 @@ export default function SignUp() {
 
    function handleSubmit(e) {
       e.preventDefault();
-
-      if(name === ''){
-         setAlert(true);
-      }
-
-      if(setName !== ''){
-         setAlert(null);
-      }
-           
+      
       if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
          signUp(name, email, password)
       } else {

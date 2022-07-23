@@ -48,24 +48,6 @@
         font-size: 2rem;
         margin-bottom: 1rem;
     }
-
-    .emailIcon{
-        position: relative;
-        top: -11.5rem;
-        right: 8.5rem;
-    }
- 
-    .lockIcon{
-        position: relative;   
-        top: -9rem;
-        right: 8.5rem;
-    }
-
-    // .userIcon{
-    //     position: relative;
-    //     top: -13.7rem;
-    //     right: 8.5rem;
-    // }   
 }
 
 .form{
@@ -94,14 +76,10 @@
 
     .logoContainer{
         min-width: 100vw;
-        min-height: 50vh;
+        min-height: 44vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 10rem;
-
-        .contentContainer{
-            padding-top: 6rem;
-            padding-left: 2rem;
-        }
+        padding-left: 1.5rem;
     }
 
     .loginContainer{

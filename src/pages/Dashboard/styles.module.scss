@@ -6,30 +6,30 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
-	 @media screen and (max-width: 970px) {
-		flex-direction: column;
-	 }
+    @media screen and (max-width: 970px) {
+        flex-direction: column;
+    }
 }
 
-footer{
+footer {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 15px;
 
-    a{
+    a {
         text-align: center;
         font-size: 12px;
         opacity: 0.9;
         margin-top: 10px;
     }
 
-    span{
+    span {
         display: flex;
         flex-direction: row;
         margin-top: 5px;
 
-        p{
+        p {
             padding: 0.9rem 0 0 0.3rem;
             font-size: 12px;
         }
@@ -43,12 +43,12 @@ footer{
     flex-direction: column;
 
     .createPublicationContainer {
-		display: flex;
-		flex-direction: column;
-		background: #fff;
-		border-radius: 0.5rem;
-		margin-bottom: 1rem;
-		border: 1px solid rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.15);
 
         .contentBox {
             display: flex;
@@ -84,27 +84,27 @@ footer{
             }
         }
 
-        .contentActions {	
-				width: 100%;
-				padding: 1rem 2rem;
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
+        .contentActions {
+            width: 100%;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
 
-				button {
-					display: flex;
-					align-items: center;
-					gap: 1rem;
-					border: 0;
-					background: 0;
-					padding: 0.2rem 0.5rem;
-					transition: background 0.2s;
-					border-radius: 1rem;
+            button {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                border: 0;
+                background: 0;
+                padding: 0.2rem 0.5rem;
+                transition: background 0.2s;
+                border-radius: 1rem;
 
-					&:hover {
-						background: rgba(0, 0, 0, 0.1);
-					}
-				}
+                &:hover {
+                    background: rgba(0, 0, 0, 0.1);
+                }
+            }
         }
     }
 }
@@ -117,5 +117,32 @@ hr {
     .mainFeedContainer {
         margin: 0 auto;
         width: 90%;
+    }
+}
+
+@media (max-width: 580px) {
+    .createPublicationContainer {
+
+        .publication{
+            height: 45px!important;
+            
+            p{
+                font-size: 11px!important;
+            }
+        }
+
+        .contentActions {
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                justify-content: space-around;
+            }
+
+            span {
+                display: none;
+            }
+        }
+
     }
 }
