@@ -12,8 +12,9 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { AiFillHome } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
-import { BiMenuAltRight } from 'react-icons/bi';
+import { BiMenu } from 'react-icons/bi';
 import { toast} from 'react-toastify'
+import MenuModal from '../MenuModal';
 
 export default function Header() {
    const { user, users } = useContext(AuthContext);
@@ -40,10 +41,13 @@ export default function Header() {
          return (
             <ul>
                {userFilters.map(item => (
-                  <Link onClick={() => { }} to={`/users/${item.id}`} key={item.id}> 
+                  <Link onClick={() => { }} to={`/user/${item.id}`} key={item.id}> 
 							<FiSearch /> 
-							<img src={item.avatarUrl} /> 
-							<span>{item.name}</span>
+							{item.avatarUrl === null ? <img src={avatar} alt="usuario-perfil" /> : <img src={item.avatarUrl} alt="usuario-perfil" />}
+							<div>
+								<span>{item.name}</span>
+								<p>{item.role}</p>
+							</div>
 						</Link>
                ))}
                {text !==  "" ?
@@ -120,9 +124,9 @@ export default function Header() {
             </nav>
 
             <span className={styles.menuHamb} onClick={() => setShowMenu(!showMenu)}>
-               {showMenu ? <FiX size={35} color="var(--red-900)" />
+               {showMenu ? <FiX size={35} color="rgb(0,0,0,0.7)" />
                   :
-                  <BiMenuAltRight size={35} color="var(--red-900)" />
+                  <BiMenu size={35} color="rgb(0,0,0,0.7)" />
                }
             </span>
 

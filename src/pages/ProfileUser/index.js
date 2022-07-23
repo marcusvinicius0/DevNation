@@ -34,7 +34,7 @@ export default function ProfileUser() {
 	useEffect(() => {
 		loadPosts()
 		loadUser()
-	}, [])
+	}, [id])
 
 	async function loadUser() {
 		await firebase.firestore().collection('users')
@@ -155,6 +155,9 @@ export default function ProfileUser() {
 										</div>
 									</div>
 								))}
+								{publicationsProfile.length === 0 && (
+									<p>Sem publicações.</p>
+								)}
 							</div>
 						</div>
 						<NewsBox />

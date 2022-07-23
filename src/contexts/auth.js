@@ -39,7 +39,8 @@ function AuthProvider({ children }) {
                         id: user.id,
                         name: user.data().name,
                         avatarUrl: user.data().avatarUrl,
-                        title: user.data().title
+                        title: user.data().title,
+								role: user.data().role
                     })
                 })
                 

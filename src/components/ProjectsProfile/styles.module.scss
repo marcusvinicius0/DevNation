@@ -2,7 +2,7 @@
 	background: #fff;
 	border: 1px solid rgb(0,0,0,0.15);
 	border-radius: 1rem;
-	padding: 1rem 2rem;
+	padding: 1rem 1rem;
 
 	header {
 		display: flex;
@@ -12,7 +12,7 @@
 		margin-bottom: 1rem;
 
 		h1 {
-			font-size: 1.1rem;
+			font-size: 1.2rem;
 			font-weight: 600;
 		}
 
@@ -30,13 +30,17 @@
 			border-radius: 1rem;
 		}
 	}
+
+	p {
+		font-size: 0.9rem;
+		font-weight: 400;
+	}
 }
 
 .listProjects {
 	display: flex;
 	gap: 0rem;
 	justify-content: center;
-	padding: 1rem 0;
 }
 
 .card {
