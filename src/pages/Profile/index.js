@@ -120,6 +120,9 @@ export default function Profile() {
 								</div>
 							</div>
 						))}
+						{publicationsProfile.length === 0 && (
+							<p>Sem publicações.</p>
+						)}
 					</div>
 				</div>
 				<NewsBox />

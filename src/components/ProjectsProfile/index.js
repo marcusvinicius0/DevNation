@@ -106,10 +106,13 @@ export default function ProjectsProfile({user_id}) {
 									<button><a href={project.repo} target="_blank" rel="noreferrer">Ver repositório</a></button>
 								</div>
 							</div>
-							</SwiperSlide>
+						</SwiperSlide>
 					))}
 				</ul>
 			 </Swiper>
+			)}
+			{projects.length === 0 && (
+				<p>Sem projetos.</p>
 			)}
 		</div>
 	)
