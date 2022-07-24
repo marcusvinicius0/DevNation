@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import banner from '../../assets/banner.png';
 

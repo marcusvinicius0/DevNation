@@ -1,6 +1,5 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
-import firebase from 'firebase';
 
 import { Link } from 'react-router-dom';
 
@@ -11,14 +10,10 @@ import ChatModal from '../../components/ChatModal';
 import ModalEditPublication from '../../components/ModalEditPublication';
 import JoinDiscord from '../../components/JoinDiscord'
 
-import banner from '../../assets/banner.png';
 import logo from '../../assets/logo.png';
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
-import { FaUsers, FaUserCircle } from 'react-icons/fa';
-import { IoLogOut } from 'react-icons/io5';
-import { FaEnvelopeOpenText, FaBook } from 'react-icons/fa';
 
 import avatar from '../../assets/avatar.png';
 
@@ -27,7 +22,7 @@ import Feed from '../../components/Feed';
 import Sidebox from '../../components/Sidebox';
 
 export default function Dashboard() {
-   const { signOut, user } = useContext(AuthContext);
+   const { user } = useContext(AuthContext);
    const [showPostModal, setShowPostModal] = useState(false);
    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
    const [editPublication, setEditPublication] = useState(false);

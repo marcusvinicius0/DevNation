@@ -6,7 +6,7 @@ import { BiWorld, BiCaretDown } from 'react-icons/bi'
 import { FaBriefcase, FaChartBar } from 'react-icons/fa'
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5'
 
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import avatar from '../../assets/avatar.png';
 

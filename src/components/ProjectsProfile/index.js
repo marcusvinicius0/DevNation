@@ -1,8 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
 
-import developers from '../../assets/developers.jpg'
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import { BsArrowRightShort } from 'react-icons/bs'
 import { AuthContext } from '../../contexts/auth';
@@ -53,7 +52,7 @@ export default function ProjectsProfile({user_id}) {
 						arrayProjects.push(data)
 					}
 				})
-				setProjects(arrayProjects)
+				setProjects(arrayProjects);
 			})
 		}
 		loadProjects();

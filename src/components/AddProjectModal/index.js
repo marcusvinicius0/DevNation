@@ -4,7 +4,7 @@ import { FiX } from 'react-icons/fi';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 
 import { toast } from 'react-toastify';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { AuthContext } from '../../contexts/auth';
 
 export default function AddProjectModal({closeModal, reloadProjects}) {

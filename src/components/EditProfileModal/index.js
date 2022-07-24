@@ -27,7 +27,9 @@ export default function EditProfileModal({ close }) {
                 name,
                 role,
                 location,
-                aboutMe
+                aboutMe,
+                linkedin,
+                github,
             })
             .then(() => {
                 let data = {
@@ -35,7 +37,9 @@ export default function EditProfileModal({ close }) {
                     name,
                     role,
                     location,
-                    aboutMe
+                    aboutMe,
+                    linkedin,
+                    github
                 }
                 toast.success("Dados enviados com sucesso!")
                 setUser(data);

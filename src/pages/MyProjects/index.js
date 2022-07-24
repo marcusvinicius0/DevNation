@@ -1,15 +1,14 @@
 import { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss'
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import Header from '../../components/Header'
 import AddProjectModal from '../../components/AddProjectModal'
 import Sidebox from '../../components/Sidebox'
 
-import { FiPlus, FiTrash } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { BsTrash } from 'react-icons/bs'
 
-import developers from '../../assets/developers.jpg'
 import { AuthContext } from '../../contexts/auth';
 import { toast } from 'react-toastify'
 

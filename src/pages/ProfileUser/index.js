@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import styles from './styles.module.scss';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 import Header from '../../components/Header';
 import EditProfileModal from '../../components/EditProfileModal';

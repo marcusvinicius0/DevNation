@@ -216,6 +216,19 @@
 
 }
 
+@media (max-width: 580px){
+
+	.contentProfile{
+
+		.infoBox{
+
+			.socialMedias{
+				top: -0.3rem;
+			}
+		}
+	}
+}
+
 @media (min-width: 1600px) {
     .profileContainer {
         margin: 6rem 0 0 13rem;

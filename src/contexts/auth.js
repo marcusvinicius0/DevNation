@@ -70,6 +70,8 @@ function AuthProvider({ children }) {
                 role: userProfile.data().role,
                 aboutMe: userProfile.data().aboutMe,
                 location: userProfile.data().location,
+                linkedin: userProfile.data().linkedin,
+                github: userProfile.data().github,
             };
 
             setUser(data);
@@ -100,6 +102,8 @@ function AuthProvider({ children }) {
                         role: '',
                         aboutMe: '',
                         location: '',
+                        linkedin: '',
+                        github: '',
                     })
                     .then(() => {
 
@@ -113,6 +117,8 @@ function AuthProvider({ children }) {
                             role: '',
                             aboutMe: '',
                             location: '',
+                            linkedin: '',
+                            github: '',
                         };
 
                         setUser(data);
