@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import styles from './styles.module.scss';
 
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
-import { MdFavoriteBorder } from 'react-icons/md'
 import { BiTrash } from 'react-icons/bi'
 import { BsBookmark } from 'react-icons/bs'
 
@@ -11,6 +10,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { usePublications } from "../../hooks/usePublications";
 import { AuthContext } from "../../contexts/auth";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 
 const ITEM_HEIGHT = 48;
@@ -47,7 +48,9 @@ export default function Feed() {
 						<div>
 							<span >{publication.user_name}</span>
 							<p>{publication.user_role}</p>
-							<time>Há 1h</time>
+							<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+		locale: ptBR
+		})}</time>
 						</div>
 					</header>
 					<div className={styles.contentPost}>
@@ -59,13 +62,13 @@ export default function Feed() {
 						aria-controls={open ? 'long-menu' : undefined}
 						aria-expanded={open ? 'true' : undefined}
 						aria-haspopup="true"
-						onClick={handleClick}
+						onClick={(e) => {
+							handleClick(e)
+							setPopoverActive({ publication_id: publication.id, user_id: publication.user_id })
+						}}
 						className={styles.buttonToSeeActions}
       			>
-        				<IoEllipsisHorizontalSharp onClick={() => setPopoverActive({
-							publication_id: publication.id,
-							user_id: publication.user_id
-						})} />
+        				<IoEllipsisHorizontalSharp  />
       			</IconButton>
 				</div>
 			))}
