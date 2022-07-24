@@ -104,7 +104,7 @@ export default function Profile() {
 						)}
 						<button type="button"><RiPencilLine size={22} /></button>
 					</div>
-					<ProjectsProfile />
+					<ProjectsProfile user_id={user.uid} />
 					<div className={styles.posts}>
 						<h3>Minhas publicações</h3>
 						{publicationsProfile.map((publication) => (

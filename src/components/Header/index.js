@@ -14,7 +14,6 @@ import { FaUsers } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
 import { BiMenu } from 'react-icons/bi';
 import { toast} from 'react-toastify'
-import MenuModal from '../MenuModal';
 
 export default function Header() {
    const { user, users } = useContext(AuthContext);
@@ -42,7 +41,7 @@ export default function Header() {
             <ul>
                {userFilters.map(item => (
                   <Link onClick={() => { }} to={`/user/${item.id}`} key={item.id}> 
-							<FiSearch /> 
+							<FiSearch size={20} /> 
 							{item.avatarUrl === null ? <img src={avatar} alt="usuario-perfil" /> : <img src={item.avatarUrl} alt="usuario-perfil" />}
 							<div>
 								<span>{item.name}</span>

@@ -81,7 +81,7 @@ export default function Dashboard() {
                <Feed />
             </div>
 
-            <div>
+            <div className={styles.newsAndAdversiting}>
 					<NewsBox />
 					<JoinDiscord />
 					<footer>
