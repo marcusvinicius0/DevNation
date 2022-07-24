@@ -11,33 +11,6 @@
     }
 }
 
-footer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-	 position: sticky;
-	 top: 25rem;
-
-    a {
-        text-align: center;
-        font-size: 12px;
-        opacity: 0.9;
-        margin-top: 10px;
-    }
-
-    span {
-        display: flex;
-        flex-direction: row;
-        margin-top: 5px;
-
-        p {
-            padding: 0.9rem 0 0 0.3rem;
-            font-size: 12px;
-        }
-    }
-}
-
 .mainFeedContainer {
     max-width: 600px;
     width: 100%;
@@ -108,6 +81,7 @@ footer {
                 }
             }
         }
+
     }
 
 	 @media (max-width: 970px) {

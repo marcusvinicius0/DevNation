@@ -17,7 +17,7 @@
 	background: var(--white);
 	border-radius: 0.5rem;
 	padding: 1rem;
-	border: 1px solid rgb(0,0,0,0.15);
+	border: 1px solid rgb(0, 0, 0, 0.15);
 	position: relative;
 
 	header {
@@ -64,8 +64,8 @@
 
 	.buttonToSeeActions {
 		position: absolute;
-		top: 1rem;
-		right: 1rem;
+		top: 0;
+		right: 0;
 		border: 0;
 		background: 0;
 		width: 30px;
@@ -77,7 +77,7 @@
 		transition: 0.2s;
 
 		&:hover {
-			background: rgb(0,0,0,0.15);
+			background: rgb(0, 0, 0, 0.15);
 		}
 	}
 }
@@ -90,4 +90,19 @@
 	width: 100%;
 	gap: 0.5rem;
 	font-size: 0.9rem;
+}
+
+@media (max-width: 485px) {
+
+	.feed {
+		
+		.post{
+			padding-top: 1.5rem;
+
+				.contentPost {
+					padding-top: 1rem;
+				}
+		}
+	}
+
 }

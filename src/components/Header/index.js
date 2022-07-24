@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/auth';
 
 import { FiSearch, FiX } from 'react-icons/fi';
-import { AiFillHome } from 'react-icons/ai';
+import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
 import { BiMenu } from 'react-icons/bi';
@@ -22,6 +22,11 @@ export default function Header() {
    const [text, setText] = useState('');
    const [showMenu, setShowMenu] = useState(false);
    const [userFilters, setUserFilters] = useState([]);
+
+   function handleSoon(){
+      toast.warning("Em breve documentação...");
+   }
+   
 
    function usersFilter(value) {
       let filterUsers = []
@@ -117,6 +122,12 @@ export default function Header() {
                      <Link to="/">
                         <BsFillGearFill size={20} />
                         Configurações
+                     </Link>
+                  </li>
+                  <li onClick={handleSoon} className={styles.aboutBox}>
+                     <Link to="/dashboard">
+                        <AiFillInfoCircle size={20} />
+                        Sobre
                      </Link>
                   </li>
                </ul>

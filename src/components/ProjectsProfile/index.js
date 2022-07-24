@@ -1,10 +1,9 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import firebase from 'firebase/app';
 
-import { BsArrowRightShort } from 'react-icons/bs'
-import { AuthContext } from '../../contexts/auth';
+import { BsArrowRightShort } from 'react-icons/bs';
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,8 +28,7 @@ const breakpoints = {
  }
 
 export default function ProjectsProfile({user_id}) {
-	const { user } = useContext(AuthContext)
-	const [projects, setProjects] = useState([])
+	const [projects, setProjects] = useState([]);
 
 	useEffect(() => {
 		async function loadProjects() {
@@ -70,7 +68,7 @@ export default function ProjectsProfile({user_id}) {
 			{projects.length < 4 ? ( 
 			<ul className={styles.listProjects}> 
 				{projects.map( project => (
-					<div className={styles.card}>
+					<div key={project.id} className={styles.card}>
 						<img src={project.imageProjectUrl} alt="Foto projeto" />
 						<div className={styles.infosCard}>
 							<span>{project.title}</span>
@@ -93,7 +91,7 @@ export default function ProjectsProfile({user_id}) {
 			 >
 				<ul className={styles.listProjects}>
 					{projects.map( project => (
-						<SwiperSlide>
+						<SwiperSlide key={project.id}>
 							<div className={styles.card}>
 								<img src={project.imageProjectUrl} alt="Foto projeto" />
 								<div className={styles.infosCard}>

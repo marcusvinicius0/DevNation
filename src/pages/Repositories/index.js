@@ -65,6 +65,7 @@ export default function Repositories() {
             }
 
             setRepositories([...repositories, data]);
+            toast.success("Repositório adicionado com sucesso!");
             setText('');
          } catch (error) {
             setAlert(true);
@@ -86,7 +87,7 @@ export default function Repositories() {
    const handleDelete = useCallback((repo) => {
       const find = repositories.filter(r => r.name !== repo);
       setRepositories(find);
-
+      toast.success("Repositório deletado com sucesso!");
    }, [repositories]);
 
    return (

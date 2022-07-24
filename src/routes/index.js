@@ -20,6 +20,7 @@ import NewsMetaVerso from '../pages/News/metaverso';
 import NewsDevelopers from '../pages/News/desenvolvedores';
 
 import MyProjects from '../pages/MyProjects'
+import About from '../pages/About';
 
 import Message from '../pages/Message';
 import NotFound from '../pages/NotFound';
@@ -39,6 +40,7 @@ export default function MyRoutes() {
                 <Route exact path="/repositories" component={Repositories} isPrivate />
                 <Route exact path="/repository/:repository" component={Repository} isPrivate />
                 <Route exact path="/contributors" component={Contributors} isPrivate />
+                <Route exact path="/about" component={About} isPrivate />
 
                 <Route exact path="/news" component={News} isPrivate />
                 <Route exact path="/news/alura" component={NewsAlura} isPrivate />

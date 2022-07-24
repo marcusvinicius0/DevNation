@@ -1,16 +1,13 @@
 import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
-import { Link } from 'react-router-dom';
-
 import Header from '../../components/Header';
 import PublicModal from '../../components/PublicationModal';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 import ModalEditPublication from '../../components/ModalEditPublication';
-import JoinDiscord from '../../components/JoinDiscord'
-
-import logo from '../../assets/logo.png';
+import JoinDiscord from '../../components/JoinDiscord';
+import Footer from '../../components/Footer';
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
@@ -41,7 +38,7 @@ export default function Dashboard() {
          <Header />
          <div className={styles.dashboard}>
             <div className={styles.containerTeste}>
-					<Sidebox />
+               <Sidebox />
             </div>
 
             <div className={styles.mainFeedContainer}>
@@ -57,42 +54,36 @@ export default function Dashboard() {
                      </div>
                   </div>
                   <div className={styles.contentActions}>
-							<button onClick={() => togglePostModal()}>
-								<AiFillPicture size={22} color="var(--soft-blue)"/>
-								<span>Foto</span>
-							</button>
-							<button onClick={() => togglePostModal()}>
-								<FiVideo size={22} color="var(--soft-blue)"/>
-								<span>Vídeo</span>
-							</button>
-							<button onClick={() => togglePostModal()}>
-								<AiFillPicture size={22} color="var(--soft-blue)"/>
-								<span>Projeto</span>
-							</button>
-							<button onClick={() => togglePostModal()}>
-								<AiFillPicture size={22} color="var(--soft-blue)" />
-								<span>Repositório</span>
-							</button>
+                     <button onClick={() => togglePostModal()}>
+                        <AiFillPicture size={22} color="var(--soft-blue)" />
+                        <span>Foto</span>
+                     </button>
+                     <button onClick={() => togglePostModal()}>
+                        <FiVideo size={22} color="var(--soft-blue)" />
+                        <span>Vídeo</span>
+                     </button>
+                     <button onClick={() => togglePostModal()}>
+                        <AiFillPicture size={22} color="var(--soft-blue)" />
+                        <span>Projeto</span>
+                     </button>
+                     <button onClick={() => togglePostModal()}>
+                        <AiFillPicture size={22} color="var(--soft-blue)" />
+                        <span>Repositório</span>
+                     </button>
                   </div>
                </div>
 
                <hr />
 
                <Feed />
+               
             </div>
 
             <div className={styles.newsAndAdversiting}>
-					<NewsBox />
-					<JoinDiscord />
-					<footer>
-                  <Link to="/dashboard">Sobre o projeto</Link>
-                  <Link to="/contributors">Contribuidores</Link>
-                  <span>
-                     <img src={logo} alt="logo" width={100} height={40} />
-                     <p>DevSocial Corporation © 2022</p>
-                  </span>
-               </footer>
-				</div>
+               <NewsBox />
+               <JoinDiscord />
+               <Footer />
+            </div>
             <ChatModal />
 
             {showPostModal && (
