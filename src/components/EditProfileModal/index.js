@@ -15,8 +15,8 @@ export default function EditProfileModal({ close }) {
     const [role, setRole] = useState(user.role ? user.role : "");
     const [location, setLocation] = useState(user.location ? user.location : "");
     const [aboutMe, setAboutMe] = useState(user.aboutMe ? user.aboutMe : "");
-    const [linkedin, setLinkedin] = useState("");
-    const [github, setGithub] = useState("");
+    const [linkedin, setLinkedin] = useState(user.linkedin ? user.linkedin : "");
+    const [github, setGithub] = useState(user.github ?  user.github : "");
 
     async function handleSave(e) {
         e.preventDefault();
@@ -39,7 +39,7 @@ export default function EditProfileModal({ close }) {
                     location,
                     aboutMe,
                     linkedin,
-                    github
+                    github,
                 }
                 toast.success("Dados enviados com sucesso!")
                 setUser(data);

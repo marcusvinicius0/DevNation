@@ -70,22 +70,9 @@
 					p {
 						font-weight: 400;
 						font-size: 0.8rem;
-						height: 50px;
-						overflow: auto;
+						height: 4rem;
+						overflow: scroll;
 					}
-		
-					p::-webkit-scrollbar {
-						height: 20px;
-						width: 20px;
-				  }
-		
-				  p::-webkit-scrollbar-thumb:vertical {
-						background-color: var(--soft-purple);
-						height: 20px;
-						border-radius: 20px;
-						-moz-border-radius: 20px;
-						-webkit-border-radius: 20px;
-				  }
 				}
 
 				.buttonsCard {

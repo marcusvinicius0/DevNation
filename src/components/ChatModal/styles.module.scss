@@ -70,3 +70,9 @@
         cursor: pointer;
     }
 }
+
+@media (max-width: 1115px){
+     .container{
+        display: none;
+     }
+}

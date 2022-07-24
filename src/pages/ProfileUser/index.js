@@ -38,23 +38,25 @@ export default function ProfileUser() {
 
 	async function loadUser() {
 		await firebase.firestore().collection('users')
-		.doc(id)
-		.get()
-		.then( (snapshot) => {
-			if(snapshot.data()) {
-				let data = {
-					aboutMe: snapshot.data().aboutMe,
-					avatarUrl: snapshot.data().avatarUrl,
-					bannerUrl: snapshot.data().bannerUrl,
-					email: snapshot.data().email,
-					location: snapshot.data().location,
-					name: snapshot.data().name,
-					id: snapshot.data().uid,
-					role: snapshot.data().role,
+			.doc(id)
+			.get()
+			.then((snapshot) => {
+				if (snapshot.data()) {
+					let data = {
+						aboutMe: snapshot.data().aboutMe,
+						avatarUrl: snapshot.data().avatarUrl,
+						bannerUrl: snapshot.data().bannerUrl,
+						email: snapshot.data().email,
+						location: snapshot.data().location,
+						name: snapshot.data().name,
+						id: snapshot.data().uid,
+						role: snapshot.data().role,
+						linkedin: snapshot.data().linkedin,
+						github: snapshot.data().github,
+					}
+					setProfileUser(data)
 				}
-				setProfileUser(data)
-			}
-		})
+			})
 	}
 
 	async function loadPosts() {
@@ -96,7 +98,7 @@ export default function ProfileUser() {
 			<Header />
 			{profileUser === null ? (
 				<NotFoundUser />
-			) : ( 
+			) : (
 				<>
 					<div className={styles.container}>
 						<div className={styles.profileContainer}>
@@ -115,17 +117,22 @@ export default function ProfileUser() {
 								<div className={styles.infoBox}>
 									{user.uid === profileUser.id && (
 										<button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
-										<RiPencilLine size={25} color="var(--black)" />
-									</button>
+											<RiPencilLine size={25} color="var(--black)" />
+										</button>
 									)}
 									<p className={styles.name}>{profileUser.name}</p>
 									<p className={styles.role}>{profileUser.role}</p>
 									<p className={styles.place}>{profileUser.location}</p>
 
-									<span className={styles.socialMedias}>
-										<img src={inLogo} alt="linkedin" width={30} height={30} />
-										<img src={ghLogo} alt="github" width={30} height={30} />
-									</span>
+									<div className={styles.socialMedias}>
+										<a href={profileUser.linkedin} rel="noreferrer" target="_blank">
+											<img src={inLogo} alt="linkedin" width={30} height={30} />
+										</a>
+
+										<a href={profileUser.github} rel="noreferrer" target="_blank">
+											<img src={ghLogo} alt="github" width={30} height={30} />
+										</a>
+									</div>
 								</div>
 							</div>
 							<div className={styles.aboutMe}>
@@ -162,7 +169,7 @@ export default function ProfileUser() {
 						</div>
 						<NewsBox />
 					</div>
-					<ChatModal /> 
+					<ChatModal />
 				</>
 			)}
 

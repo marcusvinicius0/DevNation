@@ -51,20 +51,23 @@
 				a {
 					width: 100%;
 					display: flex;
-					padding: 0.8rem;
+					padding: 1rem;
 					align-items: center;
-					gap: 0.1rem;
+					gap: 1rem;
 					transition: 0.3s;
+					flex: none;
+
+					svg {
+						width: 30px;
+					}
 
 					img {
 						width: 30px;
 						height: 30px;
 						border-radius: 100%;
-						margin-left: 10px;
 					}
 
 					div {
-						margin-left: 1rem;
 						display: flex;
 						flex-direction: column;
 
@@ -73,7 +76,6 @@
 							width: 100%;
 							text-overflow: ellipsis;
 							overflow: hidden;
-							white-space: nowrap;
 							font-weight: 500;
 						}
 
@@ -82,7 +84,6 @@
 							width: 100%;
 							text-overflow: ellipsis;
 							overflow: hidden;
-							white-space: nowrap;
 						}
 					}
 
@@ -237,8 +238,26 @@
 
 @media (max-width: 630px){
     .header{
-		.inputSearchUsers {
+		.logo {
 			display: none;
+		}
+
+		.inputSearchUsers {
+			width: 200px;
+			margin-left: 1rem;
+
+			.searchBox {
+				position: fixed;
+				left: 0rem;
+				top: 4.1rem;
+				width: 100vw;
+			}
+		}
+
+		.pictureBox {
+			svg {
+				display: none;
+			}
 		}
     }
 }

@@ -54,6 +54,7 @@ export default function Profile() {
 
 	function toggleEditProfileModal() {
 		setEditProfileModal(!editProfileModal)
+		console.log('teste')
 	}
 
 	function toggleProfilePictureModal() {
@@ -79,20 +80,25 @@ export default function Profile() {
 							</button>
 						</div>
 
-						<div className={styles.infoBox}>
-							<button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
-								<RiPencilLine size={25} color="var(--black)" />
-							</button>
-							<p className={styles.name}>{user.name}</p>
-							<p className={styles.role}>{user.role}</p>
-							<p className={styles.place}>{user.location}</p>
+						<div className={styles.infoProfile}>
+							<div className={styles.infoBox}>
+								<button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
+									<RiPencilLine size={25} color="var(--black)" />
+								</button>
+								<p className={styles.name}>{user.name}</p>
+								<p className={styles.role}>{user.role}</p>
+								<p className={styles.place}>{user.location}</p>
+							</div>
 
-							<span className={styles.socialMedias}>
-								<a href="" rel="noreferrer">
+							<div className={styles.socialMedias}>
+								<a href={user.linkedin} rel="noreferrer" target="_blank">
 									<img src={inLogo} alt="linkedin" width={30} height={30} />
 								</a>
-								<img src={ghLogo} alt="github" width={30} height={30} />
-							</span>
+
+								<a href={user.github} rel="noreferrer" target="_blank">
+									<img src={ghLogo} alt="github" width={30} height={30} />
+								</a>
+							</div>
 						</div>
 					</div>
 					<div className={styles.aboutMe}>
@@ -104,29 +110,29 @@ export default function Profile() {
 						)}
 						<button type="button"><RiPencilLine size={22} /></button>
 					</div>
-					<ProjectsProfile />
+					<ProjectsProfile user_id={user.uid} />
 					<div className={styles.posts}>
 						<h3>Minhas publicações</h3>
-						{publicationsProfile.map((publication) => (
-							<div key={publication.id} className={styles.post}>
-								<header>
-									<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
-									<div>
-										<span>{user.name}</span>
-										<p>{user.role}</p>
-										<time>Há 1h</time>
+							{publicationsProfile.map((publication) => (
+								<div key={publication.id} className={styles.post}>
+									<header>
+										<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
+										<div>
+											<span>{user.name}</span>
+											<p>{user.role}</p>
+											<time>Há 1h</time>
+										</div>
+									</header>
+									<div className={styles.contentPost}>
+										<p>{publication.publication}</p>
 									</div>
-								</header>
-								<div className={styles.contentPost}>
-									<p>{publication.publication}</p>
 								</div>
-							</div>
-						))}
-						{publicationsProfile.length === 0 && (
-							<p>Sem publicações.</p>
-						)}
+							))}
+							{publicationsProfile.length === 0 && (
+								<p>Sem publicações.</p>
+							)}
+						</div>
 					</div>
-				</div>
 				<NewsBox />
 			</div>
 

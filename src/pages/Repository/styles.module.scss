@@ -124,3 +124,15 @@
    align-items: center;
    margin: 5rem auto;
 }
+
+@media (max-width: 680px){
+   .container{
+      width: 90%;
+   }
+}
+
+@media (max-width: 365px){
+   .container{
+      height: 420px;
+   }
+}

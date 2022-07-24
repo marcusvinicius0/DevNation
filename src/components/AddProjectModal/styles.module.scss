@@ -1,11 +1,11 @@
 .containerModal {
 	position: fixed;
-   top: 0;
-   bottom: 0;
-   right: 0;
-   left: 0;
-   background: rgba(0, 0, 0, 0.6);
-   z-index: 99;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 99;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -40,7 +40,7 @@
 				border-radius: 100%;
 
 				&:hover {
-					background:rgba(0, 0, 0, 0.1);
+					background: rgba(0, 0, 0, 0.1);
 				}
 			}
 		}
@@ -50,7 +50,7 @@
 
 			.inputFile {
 				width: 100%;
-				margin: 0 auto 1rem auto; 
+				margin: 0 auto 1rem auto;
 				height: 10rem;
 				border: 1px solid rgba(0, 0, 0, 0.2);
 				position: relative;
@@ -93,17 +93,42 @@
 				margin-bottom: 0.25rem;
 
 				input {
-					padding: 0.2rem 0.5rem; 
+					padding: 0.2rem 0.5rem;
 					border-radius: 0.25rem;
 					border: 1px solid rgba(0, 0, 0, 0.2);
 				}
 
 				textarea {
-					padding: 0.2rem 0.5rem; 
+					padding: 0.2rem 0.5rem;
 					border-radius: 0.25rem;
 					border: 1px solid rgba(0, 0, 0, 0.2);
 					resize: none;
 					height: 4rem;
+				}
+			}
+
+			.buttonLoading {
+
+				&[disabled] {
+					cursor: not-allowed;
+
+					svg {
+						animation: animate 1.5s infinite;
+					}
+				}
+
+				&:hover {
+					filter: brightness(1.08);
+				}
+			}
+
+			@keyframes animate {
+				from {
+					transform: rotate(0deg);
+				}
+
+				to {
+					transform: rotate(360deg);
 				}
 			}
 

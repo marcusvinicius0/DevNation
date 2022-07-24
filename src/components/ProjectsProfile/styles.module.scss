@@ -39,19 +39,21 @@
 
 .listProjects {
 	display: flex;
-	gap: 0rem;
+	gap: 1rem;
 	justify-content: center;
+	padding: 1rem 0;
 }
 
 .card {
 	width: 260px;
-	height: 250px;
+	height: 300px;
 	padding: 1rem;
 	background: #fff;
 	border-radius: 1rem;
 	border: 1px solid rgb(0,0,0,0.3);
 	position: relative;
 	transition: 0.4s;
+	margin: 1rem 0;
 
 	img {
 		width: 100%;
@@ -61,7 +63,6 @@
 	}
 
 	.infosCard {
-		height: 4rem;
 
 		span {
 			font-weight: 700;
@@ -69,6 +70,8 @@
 		}
 
 		p {
+			height: 6rem;
+			overflow: scroll;
 			font-weight: 400;
 			font-size: 0.8rem;
 		}
