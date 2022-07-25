@@ -33,11 +33,11 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 
 		console.log(data)
 
-		await firebase.storage().ref(`images/${user.uid}/${"project-photo/" + title.trim()}`)
+		await firebase.storage().ref(`images/${user.uid}/${imageProject.name}`)
 			.put(imageProject)
 			.then(async () => {
 				await firebase.storage().ref(`images/${user.uid}`)
-					.child(`project-photo/${title.trim()}`).getDownloadURL()
+					.child(`${imageProject.name}`).getDownloadURL()
 					.then(async (url) => {
 						let urlFoto = url
 						await firebase.firestore().collection('projects')
