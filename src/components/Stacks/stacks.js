@@ -1,4 +1,4 @@
-import { SiHtml5, SiCss3, SiReact, SiNodedotjs, SiTailwindcss, SiTypescript, SiPython, SiVuedotjs, SiNextdotjs, SiJavascript, SiJava, SiStyledcomponents, SiSass, SiPostgresql, SiMysql, SiPhp, SiFirebase, SiDocker, SiRubyonrails, SiLaravel } from 'react-icons/si'
+import { SiHtml5, SiCss3, SiReact, SiNodedotjs, SiTailwindcss, SiTypescript, SiPython, SiVuedotjs, SiNextdotjs, SiJavascript, SiJava, SiStyledcomponents, SiSass, SiPostgresql, SiMysql, SiPhp, SiFirebase, SiDocker, SiRubyonrails, SiLaravel, SiAngular, SiFlutter, SiCplusplus, SiJquery } from 'react-icons/si'
 
 export const allStacks = [
 	{
@@ -100,5 +100,30 @@ export const allStacks = [
 		stack: "Laravel", 
 		icon: <SiLaravel />,
 		color: "#EF3B2D"
+	},
+	{
+		stack: "React Native", 
+		icon: <SiReact />,
+		color: "#28C1DB"
+	},
+	{
+		stack: "Angular", 
+		icon: <SiAngular />,
+		color: "#E00034"
+	},
+	{
+		stack: "Flutter", 
+		icon: <SiFlutter />,
+		color: "#0153A7"
+	},
+	{
+		stack: "C/C++", 
+		icon: <SiCplusplus />,
+		color: "#649AD2"
+	},
+	{
+		stack: "jQuery", 
+		icon: <SiJquery />,
+		color: "#38B7FF"
 	},
 ]
