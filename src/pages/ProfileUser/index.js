@@ -11,6 +11,7 @@ import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 import ProjectsProfile from '../../components/ProjectsProfile';
 import NotFoundUser from '../../components/NotFoundUser';
+import Stacks from '../../components/Stacks';
 
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
@@ -31,7 +32,7 @@ export default function ProfileUser() {
 	const [profilePictureModal, setprofilePictureModal] = useState(false);
 	const [modalProfileBanner, setModalProfileBanner] = useState(false);
 	const [publicationsProfile, setPublicationsProfile] = useState([]);
-	const [profileUser, setProfileUser] = useState(null)
+	const [profileUser, setProfileUser] = useState(null);
 
 	useEffect(() => {
 		loadPosts()
@@ -143,6 +144,7 @@ export default function ProfileUser() {
 								{user.uid === profileUser.id && <button type="button"><RiPencilLine size={22} /></button>}
 							</div>
 							<ProjectsProfile user_id={profileUser.id} />
+							<Stacks user_id={profileUser.id} state_button={false} />
 							<div className={styles.posts}>
 								<h3>Minhas publicações</h3>
 								{publicationsProfile.map((publication) => (

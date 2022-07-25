@@ -114,7 +114,7 @@ export default function Profile() {
 						)}
 					</div>
 					<ProjectsProfile user_id={user.uid} />
-					<Stacks />
+					<Stacks user_id={user.uid} state_button={true} />
 					<div className={styles.posts}>
 						<h3>Minhas publicações</h3>
 						{publicationsProfile.map((publication) => (
