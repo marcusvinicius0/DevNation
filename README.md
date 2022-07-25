@@ -10,23 +10,25 @@ Confira a aplicação:  <br>
 
 O projeto consiste numa rede social para desenvolvedores onde os devs poderão fazer novas conexões, guardar projetos, postar publicações, procurar repositórios...
  
-## 📁 Pages
+## 📁 Páginas
 
-O site tem no total 13 views, sendo elas:
+O site tem no total 13 páginas, sendo elas:
 
-- **SignIn**
-- **SignUp**
-- **Dashboard** 
-- **Contributors** 
-- **Followers** 
-- **ForgotPassword** 
-- **Message** 
-- **MyProjects** 
-- **News** 
-- **Profile** 
-- **Repositories** 
-- **Repository** 
-- **NotFound** 
+- **SignIn:** página de login.
+- **SignUp:** página de cadastro de usuário.
+- **Dashboard:** página principal, onde estão as publicações.
+- **Contributors:** página dos contribuidores dos projetos.
+- **Followers:** página dos seguidores.
+- **ForgotPassword:** página para resetar senha.
+- **Message:** página de mensagens.
+- **MyProjects:** página para registrar e visualizar os projetos do usuário.
+- **News:** página de notícias.
+- **Profile:** página de perfil do usuário logado.
+- **ProfileUser:** página de perfil de algum usuário.
+- **Repositories:** página para procurar repositórios de acordo com a API do GitHub.
+- **Repository:** página que mostra repositório.
+- **NotFound:** página para rotas não encontradas.
+ 
 ## :dart: Etapas ##
 
 - [x] Entendimento do projeto 
@@ -43,6 +45,12 @@ O site tem no total 13 views, sendo elas:
 - [x] Hook usePublication
 - [x] Desenvolvimento das páginas: Profile, Repositories, Repository e MyProjects 
 - [x] Implementação da seção "Meus projetos" na página Profile
+- [x] Responsividade da página Dashboard
+- [x] Variáveis de ambiente
+- [x] Implementação da página para visualizar usuário
+- [x] Implementação dos componentes NewsBox e JoinDiscord
+- [x] Página contribuidores
+- [x] Página NotFoundUser
 
 ## :rocket: Tecnologias ##
 
@@ -91,8 +99,6 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
           </sub>
         </a>
       </td>
-  </tr>
-  <tr>
     <td align="center">
       <a href="#">
         <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFrRUGC6s_pdQ/profile-displayphoto-shrink_800_800/0/1647262353026?e=1663804800&v=beta&t=yXF4Jx_DSsYTFJAagaG3YmBown8_lTd4ZxUvGHcyqLM" width="160px;" alt="Foto do Marcus Begheli"/><br>
@@ -103,5 +109,9 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
       </td>
   </tr>
 </table>
+
+## 📝 Licença
+
+Este projeto está sob licença. Consulte o arquivo [LICENSE](LICENSE.md) para obter mais detalhes.
 
 <a href="#top">Volte para o topo</a>

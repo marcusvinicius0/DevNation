@@ -66,7 +66,9 @@ export default function MyProjects() {
    return (
       <>
          <div className={styles.containerMyProjects}>
-				<Sidebox />
+				<div className={styles.sidebox}>
+					<Sidebox />
+				</div>
             <div className={styles.contentMyProjects}>
 					<header>
 						<h1>Meus projetos</h1>
@@ -84,8 +86,8 @@ export default function MyProjects() {
 									<p>{project.description}</p>
 								</div>
 								<div className={styles.buttonsCard}> 
-									<button><a href={project.liveLink} target="_blank">Ver aplicação</a></button>
-									<button><a href={project.repo} target="_blank">Ver repositório</a></button>
+									<button><a href={project.liveLink} target="_blank" rel="noreferrer">Ver aplicação</a></button>
+									<button><a href={project.repo} target="_blank" rel="noreferrer">Ver repositório</a></button>
 								</div>
 								<button className={styles.buttonToDeleteProject} onClick={() => handleDeleteProject(project.id)}>
 									<BsTrash size={19} />
