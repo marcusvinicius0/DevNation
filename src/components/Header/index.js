@@ -143,7 +143,7 @@ export default function Header() {
             <div className={styles.pictureBox}>
                <BsBellFill size={23} color="var(--soft-gray)" />
                <Link to="/profile">
-                  {user.avatarUrl === null ? <img src={avatar} alt="usuario-perfil" /> : <img src={user.avatarUrl} alt="usuario-perfil" />}
+                  {!user?.avatarUrl ? <img src={avatar} alt="usuario-perfil" /> : <img src={user?.avatarUrl} alt="usuario-perfil" />}
                </Link>
             </div>
          </header>

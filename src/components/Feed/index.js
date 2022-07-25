@@ -10,10 +10,13 @@ import { BsBookmark } from 'react-icons/bs'
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import CircularProgress from '@mui/material/CircularProgress';
+
 import { usePublications } from "../../hooks/usePublications";
 import { AuthContext } from "../../contexts/auth";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { Link } from "react-router-dom";
 
 
 const ITEM_HEIGHT = 48;
@@ -24,7 +27,7 @@ export default function Feed() {
 	const open = Boolean(anchorEl);
 
 	const { user } = useContext(AuthContext)
-	const { publications, loadPublications, handleDeletePublication } = usePublications()
+	const { publications, loadPublications, handleDeletePublication, loadingPublications } = usePublications()
 
 	const handleClick = (event) => setAnchorEl(event.currentTarget);
 	const handleClose = () => setAnchorEl(null);
@@ -41,7 +44,17 @@ export default function Feed() {
 
 	useEffect(() => {
 		loadPublications();
+
+		setTimeout( loadPublications(), 500 )
 	}, []);
+
+	if(loadingPublications) {
+		return (
+			<div className={styles.loading}>
+				<CircularProgress />
+			</div>
+		)
+	}
 
 	return (
 		<div className={styles.feed}>
@@ -54,11 +67,13 @@ export default function Feed() {
 							<img src={publication.avatarUrl} alt="Avatar foto" />
 						}
 						<div>
-							<span >{publication.user_name}</span>
-							<p>{publication.user_role}</p>
-							<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
-								locale: ptBR
-							})}</time>
+								<Link to={`/user/${publication.user_id}`}>
+									<span>{publication.user_name}</span>
+								</Link>
+								<p>{publication.user_role}</p>
+								<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+									locale: ptBR
+								})}</time>
 						</div>
 					</header>
 					<div className={styles.contentPost}>

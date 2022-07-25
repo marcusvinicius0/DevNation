@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
 import firebase from 'firebase/app';
 
-import Header from '../../components/Header';
 import EditProfileModal from '../../components/EditProfileModal';
 import EditProfilePictureModal from '../../components/EditProfilePictureModal';
 import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
@@ -67,7 +66,6 @@ export default function Profile() {
 
 	return (
 		<>
-			<Header />
 			<div className={styles.container}>
 				<div className={styles.profileContainer}>
 					<div className={styles.contentProfile}>

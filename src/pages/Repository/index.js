@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
-import Header from "../../components/Header";
 
 import { FaArrowLeft } from 'react-icons/fa';
 
@@ -82,7 +81,6 @@ export default function Repository({ match }) {
 
    return (
       <>
-         <Header />
 
          <div className={styles.container}>
 

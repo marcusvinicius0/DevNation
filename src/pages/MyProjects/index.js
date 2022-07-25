@@ -2,15 +2,14 @@ import { useContext, useEffect, useState } from 'react';
 import styles from './styles.module.scss'
 import firebase from 'firebase/app';
 
-import Header from '../../components/Header'
-import AddProjectModal from '../../components/AddProjectModal'
-import Sidebox from '../../components/Sidebox'
+import AddProjectModal from '../../components/AddProjectModal';
+import Sidebox from '../../components/Sidebox';
 
 import { FiPlus } from 'react-icons/fi';
-import { BsTrash } from 'react-icons/bs'
+import { BsTrash } from 'react-icons/bs';
 
 import { AuthContext } from '../../contexts/auth';
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
 
 export default function MyProjects() {
 	const { user } = useContext(AuthContext)
@@ -66,7 +65,6 @@ export default function MyProjects() {
 
    return (
       <>
-         <Header />
          <div className={styles.containerMyProjects}>
 				<Sidebox />
             <div className={styles.contentMyProjects}>

@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import styles from './styles.module.scss';
 import firebase from 'firebase/app';
 
-import Header from '../../components/Header';
 import EditProfileModal from '../../components/EditProfileModal';
 import EditProfilePictureModal from '../../components/EditProfilePictureModal';
 import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
@@ -95,7 +94,6 @@ export default function ProfileUser() {
 
 	return (
 		<>
-			<Header />
 			{profileUser === null ? (
 				<NotFoundUser />
 			) : (

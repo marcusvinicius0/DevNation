@@ -58,3 +58,15 @@
         color: var(--black);
     }
 }
+
+@media (min-width: 1700px){
+    .container{
+        position: relative;
+        margin: 6rem auto;
+
+        .buttonBack{
+            top: 0.5rem;
+            left: 1rem;
+        }
+    }
+}
