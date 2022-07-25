@@ -39,6 +39,8 @@
 			border-radius: 100%;
 			width: 2rem;
 			height: 2rem;
+			background: var(--blue-500);
+			color: #fff;
 
 			&:hover {
 				background: rgba(0, 0, 0, 0.2);
@@ -62,11 +64,11 @@
 
 				input {
 					width: 100%;
-					padding: 0.2rem 0.5rem;
+					padding: 0.3rem 0.5rem;
 					font-size: 0.9rem;
-					border-radius: 0.25rem;
+					border-radius: 1rem;
 					outline: none;
-					border: 1px solid rgba(0, 0, 0, 0.6);
+					border: 1px solid rgba(0, 0, 0, 0.2);
 				}
 
 				textarea {
@@ -100,11 +102,11 @@
   
 		.buttonOn {
 			 border: 0;
-			 border-radius: 15px;
+			 border-radius: 1rem;
 			 height: 40px;
-			 width: 200px;
+			 width: 100%;
 			 color: var(--white);
-			 background-color: var(--soft-blue);
+			 background-color: var(--blue-500);
 			 padding: 0.25rem 0.5rem;
 			 margin-left: auto;
 			 margin-top: 0.5rem;
