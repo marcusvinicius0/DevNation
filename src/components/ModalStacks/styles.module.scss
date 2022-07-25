@@ -16,6 +16,10 @@
 		background-color: #fff;
 		padding: 1rem;
 
+		@media (max-width: 970px) {
+			width: 80vw;
+		}
+
 		.selectStacks {
 			display: flex;
 			flex-wrap: wrap;
