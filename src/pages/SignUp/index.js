@@ -4,8 +4,12 @@ import { AuthContext } from '../../contexts/auth';
 
 import { Link } from 'react-router-dom';
 
+<<<<<<< HEAD
 import { FaSpinner } from 'react-icons/fa';
 
+=======
+import { FaSpinner } from 'react-icons/fa'
+>>>>>>> f1d791975d5ca9a3c04f378c798cbe901fe91682
 
 import Input from '../../components/Userinterface/Input';
 import Button from '../../components/Userinterface/Button';
