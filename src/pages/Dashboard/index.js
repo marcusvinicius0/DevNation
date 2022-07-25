@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 
+import Header from '../../components/Header';
+
 import PublicModal from '../../components/PublicationModal';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
@@ -33,6 +35,8 @@ export default function Dashboard() {
    };
 
    return (
+      <>
+         <Header />
          <div className={styles.dashboard}>
             <div className={styles.containerTeste}>
                <Sidebox />
@@ -73,7 +77,7 @@ export default function Dashboard() {
                <hr />
 
                <Feed />
-               
+
             </div>
 
             <div className={styles.newsAndAdversiting}>
@@ -95,5 +99,6 @@ export default function Dashboard() {
                />
             )}
          </div>
+      </>
    )
 }

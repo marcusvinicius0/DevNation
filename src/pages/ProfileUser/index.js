@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom'
 import styles from './styles.module.scss';
 import firebase from 'firebase/app';
 
+import Header from '../../components/Header';
+
 import EditProfileModal from '../../components/EditProfileModal';
-import EditProfilePictureModal from '../../components/EditProfilePictureModal';
 import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
@@ -17,6 +18,8 @@ import ghLogo from '../../assets/github.png';
 import inLogo from '../../assets/linkedin.png';
 
 import { AuthContext } from '../../contexts/auth';
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 import { RiPencilLine } from 'react-icons/ri';
 
@@ -48,7 +51,7 @@ export default function ProfileUser() {
 						email: snapshot.data().email,
 						location: snapshot.data().location,
 						name: snapshot.data().name,
-						id: snapshot.data().uid,
+						id: snapshot.id,
 						role: snapshot.data().role,
 						linkedin: snapshot.data().linkedin,
 						github: snapshot.data().github,
@@ -84,10 +87,6 @@ export default function ProfileUser() {
 		setEditProfileModal(!editProfileModal)
 	}
 
-	function toggleProfilePictureModal() {
-		setprofilePictureModal(!profilePictureModal)
-	}
-
 	function toggleModalProfileBanner() {
 		setModalProfileBanner(!modalProfileBanner)
 	}
@@ -98,12 +97,13 @@ export default function ProfileUser() {
 				<NotFoundUser />
 			) : (
 				<>
+					<Header />
 					<div className={styles.container}>
 						<div className={styles.profileContainer}>
 							<div className={styles.contentProfile}>
 								<div className={styles.picturesBox}>
 									<img className={styles.banner} src={profileUser.bannerUrl === null ? banner : profileUser.bannerUrl} alt="banner" />
-									<img onClick={toggleProfilePictureModal} className={styles.profilePic} src={profileUser.avatarUrl === null ? avatar : profileUser.avatarUrl} alt="Foto de perfil" />
+									<img className={styles.profilePic} src={profileUser.avatarUrl === null ? avatar : profileUser.avatarUrl} alt="Foto de perfil" />
 
 									{user.uid === profileUser.id && (
 										<button className={styles.editBanner} onClick={toggleModalProfileBanner}>
@@ -152,7 +152,9 @@ export default function ProfileUser() {
 											<div>
 												<span>{profileUser.name}</span>
 												<p>{profileUser.role}</p>
-												<time>Há 1h</time>
+												<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+													locale: ptBR
+												})}</time>
 											</div>
 										</header>
 										<div className={styles.contentPost}>
@@ -174,12 +176,6 @@ export default function ProfileUser() {
 			{editProfileModal && (
 				<EditProfileModal
 					close={toggleEditProfileModal}
-				/>
-			)}
-
-			{profilePictureModal && (
-				<EditProfilePictureModal
-					close={toggleProfilePictureModal}
 				/>
 			)}
 

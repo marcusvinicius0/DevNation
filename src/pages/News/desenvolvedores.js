@@ -1,5 +1,7 @@
 import styles from './styles.module.scss';
 
+import Header from '../../components/Header';
+
 import ChatModal from '../../components/ChatModal';
 
 import { FaArrowLeft } from 'react-icons/fa';
@@ -11,6 +13,7 @@ import developers from '../../assets/developers.jpg';
 export default function NewsDevelopers() {
     return (
         <>
+            <Header />
             <div className={styles.container}>
                 <Link className={styles.buttonBack} to="/dashboard">
                     <FaArrowLeft color="var(--soft-blue)" size={30} />

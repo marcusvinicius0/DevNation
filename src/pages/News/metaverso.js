@@ -1,5 +1,7 @@
 import styles from './styles.module.scss';
 
+import Header from '../../components/Header';
+
 import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 
@@ -12,10 +14,11 @@ import metaVerso from '../../assets/metaverso.jpg';
 export default function NewsMetaVerso() {
     return (
         <>
+            <Header />
             <div className={styles.container}>
                 <Link className={styles.buttonBack} to="/dashboard">
-                    <FaArrowLeft color="var(--soft-blue)" size={30}/>
-                </Link> 
+                    <FaArrowLeft color="var(--soft-blue)" size={30} />
+                </Link>
                 <img src={metaVerso} alt="mulher-no-metaverso" />
 
                 <div className={styles.informationBox}>

@@ -2,6 +2,8 @@ import { useState, useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
 import firebase from 'firebase/app';
 
+import Header from '../../components/Header';
+
 import EditProfileModal from '../../components/EditProfileModal';
 import EditProfilePictureModal from '../../components/EditProfilePictureModal';
 import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
@@ -15,6 +17,8 @@ import ghLogo from '../../assets/github.png';
 import inLogo from '../../assets/linkedin.png';
 
 import { AuthContext } from '../../contexts/auth';
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 import { RiPencilLine } from 'react-icons/ri';
 
@@ -66,6 +70,7 @@ export default function Profile() {
 
 	return (
 		<>
+			<Header />
 			<div className={styles.container}>
 				<div className={styles.profileContainer}>
 					<div className={styles.contentProfile}>
@@ -111,26 +116,28 @@ export default function Profile() {
 					<ProjectsProfile user_id={user.uid} />
 					<div className={styles.posts}>
 						<h3>Minhas publicações</h3>
-							{publicationsProfile.map((publication) => (
-								<div key={publication.id} className={styles.post}>
-									<header>
-										<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
-										<div>
-											<span>{user.name}</span>
-											<p>{user.role}</p>
-											<time>Há 1h</time>
-										</div>
-									</header>
-									<div className={styles.contentPost}>
-										<p>{publication.publication}</p>
+						{publicationsProfile.map((publication) => (
+							<div key={publication.id} className={styles.post}>
+								<header>
+									<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
+									<div>
+										<span>{user.name}</span>
+										<p>{user.role}</p>
+										<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+											locale: ptBR
+										})}</time>
 									</div>
+								</header>
+								<div className={styles.contentPost}>
+									<p>{publication.publication}</p>
 								</div>
-							))}
-							{publicationsProfile.length === 0 && (
-								<p>Sem publicações.</p>
-							)}
-						</div>
+							</div>
+						))}
+						{publicationsProfile.length === 0 && (
+							<p>Sem publicações.</p>
+						)}
 					</div>
+				</div>
 				<NewsBox />
 			</div>
 

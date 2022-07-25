@@ -34,7 +34,6 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 		await firebase.storage().ref(`images/${user.uid}/${imageProject}`)
 			.put(imageProject)
 			.then(async () => {
-				console.log('Foto enviada com sucesso.')
 				await firebase.storage().ref(`images/${user.uid}`)
 					.child(imageProject.name).getDownloadURL()
 					.then(async (url) => {
@@ -83,9 +82,9 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 				setImageProject(image)
 				setImageProjectUrl(URL.createObjectURL(image))
 			} else {
-				toast.warning('Envie uma imagem do tipo JPG, JPEG, GIF ou PNG.')
-				setImageProject(null)
-				return null
+				toast.warning('Envie uma imagem do tipo JPG, JPEG, GIF ou PNG.');
+				setImageProject(null);
+				return null;
 			}
 		}
 	}

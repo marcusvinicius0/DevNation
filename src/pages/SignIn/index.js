@@ -9,13 +9,12 @@ import Input from '../../components/Userinterface/Input';
 import Button from '../../components/Userinterface/Button';
 
 import { AuthContext } from '../../contexts/auth';
-import { toast } from 'react-toastify';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const { user, signIn, loadingAuth } = useContext(AuthContext);
+    const { signIn, loadingAuth } = useContext(AuthContext);
 
     function handleSubmit(e) {
         e.preventDefault();

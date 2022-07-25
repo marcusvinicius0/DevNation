@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
+import Header from '../../components/Header';
+
 import { FaArrowLeft } from 'react-icons/fa';
 
 import api from '../../services/api';
@@ -12,9 +14,9 @@ export default function Repository({ match }) {
    const [loading, setLoading] = useState(true);
    const [page, setPage] = useState(1);
    const [filters, setFilters] = useState([
-      {state: 'all', label: 'Todas', active: true},
-      {state: 'open', label: 'Abertas', active: false},
-      {state: 'closed', label: 'Fechadas', active: false},
+      { state: 'all', label: 'Todas', active: true },
+      { state: 'open', label: 'Abertas', active: false },
+      { state: 'closed', label: 'Fechadas', active: false },
    ])
    const [filterIndex, setFilterIndex] = useState(0);
 
@@ -66,7 +68,7 @@ export default function Repository({ match }) {
       setPage(action === 'back' ? page - 1 : page + 1)
    }
 
-   function handleFilter(index){
+   function handleFilter(index) {
       setFilterIndex(index);
       console.log(filterIndex);
    }
@@ -81,7 +83,7 @@ export default function Repository({ match }) {
 
    return (
       <>
-
+         <Header />
          <div className={styles.container}>
 
             <Link to="/repositories">
@@ -97,9 +99,9 @@ export default function Repository({ match }) {
             <div className={styles.filterBox}>
                {filters.map((filter, index) => (
                   <button
-                  type="button"
-                  key={filter.label}
-                  onClick={() => handleFilter(index)}
+                     type="button"
+                     key={filter.label}
+                     onClick={() => handleFilter(index)}
                   >
                      {filter.label}
                   </button>
@@ -113,7 +115,7 @@ export default function Repository({ match }) {
 
                      <div>
                         <strong>
-                           <a href={issue.html_url}>{issue.title}</a>
+                           <a href={issue.html_url} target="_blank" rel="noreferrer">{issue.title}</a>
 
                            {issue.labels.map(label => (
                               <span key={String(label.id)}>{label.name}</span>

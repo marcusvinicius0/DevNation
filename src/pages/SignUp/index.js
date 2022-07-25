@@ -4,8 +4,8 @@ import { AuthContext } from '../../contexts/auth';
 
 import { Link } from 'react-router-dom';
 
-import { FaUser, FaLock, FaSpinner } from 'react-icons/fa'
-import { MdEmail } from 'react-icons/md'
+import { FaSpinner } from 'react-icons/fa';
+
 
 import Input from '../../components/Userinterface/Input';
 import Button from '../../components/Userinterface/Button';
