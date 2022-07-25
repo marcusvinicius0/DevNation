@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import styles from './styles.module.scss';
 
-import Header from '../../components/Header';
 import ChatModal from '../../components/ChatModal';
 
 import { Link } from 'react-router-dom';
@@ -17,8 +16,6 @@ export default function Followers() {
 
     return (
         <>
-            <Header />
-
             <div className={styles.container}>
 
                 <span className={styles.header}>

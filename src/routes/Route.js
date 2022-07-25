@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth';
 
+import Header from '../components/Header';
+
 export default function RouteWrapper({
     component: Component,
     isPrivate,
@@ -25,6 +27,7 @@ export default function RouteWrapper({
 
     return (
         <>
+            <Header />
             <Route
                 {...rest}
                 render={props => (

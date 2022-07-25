@@ -1,6 +1,5 @@
 import styles from './styles.module.scss';
 
-import Header from '../../components/Header';
 import ChatModal from '../../components/ChatModal';
 
 import { FaArrowLeft } from 'react-icons/fa';
@@ -12,8 +11,6 @@ import aluraCurso from '../../assets/alura-curso.png';
 export default function NewsAlura() {
     return (
         <>
-            <Header />
-
             <div className={styles.container}>
                 <Link className={styles.buttonBack} to="/dashboard">
                     <FaArrowLeft color="var(--soft-blue)" size={30} />

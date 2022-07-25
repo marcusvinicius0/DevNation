@@ -1,5 +1,4 @@
 import styles from './styles.module.scss';
-import Header from "../../components/Header";
 
 import contributorOne from '../../assets/joao.png';
 import contributorTwo from '../../assets/matheus.png';
@@ -14,9 +13,6 @@ export default function Contributors() {
    let contributors = [contributorOne, contributorTwo, contributorThree];
 
    return (
-      <>
-         <Header />
-
          <div className={styles.container}>
             <header>
                <h1>Desenvolvedores que fizeram esse projeto tornar realidade</h1>
@@ -48,6 +44,5 @@ export default function Contributors() {
             />
 
          </div>
-      </>
    )
 }

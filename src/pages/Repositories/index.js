@@ -1,7 +1,6 @@
 import { useCallback, useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
-import Header from '../../components/Header';
 import ChatModal from '../../components/ChatModal';
 
 import githubLogo from '../../assets/github.png';
@@ -92,8 +91,6 @@ export default function Repositories() {
 
    return (
       <>
-         <Header />
-
          <div className={styles.container}>
 				<div className={styles.containerRepositories}>
 					<span>
