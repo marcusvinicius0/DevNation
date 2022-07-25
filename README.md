@@ -4,11 +4,20 @@
 
 >  Uma rede social para desenvolvedores!
 
-Confira a aplicação:  <br>
+Confira a aplicação:  <a href="https://devsocialnetwork.netlify.app/" target="_blank">https://devsocialnetwork.netlify.app/</a>/<br>
 
 ## :page_facing_up: Explicação
 
-O projeto consiste numa rede social para desenvolvedores onde os devs poderão fazer novas conexões, guardar projetos, postar publicações, procurar repositórios...
+O projeto se chama Dev Social Networking e foi realizado através de um Pair Programming. Ele é uma rede social direcionada para os desenvolvedores, sendo possível: registrar uma conta, editar o perfil, criar publicações, encontrar repositórios da API do Github, salvar publicações, entre outras funcionalidades.
+
+A tela inicial do projeto é a tela de login que necessita de uma conta criada para ter acesso ao site. Assim, você deve clicar no botão para cadastrar-se e criar uma conta. Após criar a conta, o usuário será direcionado automaticamente para a timeline do site.
+
+Na timeline a pessoa tem acesso a diversas funcionalidades disponíveis.
+- Início: a opção de criar uma publicação, acessar as notícias na barra lateral, acessar a nossa comunidade do discord, acessar o menu que apresenta a opção de “meu perfil”, “seguidores”, “meus projetos”, “encontrar repositórios” e “salvos”.
+- Perfil: o usuário consegue alterar a imagem do perfil, definir um banner, alterar o nome de usuário, adicionar a função, adicionar localização, adicionar uma biografia, adicionar o link do github e linkedin.
+- Meus projetos: a opção de adicionar um projeto que vai abrir um modal para que possa completar as informações, como, por exemplo, imagem do projeto, descrição do projeto, link do projeto e da aplicação.
+- Encontrar repositórios: a página consome a API do github com os repositórios de qualquer pessoa que tenha um repo público.
+- Notícias: elas são fictícias, mas simulam notícias que o site apresenta na sidebar na timeline.
  
 ## 📁 Páginas
 

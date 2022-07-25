@@ -32,12 +32,16 @@
 			}
 
 			button {
-				background: 0;
+				background: var(--blue-500);
 				border: 0;
 				outline: 0;
-				width: 40px;
-				height: 40px;
+				width: 30px;
+				height: 30px;
 				border-radius: 100%;
+				color: #fff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 
 				&:hover {
 					background: rgba(0, 0, 0, 0.1);
@@ -68,6 +72,7 @@
 					right: 0;
 					cursor: pointer;
 					opacity: 0;
+					z-index: 101;
 				}
 
 				img {
@@ -93,14 +98,14 @@
 				margin-bottom: 0.25rem;
 
 				input {
-					padding: 0.2rem 0.5rem;
-					border-radius: 0.25rem;
+					padding: 0.3rem 0.5rem;
+					border-radius: 1rem;
 					border: 1px solid rgba(0, 0, 0, 0.2);
 				}
 
 				textarea {
-					padding: 0.2rem 0.5rem;
-					border-radius: 0.25rem;
+					padding: 0.3rem 0.5rem;
+					border-radius: 1rem;
 					border: 1px solid rgba(0, 0, 0, 0.2);
 					resize: none;
 					height: 4rem;
@@ -133,14 +138,14 @@
 			}
 
 			button {
-				background: var(--soft-blue);
+				background: var(--blue-500);
 				border: 0;
 				color: #fff;
 				font-weight: 600;
 				padding: 0.4rem;
 				width: 100%;
 				margin-top: 1rem;
-				border-radius: 0.25rem;
+				border-radius: 1rem;
 			}
 		}
 	}

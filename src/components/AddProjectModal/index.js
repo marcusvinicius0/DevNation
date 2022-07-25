@@ -31,11 +31,13 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 			liveLink,
 		}
 
-		await firebase.storage().ref(`images/${user.uid}/${imageProject}`)
+		console.log(data)
+
+		await firebase.storage().ref(`images/${user.uid}/${"project-photo/" + title.trim()}`)
 			.put(imageProject)
 			.then(async () => {
 				await firebase.storage().ref(`images/${user.uid}`)
-					.child(imageProject.name).getDownloadURL()
+					.child(`project-photo/${title.trim()}`).getDownloadURL()
 					.then(async (url) => {
 						let urlFoto = url
 						await firebase.firestore().collection('projects')
@@ -60,6 +62,7 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 								setLiveLink("");
 							})
 							.catch((error) => {
+								console.log(error)
 								toast.error('Ops, algo deu errado no DB.');
 								setLoading(false);
 							})
@@ -70,6 +73,7 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 					})
 			})
 			.catch((error) => {
+				console.log(error)
 				toast.error('Ops, algo deu errado.');
 				setLoading(false);
 			})
@@ -94,7 +98,7 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 			<div className={styles.contentModal}>
 				<header>
 					<h2>Adicionar projeto</h2>
-					<button onClick={closeModal}><FiX size={24} /></button>
+					<button onClick={closeModal}><FiX /></button>
 				</header>
 				<form onSubmit={handleNewProject} >
 					<div className={styles.inputFile}>
