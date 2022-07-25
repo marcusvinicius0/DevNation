@@ -9,8 +9,10 @@ const PublicationsContext = createContext({});
 
 export default function PublicationsProvider({children}) {
 	const [publications, setPublications] = useState([]);
+	const [loadingPublications, setLoadingPublications] = useState(false);
 
 	async function loadPublications() {
+		setLoadingPublications(true)
 		await firebase.firestore().collection('publications')
 			.orderBy('created', 'desc')
 			.get()
@@ -36,6 +38,7 @@ export default function PublicationsProvider({children}) {
 							arrayPublications.push(data)
 						})
 						setPublications(arrayPublications)
+						setLoadingPublications(false)
 				})
 			})		
 	}
@@ -64,7 +67,7 @@ export default function PublicationsProvider({children}) {
 
 	return (
 		<>
-			<PublicationsContext.Provider value={{ publications, loadPublications, handleDeletePublication }}>
+			<PublicationsContext.Provider value={{ publications, loadPublications, handleDeletePublication, loadingPublications }}>
 				{children}
 			</PublicationsContext.Provider>
 		</>
