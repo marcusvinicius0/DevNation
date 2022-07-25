@@ -23,60 +23,55 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 		e.preventDefault();
 		setLoading(true);
 
-		let data = {
-			imageProject,
-			title,
-			description,
-			repo,
-			liveLink,
+		if(imageProject === null || title === "" || description === "" || repo === "" || liveLink === "") {
+	
+			await firebase.storage().ref(`images/${user.uid}/${imageProject.name}`)
+				.put(imageProject)
+				.then(async () => {
+					await firebase.storage().ref(`images/${user.uid}`)
+						.child(`${imageProject.name}`).getDownloadURL()
+						.then(async (url) => {
+							let urlFoto = url
+							await firebase.firestore().collection('projects')
+								.add({
+									imageProjectUrl: urlFoto,
+									title,
+									description,
+									repo,
+									liveLink,
+									user_id: user.uid
+								})
+								.then(() => {
+									toast.success('Projeto adicionado com sucesso.');
+									setLoading(false);
+									reloadProjects();
+									closeModal();
+									setImageProjectUrl(null);
+									setImageProject(null);
+									setTitle("");
+									setDescription("");
+									setRepo("");
+									setLiveLink("");
+								})
+								.catch((error) => {
+									console.log(error)
+									toast.error('Ops, algo deu errado no DB.');
+									setLoading(false);
+								})
+						})
+						.catch((error) => {
+							toast.error('Ops, algo deu errado.');
+							setLoading(false);
+						})
+				})
+				.catch((error) => {
+					console.log(error)
+					toast.error('Ops, algo deu errado.');
+					setLoading(false);
+				})
+		} else {
+			toast.warning("Favor, preencher todos os campos.")
 		}
-
-		console.log(data)
-
-		await firebase.storage().ref(`images/${user.uid}/${imageProject.name}`)
-			.put(imageProject)
-			.then(async () => {
-				await firebase.storage().ref(`images/${user.uid}`)
-					.child(`${imageProject.name}`).getDownloadURL()
-					.then(async (url) => {
-						let urlFoto = url
-						await firebase.firestore().collection('projects')
-							.add({
-								imageProjectUrl: urlFoto,
-								title,
-								description,
-								repo,
-								liveLink,
-								user_id: user.uid
-							})
-							.then(() => {
-								toast.success('Projeto adicionado com sucesso.');
-								setLoading(false);
-								reloadProjects();
-								closeModal();
-								setImageProjectUrl(null);
-								setImageProject(null);
-								setTitle("");
-								setDescription("");
-								setRepo("");
-								setLiveLink("");
-							})
-							.catch((error) => {
-								console.log(error)
-								toast.error('Ops, algo deu errado no DB.');
-								setLoading(false);
-							})
-					})
-					.catch((error) => {
-						toast.error('Ops, algo deu errado.');
-						setLoading(false);
-					})
-			})
-			.catch((error) => {
-				console.log(error)
-				toast.error('Ops, algo deu errado.');
-				setLoading(false);
-			})
 	}
 
 	function handleFile(e) {

@@ -41,9 +41,10 @@ export default function EditProfileModal({ close }) {
                     linkedin,
                     github,
                 }
-                toast.success("Dados enviados com sucesso!")
+                toast.success("Dados editados com sucesso!")
                 setUser(data);
                 storageUser(data);
+					 close();
             })
             .catch((err) => {
                 console.log(err);
