@@ -24,7 +24,10 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 		setLoading(true);
 
 		if(imageProject === null || title === "" || description === "" || repo === "" || liveLink === "") {
-	
+			toast.warning("Favor, preencher todos os campos.")
+			setLoading(false)
+		} else {
+			
 			await firebase.storage().ref(`images/${user.uid}/${imageProject.name}`)
 				.put(imageProject)
 				.then(async () => {
@@ -69,8 +72,6 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
 					toast.error('Ops, algo deu errado.');
 					setLoading(false);
 				})
-		} else {
-			toast.warning("Favor, preencher todos os campos.")
 		}
 	}
 

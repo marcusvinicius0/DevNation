@@ -33,6 +33,7 @@ export default function ProfileUser() {
 	const [modalProfileBanner, setModalProfileBanner] = useState(false);
 	const [publicationsProfile, setPublicationsProfile] = useState([]);
 	const [profileUser, setProfileUser] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		loadPosts()
@@ -40,13 +41,14 @@ export default function ProfileUser() {
 	}, [id])
 
 	async function loadUser() {
+		setLoading(true);
 		await firebase.firestore().collection('users')
 			.doc(id)
 			.get()
 			.then((snapshot) => {
 				if (snapshot.data()) {
 					let data = {
-						aboutMe: snapshot.data().aboutMe,
+						aboutMe: snapshot.data()?.aboutMe,
 						avatarUrl: snapshot.data().avatarUrl,
 						bannerUrl: snapshot.data().bannerUrl,
 						email: snapshot.data().email,
@@ -57,8 +59,14 @@ export default function ProfileUser() {
 						linkedin: snapshot.data().linkedin,
 						github: snapshot.data().github,
 					}
+					console.log(data)
 					setProfileUser(data)
+					setLoading(false)
 				}
+			})
+			.catch( (error) => {
+				console.log(error)
+				setLoading(false)
 			})
 	}
 

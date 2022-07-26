@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import firebase from 'firebase/app';
@@ -6,7 +6,7 @@ import firebase from 'firebase/app';
 import { BsArrowRightShort } from 'react-icons/bs';
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiper  } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -16,6 +16,8 @@ const breakpoints = {
 	'320': {
 	  slidesPerView: 1,
 	  spaceBetween: 30,
+	  align: "center"
+	  
 	},
 	'600': {
 	  slidesPerView: 2,
@@ -29,6 +31,7 @@ const breakpoints = {
 
 export default function ProjectsProfile({user_id}) {
 	const [projects, setProjects] = useState([]);
+	const swiper = useSwiper();
 
 	useEffect(() => {
 		async function loadProjects() {
@@ -60,38 +63,23 @@ export default function ProjectsProfile({user_id}) {
 		<div className={styles.containerMyProjects}>
 			<header>
 				<h1>Meus projetos</h1>
-				<button>
+				<button className={styles.buttonSeeAllProjects}>
 					<span>Ver todos os projetos </span>
 					<BsArrowRightShort />
 				</button>
 			</header>
-			{projects.length < 4 ? ( 
-			<ul className={styles.listProjects}> 
-				{projects.map( project => (
-					<div key={project.id} className={styles.card}>
-						<img src={project.imageProjectUrl} alt="Foto projeto" />
-						<div className={styles.infosCard}>
-							<span>{project.title}</span>
-							<p>{project.description}</p>
-						</div>
-						<div className={styles.buttonsCard}> 
-							<button><a href={project.liveLink} target="_blank" rel="noreferrer">Ver aplicação</a></button>
-							<button><a href={project.repo} target="_blank" rel="noreferrer">Ver repositório</a></button>
-						</div>
-					</div>
-				))}
-			</ul>) : (
 				<Swiper
 				breakpoints={breakpoints}
 				modules={[Navigation, Pagination, Scrollbar, A11y]}
 				slidesPerGroup={1}
 				spaceBetween={0}
+				pagination={{ clickable: true }}
 				onSwiper={(swiper) => console.log(swiper)}
 				onSlideChange={() => console.log('slide change')}
 			 >
 				<ul className={styles.listProjects}>
 					{projects.map( project => (
-						<SwiperSlide key={project.id}>
+						<SwiperSlide key={project.id} className={styles.listProjects}>
 							<div className={styles.card}>
 								<img src={project.imageProjectUrl} alt="Foto projeto" />
 								<div className={styles.infosCard}>
@@ -107,7 +95,6 @@ export default function ProjectsProfile({user_id}) {
 					))}
 				</ul>
 			 </Swiper>
-			)}
 			{projects.length === 0 && (
 				<p>Sem projetos.</p>
 			)}
