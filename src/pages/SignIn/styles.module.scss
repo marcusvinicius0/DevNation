@@ -1,9 +1,9 @@
-.mainContainer{
+.mainContainer {
     display: flex;
     justify-content: space-between;
 }
 
-.logoContainer{
+.logoContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,30 +13,30 @@
     border-top-right-radius: 10rem;
 }
 
-.contentContainer{  
+.contentContainer {
 
-    h1{
+    h1 {
         color: var(--white);
         font-size: 2.5rem;
     }
 
-    p{
+    p {
         padding: 1rem 0 1.5rem 0;
         color: var(--white);
         font-size: 1.4rem;
     }
 
-    a{
+    a {
         color: var(--white);
         font-size: 0.9rem;
         background-color: var(--soft-blue);
         padding: 0.5rem 2rem;
-		  font-weight: 500;
+        font-weight: 500;
         border-radius: 1.2rem;
     }
 }
 
-.loginContainer{
+.loginContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,24 +44,24 @@
     min-width: 40vw;
     min-height: 100vh;
 
-    h2{
+    h2 {
         text-align: center;
         font-size: 2rem;
         margin-bottom: 1rem;
     }
 }
 
-.form{
+.form {
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
 
-    button{
+    button {
         margin-bottom: 1rem;
     }
 }
 
-.errorInput{
+.errorInput {
     border-radius: 15px;
     height: 40px;
     width: 19rem;
@@ -70,20 +70,27 @@
     border: 1px solid var(--red-500);
 }
 
-@media (max-width: 920px){
-    .mainContainer{
+@media (max-width: 920px) {
+    .mainContainer {
         flex-direction: column;
     }
 
-    .logoContainer{
-        min-width: 100vw;
+    .logoContainer {
         min-height: 44vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 10rem;
         padding-left: 1.5rem;
     }
 
-    .loginContainer{
+    .contentContainer {
+      
+        h1{
+            font-size: 2rem;
+        }
+
+    }
+
+    .loginContainer {
         min-width: 100vw;
         min-height: 50vh;
     }
@@ -91,50 +98,50 @@
 
 }
 
-@media (min-width: 1500px){
-    .contentContainer{
+@media (min-width: 1500px) {
+    .contentContainer {
         padding: 0;
 
-        h1{
+        h1 {
             font-size: 4rem;
         }
 
-        p{
+        p {
             font-size: 1.9rem;
         }
 
-        a{
+        a {
             font-size: 1.6rem;
         }
     }
 
-    .loginContainer{
-        h2{
+    .loginContainer {
+        h2 {
             font-size: 3.5rem;
         }
     }
 }
 
-@media (min-width: 1900px){
+@media (min-width: 1900px) {
 
-    .contentContainer{
+    .contentContainer {
         padding: 0;
 
-        h1{
+        h1 {
             font-size: 5rem;
         }
 
-        p{
+        p {
             font-size: 2.4rem;
         }
 
-        a{
+        a {
             font-size: 2rem;
         }
     }
 
-    .loginContainer{
-        h2{
+    .loginContainer {
+        h2 {
             font-size: 3.8rem;
         }
     }

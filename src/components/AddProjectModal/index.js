@@ -9,7 +9,7 @@ import firebase from 'firebase/app';
 import { AuthContext } from '../../contexts/auth';
 
 export default function AddProjectModal({ closeModal, reloadProjects }) {
-	const { user } = useContext(AuthContext)
+	const { user } = useContext(AuthContext);
 
 	const [imageProjectUrl, setImageProjectUrl] = useState(null);
 	const [imageProject, setImageProject] = useState(null);

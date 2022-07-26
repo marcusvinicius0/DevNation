@@ -35,10 +35,10 @@ export default function PublicationsProvider({children}) {
 								bannerUrl: snap.data().bannerUrl,
 								id: doc.id
 							}
-							arrayPublications.push(data)
+							arrayPublications.push(data);
 						})
-						setPublications(arrayPublications)
-						setLoadingPublications(false)
+						setPublications(arrayPublications);
+						setLoadingPublications(false);
 				})
 			})		
 	}
@@ -75,6 +75,6 @@ export default function PublicationsProvider({children}) {
 }
 
 export function usePublications() {
-	const context = useContext(PublicationsContext)
+	const context = useContext(PublicationsContext);
 	return context;
-}
+};
