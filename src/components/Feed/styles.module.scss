@@ -78,6 +78,7 @@
 		p {
 			font-size: 0.95rem;
 			padding: 1rem 0 0.5rem 0;
+			white-space: pre-line;
 		}
 	}
 
@@ -105,6 +106,8 @@
 
 		img {
 			width: 100%;
+			height: 25rem;
+			object-fit: cover;
 		}
 	}
 

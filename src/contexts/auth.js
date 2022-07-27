@@ -25,7 +25,7 @@ function AuthProvider({ children }) {
 
         loadStorage();
 
-    }, [])
+    }, []);
 
     useEffect( () => {
         async function loadUsers() {
@@ -45,12 +45,12 @@ function AuthProvider({ children }) {
                     })
                 })
                 
-                setUsers(allUsers)
+                setUsers(allUsers);
             })
 
         }
         loadUsers();
-    }, [])
+    }, []);
 
     async function signIn(email, password){
         setLoadingAuth(true);
@@ -106,6 +106,7 @@ function AuthProvider({ children }) {
                         location: '',
                         linkedin: '',
                         github: '',
+                        likes: []
                     })
                     .then(() => {
 

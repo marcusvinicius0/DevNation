@@ -1,0 +1,61 @@
+.container{
+   width: 90%;
+   height: 100%;
+   background-color: var(--white);
+   margin: 5rem auto;
+   border-radius: 10px;
+   padding: 1rem;
+
+
+   strong{
+      color: var(--soft-blue);
+   }
+
+   a{
+      color: var(--soft-blue);
+      transition: 0.9s;
+   }
+
+   a:hover{
+      color: var(--blue-500);
+   }
+
+   .phasesBox{
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .contentBox{
+         display: flex;
+
+         p{
+            font-size: 15px;
+         }
+      }
+      
+      svg{
+         position: relative;
+         top: 0.3rem;
+      }
+      
+      p{
+         margin-left: 0.2rem;
+      }
+   }
+
+   .linksBox{
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+      gap: 0.5rem;
+
+      .contentLinksBox{
+         flex-direction: row;
+      }
+   }
+
+   .licenseLink{
+      cursor: pointer;
+   }
+}

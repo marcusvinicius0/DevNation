@@ -8,7 +8,10 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { toast } from "react-toastify";
 
+import { usePublications } from '../../hooks/usePublications';
+
 export default function PublicationsProfile({publications, user}) {
+	const { likePublication } = usePublications();
 
 	return ( 
 		<div className={styles.publicationsProfile}>
@@ -33,7 +36,7 @@ export default function PublicationsProfile({publications, user}) {
 						<img src={publication.imagePublicationUrl} alt="Foto post" />
 					</div>)}
 					<footer>
-							<button onClick={() => toast.warning("Em breve...")}><BiHeart /><span>0</span></button>
+							<button onClick={() => likePublication(user.uid, publication.id)}><BiHeart /><span>0</span></button>
 							<button onClick={() => toast.warning("Em breve...")}><BiMessageRounded /><span>0</span></button>
 							<button onClick={() => toast.warning("Em breve...")}><BiShare /><span>0</span></button>
 							<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>

@@ -61,6 +61,9 @@ O site tem no total 13 páginas, sendo elas:
 - [x] Página contribuidores
 - [x] Página NotFoundUser
 
+## :dart Versionamento
+- [x] Versão 1.0: 
+
 ## :rocket: Tecnologias ##
 
 No projeto foram utilizadas as seguintes tecnologias:
