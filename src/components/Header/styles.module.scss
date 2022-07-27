@@ -74,14 +74,24 @@
 						span {
 							font-size: 1rem;
 							width: 100%;
+							display: flex;
 							text-overflow: ellipsis;
 							overflow: hidden;
 							font-weight: 500;
+
+							p {
+								font-size: 0.9rem;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
+
+							svg {
+								color: var(--blue-500);
+							}
 						}
 
-						p {
+						.role {
 							font-size: 0.7rem;
-							width: 100%;
 							text-overflow: ellipsis;
 							overflow: hidden;
 						}
@@ -119,6 +129,10 @@
 					align-items: center;
 				}
         }
+
+		  .active {
+				color: #000;
+		  }
 
 		  .aboutBox{
 			display: none;

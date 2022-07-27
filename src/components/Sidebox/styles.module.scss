@@ -43,6 +43,14 @@
 
 	.userName {
 		 text-align: center;
+		 display: flex;
+		 gap: 0.5rem;
+		 align-items: center;
+		 justify-content: center;
+
+		 svg {
+			color: var(--blue-500)
+		 }
 	}
 
 	.role {

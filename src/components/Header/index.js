@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import styles from './styles.module.scss';
 
 import logo from '../../assets/logo.png';
@@ -13,10 +14,13 @@ import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
 import { BiMenu } from 'react-icons/bi';
+import { MdVerified } from 'react-icons/md'
+
 import { toast} from 'react-toastify'
 
-export default function Header() {
+export default function Header(props) {
    const { user, users } = useContext(AuthContext);
+   const { pathname } = useLocation()
 
    const [searchBarBox, setSearchBarBox] = useState(false);
    const [text, setText] = useState('');
@@ -27,7 +31,6 @@ export default function Header() {
       toast.warning("Em breve documentação...");
    }
    
-
    function usersFilter(value) {
       let filterUsers = []
 
@@ -49,8 +52,11 @@ export default function Header() {
 							<FiSearch size={20} /> 
 							{item.avatarUrl === null ? <img src={avatar} alt="usuario-perfil" /> : <img src={item.avatarUrl} alt="usuario-perfil" />}
 							<div>
-								<span>{item.name}</span>
-								<p>{item.role}</p>
+								<span>
+                           <p>{item.name}</p>
+                           {item.isVerified && <MdVerified />}
+                        </span>
+								<p className={styles.role}>{item.role}</p>
 							</div>
 						</Link>
                ))}
@@ -100,26 +106,26 @@ export default function Header() {
 
             <nav className={showMenu ? styles.menuOn : styles.navegation}>
                <ul>
-                  <li>
+                  <li className={pathname === "/dashboard" ? styles.active : ""}>
                      <Link to="/dashboard">
                         <AiFillHome  size={20} />
                         Início
                      </Link>
                   </li>
-                  <li>
+                  <li className={pathname === "/followers" ? styles.active : ""}>
                      <Link to="/" onClick={() => toast.warning("Em breve...")}>
                         <FaUsers  size={20} />
                         Seguidores
                      </Link>
                   </li>
-                  <li>
+                  <li className={pathname === "/message" ? styles.active : ""}>
                      <Link to="/" onClick={() => toast.warning("Em breve...")}>
                         <BsFillChatDotsFill  size={20} />
                         Mensagens
                      </Link>
                   </li>
-                  <li>
-                     <Link to="/">
+                  <li className={pathname === "/settings" ? styles.active : ""}>
+                     <Link to="/" onClick={() => toast.warning("Em breve...")}>
                         <BsFillGearFill size={20} />
                         Configurações
                      </Link>

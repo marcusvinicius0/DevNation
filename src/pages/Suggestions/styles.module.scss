@@ -1,0 +1,108 @@
+.container{
+   width: 100%;
+   height: 500px;
+   background: var(--white);
+   margin-top: 4rem;
+
+   .titleBox{
+      background-color: var(--soft-blue);
+      padding: 4rem 4rem;
+
+      h1{
+         font-size: 2.5rem;
+         font-weight: 500;
+         text-align: start;
+         color: var(--white);
+         margin-bottom: 0.5rem;
+      }
+
+      p{
+         color: var(--white);
+      }
+   
+   }
+
+   .buttonsBox{
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0 0 2rem;
+
+      button{
+         border-radius: 15px;
+         color: var(--white);
+         font-size: 1rem;
+         background-color: var(--soft-blue);
+         padding: 0.6rem 2rem;
+         border: 0;
+         display: flex;
+         align-items: center;
+         gap: 0.4rem;
+
+         span {
+            font-weight: 600;
+         }
+      }
+   }
+
+}
+
+@media (min-width: 1700px){
+   .container{
+      .titleBox{
+         display: flex; 
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         margin: 5rem auto;
+
+         h1{
+            font-size: 2.5rem;
+         }
+
+         p{
+             font-size: 1.5rem;
+         }
+      }
+
+      .buttonsBox{
+         justify-content: center;
+         align-items: center;
+
+         button{
+            width: 17rem;
+            height: 60px;
+            font-size: 1.2rem;
+         }
+
+         .ideaIcon{
+            left: 0.7rem;
+         }
+
+         .bugIcon{
+            top: 0.4rem;
+            left: 7.5rem;
+         }
+      }
+   }
+}
+
+@media (max-width: 680px){
+   .container{
+      .titleBox{
+ 
+         h1{
+            font-size:  1.5rem;
+         }
+      }
+
+      .buttonsBox{
+         display: flex; 
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         margin: 3rem auto;
+      }
+   }
+}
+
+

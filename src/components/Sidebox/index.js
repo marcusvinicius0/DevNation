@@ -4,12 +4,14 @@ import { Link } from "react-router-dom";
 
 import banner from "../../assets/banner.png";
 
-import { FaUsers, FaUserCircle, FaEnvelopeOpenText, FaBook } from "react-icons/fa";
+import { FaUserCircle, FaEnvelopeOpenText, FaBook } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { BsBookmarkFill, BsBookmark } from 'react-icons/bs'
+import { BsBookmarkFill } from 'react-icons/bs'
+import { FcIdea } from 'react-icons/fc';
+import { MdVerified } from 'react-icons/md'
 
 import avatar from "../../assets/avatar.png";
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { AuthContext } from "../../contexts/auth";
 
@@ -34,7 +36,10 @@ export default function Sidebox() {
           )}
         </Link>
       </div>
-      <p className={styles.userName}>{user.name}</p>
+      <span className={styles.userName}>
+        <p>{user.name}</p>
+        {user.isVerified && <MdVerified />}
+      </span>
       <p className={styles.role}>{user.role}</p>
       <hr />
       <div className={styles.routesBox}>
@@ -42,13 +47,6 @@ export default function Sidebox() {
           <span>
             <FaUserCircle color="var(--soft-blue)" size={24} />
             <p>Meu perfil</p>
-          </span>
-        </Link>
-
-        <Link to="/" onClick={() => toast.warning("Em breve...")}>
-          <span>
-            <FaUsers color="var(--soft-blue)" size={24} />
-            <p>Seguidores</p>
           </span>
         </Link>
 
@@ -66,10 +64,17 @@ export default function Sidebox() {
           </span>
         </Link>
 
-		  <Link to="/" onClick={() => toast.warning("Em breve...")}>
+        <Link to="/" onClick={() => toast.warning("Em breve...")}>
           <span>
             <BsBookmarkFill color="var(--soft-blue)" size={22} />
             <p>Salvos</p>
+          </span>
+        </Link>
+
+        <Link to="/suggestions">
+          <span>
+            <FcIdea size={22} />
+            <p>Sugestões</p>
           </span>
         </Link>
 

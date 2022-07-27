@@ -39,7 +39,6 @@
 			width: 140px;
 			height: 140px;
 			object-fit: cover;
-			cursor: pointer;
 			position: relative;
 			top: -6rem;
 			left: 1rem;
@@ -86,8 +85,16 @@
 		}
 
 		.name {
-			padding: 0 0 0 2rem;
+			padding: 0 0 0 1.5rem;
 			font-size: 20px;
+			font-weight: 600;
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+
+			svg {
+				color: var(--blue-500);
+			}
 		}
 
 		.role {

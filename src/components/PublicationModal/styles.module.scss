@@ -10,9 +10,8 @@
 
 .containerModal {
     max-width: 550px;
-    height: 370px;
     background-color: var(--white);
-    margin: 5rem auto;
+    margin: 1rem auto;
     border-radius: 15px;
 
 	 header {
@@ -88,6 +87,32 @@
 			resize: none;
 		}
 
+		.containerImageFile {
+			position: relative; 
+
+			img {
+				width: 100%;
+				height: 15rem;
+				object-fit: cover;
+				border: 1px solid rgba(0, 0, 0, 0.4);
+			}
+
+			button {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				background: var(--red-500);
+				color: #fff;
+				width: 30px;
+				height: 30px;
+				border-radius: 100%;
+				border: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+
 		.formActions {
 			display: flex;
 			align-items: center;
@@ -97,6 +122,39 @@
 				display: flex;
 				gap: 0.8rem;
 				align-items: center;
+				margin-bottom: 0.5rem;
+
+				.inputFile {
+					width: 2rem;
+					height: 2rem;
+					border-radius: 100%;
+					position: relative;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					cursor: pointer;
+
+					input {
+						width: 100%;
+						height: 100%;
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						cursor: pointer;
+						z-index: 103;
+						opacity: 0;
+					}
+
+					svg {
+						z-index: 102;
+						cursor: pointer;
+					}
+
+					&:hover {
+						background: rgba(0, 0, 0, 0.2);
+					}
+				}
 
 				button {
 					border: 0;

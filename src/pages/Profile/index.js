@@ -11,11 +11,14 @@ import NewsBox from '../../components/NewsBox';
 import ChatModal from '../../components/ChatModal';
 import ProjectsProfile from '../../components/ProjectsProfile';
 import Stacks from '../../components/Stacks';
+import PublicationsProfile from '../../components/PublicationsProfile';
 
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
 import ghLogo from '../../assets/github.png';
 import inLogo from '../../assets/linkedin.png';
+
+import { MdVerified } from 'react-icons/md'
 
 import { AuthContext } from '../../contexts/auth';
 import { format } from "date-fns";
@@ -45,6 +48,7 @@ export default function Profile() {
 								publication: doc.data().publication,
 								created: doc.data().created,
 								user_id: user.uid,
+								imagePublicationUrl: doc.data().imagePublicationUrl,
 								id: doc.id
 							}
 							arrayPublications.push(data)
@@ -89,7 +93,10 @@ export default function Profile() {
 								<button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
 									<RiPencilLine size={25} color="var(--black)" />
 								</button>
-								<p className={styles.name}>{user.name}</p>
+								<span className={styles.name}>
+									<p>{user.name}</p>
+									{user.isVerified && <MdVerified />}
+								</span>
 								<p className={styles.role}>{user.role}</p>
 								<p className={styles.place}>{user.location}</p>
 							</div>
@@ -115,29 +122,7 @@ export default function Profile() {
 					</div>
 					<ProjectsProfile user_id={user.uid} />
 					<Stacks user_id={user.uid} state_button={true} />
-					<div className={styles.posts}>
-						<h3>Minhas publicações</h3>
-						{publicationsProfile.map((publication) => (
-							<div key={publication.id} className={styles.post}>
-								<header>
-									<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
-									<div>
-										<span>{user.name}</span>
-										<p>{user.role}</p>
-										<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
-											locale: ptBR
-										})}</time>
-									</div>
-								</header>
-								<div className={styles.contentPost}>
-									<p>{publication.publication}</p>
-								</div>
-							</div>
-						))}
-						{publicationsProfile.length === 0 && (
-							<p>Sem publicações.</p>
-						)}
-					</div>
+					<PublicationsProfile publications={publicationsProfile} user={user} />
 				</div>
 				<NewsBox />
 			</div>

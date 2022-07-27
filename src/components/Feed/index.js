@@ -4,8 +4,8 @@ import styles from './styles.module.scss';
 import avatar from "../../assets/avatar.png";
 
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
-import { BiTrash } from 'react-icons/bi'
-import { BsBookmark } from 'react-icons/bs'
+import { BiTrash, BiMessageRounded, BiHeart, BiShare, BiBookmark } from 'react-icons/bi'
+import { MdVerified, MdWarningAmber } from 'react-icons/md'
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -17,7 +17,7 @@ import { AuthContext } from "../../contexts/auth";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
 
 const ITEM_HEIGHT = 48;
 
@@ -27,7 +27,7 @@ export default function Feed() {
 	const open = Boolean(anchorEl);
 
 	const { user } = useContext(AuthContext)
-	const { publications, loadPublications, handleDeletePublication, loadingPublications } = usePublications()
+	const { publications, loadPublications, handleDeletePublication, loadingPublications, likePublication } = usePublications()
 
 	const handleClick = (event) => setAnchorEl(event.currentTarget);
 	const handleClose = () => setAnchorEl(null);
@@ -38,17 +38,20 @@ export default function Feed() {
 		await handleDeletePublication(popoverActive.publication_id);
 	}
 
-	function handleSavePublication() {
-		console.log("Publication to save: " + popoverActive.publication_id)
+	 function handleSavePublication() {
+		console.log(handleSavePublication.data)
+		console.log(publications)
 	}
 
 	useEffect(() => {
 		loadPublications();
 
-		setTimeout( loadPublications(), 500 )
+		setTimeout( ()  => {
+			loadPublications();
+		}, 500)
 	}, []);
 
-	if(loadingPublications) {
+	if (loadingPublications) {
 		return (
 			<div className={styles.loading}>
 				<CircularProgress />
@@ -58,8 +61,9 @@ export default function Feed() {
 
 	return (
 		<div className={styles.feed}>
-			{publications.map((publication) => (
-				<div key={publication.id} className={styles.post}>
+			{publications.length > 0 && (
+				publications.map((publication, index) => (
+				<div key={index} className={styles.post}>
 					<header>
 						{publication.avatarUrl === null ?
 							<img src={avatar} alt="foto avatar" />
@@ -67,18 +71,29 @@ export default function Feed() {
 							<img src={publication.avatarUrl} alt="Avatar foto" />
 						}
 						<div>
-								<Link to={`/user/${publication.user_id}`}>
-									<span>{publication.user_name}</span>
-								</Link>
-								<p>{publication.user_role}</p>
-								<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
-									locale: ptBR
-								})}</time>
+							<Link to={`/user/${publication.user_id}`}>
+								<span>{publication.user_name}</span>
+								{publication.userIsVerified  && <MdVerified />}
+							</Link>
+							<p>{publication.user_role}</p>
+							<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+								locale: ptBR
+							})}</time>
 						</div>
 					</header>
 					<div className={styles.contentPost}>
 						<p>{publication.publication}</p>
 					</div>
+					{publication.imagePublicationUrl && (
+					<div className={styles.mediaPost}>
+						<img src={publication.imagePublicationUrl} alt="Foto post" />
+					</div>)}
+					<footer>
+							<button onClick={() => likePublication(publication.user_id, publication.id)}><BiHeart /><span>0</span></button>
+							<button onClick={() => toast.warning("Em breve...")}><BiMessageRounded /><span>0</span></button>
+							<button onClick={() => toast.warning("Em breve...")}><BiShare /><span>0</span></button>
+							<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>
+					</footer>
 					<IconButton
 						aria-label="more"
 						id="long-button"
@@ -94,7 +109,7 @@ export default function Feed() {
 						<IoEllipsisHorizontalSharp />
 					</IconButton>
 				</div>
-			))}
+			)))}
 			<Menu
 				id="long-menu"
 				MenuListProps={{
@@ -118,7 +133,9 @@ export default function Feed() {
 						</button>
 					</MenuItem>
 				)}
-				<MenuItem><button className={styles.buttonActionMenu} onClick={handleSavePublication}><BsBookmark /> Salvar publicação</button></MenuItem>
+				<MenuItem>
+					<button className={styles.buttonActionMenu} onClick={handleSavePublication}><MdWarningAmber /> Denunciar publicação</button>
+				</MenuItem>
 			</Menu>
 		</div>
 	)

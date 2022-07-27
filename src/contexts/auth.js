@@ -40,7 +40,8 @@ function AuthProvider({ children }) {
                         name: user.data().name,
                         avatarUrl: user.data().avatarUrl,
                         title: user.data().title,
-								role: user.data().role
+                        role: user.data().role,
+                        isVerified: user.data().verified
                     })
                 })
                 
@@ -72,6 +73,7 @@ function AuthProvider({ children }) {
                 location: userProfile.data().location,
                 linkedin: userProfile.data().linkedin,
                 github: userProfile.data().github,
+                isVerified: userProfile.data().verified
             };
 
             setUser(data);

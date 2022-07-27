@@ -12,6 +12,7 @@ import Followers from '../pages/Followers';
 import Repositories from '../pages/Repositories';
 import Contributors from '../pages/Contributors';
 import Repository from '../pages/Repository';
+import Suggestions from '../pages/Suggestions';
 
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
@@ -41,6 +42,7 @@ export default function MyRoutes() {
                 <Route exact path="/repository/:repository" component={Repository} isPrivate />
                 <Route exact path="/contributors" component={Contributors} isPrivate />
                 <Route exact path="/about" component={About} isPrivate />
+                <Route exact path="/suggestions" component={Suggestions} isPrivate/>
 
                 <Route exact path="/news" component={News} isPrivate />
                 <Route exact path="/news/alura" component={NewsAlura} isPrivate />

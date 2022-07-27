@@ -10,6 +10,7 @@ const PublicationsContext = createContext({});
 export default function PublicationsProvider({children}) {
 	const [publications, setPublications] = useState([]);
 	const [loadingPublications, setLoadingPublications] = useState(false);
+	const [likes, setLikes] = useState([])
 
 	async function loadPublications() {
 		setLoadingPublications(true)
@@ -33,6 +34,7 @@ export default function PublicationsProvider({children}) {
 								user_role: snap.data().role,
 								avatarUrl: snap.data().avatarUrl,
 								bannerUrl: snap.data().bannerUrl,
+								userIsVerified: snap.data().verified,
 								id: doc.id
 							}
 							arrayPublications.push(data);
@@ -42,6 +44,27 @@ export default function PublicationsProvider({children}) {
 				})
 			})		
 	}
+
+	async function handleSaveUserPublication(doc){
+
+		await firebase.firestore().collection('publications')
+		.doc(doc.data().user_id)
+		.get()
+		.then(() => {
+			let savedPubs = [];
+
+			let data = {
+				created: doc.data().created,
+				publication: doc.data().publication,
+				user_id: doc.data().user_id,
+			}
+			savedPubs(data);
+			console.log(data);
+		})
+
+
+	}
+
 
 	async function handleDeletePublication(id) {
 		Swal.fire({
@@ -57,7 +80,7 @@ export default function PublicationsProvider({children}) {
 				await firebase.firestore().collection('publications')
 				.doc(id)
 				.delete()
-				.then( (res) => {
+				.then( () => {
 					loadPublications();
 					toast.success('Publicação deletada com sucesso.')
 				})
@@ -65,9 +88,45 @@ export default function PublicationsProvider({children}) {
 		 })
 	}
 
+	async function likePublication(user_id, publication_id) {
+		console.log(publication_id)
+		await firebase.firestore().collection("publications")
+		.doc(publication_id)
+		.get()
+		.then( async (snap) => {
+			if(snap.data().likes !== undefined && snap.data().likes.length != 0) {
+				console.log("undefined")
+				snap.data().likes.forEach( () => {
+					let data = {
+						user_id,
+						publication_id
+					}
+					setLikes([...likes, data])
+				})
+			} else {
+				console.log("segue")
+				let data = {
+					user_id,
+					publication_id
+				}
+				setLikes([data])
+			}
+			console.log("aqui")
+			await firebase.firestore().collection("publications")
+			.doc(publication_id)
+			.update({
+				likes
+			})
+			.then( () => {
+				setLikes([])
+			})
+		})
+
+	}
+
 	return (
 		<>
-			<PublicationsContext.Provider value={{ publications, loadPublications, handleDeletePublication, loadingPublications }}>
+			<PublicationsContext.Provider value={{ publications, loadPublications, handleDeletePublication, loadingPublications, handleSaveUserPublication, likePublication }}>
 				{children}
 			</PublicationsContext.Provider>
 		</>

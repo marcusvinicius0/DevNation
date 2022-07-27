@@ -12,6 +12,7 @@ import ChatModal from '../../components/ChatModal';
 import ProjectsProfile from '../../components/ProjectsProfile';
 import NotFoundUser from '../../components/NotFoundUser';
 import Stacks from '../../components/Stacks';
+import PublicationsProfile from '../../components/PublicationsProfile';
 
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
@@ -23,6 +24,7 @@ import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 import { RiPencilLine } from 'react-icons/ri';
+import { MdVerified } from 'react-icons/md'
 
 export default function ProfileUser() {
 	const { user } = useContext(AuthContext);
@@ -42,7 +44,8 @@ export default function ProfileUser() {
 
 	async function loadUser() {
 		setLoading(true);
-		await firebase.firestore().collection('users')
+		if(id) {
+			await firebase.firestore().collection('users')
 			.doc(id)
 			.get()
 			.then((snapshot) => {
@@ -58,6 +61,7 @@ export default function ProfileUser() {
 						role: snapshot.data().role,
 						linkedin: snapshot.data().linkedin,
 						github: snapshot.data().github,
+						isVerified: snapshot.data().verified
 					}
 					console.log(data)
 					setProfileUser(data)
@@ -68,6 +72,7 @@ export default function ProfileUser() {
 				console.log(error)
 				setLoading(false)
 			})
+		}
 	}
 
 	async function loadPosts() {
@@ -83,6 +88,7 @@ export default function ProfileUser() {
 							publication: doc.data().publication,
 							created: doc.data().created,
 							user_id: id,
+							imagePublicationUrl: doc.data().imagePublicationUrl,
 							id: doc.id
 						}
 						arrayPublications.push(data)
@@ -127,7 +133,10 @@ export default function ProfileUser() {
 											<RiPencilLine size={25} color="var(--black)" />
 										</button>
 									)}
-									<p className={styles.name}>{profileUser.name}</p>
+									<span className={styles.name}>
+										<p>{profileUser.name}</p>
+										{profileUser.isVerified && <MdVerified />}
+									</span>
 									<p className={styles.role}>{profileUser.role}</p>
 									<p className={styles.place}>{profileUser.location}</p>
 
@@ -153,29 +162,7 @@ export default function ProfileUser() {
 							</div>
 							<ProjectsProfile user_id={profileUser.id} />
 							<Stacks user_id={profileUser.id} state_button={false} />
-							<div className={styles.posts}>
-								<h3>Minhas publicações</h3>
-								{publicationsProfile.map((publication) => (
-									<div key={publication.id} className={styles.post}>
-										<header>
-											<img src={profileUser.avatarUrl === null ? avatar : profileUser.avatarUrl} alt="Avatar foto" />
-											<div>
-												<span>{profileUser.name}</span>
-												<p>{profileUser.role}</p>
-												<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
-													locale: ptBR
-												})}</time>
-											</div>
-										</header>
-										<div className={styles.contentPost}>
-											<p>{publication.publication}</p>
-										</div>
-									</div>
-								))}
-								{publicationsProfile.length === 0 && (
-									<p>Sem publicações.</p>
-								)}
-							</div>
+							<PublicationsProfile publications={publicationsProfile} user={profileUser} />
 						</div>
 						<NewsBox />
 					</div>

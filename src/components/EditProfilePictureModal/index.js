@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 export default function EditProfilePictureModal({ close }) {
     const { user, setUser, storageUser } = useContext(AuthContext);
 
-    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl); //picture preview
+    const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl); 
     const [imageAvatar, setImageAvatar] = useState(null);
 
 
@@ -59,6 +59,7 @@ export default function EditProfilePictureModal({ close }) {
                                 };
                                 setUser(data);
                                 storageUser(data);
+                                close();
                             })
                     })
             })
