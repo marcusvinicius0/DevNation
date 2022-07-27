@@ -46,7 +46,7 @@ export default function Feed() {
 	}
 
 	function handleSavePublication(){
-		toast.success("Em breve...")
+		toast.warning("Em breve...")
 	};
 
 	// async function handleSavePublication(id) {
