@@ -146,15 +146,21 @@
 	}
 }
 
-.buttonActionMenu {
-	background: 0;
-	border: 0;
+.actionsBox{
 	display: flex;
-	align-items: center;
-	width: 100%;
-	gap: 0.5rem;
-	font-size: 0.9rem;
-	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+
+	.buttonActionMenu {
+		background: 0;
+		border: 0;
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		gap: 0.5rem;
+		font-size: 0.9rem;
+		display: flex;	
+	}
 }
 
 @media (max-width: 485px) {

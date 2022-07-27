@@ -10,10 +10,10 @@ import { toast } from "react-toastify";
 
 import { usePublications } from '../../hooks/usePublications';
 
-export default function PublicationsProfile({publications, user}) {
+export default function PublicationsProfile({ publications, user }) {
 	const { likePublication } = usePublications();
 
-	return ( 
+	return (
 		<div className={styles.publicationsProfile}>
 			<h3>Minhas publicações</h3>
 			{publications.map((publication) => (
@@ -32,17 +32,18 @@ export default function PublicationsProfile({publications, user}) {
 						<p>{publication.publication}</p>
 					</div>
 					{publication.imagePublicationUrl && (
-					<div className={styles.mediaPost}>
-						<img src={publication.imagePublicationUrl} alt="Foto post" />
-					</div>)}
+						<div className={styles.mediaPost}>
+							<img src={publication.imagePublicationUrl} alt="Foto post" />
+						</div>)}
+
 					<footer>
-							<button onClick={() => likePublication(user.uid, publication.id)}><BiHeart /><span>0</span></button>
-							<button onClick={() => toast.warning("Em breve...")}><BiMessageRounded /><span>0</span></button>
-							<button onClick={() => toast.warning("Em breve...")}><BiShare /><span>0</span></button>
-							<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>
+						<button onClick={() => likePublication(user.uid, publication.id)}><BiHeart /><span>0</span></button>
+						<button onClick={() => toast.warning("Em breve...")}><BiMessageRounded /><span>0</span></button>
+						<button onClick={() => toast.warning("Em breve...")}><BiShare /><span>0</span></button>
+						<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>
 					</footer>
 				</div>
-				))}
+			))}
 			{publications.length === 0 && (
 				<p>Sem publicações.</p>
 			)}

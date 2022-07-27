@@ -10,11 +10,11 @@ import { toast } from 'react-toastify';
 
 export default function ProjectDocumentation() {
 
-   function handleLicense(){
+   function handleLicense() {
       toast.warning("Em breve...")
    };
 
-   const phasesProjet = [
+   const phasesProject = [
       "Entendimento do projeto",
       "Instalação das dependências",
       "Conexão com o firebase",
@@ -135,104 +135,12 @@ export default function ProjectDocumentation() {
             <h2>🎯 Etapas</h2>
 
             <div className={styles.phasesBox}>
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[0]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[1]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[2]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[3]}</p>
-               </div>
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[4]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[5]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[6]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[7]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[8]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[9]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[10]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[11]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[12]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[13]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[14]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[15]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[16]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[17]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[18]}</p>
-               </div>
-
-               <div className={styles.contentBox}>
-                  <AiFillCheckSquare />
-                  <p>{phasesProjet[19]}</p>
-               </div>
+               {phasesProject.map((item, index) => (
+                  <div key={index} className={styles.contentBox}>
+                     <AiFillCheckSquare />
+                     <p>{item}</p>
+                  </div>
+               ))}
             </div>
             <br />
             <hr />
@@ -307,7 +215,7 @@ export default function ProjectDocumentation() {
                      • MUI Design
                   </a>
                </div>
-            </div><br/><hr />
+            </div><br /><hr />
 
             <h2>📝 Licença</h2><br />
             <p>Este projeto está sob licença. Consulte o arquivo <strong className={styles.licenseLink} onClick={handleLicense}>LICENSE</strong> para obter mais detalhes.</p>

@@ -3,8 +3,11 @@ import styles from './styles.module.scss';
 
 import avatar from "../../assets/avatar.png";
 
+import firebase from '../../services/firebaseConnection';
+
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { BiTrash, BiMessageRounded, BiHeart, BiShare, BiBookmark } from 'react-icons/bi';
+import { BsFillBookmarkFill } from 'react-icons/bs';
 import { MdVerified } from 'react-icons/md';
 import { HiSpeakerphone } from 'react-icons/hi';
 
@@ -33,17 +36,41 @@ export default function Feed() {
 	const handleClick = (event) => setAnchorEl(event.currentTarget);
 	const handleClose = () => setAnchorEl(null);
 
-	const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
-
 	async function handleDelete() {
 		await handleDeletePublication(popoverActive.publication_id);
 	}
 
-	function handleSavePublication() {
+	function handleReportPublication() {
 		toast.success("Denuncia enviada com sucesso.");
-		console.log(handleSavePublication.data);
 		console.log(publications);
 	}
+
+	function handleSavePublication(){
+		toast.success("Em breve...")
+	};
+
+	// async function handleSavePublication(id) {
+	// 	await firebase.firestore().collection('users')
+	// 	.doc(user.uid)
+	// 	.update({
+	// 		savedPublications: 
+	// 	})
+
+	// 	await firebase.firestore().collection('savedPublications')
+	// 	.add({
+	// 		user_name: user.name,
+	// 		user_id: user.uid,
+	// 		publication: 
+	// 	})
+	// 	.then(() => {
+	// 		toast.success("Publicação salva com sucesso!");
+	// 	})
+	// 	.catch((error) => {
+	// 		// console.log(error);
+	// 		toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
+	// 		return null;
+	// 	})
+	// }
 
 	useEffect(() => {
 		loadPublications();
@@ -123,7 +150,7 @@ export default function Feed() {
 				PaperProps={{
 					style: {
 						maxHeight: ITEM_HEIGHT * 4.5,
-						width: '25ch',
+						width: '22ch',
 					},
 				}}>
 				{user.uid === popoverActive.user_id && (
@@ -137,9 +164,19 @@ export default function Feed() {
 					</MenuItem>
 				)}
 				<MenuItem>
-					<button onClick={handleSavePublication} className={styles.buttonActionMenu}>
-						<HiSpeakerphone /> Denunciar publicação 
-					</button>
+					<div className={styles.actionsBox}>
+						<button onClick={handleReportPublication} className={styles.buttonActionMenu}>
+							<HiSpeakerphone /> <p>Denunciar publicação</p>
+						</button>
+					</div>
+				</MenuItem>
+
+				<MenuItem>
+					<div className={styles.actionsBox}>
+						<button onClick={handleSavePublication} className={styles.buttonActionMenu}>
+							<BsFillBookmarkFill /> <p>Salvar</p>
+						</button>
+					</div>
 				</MenuItem>
 			</Menu>
 		</div>

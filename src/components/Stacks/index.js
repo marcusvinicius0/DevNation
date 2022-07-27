@@ -10,7 +10,6 @@ import { AuthContext } from '../../contexts/auth';
 import { RiPencilLine } from 'react-icons/ri';
 
 export default function Stacks({ user_id, state_button }) {
-	const { user } = useContext(AuthContext);
 	const [stacks, setStacks] = useState([]);
 	const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
@@ -58,7 +57,7 @@ export default function Stacks({ user_id, state_button }) {
 				<div className={styles.allStacks}>
 					{stacks.map((stack, index) => (
 						<div className={styles.stack} key={index} style={{ background: stack.color }}>
-							<div>{stack.icon}</div>
+							{stack.icon}
 							<span>{stack.stack}</span>
 						</div>
 					))}

@@ -4,11 +4,10 @@ import { Link } from "react-router-dom";
 
 import banner from "../../assets/banner.png";
 
-import { FaUserCircle, FaEnvelopeOpenText, FaBook } from "react-icons/fa";
+import { FaUserCircle, FaEnvelopeOpenText, FaBook, FaRegLightbulb } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
-import { BsBookmarkFill } from 'react-icons/bs'
-import { FcIdea } from 'react-icons/fc';
-import { MdVerified } from 'react-icons/md'
+import { BsBookmarkFill } from 'react-icons/bs';
+import { MdVerified, MdLightbulb } from 'react-icons/md';
 
 import avatar from "../../assets/avatar.png";
 import { toast } from 'react-toastify';
@@ -73,7 +72,7 @@ export default function Sidebox() {
 
         <Link to="/suggestions">
           <span>
-            <FcIdea size={22} />
+            <MdLightbulb color="var(--soft-blue)" size={22} />
             <p>Sugestões</p>
           </span>
         </Link>

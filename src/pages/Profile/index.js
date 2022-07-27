@@ -126,6 +126,7 @@ export default function Profile() {
 				</div>
 				<NewsBox />
 			</div>
+			
 
 			{editProfileModal && (
 				<EditProfileModal
