@@ -23,7 +23,7 @@ export default function PublicationsProfile({ publications, user }) {
 						<div>
 							<span>{user.name}</span>
 							<p>{user.role}</p>
-							<time>{format(new Date(publication.created.seconds * 1000), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+							<time>{format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
 								locale: ptBR
 							})}</time>
 						</div>

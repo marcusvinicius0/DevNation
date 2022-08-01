@@ -1,6 +1,10 @@
 import { useState, useEffect, createContext } from 'react';
 import firebase from '../services/firebaseConnection';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
+
+
+// import { sign } from 'jsonwebtoken';
 
 export const AuthContext = createContext({});
 
@@ -9,6 +13,7 @@ function AuthProvider({ children }) {
     const [users, setUsers] = useState([]);
     const [loadingAuth, setLoadingAuth] = useState(false);
     const [loading, setLoading] = useState(true);
+    // const [token, setToken] = useState(null);
 
     useEffect(() => {
 
@@ -27,69 +32,82 @@ function AuthProvider({ children }) {
 
     }, []);
 
-    useEffect( () => {
+    useEffect(() => {
         async function loadUsers() {
             await firebase.firestore().collection('users')
-            .get()
-            .then( snapshot => {
-                let allUsers = []
+                .get()
+                .then(snapshot => {
+                    let allUsers = []
 
-                snapshot.forEach( user => {
-                    allUsers.push({
-                        id: user.id,
-                        name: user.data().name,
-                        avatarUrl: user.data().avatarUrl,
-                        title: user.data().title,
-                        role: user.data().role,
-                        isVerified: user.data().verified
+                    snapshot.forEach(user => {
+                        allUsers.push({
+                            id: user.id,
+                            name: user.data().name,
+                            avatarUrl: user.data().avatarUrl,
+                            title: user.data().title,
+                            role: user.data().role,
+                            isVerified: user.data().verified
+                        })
                     })
+
+                    setUsers(allUsers);
                 })
-                
-                setUsers(allUsers);
-            })
 
         }
         loadUsers();
     }, []);
 
-    async function signIn(email, password){
+    async function signIn(email, password) {
         setLoadingAuth(true);
 
         await firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(async (value) => {
-            let uid = value.user.uid;
+            .then(async (value) => {
+                let uid = value.user.uid;
 
-            const userProfile = await firebase.firestore().collection('users')
-            .doc(uid).get();
+                const userProfile = await firebase.firestore().collection('users')
+                    .doc(uid).get();
 
-            let data = {
-                uid: uid,
-                name: userProfile.data().name,
-                avatarUrl: userProfile.data().avatarUrl,
-                bannerUrl: userProfile.data().bannerUrl,
-                email: value.user.email,
-                role: userProfile.data().role,
-                aboutMe: userProfile.data().aboutMe,
-                location: userProfile.data().location,
-                linkedin: userProfile.data().linkedin,
-                github: userProfile.data().github,
-                isVerified: userProfile.data().verified
-            };
+                let data = {
+                    uid: userProfile.id,
+                    name: userProfile.data().name,
+                    avatarUrl: userProfile.data().avatarUrl,
+                    bannerUrl: userProfile.data().bannerUrl,
+                    email: value.user.email,
+                    role: userProfile.data().role,
+                    aboutMe: userProfile.data().aboutMe,
+                    location: userProfile.data().location,
+                    linkedin: userProfile.data().linkedin,
+                    github: userProfile.data().github,
+                    isVerified: userProfile.data().verified
+                };
 
-            setUser(data);
-            storageUser(data);
-            setLoadingAuth(false);
-            toast.success("Seja bem vindo(a) de volta!");
+                // const newToken = sign(
+                //     {
+                //         name: user.name,
+                //         email: user.email
+                //     },
+                //     process.env.JWT_SECRET,
+                //     {
+                //         subject: user.uid,
+                //         expiresIn: '30d'
+                //     }
+                // )
 
-        })
-        .catch((error) => {
-            console.log(error)
-            setLoadingAuth(false);
-            toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
-        })  
+                // setToken(newToken);
+                setUser(data);
+                storageUser(data);
+                setLoadingAuth(false);
+                toast.success("Seja bem vindo(a) de volta!");
+
+            })
+            .catch((error) => {
+                console.log(error)
+                setLoadingAuth(false);
+                toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
+            })
     }
 
-    async function signUp(name, email, password) {
+    async function signUp(name, email, password, passwordAgain) {
         setLoadingAuth(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async (value) => {
@@ -105,8 +123,7 @@ function AuthProvider({ children }) {
                         aboutMe: '',
                         location: '',
                         linkedin: '',
-                        github: '',
-                        likes: []
+                        github: ''
                     })
                     .then(() => {
 
@@ -123,9 +140,9 @@ function AuthProvider({ children }) {
                             linkedin: '',
                             github: '',
                         };
-
-                        setUser(data);
-                        storageUser(data);
+            
+                        // setUser(data);
+                        // storageUser(data); 
                         setLoadingAuth(false);
                         toast.success("Cadastro feito com sucesso. Seja bem vindo(a)!");
                     })
@@ -133,7 +150,6 @@ function AuthProvider({ children }) {
             .catch((error) => {
                 console.log(error)
                 setLoadingAuth(false);
-                // toast.error("Oops, algo deu errado. Tente novamente mais tarde.");
             })
     }
 
@@ -141,7 +157,7 @@ function AuthProvider({ children }) {
         localStorage.setItem('UserSystem', JSON.stringify(data));
     };
 
-    async function signOut(){
+    async function signOut() {
         await firebase.auth().signOut();
         localStorage.removeItem('UserSystem');
         setUser(null);

@@ -1,4 +1,4 @@
-import { SiHtml5, SiCss3, SiReact, SiNodedotjs, SiTailwindcss, SiTypescript, SiPython, SiVuedotjs, SiNextdotjs, SiJavascript, SiJava, SiStyledcomponents, SiSass, SiPostgresql, SiMysql, SiPhp, SiFirebase, SiDocker, SiRubyonrails, SiLaravel, SiAngular, SiFlutter, SiCplusplus, SiJquery } from 'react-icons/si'
+import { SiHtml5, SiCss3, SiRedux, SiNestjs, SiMongodb, SiPrisma, SiGit, SiReact, SiNodedotjs, SiTailwindcss, SiTypescript, SiPython, SiVuedotjs, SiNextdotjs, SiJavascript, SiJava, SiStyledcomponents, SiSass, SiPostgresql, SiMysql, SiPhp, SiFirebase, SiDocker, SiRubyonrails, SiLaravel, SiAngular, SiFlutter, SiCplusplus, SiJquery } from 'react-icons/si'
 
 export const allStacks = [
 	{
@@ -126,4 +126,30 @@ export const allStacks = [
 		icon: <SiJquery />,
 		color: "#38B7FF"
 	},
+	{
+		stack: "Redux", 
+		icon: <SiRedux />,
+		color: "#7E46C3"
+	},
+	{
+		stack: "Prisma", 
+		icon: <SiPrisma />,
+		color: "#0C344B"
+	},
+	{
+		stack: "Git", 
+		icon: <SiGit />,
+		color: "#F05033"
+	},
+	{
+		stack: "MongoDB", 
+		icon: <SiMongodb />,
+		color: "#00684A"
+	},
+	{
+		stack: "NestJS", 
+		icon: <SiNestjs />,
+		color: "#E0234E"
+	},
+	
 ]

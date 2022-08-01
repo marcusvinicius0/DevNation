@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
@@ -9,9 +9,11 @@ import ChatModal from '../../components/ChatModal';
 import ModalEditPublication from '../../components/ModalEditPublication';
 import JoinDiscord from '../../components/JoinDiscord';
 import Footer from '../../components/Footer';
+import SeeUpdates from '../../components/SeeUpdates'
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
+import { BiBriefcase } from 'react-icons/bi'
 
 import avatar from '../../assets/avatar.png';
 
@@ -34,12 +36,35 @@ export default function Dashboard() {
       setShowPostModal(!showPostModal)
    };
 
+   useEffect(() => {
+    
+      function loadToTop(){
+         var posicao = localStorage.getItem('posicaoScroll');
+
+         if (posicao) {
+            /* Timeout necessário para funcionar no Chrome */
+            setTimeout(function () {
+               window.scrollTo(0, posicao);
+            }, 1);      
+         }
+   
+         window.onscroll = function (e) {
+            posicao = window.scrollY;
+            localStorage.setItem('posicaoScroll', JSON.stringify(posicao));
+        }
+      }
+
+      loadToTop();
+
+   }, [])
+
    return (
       <>
          <Header />
          <div className={styles.dashboard}>
             <div className={styles.containerTeste}>
                <Sidebox />
+               <SeeUpdates />
             </div>
 
             <div className={styles.mainFeedContainer}>
@@ -68,7 +93,7 @@ export default function Dashboard() {
                         <span>Projeto</span>
                      </button>
                      <button onClick={() => togglePostModal()}>
-                        <AiFillPicture size={22} color="var(--soft-blue)" />
+                        <BiBriefcase size={22} color="var(--soft-blue)" />
                         <span>Repositório</span>
                      </button>
                   </div>

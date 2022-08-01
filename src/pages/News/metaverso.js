@@ -2,9 +2,6 @@ import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
 
-import NewsBox from '../../components/NewsBox';
-import ChatModal from '../../components/ChatModal';
-
 import { FaArrowLeft } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
@@ -33,8 +30,6 @@ export default function NewsMetaVerso() {
                     </a>
                 </div>
             </div>
-
-            <ChatModal />
         </>
     )
 }

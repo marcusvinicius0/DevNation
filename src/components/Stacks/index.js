@@ -6,7 +6,6 @@ import { allStacks } from './stacks.js'
 
 import firebase from 'firebase/app'
 import ModalStacks from '../ModalStacks';
-import { AuthContext } from '../../contexts/auth';
 import { RiPencilLine } from 'react-icons/ri';
 
 export default function Stacks({ user_id, state_button }) {
@@ -14,7 +13,7 @@ export default function Stacks({ user_id, state_button }) {
 	const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
 	useEffect(() => {
-		loadStacks()
+		loadStacks();
 	}, []);
 
 	async function loadStacks() {

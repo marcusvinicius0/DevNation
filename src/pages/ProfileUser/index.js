@@ -22,6 +22,7 @@ import inLogo from '../../assets/linkedin.png';
 import { AuthContext } from '../../contexts/auth';
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { usePublications } from '../../hooks/usePublications'
 
 import { RiPencilLine } from 'react-icons/ri';
 import { MdVerified } from 'react-icons/md'
@@ -29,73 +30,54 @@ import { MdVerified } from 'react-icons/md'
 export default function ProfileUser() {
 	const { user } = useContext(AuthContext);
 	const { id } = useParams();
+	const { loadUserPublications, userPublications } = usePublications();
 
 	const [editProfileModal, setEditProfileModal] = useState(false);
 	const [profilePictureModal, setprofilePictureModal] = useState(false);
 	const [modalProfileBanner, setModalProfileBanner] = useState(false);
 	const [publicationsProfile, setPublicationsProfile] = useState([]);
-	const [profileUser, setProfileUser] = useState(null);
+	const [profileUser, setProfileUser] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		loadPosts()
 		loadUser()
+		loadUserPublications(id)
 	}, [id])
 
 	async function loadUser() {
 		setLoading(true);
-		if(id) {
+		if (id) {
 			await firebase.firestore().collection('users')
-			.doc(id)
-			.get()
-			.then((snapshot) => {
-				if (snapshot.data()) {
-					let data = {
-						aboutMe: snapshot.data()?.aboutMe,
-						avatarUrl: snapshot.data().avatarUrl,
-						bannerUrl: snapshot.data().bannerUrl,
-						email: snapshot.data().email,
-						location: snapshot.data().location,
-						name: snapshot.data().name,
-						id: snapshot.id,
-						role: snapshot.data().role,
-						linkedin: snapshot.data().linkedin,
-						github: snapshot.data().github,
-						isVerified: snapshot.data().verified
-					}
-					console.log(data)
-					setProfileUser(data)
-					setLoading(false)
-				}
-			})
-			.catch( (error) => {
-				console.log(error)
-				setLoading(false)
-			})
-		}
-	}
-
-	async function loadPosts() {
-		await firebase.firestore().collection('publications')
-			.orderBy('created', 'desc')
-			.get()
-			.then((snapshot) => {
-				let arrayPublications = [];
-
-				snapshot.forEach((doc) => {
-					if (doc.data().user_id === id) {
+				.doc(id)
+				.get()
+				.then((snapshot) => {
+					if (snapshot.data()) {
 						let data = {
-							publication: doc.data().publication,
-							created: doc.data().created,
-							user_id: id,
-							imagePublicationUrl: doc.data().imagePublicationUrl,
-							id: doc.id
+							aboutMe: snapshot.data()?.aboutMe,
+							avatarUrl: snapshot.data().avatarUrl,
+							bannerUrl: snapshot.data().bannerUrl,
+							email: snapshot.data().email,
+							location: snapshot.data().location,
+							name: snapshot.data().name,
+							id: snapshot.id,
+							role: snapshot.data().role,
+							linkedin: snapshot.data().linkedin,
+							github: snapshot.data().github,
+							isVerified: snapshot.data().verified
 						}
-						arrayPublications.push(data)
+						console.log(data)
+						setProfileUser(data)
+						setLoading(false)
+					} else {
+						setProfileUser(null)
 					}
 				})
-				setPublicationsProfile(arrayPublications)
-			})
+				.catch((error) => {
+					console.log(error)
+					setLoading(false)
+					setProfileUser(null)
+				})
+		}
 	}
 
 	function toggleEditProfileModal() {
@@ -160,9 +142,9 @@ export default function ProfileUser() {
 								)}
 								{user.uid === profileUser.id && <button type="button"><RiPencilLine size={22} /></button>}
 							</div>
-							<ProjectsProfile user_id={profileUser.id} />
+							<ProjectsProfile user_id={profileUser.id} state_button={false}/>
 							<Stacks user_id={profileUser.id} state_button={false} />
-							<PublicationsProfile publications={publicationsProfile} user={profileUser} />
+							<PublicationsProfile publications={userPublications} user={profileUser} />
 						</div>
 						<NewsBox />
 					</div>

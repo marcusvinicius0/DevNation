@@ -21,43 +21,20 @@ import inLogo from '../../assets/linkedin.png';
 import { MdVerified } from 'react-icons/md'
 
 import { AuthContext } from '../../contexts/auth';
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
-
 import { RiPencilLine } from 'react-icons/ri';
+import { usePublications } from '../../hooks/usePublications'
 
 export default function Profile() {
 	const { user } = useContext(AuthContext);
+	const { loadUserPublications, userPublications } = usePublications()
 
 	const [editProfileModal, setEditProfileModal] = useState(false);
 	const [profilePictureModal, setprofilePictureModal] = useState(false);
 	const [modalProfileBanner, setModalProfileBanner] = useState(false);
 	const [publicationsProfile, setPublicationsProfile] = useState([])
 
-	useEffect(() => {
-		async function loadPosts() {
-			await firebase.firestore().collection('publications')
-				.orderBy('created', 'desc')
-				.get()
-				.then((snapshot) => {
-					let arrayPublications = [];
-
-					snapshot.forEach((doc) => {
-						if (doc.data().user_id === user.uid) {
-							let data = {
-								publication: doc.data().publication,
-								created: doc.data().created,
-								user_id: user.uid,
-								imagePublicationUrl: doc.data().imagePublicationUrl,
-								id: doc.id
-							}
-							arrayPublications.push(data)
-						}
-					})
-					setPublicationsProfile(arrayPublications)
-				})
-		}
-		loadPosts()
+	useEffect( () => {
+		loadUserPublications(user.uid)
 	}, [])
 
 	function toggleEditProfileModal() {
@@ -120,9 +97,9 @@ export default function Profile() {
 							<p>{user.aboutMe}</p>
 						)}
 					</div>
-					<ProjectsProfile user_id={user.uid} />
+					<ProjectsProfile user_id={user.uid} state_button={true} />
 					<Stacks user_id={user.uid} state_button={true} />
-					<PublicationsProfile publications={publicationsProfile} user={user} />
+					<PublicationsProfile publications={userPublications} user={user} />
 				</div>
 				<NewsBox />
 			</div>

@@ -93,7 +93,7 @@
 
 			.name {
 				padding: 0 0 0 1.5rem;
-				font-size: 20px;
+				font-size: 19px;
 				font-weight: 600;
 				display: flex;
 				align-items: center;
@@ -261,6 +261,7 @@
 
 				.name {
 					padding: 0 0 0 1rem;
+					font-size: 15px;
 				}
 
 				.role {
@@ -276,9 +277,8 @@
 }
 
 @media (min-width: 1700px) {
-	.container {
-		
 
+	.container {
 		.profileContainer {
 			margin: 0 auto;
 		}

@@ -56,6 +56,23 @@
     flex-direction: column;
     gap: 1.2rem;
 
+    label{
+        svg{
+            position: relative;
+            right: 2rem;
+            top: 0.5rem;
+            opacity: 0.5;
+        }
+
+        .eyeIcon{
+            position: relative;
+            right: 2rem;
+            top: 0.5rem;
+            cursor: pointer;
+        }
+    }
+
+
     button {
         margin-bottom: 1rem;
     }

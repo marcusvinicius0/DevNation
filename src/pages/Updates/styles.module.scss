@@ -1,0 +1,79 @@
+.containerUpdates {
+   margin: 5rem auto;
+   width: 90%;
+   background: var(--white);
+   border-radius: 0.5rem;
+   border: 1px solid rgb(0, 0, 0, 0.15);
+
+   header {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+
+      h1 {
+         font-size: 1.5rem;
+         font-weight: 500;
+      }
+   }
+
+   @media (max-width: 600px) {
+      width: 100%;
+
+      h1 {
+         font-size: 1rem;
+      }
+   }
+}
+
+.accordion {
+   background: rgb(0, 0, 0, 0.005);
+   border-radius: 0 !important;
+   border-top: 1px solid rgb(0, 0, 0, 0.15);
+   font-family: 'Poppins', sans-serif !important;
+
+   .widgetNew {
+      background: #85C126;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.1rem;
+      border-radius: 0.5rem;
+      min-width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .widgetBug {
+      background: #660097;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.1rem 0.5rem;
+      border-radius: 0.5rem;
+      min-width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .widgetComing {
+      background: #F77309;
+      color: #fff;
+      font-weight: 600;
+      padding: 0.1rem 0.5rem;
+      border-radius: 0.5rem;
+      min-width: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
+   .version {
+      color: rgb(0, 0, 0, 0.5);
+      font-weight: 600;
+      margin-right: 5px;
+   }
+
+   &:hover {
+      background: rgb(0, 0, 0, 0.1);
+   }
+}

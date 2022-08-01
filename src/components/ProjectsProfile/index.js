@@ -31,7 +31,7 @@ const breakpoints = {
 	}
 }
 
-export default function ProjectsProfile({ user_id }) {
+export default function ProjectsProfile({ user_id, state_button }) {
 	const [projects, setProjects] = useState([]);
 	const swiper = useSwiper();
 
@@ -66,12 +66,14 @@ export default function ProjectsProfile({ user_id }) {
 			<header>
 				<h1>Meus projetos</h1>
 
-				<div className={styles.projectsPageNavigation}>
-					<Link to="/myprojects">
-						Ver meus projetos
-						<BsArrowRightShort size={22}/>
-					</Link>
-				</div>
+				{state_button && (
+					<div className={styles.projectsPageNavigation}>
+						<Link to="/myprojects">
+							Ver meus projetos
+							<BsArrowRightShort size={22} />
+						</Link>
+					</div>
+				)}
 
 			</header>
 			<Swiper

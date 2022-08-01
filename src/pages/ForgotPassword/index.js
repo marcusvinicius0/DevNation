@@ -8,6 +8,7 @@ import { AuthContext } from '../../contexts/auth';
 
 import { toast } from 'react-toastify';
 import { FaSpinner } from 'react-icons/fa';
+import { MdEmail } from 'react-icons/md';
 
 import Input from '../../components/Userinterface/Input';
 import Button from '../../components/Userinterface/Button';
@@ -22,7 +23,7 @@ export default function ForgotPassword() {
 
         const auth = firebase.auth();
 
-        auth.sendPasswordResetEmail(email)
+        auth.sendPasswordResetEmail(email.replaceAll(" ", ""))
             .then(() => {
                 toast.success("Sucesso. Verifique seu email para redefinição de senha")
             })
@@ -51,12 +52,15 @@ export default function ForgotPassword() {
                 <h2>Alterar senha</h2>
 
                 <form className={styles.form} onSubmit={handlePassword}>
-    
-                    <Input
-                        placeholder="Digite seu e-mail"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                    />
+
+                    <label>
+                        <Input
+                            placeholder="Digite seu e-mail"
+                            value={email}
+                            onChange={(event) => setEmail(event.target.value)}
+                        />
+                        <MdEmail color="var(--black)" size={22} />
+                    </label>
 
                     <Button
                         type="submit"

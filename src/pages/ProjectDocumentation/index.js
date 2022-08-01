@@ -7,8 +7,10 @@ import { AiFillCheckSquare } from 'react-icons/ai';
 
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useEffect } from 'react';
 
 export default function ProjectDocumentation() {
+
 
    function handleLicense() {
       toast.warning("Em breve...")
@@ -36,6 +38,17 @@ export default function ProjectDocumentation() {
       "Página contribuidores",
       "Página NotFoundUser"
    ];
+
+   const tecs = [`${<a href="https://pt-br.reactjs.org/" target="_blank" rel="noreferrer">
+      • ReactJS
+   </a>}`, `${ <a href="https://sass-lang.com/" target="_blank" rel="noreferrer">
+                     • ReactJS
+                  </a>}`]
+
+   useEffect(() => {
+      console.log(tecs[0, 1])
+
+   }, [])
 
    return (
       <>
@@ -137,7 +150,7 @@ export default function ProjectDocumentation() {
             <div className={styles.phasesBox}>
                {phasesProject.map((item, index) => (
                   <div key={index} className={styles.contentBox}>
-                     <AiFillCheckSquare />
+                     <span><AiFillCheckSquare /></span>
                      <p>{item}</p>
                   </div>
                ))}

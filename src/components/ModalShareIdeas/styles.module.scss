@@ -72,13 +72,13 @@
 }
 
 .modalBox {
-   width: 30vw;
+   width: 700px;
    background-color: var(--white);
    margin: 6rem auto;
    border-radius: 15px;
 
    @media (max-width: 800px) {
-      width: 60vw;
+      width: 85%;
    }
 }
 

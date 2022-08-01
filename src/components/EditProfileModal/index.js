@@ -21,6 +21,11 @@ export default function EditProfileModal({ close }) {
     async function handleSave(e) {
         e.preventDefault();
 
+        if(name === ""){
+         toast.warning("Você deve indicar um nome!")
+         return null;
+        }
+
         await firebase.firestore().collection('users')
             .doc(user.uid)
             .update({

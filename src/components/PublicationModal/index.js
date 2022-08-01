@@ -20,10 +20,14 @@ export default function PublicModal({ close }) {
 	const [imagePublication, setImagePublication] = useState(null);
 	const [imagePublicationUrl, setImagePublicationUrl] = useState(null);
 	const { user } = useContext(AuthContext);
-	const { loadPublications } = usePublications();
+	const { loadPublications, handleCreatePublication } = usePublications();
+	const [loading, setLoading] = useState(false);
+  
 
+	
 	async function handleSave(e) {
 		e.preventDefault();
+		setLoading(true);
 		if (imagePublication) {
 			await firebase.storage().ref(`images/${user.uid}/${imagePublication.name}`)
 				.put(imagePublication)
@@ -32,50 +36,36 @@ export default function PublicModal({ close }) {
 						.child(`${imagePublication.name}`).getDownloadURL()
 						.then(async (url) => {
 							let urlFoto = url
-							await firebase.firestore().collection('publications')
-								.add({
-									publication: text,
-									user_id: user.uid,
-									created: new Date(),
-									imagePublicationUrl: urlFoto
-								})
-								.then(() => {
-									toast.success('Publicação feita com sucesso.');
-									setText("");
-									setImagePublication(null);
-									setImagePublicationUrl(null);
-									close();
-									loadPublications();
-								})
-								.catch((error) => {
-									console.log(error)
-									toast.error('Ops, algo deu errado no DB.');
-								})
+							let textVerified = (text.replaceAll("  ", "")).replaceAll("\n\n\n", "")
+							await handleCreatePublication({ publication: textVerified, user: user, image_publication_url: urlFoto }).then(() => {
+								toast.success('Publicação feita com sucesso.');
+								setText("");
+								setLoading(false);
+								setImagePublication(null);
+								setImagePublicationUrl(null);
+								close();
+								console.log(text);
+							}).catch((err) => {
+								console.log(err)
+								setLoading(false);
+							});
 						})
 				})
 				.catch((error) => {
-					console.log(error)
+					console.log(error);
+					setLoading(false);
 					toast.error('Ops, algo deu errado.');
 				})
 		} else {
-			await firebase.firestore().collection('publications')
-				.add({
-					publication: text,
-					user_id: user.uid,
-					created: new Date()
-				})
-				.then(() => {
-					toast.success('Publicação feita com sucesso.');
-					setText("");
-					setImagePublication(null);
-					setImagePublicationUrl(null);
-					close();
-					loadPublications();
-				})
-				.catch((error) => {
-					console.log(error)
-					toast.error('Ops, algo deu errado no DB.');
-				})
+			await handleCreatePublication({ publication: text, user: user, image_publication_url: null }).then((res) => {
+				console.log(res)
+				toast.success('Publicação feita com sucesso.');
+				setText("");
+				setLoading(false);
+				setImagePublication(null);
+				setImagePublicationUrl(null);
+				close();
+			});
 		}
 	}
 
@@ -140,6 +130,9 @@ export default function PublicModal({ close }) {
 							<button type="button" onClick={coming}><FaBriefcase size={20} /></button>
 							<button type="button" onClick={coming}><IoEllipsisHorizontalSharp size={20} /></button>
 						</div>
+						{loading ? 
+						<button /> : ""}
+
 						{text === "" ? (
 							<button type="submit" className={styles.buttonToHandlePublication} disabled>Publicar</button>
 						) : (

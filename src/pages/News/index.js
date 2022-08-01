@@ -2,8 +2,6 @@ import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
 
-import ChatModal from '../../components/ChatModal';
-
 import { FaArrowLeft } from 'react-icons/fa';
 
 import { Link } from 'react-router-dom';
@@ -17,10 +15,10 @@ export default function NewsPage() {
         <>
             <Header />
             <div className={styles.container}>
+                <img src={aprendaProgramar} alt="aprende-programar" />
                 <Link className={styles.buttonBack} to="/dashboard">
                     <FaArrowLeft color="var(--soft-blue)" size={30} />
                 </Link>
-                <img src={aprendaProgramar} alt="aprende-programar" />
 
                 <div className={styles.informationBox}>
                     <h1>• 5 passos para aprender a programar</h1>
@@ -66,8 +64,6 @@ export default function NewsPage() {
                     </a>
                 </div>
             </div>
-
-            <ChatModal />
         </>
     )
 }

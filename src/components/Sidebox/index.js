@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 
 import banner from "../../assets/banner.png";
 
-import { FaUserCircle, FaEnvelopeOpenText, FaBook, FaRegLightbulb } from "react-icons/fa";
+import { FaUserCircle, FaEnvelopeOpenText } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { BsBookmarkFill } from 'react-icons/bs';
 import { MdVerified, MdLightbulb } from 'react-icons/md';
+import { AiFillGithub } from 'react-icons/ai';
 
 import avatar from "../../assets/avatar.png";
 import { toast } from 'react-toastify';
@@ -58,7 +59,7 @@ export default function Sidebox() {
 
         <Link to="/repositories">
           <span>
-            <FaBook color="var(--soft-blue)" size={22} />
+            <AiFillGithub color="var(--soft-blue)" size={22} />
             <p>Encontrar repositórios</p>
           </span>
         </Link>
