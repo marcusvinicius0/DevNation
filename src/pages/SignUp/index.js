@@ -36,7 +36,7 @@ export default function SignUp() {
       }
 
       if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
-         signUp(name.replaceAll(" ", ""), email.replaceAll(" ", ""), password.replaceAll(" ", ""))
+         signUp(name, email.replaceAll(" ", ""), password.replaceAll(" ", ""))
       } else {
          toast.warning("Preencha todos os campos.");
          setPassword('');
