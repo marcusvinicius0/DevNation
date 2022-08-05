@@ -21,6 +21,7 @@ import NewsAlura from '../pages/News/alura';
 import NewsLawProject from '../pages/News/projetoLei';
 import NewsMetaVerso from '../pages/News/metaverso';
 import NewsDevelopers from '../pages/News/desenvolvedores';
+import Opportunities from '../pages/Opportunities';
 
 import MyProjects from '../pages/MyProjects'
 
@@ -54,6 +55,7 @@ export default function MyRoutes() {
                 <Route exact path="/myprojects" component={MyProjects} isPrivate />
                 <Route exact path="/message" component={Message} isPrivate />
                 <Route exact path="/publication/:id" component={Publication} isPrivate />
+					 <Route exact path="/opportunities" component={Opportunities} isPrivate />
             </Switch>
         </>
     )
