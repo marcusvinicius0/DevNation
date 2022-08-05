@@ -107,7 +107,7 @@ function AuthProvider({ children }) {
             })
     }
 
-    async function signUp(name, email, password, passwordAgain) {
+    async function signUp(name, email, password) {
         setLoadingAuth(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async (value) => {
@@ -123,7 +123,8 @@ function AuthProvider({ children }) {
                         aboutMe: '',
                         location: '',
                         linkedin: '',
-                        github: ''
+                        github: '',
+                        createdAt: new Date()
                     })
                     .then(() => {
 

@@ -23,6 +23,14 @@ export default function Repositories() {
    const [loading, setLoading] = useState(false);
    const [alert, setAlert] = useState(null);
 
+   useEffect(() => {
+
+      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+      goTop();
+
+   }, []);
+
    // buscar
    useEffect(() => {
       const repoStorage = localStorage.getItem('repos');

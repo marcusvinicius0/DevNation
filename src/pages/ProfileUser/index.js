@@ -40,6 +40,14 @@ export default function ProfileUser() {
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
+
+		const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+		goTop();
+
+	}, []);
+
+	useEffect(() => {
 		loadUser()
 		loadUserPublications(id)
 	}, [id])

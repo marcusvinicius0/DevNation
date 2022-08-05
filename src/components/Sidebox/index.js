@@ -7,7 +7,7 @@ import banner from "../../assets/banner.png";
 import { FaUserCircle, FaEnvelopeOpenText } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { BsBookmarkFill } from 'react-icons/bs';
-import { MdVerified, MdLightbulb } from 'react-icons/md';
+import { MdVerified, MdLightbulb, MdNewReleases } from 'react-icons/md';
 import { AiFillGithub } from 'react-icons/ai';
 
 import avatar from "../../assets/avatar.png";
@@ -75,6 +75,13 @@ export default function Sidebox() {
           <span>
             <MdLightbulb color="var(--soft-blue)" size={22} />
             <p>Sugestões</p>
+          </span>
+        </Link>
+
+        <Link to="/updates">
+          <span>
+            <MdNewReleases color="var(--soft-blue)" size={22} />
+            <p>Atualizações</p>
           </span>
         </Link>
 

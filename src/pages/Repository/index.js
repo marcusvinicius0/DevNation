@@ -22,6 +22,14 @@ export default function Repository({ match }) {
 
    useEffect(() => {
 
+      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+      goTop();
+
+   }, []);
+
+   useEffect(() => {
+
       async function load() {
          const repoName = decodeURIComponent(match.params.repository);
 

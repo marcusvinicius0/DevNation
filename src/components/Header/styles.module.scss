@@ -10,6 +10,10 @@
     top: 0;
 	 align-items: center;
 
+	 .justLogoNavigation {
+		display: none;
+	 }
+
 	 .logoNavigation{
 		width: 180px;
 		height: 50px;
@@ -267,13 +271,15 @@
 
 @media (max-width: 630px){
     .header{
-		.logo {
+		padding-left: 2rem;
+
+		.logoNavigation {
 			display: none;
 		}
 
 		.inputSearchUsers {
-			margin-left: 0;
-			width: 200px;
+			margin-left: -1.5rem;
+			width: 250px;
 
 			.searchBox {
 				position: fixed;

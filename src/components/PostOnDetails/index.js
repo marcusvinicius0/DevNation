@@ -1,19 +1,21 @@
 import { useContext, useEffect, useState, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import styles from './styles.module.scss';
 
 import avatar from "../../assets/avatar.png";
-
-import firebase from '../../services/firebaseConnection';
+import firebase from "firebase/app"
 
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { BiTrash, BiMessageRounded, BiShare, BiBookmark } from 'react-icons/bi';
 import { MdVerified } from 'react-icons/md';
-import { HiSpeakerphone, HiHeart, HiOutlineHeart } from 'react-icons/hi';
+import { HiSpeakerphone, HiHeart, HiOutlineHeart, HiOutlineEmojiHappy } from 'react-icons/hi';
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import CircularProgress from '@mui/material/CircularProgress';
+import CommentModal from "../../components/CommentModal"
+import Comment from "./Comment"
 
 import { usePublications } from "../../hooks/usePublications";
 import { AuthContext } from "../../contexts/auth";
@@ -24,23 +26,32 @@ import { toast } from "react-toastify";
 
 const ITEM_HEIGHT = 48;
 
-export default function Post({ publication }) {
+export default function PostOnDetails({ publication }) {
+	const { id } = useParams()
 	const [popoverActive, setPopoverActive] = useState(0);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [typeHeart, setTypeHeart] = useState("desliked");
 	const [numberOfLikes, setNumberOfLikes] = useState(publication.likes && publication.likes.length);
+	const [modalCommentIsActive, setModalCommentIsActive] = useState(false);
+	const [commentsOnPublication, setCommentsOnPublication] = useState([]);
 
 	const open = Boolean(anchorEl);
 
-	const { user, users } = useContext(AuthContext)
-	const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } = usePublications()
+	const { user } = useContext(AuthContext)
+	const { handleDeletePublication, loadingPublications, likeOrDeslikePublication, loading } = usePublications()
 
 	const handleClick = (event) => setAnchorEl(event.currentTarget);
-	const handleClose = () => setAnchorEl(null);
+	const handleClose = () => {
+		setAnchorEl(null)
+		setModalCommentIsActive(false)
+	};
 
 	useEffect(() => {
-		verifyButtonLike({ publication_id: publication.id, likes: publication.likes })
-	}, [])
+		verifyButtonLike({ publication_id: publication.id, likes: publication.likes });
+		setCommentsOnPublication([])
+		loadComments();
+	}, [publication, id])
+
 
 	async function handleDelete() {
 		await handleDeletePublication(popoverActive.publication_id);
@@ -51,6 +62,11 @@ export default function Post({ publication }) {
 		toast.success("Denuncia enviada com sucesso.");
 		handleClose()
 	}
+
+	function handleSavePublication() {
+		toast.warning("Em breve...")
+		handleClose()
+	};
 
 	async function handleLike({ user_id, publication_id, likes }) {
 		const res = await likeOrDeslikePublication({ user_id, publication_id })
@@ -80,7 +96,34 @@ export default function Post({ publication }) {
 		}
 	}
 
-	if (loadingPublications) {
+	async function loadComments() {
+		let array = []
+		publication.comments?.forEach(async (item) => {
+			await firebase.firestore().collection("users")
+				.doc(item.user_id)
+				.get()
+				.then((res) => {
+					let data = {
+						comment: item.comment,
+						created_at: item.created_at,
+						user_id: item.user_id,
+						publication_id: item.publication_id,
+						id: item.id,
+						user_name: res.data().name,
+						user_role: res.data().role,
+						user_avatar_url: res.data().avatarUrl
+					}
+					array.push(data)
+				})
+				setCommentsOnPublication(array)
+		})
+	}
+
+	function newComment(comment) {
+		setCommentsOnPublication([comment, ...commentsOnPublication])
+	}
+
+	if (loading) {
 		return (
 			<div className={styles.loading}>
 				<CircularProgress />
@@ -89,7 +132,7 @@ export default function Post({ publication }) {
 	}
 
 	return (
-		<Link to={`/publication/${publication.id}`}>
+		<>
 			<div className={styles.post}>
 				<header>
 					{publication.avatarUrl === null ?
@@ -104,16 +147,14 @@ export default function Post({ publication }) {
 						</Link>
 						<p>{publication.user_role}</p>
 						<time>
-							{format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+							{/* {format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
 								locale: ptBR
-							})}
+							})} */}
 						</time>
 					</div>
 				</header>
 				<div className={styles.contentPost}>
-					<div className={styles.description}
-					// dangerouslySetInnerHTML={{ __html: publication.publication.replace(reURL, '<a href="http$2://www$3.$4$5$6">$1</a>' ) }}
-					>
+					<div className={styles.description}>
 						{publication.publication}
 					</div>
 				</div>
@@ -133,10 +174,15 @@ export default function Post({ publication }) {
 							</>
 						)}
 					</button>
-					<button><BiMessageRounded /><span>0</span></button>
-					<button onClick={() => toast.warning("Em breve...")}><BiShare /><span>0</span></button>
+					<button onClick={() => setModalCommentIsActive(true)}><BiMessageRounded /><span>{publication.comments?.length || 0}</span></button>
+					<button onClick={() => console.log(commentsOnPublication)}><BiShare /><span>0</span></button>
 					<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>
 				</footer>
+				<div className={styles.comments}>
+					{commentsOnPublication.map( (comment, index) => (
+						<Comment key={index} comment={comment} />
+					))}
+				</div>
 				<IconButton
 					aria-label="more"
 					id="long-button"
@@ -152,6 +198,7 @@ export default function Post({ publication }) {
 					<IoEllipsisHorizontalSharp />
 				</IconButton>
 			</div>
+
 			<Menu
 				id="long-menu"
 				MenuListProps={{
@@ -183,6 +230,7 @@ export default function Post({ publication }) {
 					</div>
 				</MenuItem>
 			</Menu>
-		</Link>
+			{modalCommentIsActive && <CommentModal closeModal={handleClose} publication={publication} newComment={newComment} />}
+		</>
 	)
 }

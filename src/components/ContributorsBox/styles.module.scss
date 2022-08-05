@@ -1,10 +1,33 @@
+.container {
+   display: flex;
+   justify-content: space-between;
+   cursor: pointer;
+
+   svg {
+      margin: 2.7rem 1rem 0 0;
+   }
+}
+
+.containerOn {
+   display: flex;
+   justify-content: space-between;
+   cursor: pointer;
+   background-color: #F5F5F5;
+
+   svg {
+      margin: 2.7rem 1rem 0 0;
+   }
+
+}
+
 .box {
    display: flex;
    flex-direction: row;
+   transition: all 0.6s;
 
    img {
-      width: 55px;
-      height: 55px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
    }
@@ -13,27 +36,46 @@
    .contributorInfo {
       display: flex;
       flex-direction: column;
-      margin: 0 0 0 0.5rem;
 
       p {
-         font-size: 14px;
+         padding: 1rem 0 0 0;
+         font-size: 1.2rem;
       }
    }
 }
 
-.contactBox {
-   position: relative;
-   left: 5rem;
-   top: -1.2rem;
-   display: flex;
-   align-items: center;
-   gap: 0.5rem;
-   width: 15%;
 
-   p {
-      font-size: 13px;
+.container:hover {
+   background-color: #F5F5F5;
+}
+
+.contributorInfoBox {
+   background-color: #F5F5F5;
+   cursor: pointer;
+   display: flex;
+   flex-direction: column;
+   gap: 2rem;
+
+   .contributorRole {
+      margin: -3rem 0 0 7rem;
+   }
+
+
+   .contactBox {
+      position: relative;
+      left: 7rem;
+      top: -1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      width: 15%;
+
+      p {
+         font-size: 1rem;
+      }
    }
 }
+
 
 @media (max-width: 870px) {
    .box {
@@ -52,8 +94,8 @@
    }
 }
 
-@media (max-width: 570px){
-   .contactBox{
+@media (max-width: 570px) {
+   .contactBox {
       top: 0.1rem;
    }
 }

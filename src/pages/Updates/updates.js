@@ -8,11 +8,25 @@
 
 export const allUpdates = [
 	{
+		title:"Scrollbar auto nas páginas.",
+		type:"bug",
+		description:"Ao navegar pelas páginas depois de ter usado scrollbar na atual, a posição da mesma persistia. Agora volta ao topo da página.",
+		version:"1.X.X",
+		date:"05/08/2022"
+	},
+	{
 		title: "Funcionalidades de salvar e comentar publicação.",
 		type: "coming",
 		description: "Em breve as funcionalidades de salvar e comentar nas publicações serão adicionadas",
 		version: "1.X.X",
 		date: "XX/08/2022"
+	},
+	{
+		title: "Inspecionar publicação.",
+		type: "new",
+		description: "Ao clicar na publicação, o usuário é redirecionado para uma página onde aparece apenas a publicação clicada.",
+		version: "1.2.4",
+		date: "04/08/2022"
 	},
 	{
 		title: "Formatação de campos de texto.",

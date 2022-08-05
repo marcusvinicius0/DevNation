@@ -11,6 +11,10 @@ export default function Feed() {
 
 	useEffect(() => {
 		loadPublications();
+
+		setTimeout( () => {
+			loadPublications()
+		}, 400)
 	}, []);
 
 	if (loadingPublications) {

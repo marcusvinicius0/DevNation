@@ -53,10 +53,12 @@
 
 .form {
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 1.2rem;
 
     label{
+        padding-left: 1rem;
         svg{
             position: relative;
             right: 2rem;
@@ -115,51 +117,27 @@
 
 }
 
-@media (min-width: 1500px) {
+@media (min-width: 1700px) {
+
     .contentContainer {
         padding: 0;
 
         h1 {
-            font-size: 4rem;
-        }
-
-        p {
-            font-size: 1.9rem;
-        }
-
-        a {
-            font-size: 1.6rem;
-        }
-    }
-
-    .loginContainer {
-        h2 {
             font-size: 3.5rem;
         }
-    }
-}
-
-@media (min-width: 1900px) {
-
-    .contentContainer {
-        padding: 0;
-
-        h1 {
-            font-size: 5rem;
-        }
 
         p {
-            font-size: 2.4rem;
+            font-size: 1.5rem;
         }
 
         a {
-            font-size: 2rem;
+            font-size: 1rem;
         }
     }
 
     .loginContainer {
         h2 {
-            font-size: 3.8rem;
+            font-size: 3rem;
         }
     }
 }

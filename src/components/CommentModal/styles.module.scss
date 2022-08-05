@@ -1,0 +1,126 @@
+.containerModal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6);
+	z-index: 99;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	.contentModal {
+		max-width: 600px;
+		width: 100%;
+		background: #fff;
+		position: relative;
+		border-radius: 1rem;
+
+		header {
+			height: 4rem;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+			align-items: center;
+			display: flex;
+			justify-content: space-between;
+			padding: 0 1rem;
+			position: relative;
+
+			h2 {
+				font-weight: 600;
+				font-size: 1.2rem;
+			}
+
+			button {
+				background: var(--blue-500);
+				border: 0;
+				outline: 0;
+				width: 30px;
+				height: 30px;
+				border-radius: 100%;
+				color: #fff;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+
+				&:hover {
+					background: rgba(0, 0, 0, 0.1);
+				}
+			}
+		}
+
+		.toComment {
+			padding: 1rem;
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+
+			img {
+				width: 70px;
+				height: 70px;
+				border-radius: 100%;
+			}
+
+			.textarea {
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				gap: 0.3rem;
+
+				textarea {
+					width: 100%;
+					height: 70px;
+					border-radius: 1rem;
+					border: 1px solid rgba(0, 0, 0, 0.1);
+					padding: 1rem;
+					resize: none;
+				}
+			}
+		} 
+
+		.buttonToHandleComment {
+			background: var(--blue-500);
+			color: #fff;
+			border: 0;
+			font-weight: 600;
+			border-radius: 1rem;
+			padding: 0.3rem 1rem;
+			position: absolute;
+			bottom: 1.2rem;
+			right: 1rem;
+		}
+		
+		.buttonDisabled {
+			background: var(--soft-gray);
+			color: #fff;
+			border: 0;
+			font-weight: 600;
+			border-radius: 1rem;
+			padding: 0.3rem 1rem;
+			position: absolute;
+			bottom: 1.2rem;
+			right: 1rem;
+			cursor: not-allowed;
+		}
+
+		.icons {
+			display: flex;
+			gap: 0.1rem;
+
+			button {
+				background: 0;
+				border: 0;
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 100%;
+
+				&:hover {
+					background: rgba(0, 0, 0, 0.1);
+				}
+			}
+		}
+	}
+}

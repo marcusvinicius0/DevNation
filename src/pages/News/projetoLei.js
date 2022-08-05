@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
@@ -9,6 +10,15 @@ import { Link } from 'react-router-dom';
 import projetoLei from '../../assets/projeto-lei.jpg';
 
 export default function NewsLawProject() {
+
+    useEffect(() => {
+
+        const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+  
+        goTop();
+  
+     }, []);
+
     return (
         <>
             <Header />

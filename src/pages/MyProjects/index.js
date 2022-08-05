@@ -15,8 +15,16 @@ import { toast } from 'react-toastify'
 export default function MyProjects() {
 	const { user } = useContext(AuthContext)
 
-   const [modalNewProjectIsOpen, setModalNewProjectIsOpen] = useState(false)
-	const [projects, setProjects] = useState([])
+   const [modalNewProjectIsOpen, setModalNewProjectIsOpen] = useState(false);
+	const [projects, setProjects] = useState([]);
+
+	useEffect(() => {
+
+      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+      goTop();
+
+   }, []);
 
 	useEffect( () => {
 		loadProjects();

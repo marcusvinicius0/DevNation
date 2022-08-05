@@ -15,7 +15,7 @@ import Repository from '../pages/Repository';
 import Suggestions from '../pages/Suggestions';
 import ProjectDocumentation from '../pages/ProjectDocumentation';
 import Updates from '../pages/Updates';
-
+import Publication from '../pages/Publication'
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
 import NewsLawProject from '../pages/News/projetoLei';
@@ -25,7 +25,6 @@ import NewsDevelopers from '../pages/News/desenvolvedores';
 import MyProjects from '../pages/MyProjects'
 
 import Message from '../pages/Message';
-import NotFound from '../pages/NotFound';
 
 export default function MyRoutes() {
     return (
@@ -54,8 +53,7 @@ export default function MyRoutes() {
 
                 <Route exact path="/myprojects" component={MyProjects} isPrivate />
                 <Route exact path="/message" component={Message} isPrivate />
-
-                <Route path="*" component={NotFound} />
+                <Route exact path="/publication/:id" component={Publication} isPrivate />
             </Switch>
         </>
     )

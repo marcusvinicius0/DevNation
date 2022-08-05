@@ -1,6 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
 import styles from './styles.module.scss';
-import firebase from 'firebase/app';
 
 import Header from '../../components/Header';
 
@@ -31,7 +30,16 @@ export default function Profile() {
 	const [editProfileModal, setEditProfileModal] = useState(false);
 	const [profilePictureModal, setprofilePictureModal] = useState(false);
 	const [modalProfileBanner, setModalProfileBanner] = useState(false);
-	const [publicationsProfile, setPublicationsProfile] = useState([])
+	const [publicationsProfile, setPublicationsProfile] = useState([]);
+
+	useEffect(() => {
+
+		const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+		goTop();
+
+	}, []);
+
 
 	useEffect( () => {
 		loadUserPublications(user.uid)

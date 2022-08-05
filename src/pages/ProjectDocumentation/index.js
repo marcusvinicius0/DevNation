@@ -16,6 +16,15 @@ export default function ProjectDocumentation() {
       toast.warning("Em breve...")
    };
 
+   useEffect(() => {
+
+      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+      goTop();
+
+   }, []);
+
+
    const phasesProject = [
       "Entendimento do projeto",
       "Instalação das dependências",

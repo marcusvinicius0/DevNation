@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
@@ -11,6 +12,15 @@ import qualLinguagem from '../../assets/qual-linguagem.png';
 import qualLinguagemEscolher from '../../assets/qual-utilizar.png';
 
 export default function NewsPage() {
+
+    useEffect(() => {
+
+        const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+  
+        goTop();
+  
+     }, []);
+  
     return (
         <>
             <Header />

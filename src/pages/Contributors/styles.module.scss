@@ -1,6 +1,6 @@
 .container{
    margin: 5rem auto;
-   width: 800px;
+   width: 90%;
    height: 100%;
    background-color: var(--white);
    padding: 1rem;
@@ -9,23 +9,26 @@
 
    header{
       display: flex;
-      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
       background-color: var(--whitesmoke);
       border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
    }
 
    h1{
-      font-size: 30px;
-      padding: 2rem 1rem 1rem 1rem;
-      border-radius: 15px;
+      font-size: 2.5rem;
+      margin-left: 0.5rem;
+      padding: 0.5rem 0.5rem;
+      border-top-right-radius: 30px;
       color: var(--blue-500);
-      text-align: center;
       z-index: 3;
    }
 
    img{
       object-fit: cover;
       margin: 0.5rem;
+      border-radius: 25%;
    }
 
 
@@ -35,7 +38,8 @@
    }
 
    h3{
-
+      color: var(--blue-500);
+      font-size: 1.5rem;
    }
 }
 
@@ -70,6 +74,6 @@
 
 @media(min-width: 1700px){
    .container{
-      margin: 10rem auto;
+      margin: 5rem auto;
    }
 }

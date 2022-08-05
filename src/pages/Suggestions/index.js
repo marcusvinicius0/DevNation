@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
@@ -12,6 +12,14 @@ import { AiFillBug } from 'react-icons/ai';
 export default function Suggestions() {
    const [modalReport, setModalReport] = useState(false);
    const [modalShareIdeas, setModalShareIdeas] = useState(false);
+
+   useEffect(() => {
+
+      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+      goTop();
+
+   }, []);
 
    function toggleModalReportBug() {
       setModalReport(!modalReport);

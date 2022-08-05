@@ -9,7 +9,6 @@ import ChatModal from '../../components/ChatModal';
 import ModalEditPublication from '../../components/ModalEditPublication';
 import JoinDiscord from '../../components/JoinDiscord';
 import Footer from '../../components/Footer';
-import SeeUpdates from '../../components/SeeUpdates'
 
 import { AiFillPicture } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
@@ -37,6 +36,14 @@ export default function Dashboard() {
    };
 
    useEffect(() => {
+
+      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+
+      goTop();
+
+   }, []);
+
+   useEffect(() => {
     
       function loadToTop(){
          var posicao = localStorage.getItem('posicaoScroll');
@@ -56,7 +63,7 @@ export default function Dashboard() {
 
       loadToTop();
 
-   }, [])
+   }, []);
 
    return (
       <>
@@ -64,7 +71,6 @@ export default function Dashboard() {
          <div className={styles.dashboard}>
             <div className={styles.containerTeste}>
                <Sidebox />
-               <SeeUpdates />
             </div>
 
             <div className={styles.mainFeedContainer}>
@@ -98,11 +104,8 @@ export default function Dashboard() {
                      </button>
                   </div>
                </div>
-
                <hr />
-
                <Feed />
-
             </div>
 
             <div className={styles.newsAndAdversiting}>

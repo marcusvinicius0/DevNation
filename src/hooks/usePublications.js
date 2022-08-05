@@ -14,7 +14,9 @@ export default function PublicationsProvider({ children }) {
 	const [publications, setPublications] = useState([]);
 	const [userPublications, setUserPublications] = useState([]);
 	const [loadingPublications, setLoadingPublications] = useState(false);
-	const [allLikes, setAllLikes] = useState([])
+	const [loading, setLoading] = useState(false);
+	const [allLikes, setAllLikes] = useState([]);
+	const [publication, setPublication] = useState([])
 
 	async function loadPublications() {
 		setLoadingPublications(true);
@@ -35,7 +37,8 @@ export default function PublicationsProvider({ children }) {
 							id: item.id,
 							avatarUrl: snap.data().avatarUrl,
 							created_at: item.created_at,
-							likes: item.likes
+							likes: item.likes,
+							comments: item.comments
 						}
 						arrayPublications.push(dataUser)
 						const newarray = arrayPublications.sort((a, b) => {
@@ -55,6 +58,7 @@ export default function PublicationsProvider({ children }) {
 		await apiDsn.get("/user/publications", { params: { user_id } }).then((res) => {
 			let arrayPublications = [];
 			res.data.forEach(async (item) => {
+				console.log('loadUserPublications')
 				await firebase.firestore().collection("users")
 					.doc(item.user_id)
 					.get()
@@ -69,7 +73,8 @@ export default function PublicationsProvider({ children }) {
 							id: item.id,
 							avatarUrl: snap.data().avatarUrl,
 							created_at: item.created_at,
-							likes: item.likes
+							likes: item.likes,
+							comments: item.comments
 						}
 						arrayPublications.push(dataUser);
 					})
@@ -90,7 +95,8 @@ export default function PublicationsProvider({ children }) {
 				created_at: res.data.created_at,
 				avatarUrl: user.avatarUrl,
 				userIsVerified: user.isVerified,
-				likes: []
+				likes: [],
+				comments: []
 			}
 			setPublications([data, ...publications])
 		})
@@ -152,6 +158,47 @@ export default function PublicationsProvider({ children }) {
 		return res
 	}
 
+	async function loadPublicationById(publication_id) {
+		setLoading(true)
+		const res = await apiDsn.get("/publications/details", { params: { publication_id } });
+		if(res.data) {
+			await firebase.firestore().collection("users")
+					.doc(res.data.user_id)
+					.get()
+					.then((snap) => {
+						let dataPublication = {
+							user_name: snap.data().name,
+							user_role: snap.data().role,
+							user_id: res.data.user_id,
+							userIsVerified: snap.data().verified,
+							publication: res.data.publication,
+							imagePublicationUrl: res.data.image_publication_url,
+							id: res.data.id,
+							avatarUrl: snap.data().avatarUrl,
+							created_at: res.data.created_at,
+							likes: res.data.likes,
+							comments: res.data.comments
+						}
+						setPublication(dataPublication)
+						setLoading(false)
+					})
+		}
+		setLoading(false)
+	}
+
+	async function registerNewComment(comment, publication_id, user_id) {
+		let data = {
+			comment, 
+			publication_id, 
+			user_id
+		}
+		await apiDsn.post("/comments", data).then( (res) => {
+			console.log(res)
+		}).catch( (err) => {
+			console.log(err)
+		})
+	}
+
 	return (
 		<>
 			<PublicationsContext.Provider value={{
@@ -162,7 +209,10 @@ export default function PublicationsProvider({ children }) {
 				handleCreatePublication,
 				loadUserPublications,
 				userPublications,
-				likeOrDeslikePublication
+				likeOrDeslikePublication,
+				loadPublicationById,
+				publication,
+				registerNewComment
 			}}>
 				{children}
 			</PublicationsContext.Provider>

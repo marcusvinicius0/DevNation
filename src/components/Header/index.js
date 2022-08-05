@@ -129,12 +129,12 @@ export default function Header(props) {
                         Configurações
                      </Link>
                   </li>
-                  <li className={pathname === "/updates" ? styles.active : ""}>
+                  {/* <li className={pathname === "/updates" ? styles.active : ""}>
                      <Link to="/updates">
                         <MdNewReleases size={20} />
                         Atualizações
                      </Link>
-                  </li>
+                  </li> */}
                   <li className={styles.aboutBox}>
                      <Link to="/documentation">
                         <AiFillInfoCircle size={20} />

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
 import Header from '../../components/Header';
@@ -9,6 +10,16 @@ import { Link } from 'react-router-dom';
 import aluraCurso from '../../assets/alura-curso.png';
 
 export default function NewsAlura() {
+
+    useEffect(() => {
+
+        const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+  
+        goTop();
+  
+     }, []);
+  
+
     return (
         <>
             <Header />

@@ -11,6 +11,10 @@
 		width: 100%;
 		max-width: 1000px;
 	}
+
+	@media(max-width: 600px) {
+		border-radius: 0rem;
+	}
 }
 
 .loading {
