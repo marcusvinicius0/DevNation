@@ -10,7 +10,7 @@ import ModalEditPublication from '../../components/ModalEditPublication';
 import JoinDiscord from '../../components/JoinDiscord';
 import Footer from '../../components/Footer';
 
-import { AiFillPicture } from 'react-icons/ai';
+import { AiFillPicture, AiOutlineGithub } from 'react-icons/ai';
 import { FiVideo } from 'react-icons/fi';
 import { BiBriefcase } from 'react-icons/bi'
 
@@ -95,11 +95,11 @@ export default function Dashboard() {
                         <span>Vídeo</span>
                      </button>
                      <button onClick={() => togglePostModal()}>
-                        <AiFillPicture size={22} color="var(--soft-blue)" />
+                        <BiBriefcase size={22} color="var(--soft-blue)" />
                         <span>Projeto</span>
                      </button>
                      <button onClick={() => togglePostModal()}>
-                        <BiBriefcase size={22} color="var(--soft-blue)" />
+                        <AiOutlineGithub size={22} color="var(--soft-blue)" />
                         <span>Repositório</span>
                      </button>
                   </div>

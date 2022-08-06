@@ -12,7 +12,7 @@ import { AuthContext } from '../../contexts/auth';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
-import { BsFillChatDotsFill, BsFillGearFill, BsBellFill } from 'react-icons/bs';
+import { BsFillChatDotsFill, BsFillGearFill, BsBellFill, BsBriefcaseFill } from 'react-icons/bs';
 import { BiMenu } from 'react-icons/bi';
 import { MdVerified, MdNewReleases } from 'react-icons/md';
 
@@ -117,6 +117,12 @@ export default function Header(props) {
                         Seguidores
                      </Link>
                   </li>
+                  <li className={pathname === "/opportunities" ? styles.active : ""}>
+                     <Link to="/opportunities">
+                        <BsBriefcaseFill size={20} />
+                        Vagas
+                     </Link>
+                  </li>
                   <li className={pathname === "/message" ? styles.active : ""}>
                      <Link to="/" onClick={() => toast.warning("Em breve...")}>
                         <BsFillChatDotsFill size={20} />
@@ -129,12 +135,6 @@ export default function Header(props) {
                         Configurações
                      </Link>
                   </li>
-                  {/* <li className={pathname === "/updates" ? styles.active : ""}>
-                     <Link to="/updates">
-                        <MdNewReleases size={20} />
-                        Atualizações
-                     </Link>
-                  </li> */}
                   <li className={styles.aboutBox}>
                      <Link to="/documentation">
                         <AiFillInfoCircle size={20} />
