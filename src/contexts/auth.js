@@ -1,7 +1,6 @@
 import { useState, useEffect, createContext } from 'react';
 import firebase from '../services/firebaseConnection';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
 
 
 // import { sign } from 'jsonwebtoken';
@@ -52,7 +51,6 @@ function AuthProvider({ children }) {
 
                     setUsers(allUsers);
                 })
-
         }
         loadUsers();
     }, []);
@@ -127,21 +125,6 @@ function AuthProvider({ children }) {
                         createdAt: new Date()
                     })
                     .then(() => {
-
-                        let data = {
-                            uid: uid,
-                            name: name,
-                            email: value.user.email,
-                            avatarUrl: null,
-                            bannerUrl: null,
-                            publication: [],
-                            role: '',
-                            aboutMe: '',
-                            location: '',
-                            linkedin: '',
-                            github: '',
-                        };
-            
                         // setUser(data);
                         // storageUser(data); 
                         setLoadingAuth(false);

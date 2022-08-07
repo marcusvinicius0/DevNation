@@ -92,15 +92,15 @@ export default function Post({ publication }) {
 		<Link to={`/publication/${publication.id}`}>
 			<div className={styles.post}>
 				<header>
-					{publication.avatarUrl === null ?
+					{publication.user_avatar_url === null ?
 						<img src={avatar} alt="foto avatar" />
 						:
-						<img src={publication.avatarUrl} alt="Avatar foto" />
+						<img src={publication.user_avatar_url} alt="Avatar foto" />
 					}
 					<div>
 						<Link to={`/user/${publication.user_id}`}>
 							<span>{publication.user_name}</span>
-							{publication.userIsVerified && <MdVerified />}
+							{publication.user_is_verified && <MdVerified />}
 						</Link>
 						<p>{publication.user_role}</p>
 						<time>
@@ -111,15 +111,13 @@ export default function Post({ publication }) {
 					</div>
 				</header>
 				<div className={styles.contentPost}>
-					<div className={styles.description}
-					// dangerouslySetInnerHTML={{ __html: publication.publication.replace(reURL, '<a href="http$2://www$3.$4$5$6">$1</a>' ) }}
-					>
+					<div className={styles.description}>
 						{publication.publication}
 					</div>
 				</div>
-				{publication.imagePublicationUrl && (
+				{publication.image_publication_url && (
 					<div className={styles.mediaPost}>
-						<img src={publication.imagePublicationUrl} alt="Foto post" />
+						<img src={publication.image_publication_url} alt="Foto post" />
 					</div>)}
 				<footer>
 					<button onClick={() => handleLike({ user_id: user.uid, publication_id: publication.id, likes: publication.likes })}>
