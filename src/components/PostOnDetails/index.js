@@ -63,11 +63,6 @@ export default function PostOnDetails({ publication }) {
 		handleClose()
 	}
 
-	function handleSavePublication() {
-		toast.warning("Em breve...")
-		handleClose()
-	};
-
 	async function handleLike({ user_id, publication_id, likes }) {
 		const res = await likeOrDeslikePublication({ user_id, publication_id })
 		verifyButtonLike({ publication_id, likes: res.likes })

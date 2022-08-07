@@ -4,7 +4,6 @@ import firebase from 'firebase/app';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
-import compareAsc from 'date-fns/compareAsc'
 
 import apiDsn from '../services/apiDsn'
 
@@ -15,39 +14,13 @@ export default function PublicationsProvider({ children }) {
 	const [userPublications, setUserPublications] = useState([]);
 	const [loadingPublications, setLoadingPublications] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [allLikes, setAllLikes] = useState([]);
 	const [publication, setPublication] = useState([])
 
 	async function loadPublications() {
 		setLoadingPublications(true);
-		let arrayPublications = [];
 		await apiDsn.get("/publications").then((res) => {
-			res.data.map(async (item) => {
-				await firebase.firestore().collection("users")
-					.doc(item.user_id)
-					.get()
-					.then(async (snap) => {
-						let dataUser = {
-							user_name: snap.data().name,
-							user_role: snap.data().role,
-							user_id: item.user_id,
-							userIsVerified: snap.data().verified,
-							publication: item.publication,
-							imagePublicationUrl: item.image_publication_url,
-							id: item.id,
-							avatarUrl: snap.data().avatarUrl,
-							created_at: item.created_at,
-							likes: item.likes,
-							comments: item.comments
-						}
-						arrayPublications.push(dataUser)
-						const newarray = arrayPublications.sort((a, b) => {
-							if (a.created_at > b.created_at) return -1
-							if (b.created_at > a.created_at) return 1
-						})
-					})
-				setPublications(arrayPublications);
-			})
+			console.log(res.data)
+			setPublications(res.data)
 		}).catch((err) => {
 			console.log(err)
 		})
@@ -84,20 +57,17 @@ export default function PublicationsProvider({ children }) {
 	}
 
 	async function handleCreatePublication({ publication, user, image_publication_url }) {
-		await apiDsn.post("/publications", { publication, user_id: user.uid, image_publication_url }).then((res) => {
-			let data = {
-				publication,
-				imagePublicationUrl: image_publication_url,
-				user_name: user.name,
-				user_role: user.role,
-				user_id: user.uid,
-				id: res.data.id,
-				created_at: res.data.created_at,
-				avatarUrl: user.avatarUrl,
-				userIsVerified: user.isVerified,
-				likes: [],
-				comments: []
-			}
+		let data = {
+			publication,
+			user_id: user.uid, 
+			image_publication_url,
+			user_name: user.name, 
+			user_role: user.role, 
+			user_is_verified: user.isVerified, 
+			user_avatar_url: user.avatarUrl
+		}
+		console.log(data)
+		await apiDsn.post("/publications", data ).then((res) => {
 			setPublications([data, ...publications])
 		})
 	}
@@ -212,7 +182,8 @@ export default function PublicationsProvider({ children }) {
 				likeOrDeslikePublication,
 				loadPublicationById,
 				publication,
-				registerNewComment
+				registerNewComment,
+				loading
 			}}>
 				{children}
 			</PublicationsContext.Provider>
