@@ -32,7 +32,7 @@ export default function Post({ publication }) {
 
 	const open = Boolean(anchorEl);
 
-	const { user, users } = useContext(AuthContext)
+	const { user } = useContext(AuthContext)
 	const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } = usePublications()
 
 	const handleClick = (event) => setAnchorEl(event.currentTarget);

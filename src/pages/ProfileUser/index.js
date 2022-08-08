@@ -20,8 +20,6 @@ import ghLogo from '../../assets/github.png';
 import inLogo from '../../assets/linkedin.png';
 
 import { AuthContext } from '../../contexts/auth';
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import { usePublications } from '../../hooks/usePublications'
 
 import { RiPencilLine } from 'react-icons/ri';
@@ -33,18 +31,13 @@ export default function ProfileUser() {
 	const { loadUserPublications, userPublications } = usePublications();
 
 	const [editProfileModal, setEditProfileModal] = useState(false);
-	const [profilePictureModal, setprofilePictureModal] = useState(false);
 	const [modalProfileBanner, setModalProfileBanner] = useState(false);
-	const [publicationsProfile, setPublicationsProfile] = useState([]);
 	const [profileUser, setProfileUser] = useState("");
 	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-
 		const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
-
 		goTop();
-
 	}, []);
 
 	useEffect(() => {
@@ -61,9 +54,9 @@ export default function ProfileUser() {
 				.then((snapshot) => {
 					if (snapshot.data()) {
 						let data = {
-							aboutMe: snapshot.data()?.aboutMe,
-							avatarUrl: snapshot.data().avatarUrl,
-							bannerUrl: snapshot.data().bannerUrl,
+							about_me: snapshot.data()?.aboutMe,
+							avatar_url: snapshot.data().avatarUrl,
+							banner_url: snapshot.data().bannerUrl,
 							email: snapshot.data().email,
 							location: snapshot.data().location,
 							name: snapshot.data().name,
@@ -71,7 +64,7 @@ export default function ProfileUser() {
 							role: snapshot.data().role,
 							linkedin: snapshot.data().linkedin,
 							github: snapshot.data().github,
-							isVerified: snapshot.data().verified
+							is_verified: snapshot.data().verified
 						}
 						console.log(data)
 						setProfileUser(data)
@@ -107,8 +100,8 @@ export default function ProfileUser() {
 						<div className={styles.profileContainer}>
 							<div className={styles.contentProfile}>
 								<div className={styles.picturesBox}>
-									<img className={styles.banner} src={profileUser.bannerUrl === null ? banner : profileUser.bannerUrl} alt="banner" />
-									<img className={styles.profilePic} src={profileUser.avatarUrl === null ? avatar : profileUser.avatarUrl} alt="Foto de perfil" />
+									<img className={styles.banner} src={profileUser.banner_url === null ? banner : profileUser.banner_url} alt="banner" />
+									<img className={styles.profilePic} src={profileUser.avatar_url === null ? avatar : profileUser.avatar_url} alt="Foto de perfil" />
 
 									{user.uid === profileUser.id && (
 										<button className={styles.editBanner} onClick={toggleModalProfileBanner}>
@@ -125,7 +118,7 @@ export default function ProfileUser() {
 									)}
 									<span className={styles.name}>
 										<p>{profileUser.name}</p>
-										{profileUser.isVerified && <MdVerified />}
+										{profileUser.is_verified && <MdVerified />}
 									</span>
 									<p className={styles.role}>{profileUser.role}</p>
 									<p className={styles.place}>{profileUser.location}</p>
@@ -143,10 +136,10 @@ export default function ProfileUser() {
 							</div>
 							<div className={styles.aboutMe}>
 								<h1>Sobre mim</h1>
-								{profileUser.aboutMe === '' ? (
+								{profileUser.about_me === '' ? (
 									<p>Sem informações.</p>
 								) : (
-									<p>{profileUser.aboutMe}</p>
+									<p>{profileUser.about_me}</p>
 								)}
 								{user.uid === profileUser.id && <button type="button"><RiPencilLine size={22} /></button>}
 							</div>
