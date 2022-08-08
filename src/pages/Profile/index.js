@@ -33,11 +33,8 @@ export default function Profile() {
 	const [publicationsProfile, setPublicationsProfile] = useState([]);
 
 	useEffect(() => {
-
 		const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
-
 		goTop();
-
 	}, []);
 
 

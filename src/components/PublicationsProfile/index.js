@@ -19,7 +19,7 @@ export default function PublicationsProfile({ publications, user }) {
 			{publications.map((publication) => (
 				<div key={publication.id} className={styles.post}>
 					<header>
-						<img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="Avatar foto" />
+						<img src={user.avatar_url === null ? avatar : user.avatar_url} alt="Avatar foto" />
 						<div>
 							<span>{user.name}</span>
 							<p>{user.role}</p>

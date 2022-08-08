@@ -59,7 +59,7 @@ export default function ProjectsProfile({ user_id, state_button }) {
 				})
 		}
 		loadProjects();
-	}, [])
+	}, [user_id])
 
 	return (
 		<div className={styles.containerMyProjects}>

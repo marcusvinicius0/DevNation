@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 import { FiPlus } from 'react-icons/fi';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { allStacks } from './stacks.js'
 
@@ -13,8 +13,9 @@ export default function Stacks({ user_id, state_button }) {
 	const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
 	useEffect(() => {
+		setStacks([])
 		loadStacks();
-	}, []);
+	}, [user_id]);
 
 	async function loadStacks() {
 		await firebase.firestore().collection('users')
@@ -41,13 +42,13 @@ export default function Stacks({ user_id, state_button }) {
 						{stacks >= [0] ? (
 							<>
 								<RiPencilLine />
-								<span> Editar stack</span>
+								<span> Editar stacks</span>
 							</>)
 							:
 							(
 								<>
 									<FiPlus />
-									<span>Adicionar stack</span>
+									<span>Adicionar stacks</span>
 								</>
 							)}
 					</button>)}

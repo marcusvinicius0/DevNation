@@ -1,4 +1,4 @@
-import { useEffect, createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 import firebase from 'firebase/app';
 import { toast } from 'react-toastify';
@@ -14,12 +14,11 @@ export default function PublicationsProvider({ children }) {
 	const [userPublications, setUserPublications] = useState([]);
 	const [loadingPublications, setLoadingPublications] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const [publication, setPublication] = useState([])
+	const [publication, setPublication] = useState([]);
 
 	async function loadPublications() {
 		setLoadingPublications(true);
 		await apiDsn.get("/publications").then((res) => {
-			console.log(res.data)
 			setPublications(res.data)
 		}).catch((err) => {
 			console.log(err)
@@ -29,30 +28,7 @@ export default function PublicationsProvider({ children }) {
 
 	async function loadUserPublications(user_id) {
 		await apiDsn.get("/user/publications", { params: { user_id } }).then((res) => {
-			let arrayPublications = [];
-			res.data.forEach(async (item) => {
-				console.log('loadUserPublications')
-				await firebase.firestore().collection("users")
-					.doc(item.user_id)
-					.get()
-					.then((snap) => {
-						let dataUser = {
-							user_name: snap.data().name,
-							user_role: snap.data().role,
-							user_id: item.user_id,
-							userIsVerified: snap.data().verified,
-							publication: item.publication,
-							imagePublicationUrl: item.image_publication_url,
-							id: item.id,
-							avatarUrl: snap.data().avatarUrl,
-							created_at: item.created_at,
-							likes: item.likes,
-							comments: item.comments
-						}
-						arrayPublications.push(dataUser);
-					})
-				setUserPublications(arrayPublications);
-			})
+			setUserPublications(res.data)
 		})
 	}
 
@@ -66,7 +42,6 @@ export default function PublicationsProvider({ children }) {
 			user_is_verified: user.isVerified, 
 			user_avatar_url: user.avatarUrl
 		}
-		console.log(data)
 		await apiDsn.post("/publications", data ).then((res) => {
 			setPublications([data, ...publications])
 		})
