@@ -115,11 +115,11 @@ export default function PublicationsProvider({ children }) {
 							user_name: snap.data().name,
 							user_role: snap.data().role,
 							user_id: res.data.user_id,
-							userIsVerified: snap.data().verified,
+							user_is_verified: snap.data().verified,
 							publication: res.data.publication,
-							imagePublicationUrl: res.data.image_publication_url,
+							image_publication_url: res.data.image_publication_url,
 							id: res.data.id,
-							avatarUrl: snap.data().avatarUrl,
+							user_avatar_url: snap.data().avatarUrl,
 							created_at: res.data.created_at,
 							likes: res.data.likes,
 							comments: res.data.comments
@@ -131,11 +131,15 @@ export default function PublicationsProvider({ children }) {
 		setLoading(false)
 	}
 
-	async function registerNewComment(comment, publication_id, user_id) {
+	async function registerNewComment({comment, publication_id, user_id, user_name, user_role, user_avatar_url, user_is_verified}) {
 		let data = {
 			comment, 
 			publication_id, 
-			user_id
+			user_id,
+			user_name,
+			user_role,
+			user_avatar_url, 
+			user_is_verified
 		}
 		await apiDsn.post("/comments", data).then( (res) => {
 			console.log(res)

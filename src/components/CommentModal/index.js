@@ -20,16 +20,17 @@ export default function CommentModal({ closeModal, publication, newComment }) {
 
 	async function handleNewComment() {
 		setLoading(true);
-		await registerNewComment(comment, publication.id, user.uid).then( () => {
-			let commentToRegister = {
-				comment, 
-				publication_id: publication.id, 
-				user_id: user.uid,
-				user_name: user.name,
-				user_role: user.role, 
-				user_avatar_url: user.avatarUrl,
-				created_at: new Date()
-			}
+		let commentToRegister = {
+			comment, 
+			publication_id: publication.id, 
+			user_id: user.uid,
+			user_name: user.name,
+			user_role: user.role, 
+			user_avatar_url: user.avatarUrl,
+			user_is_verified: user.isVerified,
+			created_at: new Date()
+		}
+		await registerNewComment(commentToRegister).then( () => {
 			setComment("");
 			closeModal();
 			newComment(commentToRegister);
