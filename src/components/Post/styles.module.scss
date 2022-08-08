@@ -3,7 +3,7 @@
 	border-radius: 0.5rem;
 	border: 1px solid rgb(0, 0, 0, 0.15);
 	position: relative;
-	width:100%;
+	width: 100%;
 	transition: 0.3s;
 	cursor: pointer;
 
@@ -145,6 +145,10 @@
 
 	&:hover {
 		background: rgb(0,0,0,0.0001);
+	}
+
+	button {
+		z-index: 1
 	}
 }
 

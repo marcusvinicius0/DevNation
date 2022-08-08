@@ -35,7 +35,7 @@ export default function Publication() {
 			<div className={styles.containerPublication}>
 				<Sidebox />
 				<div className={styles.publication}>
-					{publication && <PostOnDetails publication={publication} />}
+					{publication && <PostOnDetails publicationInfo={publication} />}
 				</div>
 				<div className={styles.infoUser}>
 					{publication.avatarUrl === null ?

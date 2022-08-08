@@ -1,14 +1,13 @@
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styles from './styles.module.scss';
 
 import avatar from "../../assets/avatar.png";
-import firebase from "firebase/app"
 
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { BiTrash, BiMessageRounded, BiShare, BiBookmark } from 'react-icons/bi';
 import { MdVerified } from 'react-icons/md';
-import { HiSpeakerphone, HiHeart, HiOutlineHeart, HiOutlineEmojiHappy } from 'react-icons/hi';
+import { HiSpeakerphone, HiHeart, HiOutlineHeart } from 'react-icons/hi';
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -19,15 +18,16 @@ import Comment from "./Comment"
 
 import { usePublications } from "../../hooks/usePublications";
 import { AuthContext } from "../../contexts/auth";
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+// import { format } from "date-fns";
+// import { ptBR } from "date-fns/locale";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const ITEM_HEIGHT = 48;
 
-export default function PostOnDetails({ publication }) {
-	const { id } = useParams()
+export default function PostOnDetails({ publicationInfo }) {
+	const { id } = useParams();
+	const [publication, setPublication] = useState(publicationInfo && publicationInfo)
 	const [popoverActive, setPopoverActive] = useState(0);
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [typeHeart, setTypeHeart] = useState("desliked");
@@ -47,10 +47,12 @@ export default function PostOnDetails({ publication }) {
 	};
 
 	useEffect(() => {
+		setPublication(publicationInfo)
+		console.log(publication)
 		verifyButtonLike({ publication_id: publication.id, likes: publication.likes });
 		setCommentsOnPublication([])
 		loadComments();
-	}, [publication, id])
+	}, [publicationInfo, id])
 
 
 	async function handleDelete() {
@@ -64,8 +66,10 @@ export default function PostOnDetails({ publication }) {
 	}
 
 	async function handleLike({ user_id, publication_id, likes }) {
+		console.log(likes)
 		const res = await likeOrDeslikePublication({ user_id, publication_id })
-		verifyButtonLike({ publication_id, likes: res.likes })
+		verifyButtonLike({ likes: res.likes })
+
 		if (res.type === "like") {
 			setTypeHeart("liked")
 			setNumberOfLikes(numberOfLikes + 1)
@@ -76,7 +80,7 @@ export default function PostOnDetails({ publication }) {
 		}
 	}
 
-	function verifyButtonLike({ publication_id, likes }) {
+	function verifyButtonLike({ likes }) {
 		let array = []
 		if (likes?.length > 0) {
 			likes.forEach((item) => array.push(item.user_id))
@@ -92,26 +96,7 @@ export default function PostOnDetails({ publication }) {
 	}
 
 	async function loadComments() {
-		let array = []
-		publication.comments?.forEach(async (item) => {
-			await firebase.firestore().collection("users")
-				.doc(item.user_id)
-				.get()
-				.then((res) => {
-					let data = {
-						comment: item.comment,
-						created_at: item.created_at,
-						user_id: item.user_id,
-						publication_id: item.publication_id,
-						id: item.id,
-						user_name: res.data().name,
-						user_role: res.data().role,
-						user_avatar_url: res.data().avatarUrl
-					}
-					array.push(data)
-				})
-				setCommentsOnPublication(array)
-		})
+		setCommentsOnPublication(publicationInfo.comments)
 	}
 
 	function newComment(comment) {
@@ -130,19 +115,19 @@ export default function PostOnDetails({ publication }) {
 		<>
 			<div className={styles.post}>
 				<header>
-					{publication.avatarUrl === null ?
+					{publication.user_avatar_url === null ?
 						<img src={avatar} alt="foto avatar" />
 						:
-						<img src={publication.avatarUrl} alt="Avatar foto" />
+						<img src={publication.user_avatar_url} alt="Avatar foto" />
 					}
 					<div>
 						<Link to={`/user/${publication.user_id}`}>
 							<span>{publication.user_name}</span>
-							{publication.userIsVerified && <MdVerified />}
+							{publication.user_is_verified && <MdVerified />}
 						</Link>
 						<p>{publication.user_role}</p>
 						<time>
-							{/* {format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+							{/* {format(publication.created_at, "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
 								locale: ptBR
 							})} */}
 						</time>
@@ -155,17 +140,17 @@ export default function PostOnDetails({ publication }) {
 				</div>
 				{publication.imagePublicationUrl && (
 					<div className={styles.mediaPost}>
-						<img src={publication.imagePublicationUrl} alt="Foto post" />
+						<img src={publication.image_publication_url} alt="Foto post" />
 					</div>)}
 				<footer>
 					<button onClick={() => handleLike({ user_id: user.uid, publication_id: publication.id, likes: publication.likes })}>
 						{typeHeart === "liked" ? (
 							<>
-								<HiHeart color="var(--red-500)" /><span>{publication.likes?.length || 0}</span>
+								<HiHeart color="var(--red-500)" /><span>{numberOfLikes || 0}</span>
 							</>
 						) : (
 							<>
-								<HiOutlineHeart /><span>{publication.likes?.length || 0}</span>
+								<HiOutlineHeart /><span>{numberOfLikes || 0}</span>
 							</>
 						)}
 					</button>

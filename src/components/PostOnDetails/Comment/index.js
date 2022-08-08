@@ -15,7 +15,6 @@ export default function Comment({ comment }) {
 					<p>{comment.user_role}</p>
 					<p className={styles.comment}>{comment.comment}</p>
 				</div>
-				<p>{comment.comment}</p>
 			</header>
 		</div>
 	)

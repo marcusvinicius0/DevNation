@@ -1,9 +1,7 @@
-import { useContext, useEffect, useState, useCallback } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from './styles.module.scss';
 
 import avatar from "../../assets/avatar.png";
-
-import firebase from '../../services/firebaseConnection';
 
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { BiTrash, BiMessageRounded, BiShare, BiBookmark } from 'react-icons/bi';
@@ -89,7 +87,7 @@ export default function Post({ publication }) {
 	}
 
 	return (
-		<Link to={`/publication/${publication.id}`}>
+		<Link to={`/publication/${publication.id}`} className={styles.postAnchor}>
 			<div className={styles.post}>
 				<header>
 					{publication.user_avatar_url === null ?
@@ -110,6 +108,7 @@ export default function Post({ publication }) {
 						</time>
 					</div>
 				</header>
+				<Link to={`/publication/${publication.id}`}></Link>
 				<div className={styles.contentPost}>
 					<div className={styles.description}>
 						{publication.publication}
@@ -131,7 +130,7 @@ export default function Post({ publication }) {
 							</>
 						)}
 					</button>
-					<button><BiMessageRounded /><span>0</span></button>
+					<button><BiMessageRounded /><span>{publication.comments?.length}</span></button>
 					<button onClick={() => toast.warning("Em breve...")}><BiShare /><span>0</span></button>
 					<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>
 				</footer>
