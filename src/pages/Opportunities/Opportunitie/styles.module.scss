@@ -2,12 +2,11 @@
 	display: flex;
 	padding: 1rem 3rem;
 	background: #fff;
-	width: 100%;
 	gap: 6rem;
 	align-items: center;
 	justify-content: center;
-	border-bottom: 1px solid rgb(0,0,0,0.1);
-	transition:  0.3s;
+	border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+	transition: 0.3s;
 
 	img {
 		width: 80px;
@@ -17,6 +16,8 @@
 	}
 
 	.contentInfoOpportunitie {
+		width: 90%;
+		max-width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 0.5rem;
@@ -27,7 +28,9 @@
 
 		.infos {
 			display: flex;
-			gap: 1rem;
+			gap: 1.8rem;
+			width: 100%;
+			flex-wrap: wrap;
 
 			span {
 				display: flex;
@@ -56,6 +59,29 @@
 	}
 
 	&:hover {
-		background: rgb(0,0,0,0.001);
+		background: rgb(0, 0, 0, 0.001);
+	}
+}
+
+@media (max-width: 800px) {
+	.contentOpportunitie {
+		flex-direction: column;
+		gap: 3rem;
+
+		.contentInfoOpportunitie {
+			width: 100%;
+			h1 {
+				font-size: 1.2rem;
+				text-align: center;
+			}
+
+			.infos{
+				gap: 1rem;
+			}
+
+			.stacks{
+				flex-wrap: wrap;
+			}
+		}
 	}
 }

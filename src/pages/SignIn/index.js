@@ -4,18 +4,14 @@ import styles from './styles.module.scss';
 import { Link } from 'react-router-dom';
 
 import { FaSpinner } from 'react-icons/fa';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { MdEmail } from 'react-icons/md';
 
-import Input from '../../components/Userinterface/Input';
-import Button from '../../components/Userinterface/Button';
+import { Input } from '../../components/Utils/Input';
 
 import { AuthContext } from '../../contexts/auth';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [hidePass, setHidePass] = useState(false);
 
     const { signIn, loadingAuth } = useContext(AuthContext);
 
@@ -27,63 +23,32 @@ export default function SignIn() {
         }
     };
 
-    function handlePassword() {
-        setHidePass(!hidePass)
-    };
-
     return (
         <div className={styles.mainContainer}>
             <div className={styles.logoContainer}>
                 <div className={styles.contentContainer}>
-                    <h1>Dev Social Network</h1>
-                    <p>Não possui uma conta?</p>
+                    <h1>devsocialnetwork.com</h1>
+                    <p>devsocialnetwork.com é o local perfeito pra você encontrar talentos na área de tecnologia.</p>
                     <Link to="/register">
-                        Cadastre-se agora!
+                        Voltar para home
                     </Link>
                 </div>
+					<img src="https://sercortes.com.br/wp-content/uploads/2020/03/inovacao-875x500.jpg" alt="" />
             </div>
 
             <div className={styles.loginContainer}>
-
-                <h2>Faça seu login!</h2>
-
+                <header>
+					 	<h2>Faça seu login!</h2>
+						<p>Olá, bem vindo de volta à <span>Dev Social Network</span>!</p>
+					 </header>
                 <form className={styles.form} onSubmit={handleSubmit}>
-
-                    <label>
-                        <Input
-                            placeholder="Digite seu e-mail"
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
-                        />
-                        <MdEmail color="var(--black)" size={22} />
-                    </label>
-
-                    <label>
-                        <Input
-                            placeholder="Digite sua senha"
-                            type={hidePass ? "text" : "password"}
-                            value={password}
-                            onChange={(event) => setPassword(event.target.value)}
-                            maxLength={30}
-                        />
-                        {hidePass ?
-                            <AiFillEye onClick={handlePassword} color="var(--black)" size={25}
-                                className={styles.eyeIcon} />
-                            :
-                            <AiFillEyeInvisible onClick={handlePassword} color="var(--black)" size={25}
-                                className={styles.eyeIcon} />
-                        }
-                    </label>
-
-                    <Button
-                        type="submit"
-                    >
-                        {loadingAuth ? (<FaSpinner color="var(--white)" size={16} />) : 'Acessar'}
-                    </Button>
+						  <Input label="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+                    <Input label="Senha" itsPassword  value={password} onChange={(e) => setPassword(e.target.value)}/>
+                    <button className={styles.buttonToHandleSignIn} type="submit">Acessar</button>
                 </form>
 
-                <Link to="/forgot-password">
-                    Esqueceu sua senha?
+                <Link to="/" className={styles.forgotPassword}>
+                    Esqueceu a senha? <span>Recupere-a</span>.
                 </Link>
 
             </div>

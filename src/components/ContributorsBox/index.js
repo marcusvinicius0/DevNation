@@ -41,7 +41,8 @@ export default function ContributorsBox(info) {
 
          {contributorsContent ?
             <div className={styles.contributorInfoBox} onClick={contributorInformations}>
-               <p className={styles.contributorRole}>{info.role}</p>
+               <p className={styles.contributorRole}><b>{info.role}</b></p>
+               <p className={styles.aboutTheContributor}>{info.aboutMe}</p>
                <span className={styles.contactBox}>
                   <p>Contato:</p>
                   <a href={info.linkGH} target="_blank" rel="noreferrer">

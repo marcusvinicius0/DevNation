@@ -15,15 +15,17 @@ import Repository from '../pages/Repository';
 import Suggestions from '../pages/Suggestions';
 import ProjectDocumentation from '../pages/ProjectDocumentation';
 import Updates from '../pages/Updates';
-import Publication from '../pages/Publication'
+import Publication from '../pages/Publication';
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
 import NewsLawProject from '../pages/News/projetoLei';
 import NewsMetaVerso from '../pages/News/metaverso';
 import NewsDevelopers from '../pages/News/desenvolvedores';
 import Opportunities from '../pages/Opportunities';
+import Home from '../pages/Home';
+import RegisterCompany from '../pages/RegisterCompany';
 
-import MyProjects from '../pages/MyProjects'
+import MyProjects from '../pages/MyProjects';
 
 import Message from '../pages/Message';
 
@@ -31,9 +33,11 @@ export default function MyRoutes() {
     return (
         <>
             <Switch>
-                <Route exact path="/" component={SignIn} />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/signin" component={SignIn} />
                 <Route exact path="/register" component={SignUp} />
                 <Route exact path="/forgot-password" component={ForgotPassword} />
+                <Route exact path="/register-company" component={RegisterCompany}/>
 
                 <Route exact path="/dashboard" component={Dashboard} isPrivate />
                 <Route exact path="/profile" component={Profile} isPrivate />
@@ -55,7 +59,9 @@ export default function MyRoutes() {
                 <Route exact path="/myprojects" component={MyProjects} isPrivate />
                 <Route exact path="/message" component={Message} isPrivate />
                 <Route exact path="/publication/:id" component={Publication} isPrivate />
-					 <Route exact path="/opportunities" component={Opportunities} isPrivate />
+                <Route exact path="/opportunities" component={Opportunities} isPrivate />
+
+                
             </Switch>
         </>
     )

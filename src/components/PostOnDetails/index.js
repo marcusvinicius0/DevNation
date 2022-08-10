@@ -159,7 +159,7 @@ export default function PostOnDetails({ publicationInfo }) {
 					<button onClick={() => toast.warning("Em breve...")}><BiBookmark /><span>0</span></button>
 				</footer>
 				<div className={styles.comments}>
-					{commentsOnPublication.map( (comment, index) => (
+					{commentsOnPublication?.map( (comment, index) => (
 						<Comment key={index} comment={comment} />
 					))}
 				</div>

@@ -3,15 +3,15 @@ import styles from "./styles.module.scss";
 
 import bannerTecno from "../../assets/banner-tecno.jpg";
 
-import { SelectComponent } from "./Select" 
+import { SelectComponent } from "./Select"
 
 import Header from "../../components/Header";
 
 import { AiOutlineSearch } from "react-icons/ai";
 import { Opportunitie } from "./Opportunitie";
 
-const levels = [ "Júnior", "Pleno", "Sênior", "Tech Leader" ]
-const places = [ "Remoto", "Home office", "Híbrido"]
+const levels = ["Júnior", "Pleno", "Sênior", "Tech Leader"]
+const places = ["Remoto", "Home office", "Híbrido"]
 const types = ["Integral", "Meio período", "Contrato", "Freelancer", "Estágio"]
 
 export default function Opportunities() {
@@ -55,9 +55,6 @@ export default function Opportunities() {
 						<Opportunitie />
 					</div>
 				</div>
-
-
-
 			</div>
 		</>
 	);

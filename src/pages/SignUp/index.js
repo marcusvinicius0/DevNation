@@ -8,8 +8,8 @@ import { FaSpinner, FaUserAlt } from 'react-icons/fa';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 
-import Input from '../../components/Userinterface/Input';
-import Button from '../../components/Userinterface/Button';
+import { Input } from '../../components/Utils/Input';
+import Button from '../../components/Utils/Button';
 import { toast } from 'react-toastify';
 
 export default function SignUp() {

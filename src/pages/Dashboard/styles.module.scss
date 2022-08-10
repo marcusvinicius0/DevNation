@@ -5,9 +5,11 @@
     margin: 0 auto;
     justify-content: space-between;
     flex-wrap: wrap;
+    max-width: 1300px;
 
     @media screen and (max-width: 970px) {
         flex-direction: column;
+        
     }
 
     @media screen and (max-width: 800px) {
@@ -46,7 +48,7 @@
             }
 
             .publication {
-                width: 30rem;
+                width: 90%;
                 height: 40px;
                 border: 1px solid rgba(0, 0, 0, 0.2);
                 border-radius: 15px;
@@ -91,11 +93,12 @@
     }
 }
 
-@media (max-width: 800px) {
+
+@media (max-width: 970px) {
     .mainFeedContainer {
         margin: 0 auto;
-        width: 100%;
-		  max-width: 100%;
+        width: 90%;
+		max-width: 100%;
     }
 
     .createPublicationContainer {
@@ -105,13 +108,13 @@
             height: 45px!important;
             
             p{
-                font-size: 11px!important;
+                font-size: 12px!important;
             }
         }
 
         .contentActions {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-around!important;
 
             button {
                 justify-content: space-around;
@@ -125,8 +128,15 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 800px){
+    .mainFeedContainer{
+        width: 100%;
+    }
+}
+
+@media (max-width: 1300px) {
     .newsAndAdversiting {
        display: none;
     }
 }
+

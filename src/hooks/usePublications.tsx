@@ -1,53 +1,61 @@
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 import firebase from 'firebase/app';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 
+import { PublicationObject, HandleCreatePublicationRequest, LikeOrDeslikeRequest, LikesObject } from "./types"
+
 import apiDsn from '../services/apiDsn'
 
 const PublicationsContext = createContext({});
-
-export default function PublicationsProvider({ children }) {
-	const [publications, setPublications] = useState([]);
-	const [userPublications, setUserPublications] = useState([]);
-	const [loadingPublications, setLoadingPublications] = useState(false);
-	const [loading, setLoading] = useState(false);
-	const [publication, setPublication] = useState([]);
+ 
+export default function PublicationsProvider({ children }: ReactNode) {
+	const [publications, setPublications] = useState<PublicationObject[] | []>([]);
+	const [userPublications, setUserPublications] = useState<PublicationObject[] | []>([]);
+	const [loadingPublications, setLoadingPublications] = useState<boolean>(false);
+	const [loading, setLoading] = useState<boolean>(false);
+	const [publication, setPublication] = useState<PublicationObject | []>([]);
 
 	async function loadPublications() {
 		setLoadingPublications(true);
 		await apiDsn.get("/publications").then((res) => {
 			setPublications(res.data)
+			console.log(publications[4])
 		}).catch((err) => {
 			console.log(err)
 		})
 		setLoadingPublications(false)
 	}
 
-	async function loadUserPublications(user_id) {
+	async function loadUserPublications(user_id: string) {
 		await apiDsn.get("/user/publications", { params: { user_id } }).then((res) => {
 			setUserPublications(res.data)
 		})
 	}
 
-	async function handleCreatePublication({ publication, user, image_publication_url }) {
-		let data = {
-			publication,
+	async function handleCreatePublication({ publication, user, image_publication_url }: HandleCreatePublicationRequest) {
+		let data: PublicationObject = {
+			id: "",
+			publication: String(publication),
 			user_id: user.uid, 
 			image_publication_url,
 			user_name: user.name, 
 			user_role: user.role, 
 			user_is_verified: user.isVerified, 
-			user_avatar_url: user.avatarUrl
+			user_avatar_url: user.avatarUrl,
+			created_at: new Date(),
+			updated_at: new Date(),
+			likes: [],
+			comments: []
 		}
 		await apiDsn.post("/publications", data ).then((res) => {
 			setPublications([data, ...publications])
 		})
 	}
 
-	async function handleDeletePublication(publication_id) {
+	async function handleDeletePublication(publication_id: string) {
 		Swal.fire({
 			title: 'Você tem certeza?',
 			text: "A publicação será deletada!",
@@ -67,13 +75,14 @@ export default function PublicationsProvider({ children }) {
 		})
 	};
 
-	async function likeOrDeslikePublication({user_id, publication_id}) {
+	async function likeOrDeslikePublication({user_id, publication_id}: LikeOrDeslikeRequest) {
 		const res = await apiDsn.post("/likes", { user_id, publication_id}).then( (res) => {
-			let arrayPublicationsIds = []
-			publications.forEach( (item) => arrayPublicationsIds.push(item.id) )
-			const idx = arrayPublicationsIds.indexOf(publication_id)
+			let arrayPublicationsIds: string[] = []
 
-			let dataLike = {
+			publications.forEach( (item) => arrayPublicationsIds.push(item.id) )
+			const idx: number = arrayPublicationsIds.indexOf(publication_id)
+
+			let dataLike: LikesObject = {
 				id: res.data.id,
 				created_at: res.data.created_at,
 				publication_id: res.data.publication_id,

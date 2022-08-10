@@ -8,6 +8,11 @@
    }
 }
 
+.container:hover {
+   background-color: #F5F5F5;
+}
+
+
 .containerOn {
    display: flex;
    justify-content: space-between;
@@ -20,82 +25,102 @@
 
 }
 
-.box {
-   display: flex;
-   flex-direction: row;
-   transition: all 0.6s;
+   .box {
+      display: flex;
+      flex-direction: row;
+      transition: all 0.6s;
 
-   img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
+      img {
+         width: 100px;
+         height: 100px;
+         border-radius: 50%;
+         object-fit: cover;
+         cursor: default;
+      }
+
+
+      .contributorInfo {
+         display: flex;
+         flex-direction: column;
+
+         p {
+            padding: 1rem 0 0 0.5rem;
+            font-size: 1.2rem;
+            user-select: none;
+            cursor: default;
+         }
+
+      }
+      
    }
 
-
-   .contributorInfo {
+   .contributorInfoBox {
+      background-color: #F5F5F5;
+      background-color: red;
+      cursor: pointer;
       display: flex;
       flex-direction: column;
+      gap: 2rem;
 
-      p {
-         padding: 1rem 0 0 0;
-         font-size: 1.2rem;
+      .contributorRole {
+         margin: -3rem 0 0 6.4rem;
+         width: 33%;
+         user-select: none;
+         cursor: default;
+         color: var(--blue-500);
       }
-   }
-}
 
-
-.container:hover {
-   background-color: #F5F5F5;
-}
-
-.contributorInfoBox {
-   background-color: #F5F5F5;
-   cursor: pointer;
-   display: flex;
-   flex-direction: column;
-   gap: 2rem;
-
-   .contributorRole {
-      margin: -3rem 0 0 7rem;
-   }
-
-
-   .contactBox {
-      position: relative;
-      left: 7rem;
-      top: -1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      width: 15%;
-
-      p {
-         font-size: 1rem;
+      .aboutTheContributor {
+         margin-left: 6.4rem;
+         position: relative;
+         top: -1.5rem;
+         width: 33%;
+         user-select: none;
+         cursor: default;
       }
-   }
-}
 
+      .contactBox {
+         position: relative;
+         left: 6.4rem;
+         top: -2.5rem;
+         display: flex;
+         align-items: center;
+         gap: 0.5rem;
+         width: 15%;
+         user-select: none;
+         cursor: default;
 
-@media (max-width: 870px) {
-   .box {
-
-      p {
-         text-overflow: ellipsis;
-         overflow: hidden;
-         white-space: wrap;
-         width: 95%;
+         p {
+            font-size: 1rem;
+         }
       }
    }
 
+   @media (max-width: 870px) {
+      .box {
 
-   .contactBox {
-      top: -0.3rem;
-   }
-}
+         img{
+            width: 80px;
+            height: 80px;
+         }
 
-@media (max-width: 570px) {
-   .contactBox {
-      top: 0.1rem;
+         p {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: wrap;
+            width: 100%;
+         }
+      }
+
+
+      .contactBox {
+         top: -0.3rem;
+      }
    }
-}
+
+   @media (max-width: 570px) {
+      .contactBox {
+         top: 0.1rem;
+      }
+
+   }

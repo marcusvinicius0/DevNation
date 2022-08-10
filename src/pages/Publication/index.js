@@ -38,10 +38,10 @@ export default function Publication() {
 					{publication && <PostOnDetails publicationInfo={publication} />}
 				</div>
 				<div className={styles.infoUser}>
-					{publication.avatarUrl === null ?
+					{publication.user_avatar_url === null ?
 						<img src={avatar} alt="foto avatar" />
 						:
-						<img src={publication.avatarUrl} alt="Avatar foto" />
+						<img src={publication.user_avatar_url} alt="Avatar foto" />
 					}
 					<p>{publication.user_role}</p>
 					<Link to={`/user/${publication.user_id}`}>Ver perfil completo</Link>

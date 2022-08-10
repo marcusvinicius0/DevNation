@@ -1,0 +1,36 @@
+.input {
+	width: 100%;
+	position: relative;
+
+	p {
+		font-size: 0.9rem;
+	}
+
+	input {
+		width: 100%;
+		border: 0;
+		border-bottom: 2px solid rgb(0,0,0,0.75);
+		padding-bottom: 2px;
+		transition: 0.3s;
+
+		&:focus {
+			border-bottom: 2px solid var(--blue-500);
+		}
+	}
+
+	button {
+		position: absolute;
+		bottom: 0rem;
+		right: 0rem;
+		background: 0;
+		outline: 0;
+		background: 0;
+		border: 0;
+		border-radius: 100%;
+		margin-right: 5px;
+	}
+
+	* {
+		font-family: "Poppins";
+	}
+}

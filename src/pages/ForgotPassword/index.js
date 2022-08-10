@@ -10,8 +10,8 @@ import { toast } from 'react-toastify';
 import { FaSpinner } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
-import Input from '../../components/Userinterface/Input';
-import Button from '../../components/Userinterface/Button';
+import { Input } from '../../components/Utils/Input';
+import Button from '../../components/Utils/Button';
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');

@@ -83,6 +83,7 @@ export default function Header(props) {
    return (
 
       <>
+
          <header className={styles.header}>
 
             <Link className={styles.logoNavigation} to="/dashboard">
@@ -158,6 +159,7 @@ export default function Header(props) {
                </Link>
             </div>
          </header>
+
       </>
 
    )

@@ -1,4 +1,4 @@
-
+import styles from './styles.module.scss';
 import React, { useState } from 'react';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -15,6 +15,7 @@ const MenuProps = {
 		style: {
 			maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
 			width: 250,
+			fontFamily: 'Poppins'
 		},
 	},
 };
@@ -26,7 +27,7 @@ const names = [
 	'Tech Leader'
 ];
 
-export function SelectComponent({title, options}) {
+export function SelectComponent({ title, options }) {
 	const [personName, setPersonName] = useState([]);
 
 	const handleChange = (event) => {
@@ -39,7 +40,7 @@ export function SelectComponent({title, options}) {
 	};
 
 	return (
-		<FormControl sx={{ mt: 2, width: 300, background: "#fff", color: "#000" }}>
+		<FormControl className={styles.select} sx={{ mt: 2, width: 300, background: "#fff", color: "#000" }}>
 			<InputLabel id="demo-multiple-checkbox-label">{title}</InputLabel>
 			<Select
 				labelId="demo-multiple-checkbox-label"
