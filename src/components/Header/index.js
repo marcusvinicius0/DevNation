@@ -86,7 +86,8 @@ export default function Header(props) {
 
          <header className={styles.header}>
 
-            <Link className={styles.logoNavigation} to="/dashboard">
+        <div className={styles.headerContainer}>
+        <Link className={styles.logoNavigation} to="/dashboard">
                <img className={styles.logo} src={logo} alt="logo" />
             </Link>
 
@@ -144,6 +145,7 @@ export default function Header(props) {
                   </li>
                </ul>
             </nav>
+         </div>
 
             <span className={styles.menuHamb} onClick={() => setShowMenu(!showMenu)}>
                {showMenu ? <FiX size={35} color="rgb(0,0,0,0.7)" />
