@@ -14,7 +14,7 @@ import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
 import { FaUsers } from 'react-icons/fa';
 import { BsFillChatDotsFill, BsFillGearFill, BsBellFill, BsBriefcaseFill } from 'react-icons/bs';
 import { BiMenu } from 'react-icons/bi';
-import { MdVerified, MdNewReleases } from 'react-icons/md';
+import { MdVerified } from 'react-icons/md';
 
 import { toast } from 'react-toastify'
 

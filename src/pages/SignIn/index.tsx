@@ -1,14 +1,12 @@
-import { useContext, useState } from 'react';
-import styles from './styles.module.scss';
-
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '../../contexts/auth';
 import { Link } from 'react-router-dom';
-
 import { FaSpinner } from 'react-icons/fa';
 
 import { Input } from '../../components/Utils/Input';
 import { Loading } from '../../components/Utils/Loading';
 
-import { AuthContext } from '../../contexts/auth';
+import styles from './styles.module.scss';
 
 export default function SignIn() {
     const [email, setEmail] = useState('');
@@ -16,7 +14,7 @@ export default function SignIn() {
 
     const { signIn, loadingAuth } = useContext(AuthContext);
 
-    function handleSubmit(e) {
+    function handleSubmit(e: ) {
         e.preventDefault();
 
         if (email !== '' && password !== '') {
@@ -45,9 +43,7 @@ export default function SignIn() {
                 <form className={styles.form} onSubmit={handleSubmit}>
 						  <Input label="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
                     <Input label="Senha" itsPassword  value={password} onChange={(e) => setPassword(e.target.value)}/>
-                    <button className={styles.buttonToHandleSignIn} type="submit">
-                        {loadingAuth ? <Loading /> : "Acessar"}
-                    </button>
+                    <button className={styles.buttonToHandleSignIn} type="submit">Acessar</button>
                 </form>
 
                 <Link to="/" className={styles.forgotPassword}>

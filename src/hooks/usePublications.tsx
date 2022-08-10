@@ -28,12 +28,15 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
 	}
 
 	async function loadUserPublications(user_id: string) {
+		setLoadingPublications(true)
 		await apiDsn.get("/user/publications", { params: { user_id } }).then((res) => {
 			setUserPublications(res.data)
 		})
+		setLoadingPublications(false)
 	}
 
 	async function handleCreatePublication({ publication, user, image_publication_url }: HandleCreatePublicationRequest) {
+		setLoading(true)
 		let data: PublicationObject = {
 			id: "",
 			publication: String(publication),
@@ -51,6 +54,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
 		await apiDsn.post("/publications", data).then((res) => {
 			setPublications([data, ...publications])
 		})
+		setLoading(false)
 	}
 
 	async function handleDeletePublication(publication_id: string) {
@@ -119,6 +123,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
 	}
 
 	async function registerNewComment({ comment, publication_id, user_id, user_name, user_role, user_avatar_url, user_is_verified }: RegisterNewComment) {
+		setLoading(true)
 		let data = {
 			comment,
 			publication_id,
@@ -133,6 +138,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
 		}).catch((err) => {
 			console.log(err)
 		})
+		setLoading(false)
 	}
 
 	return (

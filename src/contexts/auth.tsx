@@ -1,17 +1,16 @@
-import { useState, useEffect, createContext } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import firebase from '../services/firebaseConnection';
 import { toast } from 'react-toastify';
 
+import { AuthProviderProps, UserProps, SignUpProps, AuthContextData  } from "./types"
 
-// import { sign } from 'jsonwebtoken';
+export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-export const AuthContext = createContext({});
-
-function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
-    const [users, setUsers] = useState([]);
-    const [loadingAuth, setLoadingAuth] = useState(false);
-    const [loading, setLoading] = useState(true);
+function AuthProvider({ children }: AuthProviderProps) {
+    const [user, setUser] = useState<UserProps | null>(null);
+    const [users, setUsers] = useState<UserProps[] | []>([]);
+    const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(true);
     // const [token, setToken] = useState(null);
 
     useEffect(() => {
@@ -36,17 +35,23 @@ function AuthProvider({ children }) {
             await firebase.firestore().collection('users')
                 .get()
                 .then(snapshot => {
-                    let allUsers = []
+                    let allUsers: UserProps[] = []
 
-                    snapshot.forEach(user => {
-                        allUsers.push({
-                            id: user.id,
+                    snapshot.forEach( user => {
+                        let dataUser: UserProps = {
+                            uid: user.id,
                             name: user.data().name,
                             avatarUrl: user.data().avatarUrl,
-                            title: user.data().title,
+                            bannerUrl: user.data().bannerUrl,
                             role: user.data().role,
-                            isVerified: user.data().verified
-                        })
+                            email: user.data().email,
+                            aboutMe: user.data().aboutMe,
+                            location: user.data().location,
+                            linkedin: user.data().linkedin,
+                            github: user.data().github,
+                            isVerified: user.data().verified,
+                        }
+                        allUsers.push(dataUser)
                     })
 
                     setUsers(allUsers);
@@ -55,48 +60,36 @@ function AuthProvider({ children }) {
         loadUsers();
     }, []);
 
-    async function signIn(email, password) {
+    async function signIn(email: string, password: string) {
         setLoadingAuth(true);
 
         await firebase.auth().signInWithEmailAndPassword(email, password)
             .then(async (value) => {
-                let uid = value.user.uid;
+                let uid: string = value.user?.uid || "";
 
-                const userProfile = await firebase.firestore().collection('users')
+                const res = await firebase.firestore().collection('users')
                     .doc(uid).get();
 
-                let data = {
-                    uid: userProfile.id,
-                    name: userProfile.data().name,
-                    avatarUrl: userProfile.data().avatarUrl,
-                    bannerUrl: userProfile.data().bannerUrl,
-                    email: value.user.email,
-                    role: userProfile.data().role,
-                    aboutMe: userProfile.data().aboutMe,
-                    location: userProfile.data().location,
-                    linkedin: userProfile.data().linkedin,
-                    github: userProfile.data().github,
-                    isVerified: userProfile.data().verified
-                };
+                if(res) {
+                    let data: UserProps = {
+                        uid: res.id,
+                        name: res.data()?.name || "",
+                        avatarUrl: res.data()?.avatarUrl,
+                        bannerUrl: res.data()?.bannerUrl,
+                        email: value.user?.email || "",
+                        role: res.data()?.role,
+                        aboutMe: res.data()?.aboutMe,
+                        location: res.data()?.location,
+                        linkedin: res.data()?.linkedin,
+                        github: res.data()?.github,
+                        isVerified: res.data()?.verified
+                    };
 
-                // const newToken = sign(
-                //     {
-                //         name: user.name,
-                //         email: user.email
-                //     },
-                //     process.env.JWT_SECRET,
-                //     {
-                //         subject: user.uid,
-                //         expiresIn: '30d'
-                //     }
-                // )
-
-                // setToken(newToken);
-                setUser(data);
-                storageUser(data);
-                setLoadingAuth(false);
-                toast.success("Seja bem vindo(a) de volta!");
-
+                    setUser(data);
+                    storageUser(data);
+                    setLoadingAuth(false);
+                    toast.success("Seja bem vindo(a) de volta!");
+                }
             })
             .catch((error) => {
                 console.log(error)
@@ -105,11 +98,11 @@ function AuthProvider({ children }) {
             })
     }
 
-    async function signUp(name, email, password) {
+    async function signUp({name, email, password}: SignUpProps) {
         setLoadingAuth(true);
         await firebase.auth().createUserWithEmailAndPassword(email, password)
             .then(async (value) => {
-                let uid = value.user.uid;
+                let uid: string = value.user?.uid || "";
 
                 await firebase.firestore().collection('users')
                     .doc(uid).set({
@@ -125,8 +118,6 @@ function AuthProvider({ children }) {
                         createdAt: new Date()
                     })
                     .then(() => {
-                        // setUser(data);
-                        // storageUser(data); 
                         setLoadingAuth(false);
                         toast.success("Cadastro feito com sucesso. Seja bem vindo(a)!");
                     })
@@ -137,7 +128,7 @@ function AuthProvider({ children }) {
             })
     }
 
-    function storageUser(data) {
+    function storageUser(data: UserProps) {
         localStorage.setItem('UserSystem', JSON.stringify(data));
     };
 
@@ -157,9 +148,7 @@ function AuthProvider({ children }) {
                 signOut,
                 signIn,
                 loadingAuth,
-                setUser,
                 storageUser,
-                setLoadingAuth,
                 users,
             }}>
             {children}
