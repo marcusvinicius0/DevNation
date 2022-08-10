@@ -1,3 +1,14 @@
 {
-    "editor.tabSize": 3
-}
+    "[javascriptreact]": {
+      "editor.codeActionsOnSave": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+      }
+    },
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "cSpell.enableFiletypes": ["javascript"],
+    "cSpell.language": "en,pt,pt_BR"
+  }
+  
