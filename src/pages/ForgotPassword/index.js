@@ -11,7 +11,6 @@ import { FaSpinner } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 import { Input } from '../../components/Utils/Input';
-import Button from '../../components/Utils/Button';
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState('');
@@ -62,11 +61,6 @@ export default function ForgotPassword() {
                         <MdEmail color="var(--black)" size={22} />
                     </label>
 
-                    <Button
-                        type="submit"
-                    >
-                        {loadingAuth ? (<FaSpinner color="#FFF" size={16} />) : 'Enviar'}
-                    </Button>
                 </form>
 
             </div>

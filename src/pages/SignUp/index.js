@@ -9,7 +9,6 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 
 import { Input } from '../../components/Utils/Input';
-import Button from '../../components/Utils/Button';
 import { toast } from 'react-toastify';
 
 export default function SignUp() {
@@ -135,12 +134,6 @@ export default function SignUp() {
                      <AiFillEyeInvisible onClick={handlePassword1} color="var(--black)" size={25} className={styles.eyeIcon} />
                   }
                </label>
-
-               <Button
-                  type="submit"
-               >
-                  {loadingAuth ? <FaSpinner color="#FFF" size={16} /> : 'Cadastrar'}
-               </Button>
             </form>
 
          </div>

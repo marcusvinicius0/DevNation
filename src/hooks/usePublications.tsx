@@ -1,17 +1,16 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-import firebase from 'firebase/app';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 
-import { PublicationObject, HandleCreatePublicationRequest, LikeOrDeslikeRequest, LikesObject } from "./types"
+import { PublicationsProviderProps, PublicationObject, HandleCreatePublicationRequest, LikeOrDeslikeRequest, LikesObject, RegisterNewComment } from "./types"
 
 import apiDsn from '../services/apiDsn'
 
 const PublicationsContext = createContext({});
- 
-export default function PublicationsProvider({ children }: ReactNode) {
+
+export default function PublicationsProvider({ children }: PublicationsProviderProps) {
 	const [publications, setPublications] = useState<PublicationObject[] | []>([]);
 	const [userPublications, setUserPublications] = useState<PublicationObject[] | []>([]);
 	const [loadingPublications, setLoadingPublications] = useState<boolean>(false);
@@ -22,7 +21,6 @@ export default function PublicationsProvider({ children }: ReactNode) {
 		setLoadingPublications(true);
 		await apiDsn.get("/publications").then((res) => {
 			setPublications(res.data)
-			console.log(publications[4])
 		}).catch((err) => {
 			console.log(err)
 		})
@@ -39,18 +37,18 @@ export default function PublicationsProvider({ children }: ReactNode) {
 		let data: PublicationObject = {
 			id: "",
 			publication: String(publication),
-			user_id: user.uid, 
+			user_id: user.uid,
 			image_publication_url,
-			user_name: user.name, 
-			user_role: user.role, 
-			user_is_verified: user.isVerified, 
+			user_name: user.name,
+			user_role: user.role,
+			user_is_verified: user.isVerified,
 			user_avatar_url: user.avatarUrl,
 			created_at: new Date(),
 			updated_at: new Date(),
 			likes: [],
 			comments: []
 		}
-		await apiDsn.post("/publications", data ).then((res) => {
+		await apiDsn.post("/publications", data).then((res) => {
 			setPublications([data, ...publications])
 		})
 	}
@@ -75,12 +73,12 @@ export default function PublicationsProvider({ children }: ReactNode) {
 		})
 	};
 
-	async function likeOrDeslikePublication({user_id, publication_id}: LikeOrDeslikeRequest) {
-		const res = await apiDsn.post("/likes", { user_id, publication_id}).then( (res) => {
+	async function likeOrDeslikePublication({ user_id, publication_id }: LikeOrDeslikeRequest) {
+		const res = await apiDsn.post("/likes", { user_id, publication_id }).then((res) => {
 			let arrayPublicationsIds: string[] = []
 
-			publications.forEach( (item) => arrayPublicationsIds.push(item.id) )
-			const idx: number = arrayPublicationsIds.indexOf(publication_id)
+			publications.forEach((item) => arrayPublicationsIds.push(item.id))
+			const idx = arrayPublicationsIds.indexOf(publication_id)
 
 			let dataLike: LikesObject = {
 				id: res.data.id,
@@ -88,71 +86,51 @@ export default function PublicationsProvider({ children }: ReactNode) {
 				publication_id: res.data.publication_id,
 				type: res.data.type,
 				updated_at: res.data.updated_at,
-				user_id: res.data.user_id,
+				user_id: res.data.user_id
 			}
 
-			if(res.data.type === "like") {
-				const array = publications
-				array[idx].likes.push(dataLike)
+			if (res.data.type === "like") {
+				const array: PublicationObject[] = publications
+				array[idx].likes?.push(dataLike)
 				setPublications(array);
 				return { type: "like", likes: array[idx].likes }
-			} 
+			}
 			else {
-				const array = publications
+				const array: PublicationObject[]  = publications
 
-				const index = array[idx].likes.findIndex( item => item.user_id === user_id && item.publication_id === publication_id)
-				array[idx].likes.splice(index, 1)
+				const index: number = array[idx].likes?.findIndex(item => item.user_id === user_id && item.publication_id === publication_id) || -1
+				array[idx].likes?.splice(index, 1)
 				setPublications(array);
 				return { type: "deslike", likes: array[idx].likes }
 			}
-
-		}).catch( (err) => {
+		}).catch((err) => {
 			console.log(err)
 		})
 		return res
 	}
 
-	async function loadPublicationById(publication_id) {
+	async function loadPublicationById(publication_id: string) {
 		setLoading(true)
 		const res = await apiDsn.get("/publications/details", { params: { publication_id } });
-		if(res.data) {
-			await firebase.firestore().collection("users")
-					.doc(res.data.user_id)
-					.get()
-					.then((snap) => {
-						let dataPublication = {
-							user_name: snap.data().name,
-							user_role: snap.data().role,
-							user_id: res.data.user_id,
-							user_is_verified: snap.data().verified,
-							publication: res.data.publication,
-							image_publication_url: res.data.image_publication_url,
-							id: res.data.id,
-							user_avatar_url: snap.data().avatarUrl,
-							created_at: res.data.created_at,
-							likes: res.data.likes,
-							comments: res.data.comments
-						}
-						setPublication(dataPublication)
-						setLoading(false)
-					})
+		if (res) {
+			setPublication(res.data)
 		}
 		setLoading(false)
 	}
 
-	async function registerNewComment({comment, publication_id, user_id, user_name, user_role, user_avatar_url, user_is_verified}) {
+	async function registerNewComment({ comment, publication_id, user_id, user_name, user_role, user_avatar_url, user_is_verified }: RegisterNewComment) {
 		let data = {
-			comment, 
-			publication_id, 
+			comment,
+			publication_id,
 			user_id,
 			user_name,
 			user_role,
-			user_avatar_url, 
+			user_avatar_url,
 			user_is_verified
 		}
-		await apiDsn.post("/comments", data).then( (res) => {
+		await apiDsn.post("/comments", data).then((res) => {
 			console.log(res)
-		}).catch( (err) => {
+		}).catch((err) => {
 			console.log(err)
 		})
 	}

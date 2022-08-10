@@ -31,9 +31,9 @@ export default function ContributorsBox(info) {
             <div className={styles.container} onClick={contributorInformations}>
                <div className={styles.box}>
                   <img src={info.img} alt="contribuidor" />
-                  <span className={styles.contributorInfo}>
+                  <div className={styles.contributorInfo}>
                      <p><strong>{info.name}</strong></p>
-                  </span>
+                  </div>
                </div>
 
                {contributorsContent ? <AiOutlineArrowUp size={30} /> : < AiOutlineArrowDown size={30} />}
@@ -42,7 +42,9 @@ export default function ContributorsBox(info) {
          {contributorsContent ?
             <div className={styles.contributorInfoBox} onClick={contributorInformations}>
                <p className={styles.contributorRole}><b>{info.role}</b></p>
-               <p className={styles.aboutTheContributor}>{info.aboutMe}</p>
+               <span className={styles.aboutTheContributor}>
+                  <p>{info.aboutMe}</p>
+               </span>
                <span className={styles.contactBox}>
                   <p>Contato:</p>
                   <a href={info.linkGH} target="_blank" rel="noreferrer">
