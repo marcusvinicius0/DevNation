@@ -8,17 +8,18 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
 import {
-  HandleCreatePublicationRequest,
-  LikeOrDeslikeRequest,
-  LikesObject,
-  PublicationObject,
-  PublicationsProviderProps,
-  RegisterNewComment,
+	HandleCreatePublicationRequest,
+	LikeOrDeslikeRequest,
+	LikesObject,
+	PublicationObject,
+	PublicationsProviderProps,
+	RegisterNewComment,
+	UsePublicationsHookData
 } from './types';
 
 import apiDsn from '../services/apiDsn';
 
-const PublicationsContext = createContext({});
+const PublicationsContext = createContext<UsePublicationsHookData>({} as UsePublicationsHookData);
 
 export default function PublicationsProvider({ children }: PublicationsProviderProps) {
   const [publications, setPublications] = useState<PublicationObject[] | []>([]);
