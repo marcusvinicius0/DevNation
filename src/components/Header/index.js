@@ -79,67 +79,69 @@ export default function Header() {
 
   return (
     <header className={styles.header}>
-      <Link className={styles.logoNavigation} to="/dashboard">
-        <img className={styles.logo} src={logo} alt="logo" />
-      </Link>
+      <div className={styles.headerContainer}>
+        <Link className={styles.logoNavigation} to="/dashboard">
+          <img className={styles.logo} src={logo} alt="logo" />
+        </Link>
 
-      <div className={styles.inputSearchUsers}>
-        <FiSearch className={styles.searchIcon} size={20} />
-        <input
-          type="text"
-          placeholder="Pesquisar..."
-          value={text}
-          onChange={(e) => searchValue(e)}
-          onClick={() => setSearchBarBox(!searchBarBox)}
-        />
-        <div
-          onMouseLeave={() => setSearchBarBox(!searchBarBox)}
-          className={searchBarBox || text !== '' ? styles.searchBox : styles.searchBoxOff}
-        >
-          {hiddingContent()}
+        <div className={styles.inputSearchUsers}>
+          <FiSearch className={styles.searchIcon} size={20} />
+          <input
+            type="text"
+            placeholder="Pesquisar..."
+            value={text}
+            onChange={(e) => searchValue(e)}
+            onClick={() => setSearchBarBox(!searchBarBox)}
+          />
+          <div
+            onMouseLeave={() => setSearchBarBox(!searchBarBox)}
+            className={searchBarBox || text !== '' ? styles.searchBox : styles.searchBoxOff}
+          >
+            {hiddingContent()}
+          </div>
         </div>
-      </div>
 
-      <nav className={showMenu ? styles.menuOn : styles.navegation}>
-        <ul>
-          <li className={pathname === '/dashboard' ? styles.active : ''}>
-            <Link to="/dashboard">
-              <AiFillHome size={20} />
-              Início
-            </Link>
-          </li>
-          <li className={pathname === '/followers' ? styles.active : ''}>
-            <Link to="/" onClick={() => toast.warning('Em breve...')}>
-              <FaUsers size={20} />
-              Seguidores
-            </Link>
-          </li>
-          <li className={pathname === '/opportunities' ? styles.active : ''}>
-            <Link to="/opportunities">
-              <BsBriefcaseFill size={20} />
-              Vagas
-            </Link>
-          </li>
-          <li className={pathname === '/message' ? styles.active : ''}>
-            <Link to="/" onClick={() => toast.warning('Em breve...')}>
-              <BsFillChatDotsFill size={20} />
-              Mensagens
-            </Link>
-          </li>
-          <li className={pathname === '/settings' ? styles.active : ''}>
-            <Link to="/" onClick={() => toast.warning('Em breve...')}>
-              <BsFillGearFill size={20} />
-              Configurações
-            </Link>
-          </li>
-          <li className={styles.aboutBox}>
-            <Link to="/documentation">
-              <AiFillInfoCircle size={20} />
-              Sobre
-            </Link>
-          </li>
-        </ul>
-      </nav>
+        <nav className={showMenu ? styles.menuOn : styles.navegation}>
+          <ul>
+            <li className={pathname === '/dashboard' ? styles.active : ''}>
+              <Link to="/dashboard">
+                <AiFillHome size={20} />
+                Início
+              </Link>
+            </li>
+            <li className={pathname === '/followers' ? styles.active : ''}>
+              <Link to="/" onClick={() => toast.warning('Em breve...')}>
+                <FaUsers size={20} />
+                Seguidores
+              </Link>
+            </li>
+            <li className={pathname === '/opportunities' ? styles.active : ''}>
+              <Link to="/opportunities">
+                <BsBriefcaseFill size={20} />
+                Vagas
+              </Link>
+            </li>
+            <li className={pathname === '/message' ? styles.active : ''}>
+              <Link to="/" onClick={() => toast.warning('Em breve...')}>
+                <BsFillChatDotsFill size={20} />
+                Mensagens
+              </Link>
+            </li>
+            <li className={pathname === '/settings' ? styles.active : ''}>
+              <Link to="/" onClick={() => toast.warning('Em breve...')}>
+                <BsFillGearFill size={20} />
+                Configurações
+              </Link>
+            </li>
+            <li className={styles.aboutBox}>
+              <Link to="/documentation">
+                <AiFillInfoCircle size={20} />
+                Sobre
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
       <span className={styles.menuHamb} onClick={() => setShowMenu(!showMenu)}>
         {showMenu ? (
