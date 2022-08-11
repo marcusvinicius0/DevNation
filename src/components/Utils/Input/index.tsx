@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-
-import styles from "./styles.module.scss"
-
+/* eslint-disable react/require-default-props */
+import React, { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { MdEmail } from "react-icons/md";
 import { FaUserAlt } from "react-icons/fa"
@@ -31,3 +29,4 @@ export function Input({ label, itsPassword,itsIconEmail,itsIconUser, ...rest }: 
 		</div>
 	)
 }
+

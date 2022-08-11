@@ -1,87 +1,87 @@
 .contentOpportunitie {
-	display: flex;
-	padding: 1rem 3rem;
-	background: #fff;
-	gap: 6rem;
-	align-items: center;
-	justify-content: center;
-	border-bottom: 1px solid rgb(0, 0, 0, 0.1);
-	transition: 0.3s;
+  display: flex;
+  padding: 1rem 3rem;
+  background: #fff;
+  gap: 6rem;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.1);
+  transition: 0.3s;
 
-	img {
-		width: 80px;
-		height: 80px;
-		border-radius: 100%;
-		object-fit: cover;
-	}
+  img {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    object-fit: cover;
+  }
 
-	.contentInfoOpportunitie {
-		width: 90%;
-		max-width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
+  .contentInfoOpportunitie {
+    width: 90%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 
-		h1 {
-			font-size: 1.5rem;
-		}
+    h1 {
+      font-size: 1.5rem;
+    }
 
-		.infos {
-			display: flex;
-			gap: 1.8rem;
-			width: 100%;
-			flex-wrap: wrap;
+    .infos {
+      display: flex;
+      gap: 1.8rem;
+      width: 100%;
+      flex-wrap: wrap;
 
-			span {
-				display: flex;
-				align-items: center;
-				gap: 0.1rem;
-			}
-		}
+      span {
+        display: flex;
+        align-items: center;
+        gap: 0.1rem;
+      }
+    }
 
-		.stacks {
-			display: flex;
-			gap: 1rem;
+    .stacks {
+      display: flex;
+      gap: 1rem;
 
-			span {
-				background: var(--soft-gray);
-				padding: 0.3rem 1rem;
-				color: #fff;
-				border-radius: 0.5rem;
-				font-weight: 600;
-			}
-		}
-	}
+      span {
+        background: var(--soft-gray);
+        padding: 0.3rem 1rem;
+        color: #fff;
+        border-radius: 0.5rem;
+        font-weight: 600;
+      }
+    }
+  }
 
-	&:nth-child(1) {
-		border-top-left-radius: 0.5rem;
-		border-top-right-radius: 0.5rem;
-	}
+  &:nth-child(1) {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+  }
 
-	&:hover {
-		background: rgb(0, 0, 0, 0.001);
-	}
+  &:hover {
+    background: rgb(0, 0, 0, 0.001);
+  }
 }
 
 @media (max-width: 800px) {
-	.contentOpportunitie {
-		flex-direction: column;
-		gap: 3rem;
+  .contentOpportunitie {
+    flex-direction: column;
+    gap: 3rem;
 
-		.contentInfoOpportunitie {
-			width: 100%;
-			h1 {
-				font-size: 1.2rem;
-				text-align: center;
-			}
+    .contentInfoOpportunitie {
+      width: 100%;
+      h1 {
+        font-size: 1.2rem;
+        text-align: center;
+      }
 
-			.infos{
-				gap: 1rem;
-			}
+      .infos {
+        gap: 1rem;
+      }
 
-			.stacks{
-				flex-wrap: wrap;
-			}
-		}
-	}
+      .stacks {
+        flex-wrap: wrap;
+      }
+    }
+  }
 }

@@ -1,26 +1,26 @@
 .footer {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin-top: 15px;
-   position: sticky;
-   top: 25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+  position: sticky;
+  top: 25rem;
 
-   a {
-       text-align: center;
-       font-size: 12px;
-       opacity: 0.9;
-       margin-top: 10px;
-   }
+  a {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 10px;
+  }
 
-   span {
-       display: flex;
-       flex-direction: row;
-       margin-top: 5px;
+  span {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
 
-       p {
-           padding: 0.9rem 0 0 0.3rem;
-           font-size: 12px;
-       }
-   }
+    p {
+      padding: 0.9rem 0 0 0.3rem;
+      font-size: 12px;
+    }
+  }
 }

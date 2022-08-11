@@ -1,138 +1,138 @@
-.container{
-   margin: 5rem auto;
-   background-color: var(--white);
-   width: 600px;
-   height: 400px;
-   border-radius: 10px;
-   padding: 20px;
+.container {
+  margin: 5rem auto;
+  background-color: var(--white);
+  width: 600px;
+  height: 400px;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-.ownerBox{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+.ownerBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-   img{
+  img {
+    border-radius: 50%;
+    width: 150px;
+  }
+
+  h1 {
+    font-size: 35px;
+    color: var(--black);
+  }
+
+  p {
+    text-align: center;
+  }
+}
+
+.filterBox {
+  margin: 15px 0;
+
+  button {
+    outline: 0;
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0 3px;
+  }
+}
+
+.issuesBox {
+  margin-top: 4rem;
+  padding-top: 20px;
+  border-top: 1px solid var(--black);
+
+  li {
+    display: flex;
+    padding: 15px 10px;
+
+    & + li {
+      margin-top: 12px;
+    }
+
+    img {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
-      width: 150px;
-   }
+      border: 2px solid var(--white);
+    }
 
-   h1{
-      font-size: 35px;
-      color: var(--black);
-   }
+    div {
+      flex: 1;
+      margin-left: 12px;
 
-   p{
-      text-align: center;
-   }
-}
+      p {
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--black);
+      }
+    }
 
-.filterBox{
-   margin: 15px 0;
+    strong {
+      font-size: 15px;
 
-   button{
-      outline: 0;
-      border: 0;
-      padding: 8px;
-      border-radius: 4px;
-      margin: 0 3px;
-   }
-}
+      a {
+        text-decoration: none;
+        color: #222;
+        transition: 0.3s;
 
-.issuesBox{
-   margin-top: 4rem;
-   padding-top: 20px;
-   border-top: 1px solid var(--black);
-
-   li{
-      display: flex;
-      padding: 15px 10px;
-
-      & + li{
-         margin-top: 12px;
+        &:hover {
+          color: var(--soft-blue);
+        }
       }
 
-      img{
-         width: 36px;
-         height: 36px;
-         border-radius: 50%;
-         border: 2px solid var(--white);
+      span {
+        background: #222;
+        color: var(--white);
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 5px 7px;
+        margin-left: 10px;
       }
-
-      div{
-         flex: 1;
-         margin-left: 12px;
-
-         p{
-            margin-top: 10px;
-            font-size: 12px;
-            color: var(--black);
-         }
-      }
-
-      strong{
-         font-size: 15px;
-
-         a{
-            text-decoration: none;
-            color: #222;
-            transition: 0.3s;
-
-            &:hover{
-               color: var(--soft-blue);
-            }
-         }
-
-         span{
-            background: #222;
-            color: var(--white);
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            padding: 5px 7px;
-            margin-left: 10px;
-         }
-      }
-   }
+    }
+  }
 }
 
-.navigateBox{
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   padding-bottom: 3rem;
+.navigateBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 3rem;
 
-   button{
-      outline: 0;
-      border: 0;
-      background-color: var(--soft-blue);
-      color: var(--white);
-      padding: 5px 10px;
-      border-radius: 4px;
+  button {
+    outline: 0;
+    border: 0;
+    background-color: var(--soft-blue);
+    color: var(--white);
+    padding: 5px 10px;
+    border-radius: 4px;
 
-      &:disabled{
-         cursor: not-allowed;
-         opacity: 0.5;
-      }
-   }
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
 }
 
-.loading{
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   margin: 5rem auto;
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5rem auto;
 }
 
-@media (max-width: 680px){
-   .container{
-      width: 90%;
-   }
+@media (max-width: 680px) {
+  .container {
+    width: 90%;
+  }
 }
 
-@media (max-width: 365px){
-   .container{
-      height: 420px;
-   }
+@media (max-width: 365px) {
+  .container {
+    height: 420px;
+  }
 }

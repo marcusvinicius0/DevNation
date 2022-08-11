@@ -1,86 +1,86 @@
-.container{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background: rgba(0,0,0, 0.6);
-    z-index: 99;
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
 }
 
-.modal{
-    max-width: 750px;
-    height: 370px;
-    background-color: var(--black);
-    margin: 5rem auto;
-    border-radius: 15px;
+.modal {
+  max-width: 750px;
+  height: 370px;
+  background-color: var(--black);
+  margin: 5rem auto;
+  border-radius: 15px;
 
-    .headerModal{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 0.8rem 0.5rem 0 1rem;
+  .headerModal {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.8rem 0.5rem 0 1rem;
 
-        p{
-            color: var(--white);
-            font-size: 20px;
-        }
-
-        button{
-            border: none;
-            background: 0;
-            color: var(--soft-gray);
-        }
+    p {
+      color: var(--white);
+      font-size: 20px;
     }
 
-    form{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+    button {
+      border: none;
+      background: 0;
+      color: var(--soft-gray);
+    }
+  }
 
-        button{
-            margin-top: 2rem;
-            padding: 0.5rem;
-            border: none;
-            background-color: var(--soft-blue);
-            border-radius: 15px;
-            height: 40px;
-            color: var(--white);
-        }
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    button {
+      margin-top: 2rem;
+      padding: 0.5rem;
+      border: none;
+      background-color: var(--soft-blue);
+      border-radius: 15px;
+      height: 40px;
+      color: var(--white);
+    }
+  }
+
+  .labelAvatar {
+    width: 90%;
+    height: 220px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+
+    span {
+      z-index: 99;
+      position: absolute;
+      opacity: 0.7;
+      transition: all 0.5s;
     }
 
-    .labelAvatar{
-        width: 90%;
-        height: 220px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        cursor: pointer;
-
-        span{
-            z-index: 99;
-            position: absolute;
-            opacity: 0.7;
-            transition: all .5s;
-        }
-
-        span:hover{
-            opacity: 1;
-            transform: scale(1.2);
-        }
-
-        input{
-            display: none;
-        }
-
-        img{
-            width: 95%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 15px;
-        }
+    span:hover {
+      opacity: 1;
+      transform: scale(1.2);
     }
+
+    input {
+      display: none;
+    }
+
+    img {
+      width: 95%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+  }
 }

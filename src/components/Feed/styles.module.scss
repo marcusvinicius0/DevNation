@@ -1,24 +1,24 @@
 .feed {
-	max-width: 600px;
-	height: 100%;
-	border-radius: 0.5rem;
-	display: flex;
-	flex-direction: column;
-	gap: 0.5rem;
-	margin: 1rem 0 2rem 0;
+  max-width: 600px;
+  height: 100%;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 1rem 0 2rem 0;
 
-	@media (max-width: 970px) {
-		width: 100%;
-		max-width: 1000px;
-	}
+  @media (max-width: 970px) {
+    width: 100%;
+    max-width: 1000px;
+  }
 
-	@media(max-width: 600px) {
-		border-radius: 0rem;
-	}
+  @media (max-width: 600px) {
+    border-radius: 0rem;
+  }
 }
 
 .loading {
-	margin-top: 1rem;
-	display: flex;
-	justify-content: center;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
 }

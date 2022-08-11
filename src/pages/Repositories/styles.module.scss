@@ -1,144 +1,141 @@
 .container {
-	display: flex;
-	margin: 6rem auto 0 auto;
-	width: 90%;
-	gap: 1rem;
-	justify-content: space-between;
+  display: flex;
+  margin: 6rem auto 0 auto;
+  width: 90%;
+  gap: 1rem;
+  justify-content: space-between;
 
-	@media (max-width: 1100px) {
-		width: 95%;
-	}
+  @media (max-width: 1100px) {
+    width: 95%;
+  }
 
-	@media (max-width: 970px) {
-		justify-content: center;
-		gap: 0rem;
-	}
-}
-
-.containerRepositories {
-   background-color: var(--white);
-   height: 100%;
-	width: 100%;
-   border-radius: 15px;
-
-	@media (max-width: 970px) {
-		width: 100%;
-	}
-
-   span{
-      display: flex;
-      justify-content: space-between;
-   }
-
-   h1{
-      color: var(--soft-blue);
-      padding: 0.5rem 0 0 1rem;
-   }
-
-   hr{
-      opacity: 0.4;
-   }
-
-   img{
-      margin: 1rem 1rem 0 0;
-   }
-
-   .repositoriesBox{
-      margin-top: 20px;
-      width: 95%;
-
-      li{
-         padding: 15px 0 0 15px;
-         display: flex;
-         flex-direction: row;
-         align-items: center;
-         justify-content: space-between;
-
-         & + li{
-            border-top: 1px solid #eee;
-         }
-
-         button{
-            background: transparent;
-            border: 0;
-            padding: 5px 7px;
-            outline: 0;
-            border-radius: 4px;
-         }
-
-         a{
-            text-decoration: none;
-            color: var(--black);
-         }
-      }
-
-
-   }
-}
-
-.searchBox{
-   background-color: var(--whitesmoke);
-   width: 95%;
-   height: 120px;
-   border-radius: 15px;
-   margin: 1rem 0 0 1rem;
-
-   img{
-      border-radius: 15px;
-		margin: 1rem 1rem;
-   }
-
-   form{
-      display: flex;
-		align-items: center;
-		width: 100%;
-		padding: 0rem 1rem;
-		justify-content: space-between;
-		gap: 0.5rem;
-   }
-
-   input{
-      border: 1px solid var(--black);
-      height: 40px;
-      padding: 0.5rem;
-		width: 100%;
-   }
-
-   .errorInput{
-      border: 1px solid var(--red-500);
-   }
-
-   button{
-      height: 40px;
-      border: 0;
-      background-color: var(--black);
-      padding: 0.5rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-   }
-
-   .buttonOff{
-      cursor: not-allowed;
-
-      &[disabled]{
-         svg{
-            animation: animate 1.5s infinite;
-         }
-      }
-
-      &:hover{
-         filter: brightness(1.08);
-     }
-   }
-
-   @keyframes animate{
-      from{
-          transform: rotate(0deg);
-      }
-      to{
-          transform: rotate(360deg);
-      }
+  @media (max-width: 970px) {
+    justify-content: center;
+    gap: 0rem;
   }
 }
 
+.containerRepositories {
+  background-color: var(--white);
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+
+  @media (max-width: 970px) {
+    width: 100%;
+  }
+
+  span {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h1 {
+    color: var(--soft-blue);
+    padding: 0.5rem 0 0 1rem;
+  }
+
+  hr {
+    opacity: 0.4;
+  }
+
+  img {
+    margin: 1rem 1rem 0 0;
+  }
+
+  .repositoriesBox {
+    margin-top: 20px;
+    width: 95%;
+
+    li {
+      padding: 15px 0 0 15px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      & + li {
+        border-top: 1px solid #eee;
+      }
+
+      button {
+        background: transparent;
+        border: 0;
+        padding: 5px 7px;
+        outline: 0;
+        border-radius: 4px;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--black);
+      }
+    }
+  }
+}
+
+.searchBox {
+  background-color: var(--whitesmoke);
+  width: 95%;
+  height: 120px;
+  border-radius: 15px;
+  margin: 1rem 0 0 1rem;
+
+  img {
+    border-radius: 15px;
+    margin: 1rem 1rem;
+  }
+
+  form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0rem 1rem;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  input {
+    border: 1px solid var(--black);
+    height: 40px;
+    padding: 0.5rem;
+    width: 100%;
+  }
+
+  .errorInput {
+    border: 1px solid var(--red-500);
+  }
+
+  button {
+    height: 40px;
+    border: 0;
+    background-color: var(--black);
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .buttonOff {
+    cursor: not-allowed;
+
+    &[disabled] {
+      svg {
+        animation: animate 1.5s infinite;
+      }
+    }
+
+    &:hover {
+      filter: brightness(1.08);
+    }
+  }
+
+  @keyframes animate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

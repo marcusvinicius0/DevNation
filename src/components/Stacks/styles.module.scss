@@ -1,56 +1,55 @@
 .containerStacks {
-	width: 100%;
-	background: #fff;
-	padding: 1rem;
-	border-radius: 15px;
-	border: 1px solid rgb(0, 0, 0, 0.15);
+  width: 100%;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 15px;
+  border: 1px solid rgb(0, 0, 0, 0.15);
 
-	header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-		h1 {
-			font-size: 1.2rem;
-			font-weight: 600;
-		}
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
 
-		button {
-			padding: 0.2rem 1rem;
-			display: flex;
-			align-items: center;
-			gap: 1rem;
-			border-radius: 1rem;
-			border: 0;
-			background: #0745B7;
-			color: #fff;
-			font-weight: 600;
+    button {
+      padding: 0.2rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-radius: 1rem;
+      border: 0;
+      background: #0745b7;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
 
-		}
-	}
+  .allStacks {
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
 
-	.allStacks {
-		margin-top: 1rem;
-		display: flex;
-		width: 100%;
-		gap: 1rem;
-		flex-wrap: wrap;
-		justify-content: center;
+    .stack {
+      align-items: center;
+      display: flex;
+      gap: 0.5rem;
+      border-radius: 1rem;
+      font-weight: 600;
+      color: #fff;
+      padding: 0.3rem 1rem;
+    }
+  }
 
-		.stack {
-			align-items: center;
-			display: flex;
-			gap: 0.5rem;
-			border-radius: 1rem;
-			font-weight: 600;
-			color: #fff;
-			padding: 0.3rem 1rem;
-		}
-	}
-
-	p {
-		font-weight: 400;
-		font-size: 1rem;
-		margin-top: 1rem;
-	}
+  p {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 1rem;
+  }
 }

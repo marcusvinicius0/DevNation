@@ -1,163 +1,148 @@
 .mainContainer {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  height: 100vh;
+
+
+  .logoContainer {
     display: flex;
+    width: 50%;
+    height: 100vh;
+    position: relative;
+    background: #000;
+    padding: 5rem 6rem 3rem 6rem;
+
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      right: 0;
+      opacity: 0.5;
+    }
+
+    .contentContainer {
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      h1 {
+        color: var(--white);
+        font-size: 2rem;
+      }
+
+      p {
+        color: var(--white);
+        font-size: 1.1rem;
+      }
+
+      a {
+        color: var(--white);
+        font-size: 0.9rem;
+        font-weight: 500;
+        border-radius: 1.2rem;
+      }
+    }
+  }
+
+  .loginContainer {
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
-	 background: #fff;
-	 height: 100vh;
-	 .loginContainerSignUp{
-		label{
-			display: flex;
-			input{
-				width: 400px;
-			}
-		}
-	 }
+    width: 50%;
+    height: 100%;
+    padding: 5rem 9rem 5rem 9rem;
 
-	 .logoContainer {
-		display: flex;
-		width: 50%;
-		height: 100vh;
-		position: relative;
-		background: #000;
-		padding: 5rem 6rem 3rem 6rem;
+    header {
+      h2 {
+        font-size: 2rem;
+      }
 
-		img {
-			position: absolute;
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			top: 0;
-			left: 0;
-			right: 0;
-			opacity: 0.5;
-		}
+      p {
+        font-size: 1rem;
+        span {
+          color: var(--blue-500);
+        }
+      }
+    }
 
-		.contentContainer {
-			z-index: 3;
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
+    .form {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      gap: 1.2rem;
+      width: 100%;
 
+      .buttonToHandleSignIn {
+        width: 100%;
+        margin-top: 2rem;
+        padding: 0.6rem 0rem;
+        background: var(--blue-500);
+        border: 0;
+        outline: 0;
+        color: #fff;
+        border-radius: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+      }
+    }
 
-			h1 {
-				 color: var(--white);
-				 font-size: 2rem;
-			}
-	  
-			p {
-				 color: var(--white);
-				 font-size: 1.1rem;
-			}
-	  
-			a {
-				 color: var(--white);
-				 font-size: 0.9rem;
-				 font-weight: 500;
-				 border-radius: 1.2rem;
-			}
-	  }
-  	}
-
-	  .loginContainer {
-			display: flex;
-			flex-direction: column;
-			justify-content: space-between;
-			width: 50%;
-			height: 100%;
-			padding: 5rem 9rem 5rem 9rem;
-	
-			header {
-				h2 {
-					font-size: 2rem;
-				}
-
-				p {
-					font-size: 1rem;
-					span {
-						color: var(--blue-500);
-					}
-				}
-			}
-
-			.form {
-				display: flex;
-				align-items: center;
-				flex-direction: column;
-				gap: 1.2rem;
-				width: 100%;
-		  
-				.buttonToHandleSignIn {
-					 width: 100%;
-					 margin-top: 2rem;
-					 padding: 0.6rem 0rem;
-					 background: var(--blue-500);
-					 border: 0;
-					 outline: 0;
-					 color: #fff;
-					 border-radius: 0.5rem;
-					 font-size: 1.1rem;
-					 font-weight: 600;
-				}
-		  }
-
-		  .forgotPassword {
-
-			span {
-				color: var(--blue-500);
-			}
-		  }
- 	 }
-
+    .forgotPassword {
+      span {
+        color: var(--blue-500);
+      }
+    }
+  }
 }
 
 @media (max-width: 920px) {
-    .mainContainer {
-        flex-direction: column;
+  .mainContainer {
+    flex-direction: column;
+  }
+
+  .logoContainer {
+    min-height: 44vh;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 10rem;
+    padding-left: 1.5rem;
+  }
+
+  .contentContainer {
+    h1 {
+      font-size: 2rem;
     }
+  }
 
-    .logoContainer {
-        min-height: 44vh;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 10rem;
-        padding-left: 1.5rem;
-    }
-
-    .contentContainer {
-      
-        h1{
-            font-size: 2rem;
-        }
-
-    }
-
-    .loginContainer {
-        min-width: 100vw;
-        min-height: 50vh;
-    }
-
-
+  .loginContainer {
+    min-width: 100vw;
+    min-height: 50vh;
+  }
 }
 
 @media (min-width: 1700px) {
+  .contentContainer {
+    padding: 0;
 
-    .contentContainer {
-        padding: 0;
-
-        h1 {
-            font-size: 3.5rem;
-        }
-
-        p {
-            font-size: 1.5rem;
-        }
-
-        a {
-            font-size: 1rem;
-        }
+    h1 {
+      font-size: 3.5rem;
     }
 
-    .loginContainer {
-        h2 {
-            font-size: 3rem;
-        }
+    p {
+      font-size: 1.5rem;
     }
+
+    a {
+      font-size: 1rem;
+    }
+  }
+
+  .loginContainer {
+    h2 {
+      font-size: 3rem;
+    }
+  }
 }

@@ -1,41 +1,41 @@
 .containerNotFoundUser {
-	width: 40%;
-	height: 100vh;
-	display: flex;
-	margin: 0 auto;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	padding: 2rem 0;
-	gap: 0.5rem;
+  width: 40%;
+  height: 100vh;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  gap: 0.5rem;
 
-	img {
-		width: 90%;
-	}
+  img {
+    width: 90%;
+  }
 
-	h1 {
-		font-weight: 600;
-		font-size: 1.5rem;	
-		margin-top: 1rem;
-	}
+  h1 {
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
 
-	p {
-		text-align: center;
-		display: inline-block;
-		font-size: 1rem;
-		font-weight: 400;
-		max-width: 400px;
-	}
+  p {
+    text-align: center;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: 400;
+    max-width: 400px;
+  }
 
-	a {
-		background: var(--soft-blue);
-		font-weight: 600;
-		color: #fff;
-		padding: 0.3rem 1rem;
-		border-radius: 1rem;
-	}
+  a {
+    background: var(--soft-blue);
+    font-weight: 600;
+    color: #fff;
+    padding: 0.3rem 1rem;
+    border-radius: 1rem;
+  }
 
-	@media (max-width: 700px) {
-		width: 90%;
-	}
+  @media (max-width: 700px) {
+    width: 90%;
+  }
 }
