@@ -1,129 +1,126 @@
 .container {
+  .headerOpportunities {
+    height: 50vh;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+    opacity: 1;
 
-	.headerOpportunities {
-		height: 50vh;
-		background: #000;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		color: #fff;
-		position: relative;
-		opacity: 1;
+    .textHeaderOpportunities {
+      z-index: 10;
+      text-align: center;
+      width: 60%;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
 
-		.textHeaderOpportunities {
-			z-index: 10;
-			text-align: center;
-			width: 60%;
-			display: flex;
-			gap: 1rem;
-			flex-direction: column;
+      h1 {
+        font-weight: 600;
+        font-size: 2.5rem;
+      }
 
-			h1 {
-				font-weight: 600;
-				font-size: 2.5rem;
-			}
+      p {
+        font-size: 1rem;
+      }
+    }
 
-			p {
-				font-size: 1rem;
-			}
-		}
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      left: 0;
+      opacity: 0.3;
+    }
+  }
 
+  .contentOpportunities {
+    width: 80%;
+    margin: 2rem auto;
 
-		img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-			position: absolute;
-			left: 0;
-			opacity: 0.3;
-		}
-	}
+    .opportunityFilter {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
 
-	.contentOpportunities {
-		width: 80%;
-		margin: 2rem auto;
+      form {
+        display: flex;
+        width: 100%;
+        height: 50px;
+        gap: 1rem;
 
-		.opportunityFilter {
-			width: 100%;
-			display: flex;
-			flex-direction: column;
+        input {
+          height: 50px;
+          padding-left: 1rem;
+          width: 100%;
+        }
 
-			form {
-				display: flex;
-				width: 100%;
-				height: 50px;
-				gap: 1rem;
+        button {
+          margin-left: auto;
+          min-width: 165px;
+          height: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          background: var(--blue-500);
+          border: 0;
+          color: #fff;
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+      }
 
-				input {
-					height: 50px;
-					padding-left: 1rem;
-					width: 100%;
-				}
+      .selectFilters {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
 
-				button {
-					margin-left: auto;
-					min-width: 165px;
-					height: 50px;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					gap: 0.5rem;
-					background: var(--blue-500);
-					border: 0;
-					color: #fff;
-					font-weight: 600;
-					font-size: 0.9rem;
-				}
-			}
-
-			.selectFilters {
-				width: 100%;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				gap: 1rem;
-			}
-		}
-
-		.opportunities {
-			display: flex;
-			gap: 1rem;
-			flex-direction: column;
-			margin-top: 1rem;
-			border: 1px solid rgb(0, 0, 0, 0.2);
-			border-radius: 0.5rem;
-		}
-	}
+    .opportunities {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+      margin-top: 1rem;
+      border: 1px solid rgb(0, 0, 0, 0.2);
+      border-radius: 0.5rem;
+    }
+  }
 }
 
 .select {
-	* {
-		 font-family: "Poppins"!important;
-		 font-size: 0.9rem!important;
-	}
+  * {
+    font-family: 'Poppins' !important;
+    font-size: 0.9rem !important;
+  }
 }
 
-
 @media (max-width: 800px) {
-	.container {
-		.contentOpportunities {
-			gap: 3rem;
-			.opportunityFilter {
-				form {
-					display: flex;
-					flex-direction: column;
-					height: 100px;
+  .container {
+    .contentOpportunities {
+      gap: 3rem;
+      .opportunityFilter {
+        form {
+          display: flex;
+          flex-direction: column;
+          height: 100px;
 
-					button{
-						margin-left: 0;
-					}
-				}
-				.selectFilters {
-					flex-direction: column;
-					gap: 0.5rem;
-				}
-			}
-		}
-	}
+          button {
+            margin-left: 0;
+          }
+        }
+        .selectFilters {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+      }
+    }
+  }
 }
