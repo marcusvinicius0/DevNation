@@ -5,14 +5,16 @@ import { toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
 
-import { PublicationObject, HandleCreatePublicationRequest, LikeOrDeslikeRequest, LikesObject } from "./types"
+import { PublicationObject, HandleCreatePublicationRequest, LikeOrDeslikeRequest, LikesObject, IChildren, CommentsObject } from "./types"
 
 import apiDsn from '../services/apiDsn'
 
 const PublicationsContext = createContext({});
+
+
  
-export default function PublicationsProvider({ children }: ReactNode) {
-	const [publications, setPublications] = useState<PublicationObject[] | []>([]);
+export default function PublicationsProvider({ children }: IChildren) {
+	const [publications, setPublications] = useState<PublicationObject[] | any[]>([]);
 	const [userPublications, setUserPublications] = useState<PublicationObject[] | []>([]);
 	const [loadingPublications, setLoadingPublications] = useState<boolean>(false);
 	const [loading, setLoading] = useState<boolean>(false);
@@ -98,9 +100,9 @@ export default function PublicationsProvider({ children }: ReactNode) {
 				return { type: "like", likes: array[idx].likes }
 			} 
 			else {
-				const array = publications
+				const array = publications 
 
-				const index = array[idx].likes.findIndex( item => item.user_id === user_id && item.publication_id === publication_id)
+				const index = array[idx].likes.findIndex( (item: { user_id: string; publication_id: string; }) => item.user_id === user_id && item.publication_id === publication_id)
 				array[idx].likes.splice(index, 1)
 				setPublications(array);
 				return { type: "deslike", likes: array[idx].likes }
@@ -112,7 +114,7 @@ export default function PublicationsProvider({ children }: ReactNode) {
 		return res
 	}
 
-	async function loadPublicationById(publication_id) {
+	async function loadPublicationById(publication_id:string) {
 		setLoading(true)
 		const res = await apiDsn.get("/publications/details", { params: { publication_id } });
 		if(res.data) {
@@ -121,17 +123,18 @@ export default function PublicationsProvider({ children }: ReactNode) {
 					.get()
 					.then((snap) => {
 						let dataPublication = {
-							user_name: snap.data().name,
-							user_role: snap.data().role,
+							user_name: snap.data()?.name,
+							user_role: snap.data()?.role,
 							user_id: res.data.user_id,
-							user_is_verified: snap.data().verified,
+							user_is_verified: snap.data()?.verified,
 							publication: res.data.publication,
 							image_publication_url: res.data.image_publication_url,
 							id: res.data.id,
-							user_avatar_url: snap.data().avatarUrl,
+							user_avatar_url: snap.data()?.avatarUrl,
 							created_at: res.data.created_at,
 							likes: res.data.likes,
-							comments: res.data.comments
+							comments: res.data.comments,
+							updated_at: ''
 						}
 						setPublication(dataPublication)
 						setLoading(false)
@@ -140,7 +143,7 @@ export default function PublicationsProvider({ children }: ReactNode) {
 		setLoading(false)
 	}
 
-	async function registerNewComment({comment, publication_id, user_id, user_name, user_role, user_avatar_url, user_is_verified}) {
+	async function registerNewComment({comment, publication_id, user_id, user_name, user_role, user_avatar_url, user_is_verified}:CommentsObject) {
 		let data = {
 			comment, 
 			publication_id, 

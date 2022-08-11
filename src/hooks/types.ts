@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface PublicationObject { 
 	id: string;
 	publication: string;
@@ -44,4 +46,8 @@ export interface PublicationObject {
  export interface LikeOrDeslikeRequest {
 	user_id: string, 
 	publication_id: string
+ }
+
+ export interface IChildren{
+	children: ReactNode
  }
