@@ -1,286 +1,275 @@
 .container {
-	display: flex;
-	padding-top: 5rem;
-	width: 95%;
-	margin: 0 auto;
-	justify-content: space-between;
-	flex-wrap: wrap;
+  display: flex;
+  padding-top: 5rem;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .profileContainer {
-	max-width: 950px;
-	width: 100%;
-	height: 100%;
-	border-radius: 15px;
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+  max-width: 950px;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-	.contentProfile {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		padding-bottom: 20px;
-		background: var(--white);
-		border: 1px solid rgb(0, 0, 0, 0.15);
-		border-radius: 15px;
-	}
+  .contentProfile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    background: var(--white);
+    border: 1px solid rgb(0, 0, 0, 0.15);
+    border-radius: 15px;
+  }
 
-	.picturesBox {
-		height: 200px;
-		position: relative;
+  .picturesBox {
+    height: 200px;
+    position: relative;
 
-		.banner {
-			width: 100%;
-			height: 170px;
-			object-fit: cover;
-			border-top-left-radius: 15px;
-			border-top-right-radius: 15px;
-		}
+    .banner {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
 
-		.profilePic {
-			border-radius: 50%;
-			width: 140px;
-			height: 140px;
-			object-fit: cover;
-			cursor: pointer;
-			position: relative;
-			top: -6rem;
-			left: 1rem;
-			z-index: 2;
-			border: 2.5px solid #fff;
-		}
+    .profilePic {
+      border-radius: 50%;
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+      cursor: pointer;
+      position: relative;
+      top: -6rem;
+      left: 1rem;
+      z-index: 2;
+      border: 2.5px solid #fff;
+    }
 
-		.editBanner {
-			position: absolute;
-			right: 1rem;
-			top: 1rem;
-			width: 30px;
-			cursor: pointer;
-			background: 0;
-			border: 0;
-			outline: 0;
-		}
-	}
+    .editBanner {
+      position: absolute;
+      right: 1rem;
+      top: 1rem;
+      width: 30px;
+      cursor: pointer;
+      background: 0;
+      border: 0;
+      outline: 0;
+    }
+  }
 
-	.infoProfile {
-		display: flex;
-		flex-direction: column;
+  .infoProfile {
+    display: flex;
+    flex-direction: column;
 
-		.infoBox {
-			position: relative;
-			padding: 2rem 0 1.5rem 0;
+    .infoBox {
+      position: relative;
+      padding: 2rem 0 1.5rem 0;
 
-			.editInfoProfile {
-				position: absolute;
-				top: -1.5rem;
-				right: 0.9rem;
-				background: 0;
-				border: 0;
-				outline: 0;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				border-radius: 100%;
-				width: 40px;
-				height: 40px;
-				transition: 0.2s;
+      .editInfoProfile {
+        position: absolute;
+        top: -1.5rem;
+        right: 0.9rem;
+        background: 0;
+        border: 0;
+        outline: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 100%;
+        width: 40px;
+        height: 40px;
+        transition: 0.2s;
 
-				&:hover {
-					background-color: rgb(0, 0, 0, 0.15);
-				}
-			}
+        &:hover {
+          background-color: rgb(0, 0, 0, 0.15);
+        }
+      }
 
-			.name {
-				padding: 0 0 0 1.5rem;
-				font-size: 19px;
-				font-weight: 600;
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
+      .name {
+        padding: 0 0 0 1.5rem;
+        font-size: 19px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
 
-				svg {
-					color: var(--blue-500);
-				}
-			}
+        svg {
+          color: var(--blue-500);
+        }
+      }
 
-			.role {
-				padding: 0 1.5rem;
-				color: var(--soft-gray);
-			}
+      .role {
+        padding: 0 1.5rem;
+        color: var(--soft-gray);
+      }
 
-			.place {
-				padding: 0 0 0 1.5rem;
-				opacity: 0.5;
-			}
-		}
+      .place {
+        padding: 0 0 0 1.5rem;
+        opacity: 0.5;
+      }
+    }
 
-		.socialMedias {
-			display: flex;
-			justify-content: flex-end;
-		}
+    .socialMedias {
+      display: flex;
+      justify-content: flex-end;
+    }
 
-		.socialMedias a img {
-			margin-right: 20px;
-		}
-	}
+    .socialMedias a img {
+      margin-right: 20px;
+    }
+  }
 
-	.aboutMe {
-		width: 100%;
-		padding: 1rem;
-		background: var(--white);
-		border: 1px solid rgb(0, 0, 0, 0.15);
-		border-radius: 15px;
-		position: relative;
+  .aboutMe {
+    width: 100%;
+    padding: 1rem;
+    background: var(--white);
+    border: 1px solid rgb(0, 0, 0, 0.15);
+    border-radius: 15px;
+    position: relative;
 
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
 
-		h1 {
-			font-size: 1.2rem;
-			font-weight: 600;
-		}
+    p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      width: 95%;
+      max-width: 95%;
+      white-space: pre-line;
+    }
 
-		p {
-			margin-top: 1rem;
-			font-size: 0.9rem;
-			font-weight: 400;
-			width: 95%;
-			max-width: 95%;
-			white-space: pre-line;
-		}
+    button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: 0;
+      border: 0;
+      outline: 0;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 100%;
+    }
+  }
 
-		button {
-			position: absolute;
-			top: 1rem;
-			right: 1rem;
-			background: 0;
-			border: 0;
-			outline: 0;
-			width: 2rem;
-			height: 2rem;
-			border-radius: 100%;
-		}
-	}
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--white);
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgb(0, 0, 0, 0.15);
+    border-radius: 15px;
 
-	.posts {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-		background-color: var(--white);
-		padding: 1rem;
-		margin-bottom: 2rem;
-		border: 1px solid rgb(0, 0, 0, 0.15);
-		border-radius: 15px;
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
 
-		h3 {
-			font-size: 1.2rem;
-			font-weight: 600;
-		}
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
 
-		p {
-			font-size: 0.9rem;
-			font-weight: 400;
-		}
+    .post {
+      background: var(--whitesmoke);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      border: 1px solid rgb(0, 0, 0, 0.15);
 
-		.post {
-			background: var(--whitesmoke);
-			border-radius: 0.5rem;
-			padding: 1rem;
-			border: 1px solid rgb(0, 0, 0, 0.15);
+      header {
+        height: 3rem;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
 
-			header {
-				height: 3rem;
-				width: 100%;
-				display: flex;
-				align-items: center;
-				gap: 1rem;
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 100%;
+        }
 
-				img {
-					width: 50px;
-					height: 50px;
-					border-radius: 100%;
-				}
+        div {
+          display: flex;
+          flex-direction: column;
 
-				div {
-					display: flex;
-					flex-direction: column;
+          span {
+            font-weight: 600;
+            font-size: 0.95rem;
+            line-height: 1rem;
+          }
 
-					span {
-						font-weight: 600;
-						font-size: 0.95rem;
-						line-height: 1rem;
-					}
+          p {
+            font-weight: 400;
+            font-size: 0.9rem;
+          }
 
-					p {
-						font-weight: 400;
-						font-size: 0.9rem;
-					}
+          time {
+            font-weight: 400;
+            font-size: 0.65rem;
+          }
+        }
+      }
 
-					time {
-						font-weight: 400;
-						font-size: 0.65rem;
-					}
-				}
-
-			}
-
-			.contentPost {
-				p {
-					font-size: 0.95rem;
-					padding: 1rem 0 0.5rem 0;
-				}
-			}
-		}
-	}
-
+      .contentPost {
+        p {
+          font-size: 0.95rem;
+          padding: 1rem 0 0.5rem 0;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 545px) {
+  .profileContainer {
+    .posts {
+      .post {
+        padding-top: 2rem;
 
-	.profileContainer {
-		.posts {
-			.post {
-				padding-top: 2rem;
-
-				.contentPost {
-					padding-top: 1rem;
-				}
-			}
-
-		}
-	}
-
+        .contentPost {
+          padding-top: 1rem;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 580px) {
+  .profileContainer {
+    .infoProfile {
+      .infoBox {
+        .name {
+          padding: 0 0 0 1rem;
+          font-size: 15px;
+        }
 
-	.profileContainer {
+        .role {
+          padding: 0 1rem;
+        }
 
-		.infoProfile {
-
-			.infoBox {
-
-				.name {
-					padding: 0 0 0 1rem;
-					font-size: 15px;
-				}
-
-				.role {
-					padding: 0 1rem;
-				}
-
-				.place {
-					padding: 0 0 0 1rem;
-				}
-			}
-		}
-	}
+        .place {
+          padding: 0 0 0 1rem;
+        }
+      }
+    }
+  }
 }
 
 @media (min-width: 1700px) {
-
-	.container {
-		.profileContainer {
-			margin: 0 auto;
-		}
-	}
+  .container {
+    .profileContainer {
+      margin: 0 auto;
+    }
+  }
 }

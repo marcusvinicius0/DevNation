@@ -1,36 +1,33 @@
-import { useEffect } from "react";
+import CircularProgress from '@mui/material/CircularProgress';
+import { useEffect } from 'react';
+
+import { usePublications } from '../../hooks/usePublications';
+import Post from '../Post';
 import styles from './styles.module.scss';
 
-import Post from '../Post'
-import CircularProgress from '@mui/material/CircularProgress';
-
-import { usePublications } from "../../hooks/usePublications";
-
 export default function Feed() {
-	const { publications, loadPublications, loadingPublications } = usePublications()
+  const { publications, loadPublications, loadingPublications } = usePublications();
 
-	useEffect(() => {
-		loadPublications();
+  useEffect(() => {
+    loadPublications();
 
-		setTimeout( () => {
-			loadPublications()
-		}, 400)
-	}, []);
+    setTimeout(() => {
+      loadPublications();
+    }, 400);
+  }, []);
 
-	if (loadingPublications) {
-		return (
-			<div className={styles.loading}>
-				<CircularProgress />
-			</div>
-		)
-	}
+  if (loadingPublications) {
+    return (
+      <div className={styles.loading}>
+        <CircularProgress />
+      </div>
+    );
+  }
 
-	return (
-		<div className={styles.feed}>
-			{publications.length > 0 && (
-				publications.map((publication, index) => (
-					<Post key={index} publication={publication} />
-				)))}
-		</div>
-	)
+  return (
+    <div className={styles.feed}>
+      {publications.length > 0 &&
+        publications.map((publication, index) => <Post key={index} publication={publication} />)}
+    </div>
+  );
 }

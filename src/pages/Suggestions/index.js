@@ -1,70 +1,61 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { AiFillBug } from 'react-icons/ai';
+import { FcIdea } from 'react-icons/fc';
 import styles from './styles.module.scss';
 
-import Header from '../../components/Header';
 import ChatModal from '../../components/ChatModal';
+import Header from '../../components/Header';
 import ModalReportBug from '../../components/ModalReportBug';
 import ModalShareIdeas from '../../components/ModalShareIdeas';
 
-import { FcIdea } from 'react-icons/fc';
-import { AiFillBug } from 'react-icons/ai';
-
 export default function Suggestions() {
-   const [modalReport, setModalReport] = useState(false);
-   const [modalShareIdeas, setModalShareIdeas] = useState(false);
+  const [modalReport, setModalReport] = useState(false);
+  const [modalShareIdeas, setModalShareIdeas] = useState(false);
 
-   useEffect(() => {
+  useEffect(() => {
+    const goTop = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    };
 
-      const goTop = () => { window.scrollTo({ top: 0, left: 0, behavior: 'auto'})};
+    goTop();
+  }, []);
 
-      goTop();
+  function toggleModalReportBug() {
+    setModalReport(!modalReport);
+  }
 
-   }, []);
+  function toggleModalShareIdeas() {
+    setModalShareIdeas(!modalShareIdeas);
+  }
 
-   function toggleModalReportBug() {
-      setModalReport(!modalReport);
-   }
+  return (
+    <>
+      <Header />
 
-   function toggleModalShareIdeas(){
-      setModalShareIdeas(!modalShareIdeas);
-   }
+      <div className={styles.container}>
+        <div className={styles.titleBox}>
+          <h1>Nos ajude a melhorar sua experiência!</h1>
+          <p>Dê feedbacks, sugestões, críticas construtivas que estaremos avaliando todas!</p>
+        </div>
 
-   return (
-      <>
-         <Header />
+        <div className={styles.buttonsBox}>
+          <button onClick={toggleModalShareIdeas}>
+            <FcIdea size={20} className={styles.ideaIcon} />
+            <span>Compartilhe uma ideia</span>
+          </button>
 
-         <div className={styles.container}>
-            <div className={styles.titleBox}>
-               <h1>Nos ajude a melhorar sua experiência!</h1>
-               <p>Dê feedbacks, sugestões, críticas construtivas que estaremos avaliando todas!</p>
-            </div>
+          <button onClick={toggleModalReportBug}>
+            <AiFillBug size={20} className={styles.bugIcon} />
+            <span>Relate erros/bugs</span>
+          </button>
+        </div>
+      </div>
 
-            <div className={styles.buttonsBox}>
-               <button onClick={toggleModalShareIdeas}>
-                  <FcIdea size={20} className={styles.ideaIcon} />
-                  <span>Compartilhe uma ideia</span>
-               </button>
+      {modalReport && <ModalReportBug close={toggleModalReportBug} />}
 
-               <button onClick={toggleModalReportBug}>
-                  <AiFillBug size={20} className={styles.bugIcon} />
-                  <span>Relate erros/bugs</span>
-               </button>
-            </div>
-         </div>
+      {modalShareIdeas && <ModalShareIdeas close={toggleModalShareIdeas} />}
 
-         {modalReport && (
-            <ModalReportBug
-               close={toggleModalReportBug}
-            />
-         )}
-
-         {modalShareIdeas && (
-            <ModalShareIdeas
-            close={toggleModalShareIdeas}
-            />
-         )}
-
-         <ChatModal />
-      </>
-   )
+      <ChatModal />
+    </>
+  );
 }
