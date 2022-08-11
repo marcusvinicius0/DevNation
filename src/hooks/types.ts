@@ -41,17 +41,6 @@ export interface PublicationObject {
   comments?: CommentsObject[] | null;
 }
 
-export interface HandleCreatePublicationRequest {
-  publication: PublicationObject;
-  user: any;
-  image_publication_url: string;
-}
-
-export interface LikeOrDeslikeRequest {
-  user_id: string;
-  publication_id: string;
-}
-
 export interface RegisterNewComment {
   comment: string;
   publication_id: string;
@@ -60,4 +49,54 @@ export interface RegisterNewComment {
   user_role: string;
   user_avatar_url: string;
   user_is_verified: boolean;
+}
+
+export interface UserProps {
+  uid: string;
+  name: string;
+  avatarUrl: string;
+  bannerUrl: string;
+  role: string;
+  email: string;
+  aboutMe: string;
+  location: string;
+  linkedin: string;
+  github: string;
+  isVerified: boolean;
+}
+
+interface HandleCreatePublicationRequest {
+  publication: PublicationObject;
+  user: UserProps;
+  image_publication_url: string;
+}
+
+interface HandleCreateCommentRequest {
+  comment: CommentsObject;
+  user: UserProps;
+  image_publication_url: string;
+}
+
+interface LikeOrDeslikeRequest {
+  user_id: string;
+  publication_id: string;
+}
+
+export interface UsePublicationsHookData {
+  publications: PublicationObject[];
+  loadPublications: () => Promise<void>;
+  handleDeletePublication: (publication_id: string) => Promise<void>;
+  loadingPublications: boolean;
+  handleCreatePublication: ({
+    publication,
+    user,
+    image_publication_url,
+  }: HandleCreatePublicationRequest) => Promise<void>;
+  loadUserPublications: string;
+  userPublications: string;
+  likeOrDeslikePublication: ({ user_id, publication_id }: LikeOrDeslikeRequest) => Promise<void>;
+  loadPublicationById: (publication_id: stirng) => Promise<void>;
+  publication: PublicationObject;
+  registerNewComment: HandleCreateCommentRequest;
+  loading: boolean;
 }

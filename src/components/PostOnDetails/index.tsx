@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiBookmark, BiMessageRounded, BiShare, BiTrash } from 'react-icons/bi';
 import { HiHeart, HiOutlineHeart, HiSpeakerphone } from 'react-icons/hi';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
@@ -18,18 +18,19 @@ import { usePublications } from '../../hooks/usePublications';
 import CommentModal from '../CommentModal';
 import Comment from './Comment';
 import styles from './styles.module.scss';
+import { CommentsProps, LikesProps, PublicationProps } from "./types";
 
 const ITEM_HEIGHT = 48;
 
-export default function PostOnDetails({ publicationInfo }) {
+export default function PostOnDetails(publicationInfo: PublicationProps) {
   const { id } = useParams();
-  const [publication, setPublication] = useState(publicationInfo && publicationInfo);
-  const [popoverActive, setPopoverActive] = useState(0);
+  const [publication, setPublication] = useState<PublicationProps | null>(null);
+  const [popoverActive, setPopoverActive] = useState<number>(0);
   const [anchorEl, setAnchorEl] = useState(null);
-  const [typeHeart, setTypeHeart] = useState('desliked');
-  const [numberOfLikes, setNumberOfLikes] = useState(publication.likes && publication.likes.length);
-  const [modalCommentIsActive, setModalCommentIsActive] = useState(false);
-  const [commentsOnPublication, setCommentsOnPublication] = useState([]);
+  const [typeHeart, setTypeHeart] = useState<"desliked" | "liked">('desliked');
+  const [numberOfLikes, setNumberOfLikes] = useState<number>(0);
+  const [modalCommentIsActive, setModalCommentIsActive] = useState<boolean>(false);
+  const [commentsOnPublication, setCommentsOnPublication] = useState<CommentsProps[]>([]);
 
   const open = Boolean(anchorEl);
 
@@ -42,12 +43,12 @@ export default function PostOnDetails({ publicationInfo }) {
     setModalCommentIsActive(false);
   };
 
-  function verifyButtonLike({ likes }) {
-    const array = [];
+  function verifyButtonLike(likes: LikesProps) {
+    const array: string[] = [];
     if (likes?.length > 0) {
-      likes.forEach((item) => array.push(item.user_id));
+      likes.forEach( (item) => array.push(item.user_id));
 
-      if (array.indexOf(user.uid) > -1) {
+      if (array.indexOf(user?.uid) > -1) {
         setTypeHeart('liked');
       } else {
         setTypeHeart('desliked');
@@ -58,15 +59,16 @@ export default function PostOnDetails({ publicationInfo }) {
   }
 
   async function loadComments() {
-    setCommentsOnPublication(publicationInfo.comments);
+    setCommentsOnPublication(publicationInfo?.comments);
   }
 
   useEffect(() => {
     setPublication(publicationInfo);
     console.log(publication);
-    verifyButtonLike({ publication_id: publication.id, likes: publication.likes });
+    verifyButtonLike({ publication_id: publication?.id, likes: publication?.likes });
     setCommentsOnPublication([]);
     loadComments();
+    setNumberOfLikes(publicationInfo.likes?.length);
   }, [publicationInfo, id]);
 
   async function handleDelete() {
@@ -79,10 +81,10 @@ export default function PostOnDetails({ publicationInfo }) {
     handleClose();
   }
 
-  async function handleLike({ user_id, publication_id, likes }) {
+  async function handleLike(user_id: string, publication_id: string, likes: LikesProps) {
     console.log(likes);
     const res = await likeOrDeslikePublication({ user_id, publication_id });
-    verifyButtonLike({ likes: res.likes });
+    verifyButtonLike(likes: res.likes);
 
     if (res.type === 'like') {
       setTypeHeart('liked');
