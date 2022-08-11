@@ -12,13 +12,14 @@
 		border-bottom: 2px solid rgb(0,0,0,0.75);
 		padding-bottom: 2px;
 		transition: 0.3s;
+		padding-left: 3px;
 
 		&:focus {
 			border-bottom: 2px solid var(--blue-500);
 		}
 	}
 
-	button {
+	button , span  {
 		position: absolute;
 		bottom: 0rem;
 		right: 0rem;

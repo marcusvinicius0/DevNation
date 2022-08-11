@@ -3,6 +3,14 @@
     justify-content: space-between;
 	 background: #fff;
 	 height: 100vh;
+	 .loginContainerSignUp{
+		label{
+			display: flex;
+			input{
+				width: 400px;
+			}
+		}
+	 }
 
 	 .logoContainer {
 		display: flex;
