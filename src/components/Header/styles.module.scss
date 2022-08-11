@@ -9,6 +9,10 @@
   background-color: var(--white);
   top: 0;
   align-items: center;
+  .headerContainer {
+    display: flex;
+    align-items: center;
+  }
 
   .justLogoNavigation {
     display: none;
@@ -37,7 +41,7 @@
     }
 
     input {
-      min-width: 20vw;
+      min-width: 250px;
       background-color: #eef3f8;
       border: none;
     }
@@ -242,6 +246,15 @@
 @media (max-width: 1200px) {
   .navegation {
     margin-left: 0rem;
+  }
+}
+@media (min-width: 1400px) {
+  .headerContainer {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  ul {
+    margin-left: 350px;
   }
 }
 
