@@ -1,73 +1,75 @@
-.container{
-   margin: 5rem auto;
-   width: 800px;
-   height: 530px;
-   background-color: var(--white);
-   padding: 1rem;
-   border-top-left-radius: 15px;
-   border-top-right-radius: 15px;
+.container {
+  margin: 5rem auto;
+  width: 90%;
+  height: 100%;
+  background-color: var(--white);
+  padding: 1rem;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
 
-   header{
-      display: flex;
-      flex-direction: row;
-      background-color: var(--whitesmoke);
-      border-radius: 10px;
-      margin-bottom: 1rem;
-   }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--whitesmoke);
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-
-   h1{
-      font-size: 30px;
-      padding: 2rem 1rem 1rem 1rem;
-      border-radius: 15px;
+    h1 {
+      font-size: 40px;
+      margin-left: 0.5rem;
+      padding: 0.5rem 0.5rem;
       color: var(--blue-500);
-      text-align: center;
       z-index: 3;
-   }
+    }
 
-   img{
+    img {
       object-fit: cover;
       margin: 0.5rem;
-   }
+      border-radius: 50%;
+    }
+  }
 
+  hr {
+    border: 1px solid var(--whitesmoke);
+    margin-bottom: 0.5rem;
+  }
 
-   hr{
-      border: 1px solid var(--whitesmoke);
-      margin-bottom: 0.5rem;
-   }
+  h3 {
+    color: var(--blue-500);
+    font-size: 1.5rem;
+  }
 }
 
-@media (max-width: 870px){
-   .container{
-      width: 90%;
-      height: 100%;
-      
+@media (max-width: 870px) {
+  .container {
+    width: 90%;
+    height: 100%;
 
-      header{
-         flex-direction: column-reverse;
-         align-items: center;
+    header {
+      flex-direction: column-reverse;
+      align-items: center;
+
+      h1 {
+        text-align: center;
+        font-size: 29px;
       }
-
-      h1{
-         font-size: 29px;
-      }
-
-   }
+    }
+  }
 }
 
-@media (max-width: 580px){
-   .container{
-
-      h1{
-         font-size: 22px;
+@media (max-width: 580px) {
+  .container {
+    header {
+      h1 {
+        font-size: 22px;
       }
-   }
+    }
+  }
 }
 
-
-
-@media(min-width: 1700px){
-   .container{
-      margin: 10rem auto;
-   }
+@media (min-width: 1700px) {
+  .container {
+    margin: 5rem auto;
+  }
 }

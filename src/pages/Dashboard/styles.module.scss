@@ -1,132 +1,137 @@
 .dashboard {
-    padding-top: 5rem;
-    display: flex;
-    width: 95%;
-    margin: 0 auto;
-    justify-content: space-between;
-    flex-wrap: wrap;
+  padding-top: 5rem;
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1300px;
 
-    @media screen and (max-width: 970px) {
-        flex-direction: column;
-    }
+  @media screen and (max-width: 970px) {
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: 800px) {
+    width: 100%;
+  }
 }
 
 .mainFeedContainer {
-    max-width: 600px;
-    width: 100%;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+
+  .createPublicationContainer {
     display: flex;
     flex-direction: column;
+    background: #fff;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    width: 100%;
 
-    .createPublicationContainer {
-        display: flex;
-        flex-direction: column;
-        background: #fff;
-        border-radius: 0.5rem;
-        margin-bottom: 1rem;
-        border: 1px solid rgba(0, 0, 0, 0.15);
+    .contentBox {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      padding: 1rem 2rem 0rem 2rem;
 
-        .contentBox {
-            display: flex;
-            flex-direction: row;
-            gap: 1rem;
-            padding: 1rem 2rem 0rem 2rem;
+      img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        cursor: pointer;
+      }
 
-            img {
-                border-radius: 50%;
-                width: 50px;
-                height: 50px;
-                object-fit: cover;
-                cursor: pointer;
-            }
-
-            .publication {
-                width: 30rem;
-                height: 40px;
-                border: 1px solid rgba(0, 0, 0, 0.2);
-                border-radius: 15px;
-                cursor: pointer;
-                transition: all 0.5s;
-                margin-top: 0.4rem;
-                padding: 0.5rem 0 0 1rem;
-
-                p {
-                    font-size: 14px;
-                }
-            }
-
-            .publication:hover {
-                background-color: rgba(0, 0, 0, 0.1);
-            }
-        }
-
-        .contentActions {
-            width: 100%;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            button {
-                display: flex;
-                align-items: center;
-                gap: 1rem;
-                border: 0;
-                background: 0;
-                padding: 0.2rem 0.5rem;
-                transition: background 0.2s;
-                border-radius: 1rem;
-
-                &:hover {
-                    background: rgba(0, 0, 0, 0.1);
-                }
-            }
-        }
-
-    }
-
-	 @media (max-width: 970px) {
-		max-width: 100%;
-	 }
-}
-
-hr {
-    opacity: 0.7;
-}
-
-@media (max-width: 1200px) {
-    .mainFeedContainer {
-        margin: 0 auto;
+      .publication {
         width: 90%;
+        height: 40px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.5s;
+        margin-top: 0.4rem;
+        padding: 0.5rem 0 0 1rem;
+
+        p {
+          font-size: 14px;
+        }
+      }
+
+      .publication:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
     }
 
-	 .newsAndAdversiting {
-		display: none;
-	 }
+    .contentActions {
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        border: 0;
+        background: 0;
+        padding: 0.2rem 0.5rem;
+        transition: background 0.2s;
+        border-radius: 1rem;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
 }
 
-@media (max-width: 580px) {
-    .createPublicationContainer {
+@media (max-width: 970px) {
+  .mainFeedContainer {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 100%;
+  }
 
-        .publication{
-            height: 45px!important;
-            
-            p{
-                font-size: 11px!important;
-            }
-        }
+  .createPublicationContainer {
+    border-radius: 0rem !important;
 
-        .contentActions {
-            display: flex;
-            justify-content: space-around;
+    .publication {
+      height: 45px !important;
 
-            button {
-                justify-content: space-around;
-            }
-
-            span {
-                display: none;
-            }
-        }
-
+      p {
+        font-size: 12px !important;
+      }
     }
+
+    .contentActions {
+      display: flex;
+      justify-content: space-around !important;
+
+      button {
+        justify-content: space-around;
+      }
+
+      span {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .mainFeedContainer {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .newsAndAdversiting {
+    display: none;
+  }
 }

@@ -1,0 +1,189 @@
+.post {
+  background: var(--white);
+  border-radius: 0.5rem;
+  border: 1px solid rgb(0, 0, 0, 0.15);
+  position: relative;
+  width: 100%;
+  transition: 0.3s;
+  cursor: pointer;
+
+  @media (max-width: 600px) {
+    border-radius: 0rem;
+  }
+
+  header {
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1.5rem 0 1.5rem;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 100%;
+      object-fit: cover;
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        svg {
+          color: var(--blue-500);
+        }
+
+        &:hover {
+          span {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      span {
+        font-weight: 600;
+        font-size: 0.95rem;
+        line-height: 1rem;
+      }
+
+      p {
+        font-weight: 400;
+        font-size: 0.75rem;
+      }
+
+      time {
+        font-weight: 400;
+        font-size: 0.65rem;
+      }
+    }
+  }
+
+  .contentPost {
+    padding: 0.7rem 1.5rem 0.7rem 1.5rem;
+
+    div {
+      font-size: 0.95rem;
+      padding: 1rem 0 0.5rem 0;
+      white-space: pre-line;
+      word-wrap: break-word;
+
+      a {
+        color: var(--blue-500);
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .buttonToSeeActions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    background: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    transition: 0.2s;
+
+    &:hover {
+      background: rgb(0, 0, 0, 0.15);
+    }
+  }
+
+  .mediaPost {
+    padding: 0 0rem;
+
+    img {
+      width: 100%;
+      height: 25rem;
+      object-fit: cover;
+    }
+  }
+
+  footer {
+    padding: 0rem 1.5rem 0 1.5rem;
+    border-top: 1px solid rgb(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    button {
+      background: 0;
+      border: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      gap: 0.3rem;
+      border-radius: 100%;
+      transition: 0.3s;
+
+      svg {
+        font-size: 1.2rem;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+
+      &:hover {
+        background: #399be520;
+        color: var(--soft-blue);
+      }
+    }
+  }
+
+  &:hover {
+    background: rgb(0, 0, 0, 0.0001);
+  }
+
+  button {
+    z-index: 1;
+  }
+}
+
+.actionsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  .buttonActionMenu {
+    background: 0;
+    border: 0;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 485px) {
+  .feed {
+    .post {
+      padding-top: 1.5rem;
+
+      .contentPost {
+        padding-top: 1rem;
+      }
+    }
+  }
+}
+
+.loading {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}

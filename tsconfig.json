@@ -1,0 +1,31 @@
+{
+	"compilerOptions": {
+		"module": "commonjs", 
+		"target": "es5",  
+		"lib": [
+			"dom",
+			"dom.iterable",
+			"esnext"
+		 ],
+		"rootDir": "src",
+		"outDir": "./dist",
+		"allowJs": true,    
+		"esModuleInterop": true,  
+		"skipLibCheck": true,
+		"allowSyntheticDefaultImports": true,
+		"strict": true,
+    	"forceConsistentCasingInFileNames": true,
+    	"noFallthroughCasesInSwitch": true,
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+    	"isolatedModules": true,
+    	"noEmit": true,
+		"jsx": "react",
+		
+	},
+	"include": [
+	"./src/**/*", 
+	"react-app-env.d.ts"
+	],
+  	"exclude": ["**/*spec.ts/"]
+}

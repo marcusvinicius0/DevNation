@@ -1,72 +1,72 @@
-.container{
-    display: flex;
-    flex-direction: column;
-    background-color: var(--white);
-    width: 900px;
-    max-height: 100%;
-    margin: 5rem 0 3rem 2rem;
-    border-radius: 15px;
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  width: 900px;
+  max-height: 100%;
+  margin: 5rem auto;
+  border-radius: 15px;
 
-    .buttonBack{
-        position: absolute;
-        top: 5.5rem;
-        left: 2.5rem;
-    }
+  .buttonBack {
+    position: absolute;
+    top: 5.5rem;
+    left: 2.5rem;
+  }
 
-    img{
-        height: 60vh;
-        width: 100%;
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
+  img {
+    height: 60vh;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
 }
 
-.informationBox{
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
-    // background-color: red;
-    padding: 2rem;
-    max-width: 95%;
-    border-bottom: 2rem;
+.informationBox {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  // background-color: red;
+  padding: 2rem;
+  max-width: 95%;
+  border-bottom: 2rem;
 
-    h1{
-        font-size: 28px;
-    }
+  h1 {
+    font-size: 28px;
+  }
 
-    p{
-        line-height: 1.5rem;
-    }
+  p {
+    line-height: 1.5rem;
+  }
 
-    .qualLinguagem{
-        width: 60%;
-        height: 40%;
-    }
+  .qualLinguagem {
+    width: 60%;
+    height: 40%;
+  }
 
-    .qualEscolher{
-        width: 60%;
-        height: 40%;
-    }
+  .qualEscolher {
+    width: 60%;
+    height: 40%;
+  }
 
-    a{
-        color: var(--soft-blue);
-        width: 25%;
-        transition: 0.5s;
-    }
+  a {
+    color: var(--soft-blue);
+    width: 25%;
+    transition: 0.5s;
+  }
 
-    a:hover{
-        color: var(--black);
-    }
+  a:hover {
+    color: var(--black);
+  }
 }
 
-@media (min-width: 1700px){
-    .container{
-        position: relative;
-        margin: 6rem auto;
+@media (min-width: 1700px) {
+  .container {
+    position: relative;
+    margin: 6rem auto;
 
-        .buttonBack{
-            top: 0.5rem;
-            left: 1rem;
-        }
+    .buttonBack {
+      top: 0.5rem;
+      left: 1rem;
     }
+  }
 }

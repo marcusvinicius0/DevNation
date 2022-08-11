@@ -1,71 +1,82 @@
-import styles from './styles.module.scss';
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
+import { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
-import { useContext, useEffect, useState } from 'react';
 
-import { allStacks } from './stacks.js'
-
-import firebase from 'firebase/app'
-import ModalStacks from '../ModalStacks';
-import { AuthContext } from '../../contexts/auth';
+import firebase from 'firebase/app';
 import { RiPencilLine } from 'react-icons/ri';
+import { allStacks } from './stacks.js';
+
+import ModalStacks from '../ModalStacks';
+import styles from './styles.module.scss';
 
 export default function Stacks({ user_id, state_button }) {
-	const [stacks, setStacks] = useState([]);
-	const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
+  const [stacks, setStacks] = useState([]);
+  const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
-	useEffect(() => {
-		loadStacks()
-	}, []);
+  async function loadStacks() {
+    await firebase
+      .firestore()
+      .collection('users')
+      .doc(user_id)
+      .get()
+      .then((snap) => {
+        const { stacks } = snap.data();
+        const array = [];
+        allStacks.forEach((item) => {
+          if (stacks.indexOf(item.stack) > -1) {
+            array.push(item);
+          }
+        });
+        setStacks(array);
+      });
+  }
 
-	async function loadStacks() {
-		await firebase.firestore().collection('users')
-			.doc(user_id)
-			.get()
-			.then((snap) => {
-				const stacks = snap.data().stacks
-				let array = [];
-				allStacks.forEach((item) => {
-					if (stacks.indexOf(item.stack) > -1) {
-						array.push(item)
-					}
-				})
-				setStacks(array);
-			})
-	}
+  useEffect(() => {
+    setStacks([]);
+    loadStacks();
+  }, [user_id]);
 
-	return (
-		<div className={styles.containerStacks}>
-			<header>
-				<h1>Minhas stacks</h1>
-				{state_button && (
-					<button onClick={() => setModalStacksIsActive(true)}>
-						{stacks >= [0] ? (
-							<>
-								<RiPencilLine />
-								<span> Editar stack</span>
-							</>)
-							:
-							(
-								<>
-									<FiPlus />
-									<span>Adicionar stack</span>
-								</>
-							)}
-					</button>)}
-			</header>
-			{stacks.length > 0 ? (
-				<div className={styles.allStacks}>
-					{stacks.map((stack, index) => (
-						<div className={styles.stack} key={index} style={{ background: stack.color }}>
-							{stack.icon}
-							<span>{stack.stack}</span>
-						</div>
-					))}
-				</div>) : (
-				<p>Sem stacks.</p>
-			)}
+  return (
+    <div className={styles.containerStacks}>
+      <header>
+        <h1>Minhas stacks</h1>
+        {state_button && (
+          <button onClick={() => setModalStacksIsActive(true)}>
+            {stacks >= [0] ? (
+              <>
+                <RiPencilLine />
+                <span> Editar stacks</span>
+              </>
+            ) : (
+              <>
+                <FiPlus />
+                <span>Adicionar stacks</span>
+              </>
+            )}
+          </button>
+        )}
+      </header>
+      {stacks.length > 0 ? (
+        <div className={styles.allStacks}>
+          {stacks.map((stack, index) => (
+            <div className={styles.stack} key={index} style={{ background: stack.color }}>
+              {stack.icon}
+              <span>{stack.stack}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>Sem stacks.</p>
+      )}
 
-			{modalStacksIsActive === true && <ModalStacks handleCloseModal={() => setModalStacksIsActive(false)} allStacks={allStacks} reloadStacks={loadStacks} />}
-		</div>
-	)
+      {modalStacksIsActive === true && (
+        <ModalStacks
+          handleCloseModal={() => setModalStacksIsActive(false)}
+          allStacks={allStacks}
+          reloadStacks={loadStacks}
+        />
+      )}
+    </div>
+  );
 }
