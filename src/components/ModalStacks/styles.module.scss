@@ -1,71 +1,71 @@
 .containerModal {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	left: 0;
-	background: rgba(0, 0, 0, 0.6);
-	z-index: 99;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-	.contentModal {
-		width: 45vw;
-		height: 70vh;
-		background-color: #fff;
-		padding: 1rem;
+  .contentModal {
+    width: 45vw;
+    height: 70vh;
+    background-color: #fff;
+    padding: 1rem;
 
-		@media (max-width: 970px) {
-			width: 80vw;
-		}
+    @media (max-width: 970px) {
+      width: 80vw;
+    }
 
-		.selectStacks {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 1rem;
-			height: 80%;
-			overflow: scroll;
-			margin: 1rem auto 0 auto;
-			justify-content: center;
+    .selectStacks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      height: 80%;
+      overflow: scroll;
+      margin: 1rem auto 0 auto;
+      justify-content: center;
 
-			.cardCheckStack {
-				display: flex;
-				align-items: center;
-				width: 250px;
-				gap: 0.5rem;
+      .cardCheckStack {
+        display: flex;
+        align-items: center;
+        width: 250px;
+        gap: 0.5rem;
 
-				i {
-					margin-left: 0.5rem;
-				}
+        i {
+          margin-left: 0.5rem;
+        }
 
-				button {
-					display: flex;
-					width: 30px;
-					height: 30px;
-					border-radius: 100%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					border: 0;
-				}
+        button {
+          display: flex;
+          width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 0;
+        }
 
-				.activeButton {
-					background: var(--blue-500);
-					color: #fff;
-				}
-			}
-		}
+        .activeButton {
+          background: var(--blue-500);
+          color: #fff;
+        }
+      }
+    }
 
-		.saveButton {
-			padding: 0.3rem 1rem;
-			width: 100%;
-			background: var(--blue-500);
-			color: #fff;
-			font-weight: 600;
-			border: 0;
-			border-radius: 1rem;
-			outline: none;
-		}
-	}
+    .saveButton {
+      padding: 0.3rem 1rem;
+      width: 100%;
+      background: var(--blue-500);
+      color: #fff;
+      font-weight: 600;
+      border: 0;
+      border-radius: 1rem;
+      outline: none;
+    }
+  }
 }

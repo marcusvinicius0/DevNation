@@ -1,299 +1,292 @@
-
 .header {
+  display: flex;
+  gap: 0.4rem;
+  width: 100%;
+  height: 65px;
+  position: fixed;
+  z-index: 99;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: var(--white);
+  top: 0;
+  align-items: center;
+
+  .justLogoNavigation {
+    display: none;
+  }
+
+  .logoNavigation {
+    width: 180px;
+    height: 50px;
+    margin-left: 1rem;
+  }
+
+  .inputSearchUsers {
     display: flex;
-	 gap: 0.4rem;
-    width: 100%;
-    height: 65px;
-    position: fixed;
-    z-index: 99;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: var(--white);
-    top: 0;
-	 align-items: center;
+    background-color: #eef3f8;
+    height: 35px;
+    margin-left: 3rem;
+    align-items: center;
+    padding: 0 1rem;
+    gap: 1rem;
+    position: relative;
 
-	 .justLogoNavigation {
-		display: none;
-	 }
-
-	 .logoNavigation{
-		width: 180px;
-		height: 50px;
-		margin-left: 1rem;
-	 }
-
-    .inputSearchUsers {
-		display: flex;
-		background-color: #EEF3F8;
-		height: 35px;
-		margin-left: 3rem;
-		align-items: center;
-		padding: 0 1rem;
-		gap: 1rem;
-		position: relative;
-
-		.searchIcon {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-		}
- 
-		input {
-				min-width: 20vw;
-				background-color: #EEF3F8;
-				border: none;
-		}
-
-		.searchBox{
-			position: absolute;
-			top: 2.5rem;
-			left: 0rem;
-			width: 30rem;
-			background-color: #fff;
-			box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-			border-radius: 0.5rem;
-
-			ul {
-				display: flex;
-				flex-direction: column;
-
-				a {
-					width: 100%;
-					display: flex;
-					padding: 1rem;
-					align-items: center;
-					gap: 1rem;
-					transition: 0.3s;
-					flex: none;
-
-					svg {
-						width: 30px;
-					}
-
-					img {
-						width: 30px;
-						height: 30px;
-						border-radius: 100%;
-					}
-
-					div {
-						display: flex;
-						flex-direction: column;
-
-						span {
-							font-size: 1rem;
-							width: 100%;
-							display: flex;
-							text-overflow: ellipsis;
-							overflow: hidden;
-							font-weight: 500;
-
-							p {
-								font-size: 0.9rem;
-								text-overflow: ellipsis;
-								overflow: hidden;
-							}
-
-							svg {
-								color: var(--blue-500);
-							}
-						}
-
-						.role {
-							font-size: 0.7rem;
-							text-overflow: ellipsis;
-							overflow: hidden;
-						}
-					}
-
-					&:hover {
-						background: #EEF3F8;
-					}
-				}
-			}
-	  }
-
-	 }
-
-    .menuHamb {
-        display: none;
-        cursor: pointer;
+    .searchIcon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .navegation {
-        margin-left: 2rem;
-
-        ul {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        li {
-            color: var(--soft-gray);
-            font-size: 12px; 
-
-				a {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-				}
-        }
-
-		  .active {
-				color: #000;
-		  }
-
-		  .aboutBox{
-			display: none;
-		  }
+    input {
+      min-width: 20vw;
+      background-color: #eef3f8;
+      border: none;
     }
 
-    .pictureBox{
-        background-size: cover;
-		  margin-left: auto;
-		  margin-right: 4rem;
-		  display: flex;
-		  gap: 1rem;
-		  align-items: center;
+    .searchBox {
+      position: absolute;
+      top: 2.5rem;
+      left: 0rem;
+      width: 30rem;
+      background-color: #fff;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      border-radius: 0.5rem;
 
-        svg{
-            cursor: pointer;
-        }
+      ul {
+        display: flex;
+        flex-direction: column;
 
-        img {
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            object-fit: cover;
-            cursor: pointer;
-        }
-    }
+        a {
+          width: 100%;
+          display: flex;
+          padding: 1rem;
+          align-items: center;
+          gap: 1rem;
+          transition: 0.3s;
+          flex: none;
 
-    .menuOn{  
-        ul {
+          svg {
+            width: 30px;
+          }
+
+          img {
+            width: 30px;
+            height: 30px;
+            border-radius: 100%;
+          }
+
+          div {
             display: flex;
             flex-direction: column;
-            position: absolute;
-            right: 1rem;
-            top: 4rem;
-				max-width: 320px;
-				width: 100%;
-				box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            background-color: var(--white);
-        }
-    
-        li {
-            color: var(--soft-gray);
-            font-size: 12px;
-				border-bottom: 1px solid #EEF3F8;
-            
-				a {
-					display: flex;
-					align-items: center;
-					padding: 1rem 1rem;
-					gap: 1rem;
-				}
 
-				&:hover {
-					background: #EEF3F8;
-				}
+            span {
+              font-size: 1rem;
+              width: 100%;
+              display: flex;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              font-weight: 500;
+
+              p {
+                font-size: 0.9rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+
+              svg {
+                color: var(--blue-500);
+              }
+            }
+
+            .role {
+              font-size: 0.7rem;
+              text-overflow: ellipsis;
+              overflow: hidden;
+            }
+          }
+
+          &:hover {
+            background: #eef3f8;
+          }
         }
-    
-    
-        .homeIcon {
-            position: relative;
-            top: -1rem;
-            left: 1.5rem;
-            color: var(--soft-gray);
-    
-        }
-    
-        .usersIcon {
-            position: relative;
-            top: -1rem;
-            left: 2.5rem;
-            color: var(--soft-gray);
-        }
-    
-        .chatIcon {
-            position: relative;
-            top: -1rem;
-            left: 2.6rem;
-            color: var(--soft-gray);
-        }
-    
-        .configIcon{
-            position: relative;
-            top: -1rem;
-            left: 3rem;
-        }
+      }
     }
-    
-}
+  }
 
+  .menuHamb {
+    display: none;
+    cursor: pointer;
+  }
+
+  .navegation {
+    margin-left: 2rem;
+
+    ul {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    li {
+      color: var(--soft-gray);
+      font-size: 12px;
+
+      a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .active {
+      color: #000;
+    }
+
+    .aboutBox {
+      display: none;
+    }
+  }
+
+  .pictureBox {
+    background-size: cover;
+    margin-left: auto;
+    margin-right: 4rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    svg {
+      cursor: pointer;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      object-fit: cover;
+      cursor: pointer;
+    }
+  }
+
+  .menuOn {
+    ul {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      right: 1rem;
+      top: 4rem;
+      max-width: 320px;
+      width: 100%;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      background-color: var(--white);
+    }
+
+    li {
+      color: var(--soft-gray);
+      font-size: 12px;
+      border-bottom: 1px solid #eef3f8;
+
+      a {
+        display: flex;
+        align-items: center;
+        padding: 1rem 1rem;
+        gap: 1rem;
+      }
+
+      &:hover {
+        background: #eef3f8;
+      }
+    }
+
+    .homeIcon {
+      position: relative;
+      top: -1rem;
+      left: 1.5rem;
+      color: var(--soft-gray);
+    }
+
+    .usersIcon {
+      position: relative;
+      top: -1rem;
+      left: 2.5rem;
+      color: var(--soft-gray);
+    }
+
+    .chatIcon {
+      position: relative;
+      top: -1rem;
+      left: 2.6rem;
+      color: var(--soft-gray);
+    }
+
+    .configIcon {
+      position: relative;
+      top: -1rem;
+      left: 3rem;
+    }
+  }
+}
 
 .linkToSeeMoreResults {
-    width: 100%;
-    background: transparent;
-    color: #028ACD;
-    font-size: 0.9rem;
-    font-weight: 600;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  background: transparent;
+  color: #028acd;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
 }
 
-.searchBoxOff{
-    display: none;
+.searchBoxOff {
+  display: none;
 }
 
-@media (max-width: 1200px){
-
-	.navegation{
-		margin-left: 0rem;
-	}
+@media (max-width: 1200px) {
+  .navegation {
+    margin-left: 0rem;
+  }
 }
 
 @media (max-width: 1060px) {
-    .navegation {
-        display: none;
+  .navegation {
+    display: none;
+  }
+
+  .header {
+    .menuHamb {
+      display: flex;
+      position: absolute;
+      right: 1rem;
     }
 
-    .header {
-        .menuHamb{
-            display: flex;
-            position: absolute;
-            right: 1rem;
-        }
-
-        .pictureBox{
-            right: 4rem;
-        }
+    .pictureBox {
+      right: 4rem;
     }
+  }
 }
 
-@media (max-width: 630px){
-    .header{
-		padding-left: 2rem;
+@media (max-width: 630px) {
+  .header {
+    padding-left: 2rem;
 
-		.logoNavigation {
-			display: none;
-		}
-
-		.inputSearchUsers {
-			margin-left: -1.5rem;
-			width: 250px;
-
-			.searchBox {
-				position: fixed;
-				left: 0rem;
-				top: 4.1rem;
-				width: 100vw;
-			}
-		}
-
-		.pictureBox {
-			svg {
-				display: none;
-			}
-		}
+    .logoNavigation {
+      display: none;
     }
+
+    .inputSearchUsers {
+      margin-left: -1.5rem;
+      width: 250px;
+
+      .searchBox {
+        position: fixed;
+        left: 0rem;
+        top: 4.1rem;
+        width: 100vw;
+      }
+    }
+
+    .pictureBox {
+      svg {
+        display: none;
+      }
+    }
+  }
 }

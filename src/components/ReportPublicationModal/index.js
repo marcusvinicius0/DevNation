@@ -1,5 +1,1 @@
-
-
-export default function ReportPublicationModal({ close, publication_id }) {
-	
-}
+export default function ReportPublicationModal() {}

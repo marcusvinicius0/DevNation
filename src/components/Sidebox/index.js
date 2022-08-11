@@ -1,31 +1,25 @@
-import { useContext, useState } from "react";
-import styles from "./styles.module.scss";
-import { Link } from "react-router-dom";
-
-import banner from "../../assets/banner.png";
-
-import { FaUserCircle, FaEnvelopeOpenText } from "react-icons/fa";
-import { IoLogOut } from "react-icons/io5";
-import { BsBookmarkFill } from 'react-icons/bs';
-import { MdVerified, MdLightbulb, MdNewReleases } from 'react-icons/md';
+import { useContext } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
-
-import avatar from "../../assets/avatar.png";
+import { BsBookmarkFill } from 'react-icons/bs';
+import { FaEnvelopeOpenText, FaUserCircle } from 'react-icons/fa';
+import { IoLogOut } from 'react-icons/io5';
+import { MdLightbulb, MdNewReleases, MdVerified } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { AuthContext } from "../../contexts/auth";
+import avatar from '../../assets/avatar.png';
+import banner from '../../assets/banner.png';
+import { AuthContext } from '../../contexts/auth';
+import styles from './styles.module.scss';
 
 export default function Sidebox() {
   const { signOut, user } = useContext(AuthContext);
-  const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
+  const avatarUrl = user && user.avatarUrl;
 
   return (
     <div className={styles.sideBox}>
       <div className={styles.bannerBox}>
-        <img
-          src={user.bannerUrl === null ? banner : user.bannerUrl}
-          alt="banner"
-        />
+        <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
       </div>
       <div className={styles.pictureBox}>
         <Link to="/profile">
@@ -64,7 +58,7 @@ export default function Sidebox() {
           </span>
         </Link>
 
-        <Link to="/" onClick={() => toast.warning("Em breve...")}>
+        <Link to="/" onClick={() => toast.warning('Em breve...')}>
           <span>
             <BsBookmarkFill color="var(--soft-blue)" size={22} />
             <p>Salvos</p>

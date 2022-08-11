@@ -43,7 +43,12 @@ export default function SignIn() {
           </p>
         </header>
         <form className={styles.form} onSubmit={handleSubmit}>
-          <Input label="E-mail" value={email} onChange={(e: any) => setEmail(e.target.value)} />
+          <Input
+            type="email"
+            label="E-mail"
+            value={email}
+            onChange={(e: any) => setEmail(e.target.value)}
+          />
           <Input
             label="Senha"
             itsPassword
