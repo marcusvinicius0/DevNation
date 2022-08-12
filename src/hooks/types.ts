@@ -65,21 +65,26 @@ export interface UserProps {
   isVerified: boolean;
 }
 
-interface HandleCreatePublicationRequest {
+export interface HandleCreatePublicationRequest {
   publication: PublicationObject;
   user: UserProps;
   image_publication_url: string;
 }
 
-interface HandleCreateCommentRequest {
+export interface HandleCreateCommentRequest {
   comment: CommentsObject;
   user: UserProps;
   image_publication_url: string;
 }
 
-interface LikeOrDeslikeRequest {
+export interface LikeOrDeslikeRequest {
   user_id: string;
   publication_id: string;
+}
+
+interface ReturnLikeOrDeslike {
+  type: string;
+  likes: LikesObject[];
 }
 
 export interface UsePublicationsHookData {
@@ -92,10 +97,10 @@ export interface UsePublicationsHookData {
     user,
     image_publication_url,
   }: HandleCreatePublicationRequest) => Promise<void>;
-  loadUserPublications: string;
-  userPublications: string;
-  likeOrDeslikePublication: ({ user_id, publication_id }: LikeOrDeslikeRequest) => Promise<void>;
-  loadPublicationById: (publication_id: stirng) => Promise<void>;
+  loadUserPublications: (user_id: string) => Promise<void>;
+  userPublications: PublicationObject[];
+  likeOrDeslikePublication: ({ user_id, publication_id }: LikeOrDeslikeRequest) => Promise<ReturnLikeOrDeslike>;
+  loadPublicationById: (publication_id: string) => Promise<void>;
   publication: PublicationObject;
   registerNewComment: HandleCreateCommentRequest;
   loading: boolean;
