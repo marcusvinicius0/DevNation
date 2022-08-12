@@ -4,6 +4,7 @@ export interface LikesProps {
   created_at: string;
   updated_at: string;
   publication_id: string;
+  length?: number;
 }
 
 export interface CommentsProps {
@@ -32,4 +33,22 @@ export interface PublicationProps {
   updated_at?: string;
   likes?: LikesProps[] | null;
   comments?: CommentsProps[] | null;
+}
+
+export interface VerifyButtonLike {
+  likes: LikesProps[];
+}
+
+export interface HandleLikeRequest {
+  user_id: string;
+  publication_id: string;
+}
+
+export interface PopoverActiveProps {
+  publication_id: string;
+  user_id: string;
+}
+
+export interface ParamsProps {
+  id: string;
 }
