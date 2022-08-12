@@ -1,8 +1,9 @@
 /* eslint-disable react/require-default-props */
 import React, { useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import { FaUserAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { FaUserAlt } from "react-icons/fa"
+import styles from "./styles.module.scss";
 
 interface InputProps {
 	label: string, 
@@ -13,7 +14,7 @@ interface InputProps {
 }
 
 export function Input({ label, itsPassword,itsIconEmail,itsIconUser, ...rest }: InputProps, ) {
-	const [isHidden, setIsHidden] = useState<boolean>(itsPassword ? true : false)
+	const [isHidden, setIsHidden] = useState<boolean | undefined>(itsPassword) 
 
 	return (
 		<div className={styles.input}>

@@ -8,13 +8,12 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
 import {
-  HandleCreatePublicationRequest,
-  LikeOrDeslikeRequest,
-  LikesObject,
-  PublicationObject,
-  PublicationsProviderProps,
-  RegisterNewComment,
-  UsePublicationsHookData
+	HandleCreatePublicationRequest,
+	LikeOrDeslikeRequest,
+	LikesObject,
+	PublicationObject,
+	PublicationsProviderProps,
+	RegisterNewComment, ReturnOfLikeOrDeslike, UsePublicationsHookData
 } from './types';
 
 import apiDsn from '../services/apiDsn';
@@ -26,7 +25,8 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
   const [userPublications, setUserPublications] = useState<PublicationObject[] | []>([]);
   const [loadingPublications, setLoadingPublications] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [publication, setPublication] = useState<PublicationObject | []>([]);
+  const [publication, setPublication] = useState<PublicationObject | {}>({});
+	const [resLikeOrDeslike, setResLikeOrDeslike] = useState<ReturnOfLikeOrDeslike>({ type: "", likes: []})
 
   async function loadPublications() {
     setLoadingPublications(true);
@@ -96,7 +96,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
   }
 
   async function likeOrDeslikePublication({ user_id, publication_id }: LikeOrDeslikeRequest) {
-    const responseApiDsn = await apiDsn
+		await apiDsn
       .post('/likes', { user_id, publication_id })
       .then((res) => {
         const arrayPublicationsIds: string[] = [];
@@ -117,7 +117,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
           const array: PublicationObject[] = publications;
           array[idx].likes?.push(dataLike);
           setPublications(array);
-          return { type: 'like', likes: array[idx].likes };
+          setResLikeOrDeslike({ type: 'like', likes: array[idx].likes || [] })
         }
         const array: PublicationObject[] = publications;
 
@@ -127,12 +127,11 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
           ) || -1;
         array[idx].likes?.splice(index, 1);
         setPublications(array);
-        return { type: 'deslike', likes: array[idx].likes };
+        setResLikeOrDeslike({ type: 'deslike', likes: array[idx].likes || []});
       })
       .catch((err) => {
         console.log(err);
       });
-    return responseApiDsn;
   }
 
   async function loadPublicationById(publication_id: string) {
@@ -189,6 +188,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
         publication,
         registerNewComment,
         loading,
+				resLikeOrDeslike
       }}
     >
       {children}

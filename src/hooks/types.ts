@@ -82,9 +82,9 @@ export interface LikeOrDeslikeRequest {
   publication_id: string;
 }
 
-interface ReturnLikeOrDeslike {
+export interface ReturnOfLikeOrDeslike {
   type: string;
-  likes: LikesObject[];
+  likes: LikesObject[] | [];
 }
 
 export interface UsePublicationsHookData {
@@ -99,9 +99,10 @@ export interface UsePublicationsHookData {
   }: HandleCreatePublicationRequest) => Promise<void>;
   loadUserPublications: (user_id: string) => Promise<void>;
   userPublications: PublicationObject[];
-  likeOrDeslikePublication: ({ user_id, publication_id }: LikeOrDeslikeRequest) => Promise<ReturnLikeOrDeslike>;
+  likeOrDeslikePublication: ({ user_id, publication_id }: LikeOrDeslikeRequest) => Promise<void>;
   loadPublicationById: (publication_id: string) => Promise<void>;
-  publication: PublicationObject;
-  registerNewComment: HandleCreateCommentRequest;
+  publication: PublicationObject | {};
+  registerNewComment: (data: RegisterNewComment) => Promise<void>;
   loading: boolean;
+  resLikeOrDeslike: ReturnOfLikeOrDeslike;
 }

@@ -18,37 +18,38 @@ import { usePublications } from '../../hooks/usePublications';
 import CommentModal from '../CommentModal';
 import Comment from './Comment';
 import styles from './styles.module.scss';
-import { CommentsProps, LikesProps, PublicationProps } from "./types";
+
+import { CommentsProps, HandleLikeRequest, ParamsProps, PopoverActiveProps, PublicationProps, VerifyButtonLike } from "./types";
 
 const ITEM_HEIGHT = 48;
 
 export default function PostOnDetails(publicationInfo: PublicationProps) {
-  const { id } = useParams();
+  const { id } = useParams<ParamsProps>();
   const [publication, setPublication] = useState<PublicationProps | null>(null);
-  const [popoverActive, setPopoverActive] = useState<number>(0);
-  const [anchorEl, setAnchorEl] = useState(null);
+  const [popoverActive, setPopoverActive] = useState<PopoverActiveProps | null>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [typeHeart, setTypeHeart] = useState<"desliked" | "liked">('desliked');
   const [numberOfLikes, setNumberOfLikes] = useState<number>(0);
   const [modalCommentIsActive, setModalCommentIsActive] = useState<boolean>(false);
-  const [commentsOnPublication, setCommentsOnPublication] = useState<CommentsProps[]>([]);
+  const [commentsOnPublication, setCommentsOnPublication] = useState<CommentsProps[] | []>([]);
 
   const open = Boolean(anchorEl);
 
   const { user } = useContext(AuthContext);
-  const { handleDeletePublication, likeOrDeslikePublication, loading } = usePublications();
+  const { handleDeletePublication, likeOrDeslikePublication, loading, resLikeOrDeslike } = usePublications();
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClick = (event: any) => setAnchorEl(event.currentTarget);
   const handleClose = () => {
     setAnchorEl(null);
     setModalCommentIsActive(false);
   };
 
-  function verifyButtonLike(likes: LikesProps) {
+  function verifyButtonLike({ likes }: VerifyButtonLike) {
     const array: string[] = [];
     if (likes?.length > 0) {
       likes.forEach( (item) => array.push(item.user_id));
 
-      if (array.indexOf(user?.uid) > -1) {
+      if (array.indexOf(user?.uid || "") > -1) {
         setTypeHeart('liked');
       } else {
         setTypeHeart('desliked');
@@ -59,20 +60,19 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
   }
 
   async function loadComments() {
-    setCommentsOnPublication(publicationInfo?.comments);
+    setCommentsOnPublication(publicationInfo?.comments || []);
   }
 
   useEffect(() => {
     setPublication(publicationInfo);
-    console.log(publication);
-    verifyButtonLike({ publication_id: publication?.id, likes: publication?.likes });
+    verifyButtonLike({ likes: publication?.likes || [] });
     setCommentsOnPublication([]);
     loadComments();
-    setNumberOfLikes(publicationInfo.likes?.length);
+    setNumberOfLikes(publicationInfo.likes?.length || 0);
   }, [publicationInfo, id]);
 
   async function handleDelete() {
-    await handleDeletePublication(popoverActive.publication_id);
+    await handleDeletePublication(popoverActive?.publication_id || "");
     handleClose();
   }
 
@@ -81,22 +81,20 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
     handleClose();
   }
 
-  async function handleLike(user_id: string, publication_id: string, likes: LikesProps) {
-    console.log(likes);
-    const res = await likeOrDeslikePublication({ user_id, publication_id });
-    verifyButtonLike(likes: res.likes);
-
-    if (res.type === 'like') {
+  async function handleLike({user_id, publication_id}: HandleLikeRequest) {
+    await likeOrDeslikePublication({ user_id, publication_id });
+    verifyButtonLike({ likes: resLikeOrDeslike?.likes });
+    if (resLikeOrDeslike?.type === 'like') {
       setTypeHeart('liked');
       setNumberOfLikes(numberOfLikes + 1);
     }
-    if (res.type === 'deslike') {
+    if (resLikeOrDeslike?.type === 'deslike') {
       setTypeHeart('desliked');
       setNumberOfLikes(numberOfLikes - 1);
     }
   }
 
-  function newComment(comment) {
+  function newComment(comment: CommentsProps) {
     setCommentsOnPublication([comment, ...commentsOnPublication]);
   }
 
@@ -112,17 +110,17 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
     <>
       <div className={styles.post}>
         <header>
-          {publication.user_avatar_url === null ? (
+          {publication?.user_avatar_url === null ? (
             <img src={avatar} alt="foto avatar" />
           ) : (
-            <img src={publication.user_avatar_url} alt="Avatar foto" />
+            <img src={publication?.user_avatar_url} alt="Avatar foto" />
           )}
           <div>
-            <Link to={`/user/${publication.user_id}`}>
-              <span>{publication.user_name}</span>
-              {publication.user_is_verified && <MdVerified />}
+            <Link to={`/user/${publication?.user_id}`}>
+              <span>{publication?.user_name}</span>
+              {publication?.user_is_verified && <MdVerified />}
             </Link>
-            <p>{publication.user_role}</p>
+            <p>{publication?.user_role}</p>
             <time>
               {/* {format(publication.created_at, "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
 								locale: ptBR
@@ -131,20 +129,19 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           </div>
         </header>
         <div className={styles.contentPost}>
-          <div className={styles.description}>{publication.publication}</div>
+          <div className={styles.description}>{publication?.publication}</div>
         </div>
-        {publication.imagePublicationUrl && (
+        {publication?.image_publication_url && (
           <div className={styles.mediaPost}>
-            <img src={publication.image_publication_url} alt="Foto post" />
+            <img src={publication?.image_publication_url} alt="Foto post" />
           </div>
         )}
         <footer>
           <button
             onClick={() =>
               handleLike({
-                user_id: user.uid,
-                publication_id: publication.id,
-                likes: publication.likes,
+                user_id: user?.uid || "",
+                publication_id: publication?.id || ""
               })
             }
           >
@@ -162,7 +159,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           </button>
           <button onClick={() => setModalCommentIsActive(true)}>
             <BiMessageRounded />
-            <span>{publication.comments?.length || 0}</span>
+            <span>{publication?.comments?.length || 0}</span>
           </button>
           <button onClick={() => console.log(commentsOnPublication)}>
             <BiShare />
@@ -186,7 +183,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           aria-haspopup="true"
           onClick={(e) => {
             handleClick(e);
-            setPopoverActive({ publication_id: publication.id, user_id: publication.user_id });
+            setPopoverActive({ publication_id: publication?.id || "", user_id: publication?.user_id || "" });
           }}
           className={styles.buttonToSeeActions}
         >
@@ -209,7 +206,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           },
         }}
       >
-        {user.uid === popoverActive.user_id && (
+        {user?.uid === popoverActive?.user_id && (
           <MenuItem>
             <div className={styles.actionsBox}>
               <button onClick={handleDelete} className={styles.buttonActionMenu}>
