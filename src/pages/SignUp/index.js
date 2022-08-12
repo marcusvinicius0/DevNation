@@ -45,6 +45,7 @@ export default function SignUp() {
     setEmail('');
     setPassword('');
     setPasswordAgain('');
+    return null;
   }
 
   return (
