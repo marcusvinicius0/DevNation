@@ -1,13 +1,9 @@
-/* eslint-disable no-unused-vars */
-import { useContext, useState } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { FaUserAlt } from 'react-icons/fa';
-import { MdEmail } from 'react-icons/md';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
+
 import styles from '../SignIn/styles.module.scss';
 
 export default function SignUp() {
@@ -15,9 +11,6 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordAgain, setPasswordAgain] = useState('');
-  const [alert, setAlert] = useState(null);
-  const [hidePass, setHidePass] = useState(false);
-  const [hidePass1, setHidePass1] = useState(false);
 
   const { signUp } = useContext(AuthContext);
 
@@ -35,10 +28,6 @@ export default function SignUp() {
 
     if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
       signUp(name, email.replaceAll(' ', ''), password.replaceAll(' ', ''));
-      setName('');
-      setEmail('');
-      setPassword('');
-      setPasswordAgain('');
     } else {
       toast.warning('Preencha todos os campos.');
       setPassword('');
@@ -52,101 +41,59 @@ export default function SignUp() {
       setPasswordAgain('');
       return null;
     }
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPasswordAgain('');
     return null;
-  }
-
-  function handlePassword() {
-    setHidePass(!hidePass);
-  }
-
-  function handlePassword1() {
-    setHidePass1(!hidePass1);
   }
 
   return (
     <div className={styles.mainContainer}>
-      <div className={styles.logoContainer}>
+      <div className={styles.pictureContainer}>
         <div className={styles.contentContainer}>
-          <h1>Dev Social Network</h1>
-          <p>Já possui uma conta?</p>
-          <Link to="/">Faça login agora mesmo!</Link>
+          <h1>devnation.com</h1>
+          <p>devnation.com é o local perfeito pra você encontrar talentos na área de tecnologia.</p>
+          <Link to="/">Voltar para home</Link>
         </div>
+        <img
+          src="https://www.qrpoint.com.br/wp-content/uploads/2022/03/pexels-thisisengineering-3861969-1024x683.jpg"
+          alt=""
+        />
       </div>
 
       <div className={styles.loginContainer}>
-        <h2>Cadastre-se!</h2>
-        <form error={alert} className={styles.form} onSubmit={handleSubmit}>
-          <label>
+        <div>
+          <header>
+            <h2>Faça seu cadastro!</h2>
+            <p>
+              Seja bem vindo a <span>rede social de desenvolvedores</span>!
+            </p>
+          </header>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <Input label="Nome" value={name} onChange={(e) => setName(e.target.value)} />
+            <Input label="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
             <Input
-              placeholder="Digite seu nome"
-              type="text"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-            />
-            <FaUserAlt size={20} color="var(--black)" />
-          </label>
-
-          <label>
-            <Input
-              placeholder="Digite seu email"
-              type="text"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-              maxLength={55}
-            />
-            <MdEmail color="var(--black)" size={22} />
-          </label>
-
-          <label>
-            <Input
-              placeholder="Digite sua senha"
-              type={hidePass ? 'text' : 'password'}
+              label="Senha"
+              itsPassword
               value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              maxLength={30}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            {hidePass ? (
-              <AiFillEye
-                onClick={handlePassword}
-                color="var(--black)"
-                size={25}
-                className={styles.eyeIcon}
-              />
-            ) : (
-              <AiFillEyeInvisible
-                onClick={handlePassword}
-                color="var(--blaack)"
-                size={25}
-                className={styles.eyeIcon}
-              />
-            )}
-          </label>
-
-          <label>
             <Input
-              placeholder="Digite sua senha novamente"
-              type={hidePass1 ? 'text' : 'password'}
+              label="Confirmar senha"
+              itsPassword
               value={passwordAgain}
-              onChange={(event) => setPasswordAgain(event.target.value)}
-              maxLength={30}
+              onChange={(e) => setPasswordAgain(e.target.value)}
             />
-            {hidePass1 ? (
-              <AiFillEye
-                onClick={handlePassword1}
-                color="var(--black)"
-                size={25}
-                className={styles.eyeIcon}
-              />
-            ) : (
-              <AiFillEyeInvisible
-                onClick={handlePassword1}
-                color="var(--black)"
-                size={25}
-                className={styles.eyeIcon}
-              />
-            )}
-          </label>
-        </form>
+            <button className={styles.buttonToHandleSignIn} type="submit">
+              Cadastrar
+            </button>
+          </form>
+
+          <Link to="/" className={styles.forgotPassword}>
+            Já tem uma conta? <span>Fazer login</span>.
+          </Link>
+        </div>
       </div>
     </div>
   );

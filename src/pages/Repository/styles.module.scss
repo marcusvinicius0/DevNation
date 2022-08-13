@@ -31,6 +31,11 @@
 .filterBox {
   margin: 15px 0;
 
+  .active{
+    background: #073fa9;
+    color: #fff;
+  }
+
   button {
     outline: 0;
     border: 0;

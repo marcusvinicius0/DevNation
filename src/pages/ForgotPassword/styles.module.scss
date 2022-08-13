@@ -27,8 +27,8 @@
       z-index: 3;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
       max-width: 100%;
+      gap: 15%;
 
       h1 {
         color: var(--white);
@@ -50,14 +50,14 @@
     }
   }
 
-  .loginContainer,
-  .registerContainer {
+  .loginContainer {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     width: 50%;
     height: 100%;
     padding: 5rem 9rem 5rem 9rem;
+    gap: 10%;
 
     div {
       display: flex;
@@ -77,33 +77,27 @@
           }
         }
       }
+    }
 
-      .form {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        gap: 1.2rem;
-        width: 100%;
+    .resetPassword {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      width: 100%;
+      height: 300px;
+    }
 
-        .buttonToHandleSignIn {
-          width: 100%;
-          margin-top: 2rem;
-          padding: 0.6rem 0rem;
-          background: var(--blue-500);
-          border: 0;
-          outline: 0;
-          color: #fff;
-          border-radius: 0.5rem;
-          font-size: 1.1rem;
-          font-weight: 600;
-        }
-      }
-
-      .forgotPassword {
-        span {
-          color: var(--blue-500);
-        }
-      }
+    .buttonToHandleSignIn {
+      width: 100%;
+      margin-top: 2rem;
+      padding: 0.6rem 0rem;
+      background: var(--blue-500);
+      border: 0;
+      outline: 0;
+      color: #fff;
+      border-radius: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
   }
 }
@@ -119,9 +113,7 @@
         }
       }
     }
-
-    .loginContainer,
-    .registerContainer {
+    .loginContainer {
       padding: 5rem 3rem;
     }
   }
@@ -129,7 +121,7 @@
 
 @media screen and (max-width: 650px) {
   .mainContainer {
-    flex-direction: column;
+    flex-direction: column-reverse;
 
     .pictureContainer {
       width: 100%;
@@ -149,17 +141,13 @@
       }
     }
 
-    .loginContainer,
-    .registerContainer {
+    .loginContainer {
       width: 100%;
+      height: 50%;
       padding: 1rem 1rem 1rem 1rem;
 
-      .form {
+      .resetPassword {
         margin-top: 2rem;
-      }
-
-      .forgotPassword {
-        margin-top: 1rem;
       }
     }
   }

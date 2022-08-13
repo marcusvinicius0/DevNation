@@ -100,7 +100,12 @@ export default function Repository({ match }) {
 
         <div className={styles.filterBox}>
           {filters.map((filter, index) => (
-            <button type="button" key={filter.label} onClick={() => handleFilter(index)}>
+            <button
+              type="button"
+              className={index === filterIndex && styles.active}
+              key={filter.label}
+              onClick={() => handleFilter(index)}
+            >
               {filter.label}
             </button>
           ))}

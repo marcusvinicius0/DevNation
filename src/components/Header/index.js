@@ -7,8 +7,8 @@ import { BsBellFill, BsBriefcaseFill, BsFillChatDotsFill, BsFillGearFill } from 
 import { FaUsers } from 'react-icons/fa';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
-import { toast } from 'react-toastify';
 
+import { toast } from 'react-toastify';
 import avatar from '../../assets/avatar.png';
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/auth';
