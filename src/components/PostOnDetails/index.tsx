@@ -19,7 +19,14 @@ import CommentModal from '../CommentModal';
 import Comment from './Comment';
 import styles from './styles.module.scss';
 
-import { CommentsProps, HandleLikeRequest, ParamsProps, PopoverActiveProps, PublicationProps, VerifyButtonLike } from "./types";
+import {
+  CommentsProps,
+  HandleLikeRequest,
+  ParamsProps,
+  PopoverActiveProps,
+  PublicationProps,
+  VerifyButtonLike,
+} from './types';
 
 const ITEM_HEIGHT = 48;
 
@@ -28,7 +35,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
   const [publication, setPublication] = useState<PublicationProps | null>(null);
   const [popoverActive, setPopoverActive] = useState<PopoverActiveProps | null>(null);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [typeHeart, setTypeHeart] = useState<"desliked" | "liked">('desliked');
+  const [typeHeart, setTypeHeart] = useState<'desliked' | 'liked'>('desliked');
   const [numberOfLikes, setNumberOfLikes] = useState<number>(0);
   const [modalCommentIsActive, setModalCommentIsActive] = useState<boolean>(false);
   const [commentsOnPublication, setCommentsOnPublication] = useState<CommentsProps[] | []>([]);
@@ -36,7 +43,8 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
   const open = Boolean(anchorEl);
 
   const { user } = useContext(AuthContext);
-  const { handleDeletePublication, likeOrDeslikePublication, loading, resLikeOrDeslike } = usePublications();
+  const { handleDeletePublication, likeOrDeslikePublication, loading, resLikeOrDeslike } =
+    usePublications();
 
   const handleClick = (event: any) => setAnchorEl(event.currentTarget);
   const handleClose = () => {
@@ -47,9 +55,9 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
   function verifyButtonLike({ likes }: VerifyButtonLike) {
     const array: string[] = [];
     if (likes?.length > 0) {
-      likes.forEach( (item) => array.push(item.user_id));
+      likes.forEach((item) => array.push(item.userId));
 
-      if (array.indexOf(user?.uid || "") > -1) {
+      if (array.indexOf(user?.uid || '') > -1) {
         setTypeHeart('liked');
       } else {
         setTypeHeart('desliked');
@@ -72,7 +80,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
   }, [publicationInfo, id]);
 
   async function handleDelete() {
-    await handleDeletePublication(popoverActive?.publication_id || "");
+    await handleDeletePublication(popoverActive?.publicationId || '');
     handleClose();
   }
 
@@ -81,8 +89,8 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
     handleClose();
   }
 
-  async function handleLike({user_id, publication_id}: HandleLikeRequest) {
-    await likeOrDeslikePublication({ user_id, publication_id });
+  async function handleLike({ userId, publicationId }: HandleLikeRequest) {
+    await likeOrDeslikePublication({ userId, publicationId });
     verifyButtonLike({ likes: resLikeOrDeslike?.likes });
     if (resLikeOrDeslike?.type === 'like') {
       setTypeHeart('liked');
@@ -110,17 +118,17 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
     <>
       <div className={styles.post}>
         <header>
-          {publication?.user_avatar_url === null ? (
+          {publication?.userAvatarUrl === null ? (
             <img src={avatar} alt="foto avatar" />
           ) : (
-            <img src={publication?.user_avatar_url} alt="Avatar foto" />
+            <img src={publication?.userAvatarUrl} alt="Avatar foto" />
           )}
           <div>
-            <Link to={`/user/${publication?.user_id}`}>
-              <span>{publication?.user_name}</span>
-              {publication?.user_is_verified && <MdVerified />}
+            <Link to={`/user/${publication?.userId}`}>
+              <span>{publication?.userName}</span>
+              {publication?.userIsVerified && <MdVerified />}
             </Link>
-            <p>{publication?.user_role}</p>
+            <p>{publication?.userRole}</p>
             <time>
               {/* {format(publication.created_at, "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
 								locale: ptBR
@@ -131,17 +139,17 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
         <div className={styles.contentPost}>
           <div className={styles.description}>{publication?.publication}</div>
         </div>
-        {publication?.image_publication_url && (
+        {publication?.imagePublicationUrl && (
           <div className={styles.mediaPost}>
-            <img src={publication?.image_publication_url} alt="Foto post" />
+            <img src={publication?.imagePublicationUrl} alt="Foto post" />
           </div>
         )}
         <footer>
           <button
             onClick={() =>
               handleLike({
-                user_id: user?.uid || "",
-                publication_id: publication?.id || ""
+                userId: user?.uid || '',
+                publicationId: publication?.id || '',
               })
             }
           >
@@ -183,7 +191,10 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           aria-haspopup="true"
           onClick={(e) => {
             handleClick(e);
-            setPopoverActive({ publication_id: publication?.id || "", user_id: publication?.user_id || "" });
+            setPopoverActive({
+              publicationId: publication?.id || '',
+              userId: publication?.userId || '',
+            });
           }}
           className={styles.buttonToSeeActions}
         >
@@ -206,7 +217,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           },
         }}
       >
-        {user?.uid === popoverActive?.user_id && (
+        {user?.uid === popoverActive?.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
               <button onClick={handleDelete} className={styles.buttonActionMenu}>
