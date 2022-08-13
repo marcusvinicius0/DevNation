@@ -61,7 +61,7 @@ export default function SignIn() {
             </button>
           </form>
 
-          <Link to="/" className={styles.forgotPassword}>
+          <Link to="/forgot-password" className={styles.forgotPassword}>
             Esqueceu a senha? <span>Recupere-a</span>.
           </Link>
         </div>
