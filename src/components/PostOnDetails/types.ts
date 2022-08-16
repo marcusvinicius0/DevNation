@@ -1,36 +1,36 @@
 export interface LikesProps {
   id: string;
-  user_id: string;
-  created_at: string;
-  updated_at: string;
-  publication_id: string;
+  userId: string;
+  createdAt: string;
+  updatedAt: string;
+  publicationId: string;
   length?: number;
 }
 
 export interface CommentsProps {
   id: string;
-  user_id: string;
+  userId: string;
   comment: string;
-  created_at: string;
-  updated_at: string;
-  user_name: string;
-  user_role: string;
-  user_avatar_url: string;
-  user_is_verified: boolean;
-  publication_id: string;
+  createdAt: string;
+  updatedAt: string;
+  userName: string;
+  userRole: string;
+  userAvatarUrl: string;
+  userIsVerified: boolean;
+  publicationId: string;
 }
 
 export interface PublicationProps {
   id: string;
   publication: string;
-  user_id: string;
-  image_publication_url?: string | null;
-  user_avatar_url?: string;
-  user_name: string;
-  user_role?: string;
-  user_is_verified?: boolean;
-  created_at?: string;
-  updated_at?: string;
+  userId: string;
+  imagePublicationUrl?: string | null;
+  userAvatarUrl?: string;
+  userName: string;
+  userRole?: string;
+  userIsVerified?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
   likes?: LikesProps[] | null;
   comments?: CommentsProps[] | null;
 }
@@ -40,13 +40,13 @@ export interface VerifyButtonLike {
 }
 
 export interface HandleLikeRequest {
-  user_id: string;
-  publication_id: string;
+  userId: string;
+  publicationId: string;
 }
 
 export interface PopoverActiveProps {
-  publication_id: string;
-  user_id: string;
+  publicationId: string;
+  userId: string;
 }
 
 export interface ParamsProps {
