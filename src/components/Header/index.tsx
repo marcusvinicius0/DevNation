@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { ChangeEvent, useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { AiFillHome, AiFillInfoCircle } from 'react-icons/ai';
@@ -14,19 +14,21 @@ import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/auth';
 import styles from './styles.module.scss';
 
+import { UserSignedProps } from '../../contexts/types';
+
 export default function Header() {
   const { user, users } = useContext(AuthContext);
   const { pathname } = useLocation();
 
-  const [searchBarBox, setSearchBarBox] = useState(false);
-  const [text, setText] = useState('');
-  const [showMenu, setShowMenu] = useState(false);
-  const [userFilters, setUserFilters] = useState([]);
+  const [searchBarBox, setSearchBarBox] = useState<boolean>(false);
+  const [text, setText] = useState<string>('');
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [userFilters, setUserFilters] = useState<UserSignedProps[] | []>([]);
 
-  function usersFilter(value) {
-    const filterUsers = [];
+  function usersFilter(value: string) {
+    const filterUsers: UserSignedProps[] = [];
 
-    users.forEach((item) => {
+    users.forEach((item: UserSignedProps) => {
       if (String(item.name).toLowerCase().includes(value.toLowerCase())) {
         filterUsers.push(item);
         setUserFilters(filterUsers);
@@ -38,13 +40,13 @@ export default function Header() {
     if (searchBarBox !== false) {
       return (
         <ul>
-          {userFilters.map((item) => (
+          {userFilters?.map((item: UserSignedProps) => (
             <Link onClick={() => {}} to={`/user/${item.id}`} key={item.id}>
               <FiSearch size={20} />
-              {item.avatarUrl === null ? (
+              {item.imageUserUrl === null ? (
                 <img src={avatar} alt="usuario-perfil" />
               ) : (
-                <img src={item.avatarUrl} alt="usuario-perfil" />
+                <img src={item.imageUserUrl} alt="usuario-perfil" />
               )}
               <div>
                 <span>
@@ -68,7 +70,7 @@ export default function Header() {
     return '';
   }
 
-  function searchValue(e) {
+  function searchValue(e: ChangeEvent<HTMLInputElement>) {
     setText(e.target.value);
     usersFilter(e.target.value);
   }
@@ -154,10 +156,10 @@ export default function Header() {
       <div className={styles.pictureBox}>
         <BsBellFill onClick={handleSoon} size={23} color="var(--soft-gray)" />
         <Link to="/profile">
-          {!user?.avatarUrl ? (
+          {!user?.imageUserUrl ? (
             <img src={avatar} alt="usuario-perfil" />
           ) : (
-            <img src={user?.avatarUrl} alt="usuario-perfil" />
+            <img src={user?.imageUserUrl} alt="usuario-perfil" />
           )}
         </Link>
       </div>

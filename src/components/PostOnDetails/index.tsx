@@ -57,7 +57,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
     if (likes?.length > 0) {
       likes.forEach((item) => array.push(item.userId));
 
-      if (array.indexOf(user?.uid || '') > -1) {
+      if (array.indexOf(user?.id || '') > -1) {
         setTypeHeart('liked');
       } else {
         setTypeHeart('desliked');
@@ -148,7 +148,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           <button
             onClick={() =>
               handleLike({
-                userId: user?.uid || '',
+                userId: user?.id || '',
                 publicationId: publication?.id || '',
               })
             }
@@ -217,7 +217,7 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
           },
         }}
       >
-        {user?.uid === popoverActive?.userId && (
+        {user?.id === popoverActive?.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
               <button onClick={handleDelete} className={styles.buttonActionMenu}>
