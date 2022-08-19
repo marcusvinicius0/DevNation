@@ -53,6 +53,7 @@ function AuthProvider({ children }: AuthProviderProps) {
               github: userData.data().github,
               isVerified: userData.data().verified,
               site: '',
+              isUser: true,
             };
             allUsers.push(dataUser);
           });
@@ -92,6 +93,7 @@ function AuthProvider({ children }: AuthProviderProps) {
             github: res.data()?.github,
             isVerified: res.data()?.verified,
             site: '',
+            isUser: true,
           };
 
           changeUser(data);

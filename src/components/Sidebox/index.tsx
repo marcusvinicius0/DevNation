@@ -29,7 +29,7 @@ export default function Sidebox() {
         )}
       </div>
       <div className={styles.pictureBox}>
-        <Link to="/profile">
+        <Link to={user?.isUser ? '/profile' : '/profile-company'}>
           {!user?.imageUserUrl ? (
             <img src={avatar} alt="usuario-perfil" />
           ) : (
