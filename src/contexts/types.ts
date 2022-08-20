@@ -76,6 +76,7 @@ export interface CompanyContextData {
   company: CompanyProps | null;
   companies: CompanyProps[] | [];
   loading: boolean;
+  loadingAuth: boolean;
 }
 
 export interface UserSignedData {

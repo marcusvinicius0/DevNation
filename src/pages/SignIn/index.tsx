@@ -1,8 +1,7 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { BsBuilding } from 'react-icons/bs';
-import { ImUser } from 'react-icons/im';
+
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
 
@@ -12,10 +11,7 @@ import styles from './styles.module.scss';
 export default function SignIn() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [modeLoginSelectedIsUser, setModeLoginSelectedIsUser] = useState<boolean>(true);
 
-  const { signIn } = useContext(AuthContext);
-  const { signInCompany } = useContext(CompanyContext);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -83,9 +79,9 @@ export default function SignIn() {
               value={password}
               onChange={(e: any) => setPassword(e.target.value)}
             />
-            <button className={styles.buttonToHandleSignIn} type="submit">
+            <Button type="submit" loading={loadingAuth}>
               Acessar
-            </button>
+            </Button>
           </form>
 
           <Link to="/forgot-password" className={styles.forgotPassword}>
