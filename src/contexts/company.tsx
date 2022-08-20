@@ -54,6 +54,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
               location: userData.data().location,
               site: userData.data().site,
               companyIsVerified: userData.data().companyIsVerified,
+              isUser: false,
             };
             allCompanies.push(dataUser);
           });
@@ -75,7 +76,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
       .then(async (value) => {
         const uid: string = value.user?.uid || '';
 
-        const res = await firebase.firestore().collection('users').doc(uid).get();
+        const res = await firebase.firestore().collection('companies').doc(uid).get();
 
         if (res) {
           const data: CompanyProps = {
@@ -89,6 +90,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
             location: res.data()?.location,
             site: res.data()?.site,
             companyIsVerified: res.data()?.companyIsVerified,
+            isUser: false,
           };
 
           setCompany(data);
@@ -118,7 +120,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
 
         await firebase
           .firestore()
-          .collection('users')
+          .collection('companies')
           .doc(uid)
           .set({
             id: uid,

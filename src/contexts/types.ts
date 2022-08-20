@@ -24,6 +24,7 @@ export interface UserSignedProps {
   github: string;
   linkedin: string;
   site: string;
+  isUser: boolean;
 }
 
 export interface AuthContextData {
@@ -51,6 +52,7 @@ export interface CompanyProps {
   location?: string;
   site?: string;
   createdAt?: Date;
+  isUser: boolean;
 }
 
 export interface ContextProviderProps {
