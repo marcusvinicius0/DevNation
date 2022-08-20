@@ -118,10 +118,10 @@ export default function PostOnDetails(publicationInfo: PublicationProps) {
     <>
       <div className={styles.post}>
         <header>
-          {publication?.userAvatarUrl === null ? (
-            <img src={avatar} alt="foto avatar" />
-          ) : (
+          {publication?.userAvatarUrl ? (
             <img src={publication?.userAvatarUrl} alt="Avatar foto" />
+          ) : (
+            <img src={avatar} alt="foto avatar" />
           )}
           <div>
             <Link to={`/user/${publication?.userId}`}>

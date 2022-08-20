@@ -1,21 +1,27 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import Button from '../../components/Button';
+
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
+
+import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';
 
 export default function SignIn() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { signIn, loadingAuth } = useContext(AuthContext);
+
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (email !== '' && password !== '') {
-      signIn(email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      if (modeLoginSelectedIsUser) {
+        signIn(email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      } else {
+        signInCompany(email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      }
     }
   }
 
@@ -45,6 +51,22 @@ export default function SignIn() {
             </p>
           </header>
           <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.modeLogin}>
+              <button
+                onClick={() => setModeLoginSelectedIsUser(true)}
+                className={modeLoginSelectedIsUser ? `${styles.selected}` : ''}
+                type="button"
+              >
+                <ImUser /> <span>Indivíduo</span>{' '}
+              </button>
+              <button
+                onClick={() => setModeLoginSelectedIsUser(false)}
+                className={modeLoginSelectedIsUser ? '' : `${styles.selected}`}
+                type="button"
+              >
+                <BsBuilding /> <span>Empresa</span>{' '}
+              </button>
+            </div>
             <Input
               type="email"
               label="E-mail"
