@@ -1,6 +1,7 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import Button from '../../components/Button';
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
 import styles from './styles.module.scss';
@@ -8,7 +9,7 @@ import styles from './styles.module.scss';
 export default function SignIn() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { signIn } = useContext(AuthContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -56,9 +57,9 @@ export default function SignIn() {
               value={password}
               onChange={(e: any) => setPassword(e.target.value)}
             />
-            <button className={styles.buttonToHandleSignIn} type="submit">
+            <Button type="submit" loading={loadingAuth}>
               Acessar
-            </button>
+            </Button>
           </form>
 
           <Link to="/forgot-password" className={styles.forgotPassword}>

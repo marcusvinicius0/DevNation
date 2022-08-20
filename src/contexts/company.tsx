@@ -16,6 +16,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
   const [company, setCompany] = useState<CompanyProps | null>(null);
   const [companies, setCompanies] = useState<CompanyProps[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
   // const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -112,6 +113,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
     location,
     companyRole,
   }: SignUpCompanyProps) {
+    setLoadingAuth(true);
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -138,10 +140,13 @@ function CompanyProvider({ children }: ContextProviderProps) {
           })
           .then(() => {
             toast.success('Cadastro feito com sucesso. Agora faça seu login!');
+            setLoadingAuth(false);
           });
       })
       .catch((error) => {
         console.log(error);
+        toast.error('Oops, algo deu errado. Tente novamente mais tarde.');
+        setLoadingAuth(false);
       });
   }
 
@@ -161,6 +166,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
         company,
         companies,
         loading,
+        loadingAuth,
       }}
     >
       {children}

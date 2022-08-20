@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import Button from '../../components/Button';
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
 
@@ -12,7 +13,7 @@ export default function SignUp() {
   const [password, setPassword] = useState<string>('');
   const [passwordAgain, setPasswordAgain] = useState<string>('');
 
-  const { signUp } = useContext(AuthContext);
+  const { signUp, loadingAuth } = useContext(AuthContext);
   const history = useHistory();
 
   async function handleSubmit(e: FormEvent) {
@@ -26,7 +27,6 @@ export default function SignUp() {
     }
 
     if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
-      console.log(name, email, password);
       await signUp({
         name,
         email: email.replaceAll(' ', ''),
@@ -99,9 +99,9 @@ export default function SignUp() {
               value={passwordAgain}
               onChange={(e: ChangeEvent<HTMLInputElement>) => setPasswordAgain(e.target.value)}
             />
-            <button className={styles.buttonToHandleSignIn} type="submit">
+            <Button type="submit" loading={loadingAuth}>
               Cadastrar
-            </button>
+            </Button>
           </form>
 
           <Link to="/" className={styles.forgotPassword}>
