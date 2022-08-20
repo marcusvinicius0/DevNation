@@ -71,10 +71,10 @@ export default function Dashboard() {
         <div className={styles.mainFeedContainer}>
           <div className={styles.createPublicationContainer}>
             <div className={styles.contentBox}>
-              {avatarUrl === null ? (
-                <img src={avatar} alt="user-profile" />
+              {!user?.imageUserUrl ? (
+                <img src={avatar} alt="usuario-perfil" />
               ) : (
-                <img src={avatarUrl} alt="user-profile" />
+                <img src={user?.imageUserUrl} alt="usuario-perfil" />
               )}
               <div className={styles.publication} onClick={() => togglePostModal()}>
                 <p>No que você está pensando?</p>

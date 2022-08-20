@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
@@ -7,19 +7,18 @@ import { AuthContext } from '../../contexts/auth';
 import styles from '../SignIn/styles.module.scss';
 
 export default function SignUp() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordAgain, setPasswordAgain] = useState('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [passwordAgain, setPasswordAgain] = useState<string>('');
 
   const { signUp } = useContext(AuthContext);
+  const history = useHistory();
 
-  function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
-    // setPasswordAgain.replaceAll(" ", "")
-
-    if (password <= 6 && passwordAgain <= 6) {
+    if (password.length <= 6 && passwordAgain.length <= 6) {
       toast.warning('A senha precisa conter no mínimo 6 caracteres.');
       setPassword('');
       setPasswordAgain('');
@@ -27,7 +26,18 @@ export default function SignUp() {
     }
 
     if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
-      signUp(name, email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      console.log(name, email, password);
+      await signUp({
+        name,
+        email: email.replaceAll(' ', ''),
+        password: password.replaceAll(' ', ''),
+      }).then(() => {
+        setName('');
+        setEmail('');
+        setPassword('');
+        setPasswordAgain('');
+        history.push('/signin');
+      });
     } else {
       toast.warning('Preencha todos os campos.');
       setPassword('');
@@ -41,10 +51,7 @@ export default function SignUp() {
       setPasswordAgain('');
       return null;
     }
-    setName('');
-    setEmail('');
-    setPassword('');
-    setPasswordAgain('');
+    return null;
   }
 
   return (
@@ -70,19 +77,27 @@ export default function SignUp() {
             </p>
           </header>
           <form className={styles.form} onSubmit={handleSubmit}>
-            <Input label="Nome" value={name} onChange={(e) => setName(e.target.value)} />
-            <Input label="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <Input
+              label="Nome"
+              value={name}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+            />
+            <Input
+              label="E-mail"
+              value={email}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+            />
             <Input
               label="Senha"
               itsPassword
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
             />
             <Input
               label="Confirmar senha"
               itsPassword
               value={passwordAgain}
-              onChange={(e) => setPasswordAgain(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setPasswordAgain(e.target.value)}
             />
             <button className={styles.buttonToHandleSignIn} type="submit">
               Cadastrar

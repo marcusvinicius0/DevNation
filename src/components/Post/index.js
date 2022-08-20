@@ -39,7 +39,7 @@ export default function Post({ publication }) {
   function verifyButtonLike({ likes }) {
     const array = [];
     if (likes?.length > 0) {
-      likes.forEach((item) => array.push(item.user_id));
+      likes.forEach((item) => array.push(item.userId));
 
       if (array.indexOf(user.uid) > -1) {
         setTypeHeart('liked');
@@ -52,11 +52,11 @@ export default function Post({ publication }) {
   }
 
   useEffect(() => {
-    verifyButtonLike({ publication_id: publication.id, likes: publication.likes });
+    verifyButtonLike({ publicationId: publication.id, likes: publication.likes });
   }, []);
 
   async function handleDelete() {
-    await handleDeletePublication(popoverActive.publication_id);
+    await handleDeletePublication(popoverActive.publicationId);
     handleClose();
   }
 
@@ -65,9 +65,9 @@ export default function Post({ publication }) {
     handleClose();
   }
 
-  async function handleLike({ user_id, publication_id }) {
-    const res = await likeOrDeslikePublication({ user_id, publication_id });
-    verifyButtonLike({ publication_id, likes: res.likes });
+  async function handleLike({ userId, publicationId }) {
+    const res = await likeOrDeslikePublication({ userId, publicationId });
+    verifyButtonLike({ publicationId, likes: res.likes });
     if (res.type === 'like') {
       setTypeHeart('liked');
       setNumberOfLikes(numberOfLikes + 1);
@@ -90,19 +90,19 @@ export default function Post({ publication }) {
     <Link to={`/publication/${publication.id}`} className={styles.postAnchor}>
       <div className={styles.post}>
         <header>
-          {publication.user_avatar_url === null ? (
+          {publication.userAvatarUrl === null ? (
             <img src={avatar} alt="foto avatar" />
           ) : (
-            <img src={publication.user_avatar_url} alt="Avatar foto" />
+            <img src={publication.userAvatarUrl} alt="Avatar foto" />
           )}
           <div>
-            <Link to={`/user/${publication.user_id}`}>
-              <span>{publication.user_name}</span>
-              {publication.user_is_verified && <MdVerified />}
+            <Link to={`/user/${publication.userId}`}>
+              <span>{publication.userName}</span>
+              {publication.userIsVerified && <MdVerified />}
             </Link>
-            <p>{publication.user_role}</p>
+            <p>{publication.userRole}</p>
             <time>
-              {format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+              {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
                 locale: ptBR,
               })}
             </time>
@@ -112,17 +112,17 @@ export default function Post({ publication }) {
         <div className={styles.contentPost}>
           <div className={styles.description}>{publication.publication}</div>
         </div>
-        {publication.image_publication_url && (
+        {publication.imagePublicationUrl && (
           <div className={styles.mediaPost}>
-            <img src={publication.image_publication_url} alt="Foto post" />
+            <img src={publication.imagePublicationUrl} alt="Foto post" />
           </div>
         )}
         <footer>
           <button
             onClick={() =>
               handleLike({
-                user_id: user.uid,
-                publication_id: publication.id,
+                userId: user.uid,
+                publicationId: publication.id,
                 likes: publication.likes,
               })
             }
@@ -160,7 +160,7 @@ export default function Post({ publication }) {
           aria-haspopup="true"
           onClick={(e) => {
             handleClick(e);
-            setPopoverActive({ publication_id: publication.id, user_id: publication.user_id });
+            setPopoverActive({ publicationId: publication.id, userId: publication.userId });
           }}
           className={styles.buttonToSeeActions}
         >
@@ -182,7 +182,7 @@ export default function Post({ publication }) {
           },
         }}
       >
-        {user.uid === popoverActive.user_id && (
+        {user.uid === popoverActive.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
               <button onClick={handleDelete} className={styles.buttonActionMenu}>

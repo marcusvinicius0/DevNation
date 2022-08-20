@@ -5,34 +5,80 @@ export interface AuthProviderProps {
   children: ReactNode;
 }
 
-export interface UserProps {
-  uid: string;
-  name: string;
-  avatarUrl: string;
-  bannerUrl: string;
-  role: string;
-  email: string;
-  aboutMe: string;
-  location: string;
-  linkedin: string;
-  github: string;
-  isVerified: boolean;
-}
-
 export interface SignUpProps {
   name: string;
   email: string;
   password: string;
 }
 
+export interface UserSignedProps {
+  id: string;
+  email: string;
+  name: string;
+  role: string;
+  imageUserUrl: string;
+  bannerUserUrl: string;
+  description: string;
+  isVerified: boolean;
+  location: string;
+  github: string;
+  linkedin: string;
+  site: string;
+  isUser: boolean;
+}
+
 export interface AuthContextData {
   signed: boolean;
-  user: UserProps | null;
+  user: UserSignedProps | null;
   loading: boolean;
   signUp: ({ name, email, password }: SignUpProps) => Promise<void>;
   signOut: () => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   loadingAuth: boolean;
-  storageUser: (data: UserProps) => void;
-  users: UserProps[] | [];
+  storageUser: (data: UserSignedProps) => void;
+  users: UserSignedProps[] | [];
+}
+
+export interface CompanyProps {
+  id: string;
+  name?: string;
+  email?: string;
+  quantityOfEmployee?: string;
+  companyLogoUrl?: string;
+  companyBannerUrl?: string;
+  companyIsVerified?: boolean;
+  companyRole?: string;
+  description?: string;
+  location?: string;
+  site?: string;
+  createdAt?: Date;
+  isUser: boolean;
+}
+
+export interface ContextProviderProps {
+  children: ReactNode;
+}
+
+export interface SignUpCompanyProps {
+  name: string;
+  email: string;
+  password: string;
+  quantityOfEmployee: string;
+  location: string;
+  companyRole: string;
+}
+
+export interface CompanyContextData {
+  signedAsCompany: boolean;
+  signUpCompany: (data: SignUpCompanyProps) => Promise<void>;
+  signInCompany: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+  company: CompanyProps | null;
+  companies: CompanyProps[] | [];
+  loading: boolean;
+}
+
+export interface UserSignedData {
+  changeUser: (dataUser: UserSignedProps | null) => void;
+  user: UserSignedProps | null;
 }

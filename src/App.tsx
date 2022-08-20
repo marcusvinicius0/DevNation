@@ -5,18 +5,24 @@ import 'react-toastify/dist/ReactToastify.css';
 import MyRoutes from './routes';
 
 import AuthProvider from './contexts/auth';
+import CompanyProvider from './contexts/company';
+import UserSignedProvider from './contexts/signed';
 import PublicationsProvider from './hooks/usePublications';
 
 function App() {
   return (
-    <AuthProvider>
-      <PublicationsProvider>
-        <BrowserRouter>
-          <ToastContainer autoClose={3000} />
-          <MyRoutes />
-        </BrowserRouter>
-      </PublicationsProvider>
-    </AuthProvider>
+    <UserSignedProvider>
+      <AuthProvider>
+        <CompanyProvider>
+          <PublicationsProvider>
+            <BrowserRouter>
+              <ToastContainer autoClose={3000} />
+              <MyRoutes />
+            </BrowserRouter>
+          </PublicationsProvider>
+        </CompanyProvider>
+      </AuthProvider>
+    </UserSignedProvider>
   );
 }
 
