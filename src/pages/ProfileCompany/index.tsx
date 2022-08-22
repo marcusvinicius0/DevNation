@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import styles from './styles.module.scss';
 
 import avatarCompany from '../../assets/avatar-company.png';
+import background from '../../assets/banner.png';
 import description from '../../assets/description.png';
 
+import { BsFillPencilFill } from 'react-icons/bs';
 import Header from '../../components/Header';
 import { AuthContext } from '../../contexts/auth';
 
@@ -62,6 +64,27 @@ export default function ProfileCompany() {
                 </p>
                 <button>Adicionar</button>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className={styles.profile}>
+          <div className={styles.banner}>
+            <img src={background} alt="" />
+            <button>
+              <BsFillPencilFill />
+            </button>
+          </div>
+          <div className={styles.containerInfos}>
+            <img src={avatarCompany} alt="" />
+            <div className={styles.infos}>
+              <h1>DevNation</h1>
+              <p>
+                Rede social para o aumento de networking de desenvolvedores, analistas e
+                recrutadores na área de tecnologia.
+              </p>
+              <button>
+                <BsFillPencilFill /> Editar página
+              </button>
             </div>
           </div>
         </div>
