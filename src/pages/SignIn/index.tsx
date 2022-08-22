@@ -1,11 +1,11 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { BsBuilding } from 'react-icons/bs';
+import { ImUser } from 'react-icons/im';
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
 
-import { BsBuilding } from 'react-icons/bs';
-import { ImUser } from 'react-icons/im';
 import Button from '../../components/Button';
 import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';

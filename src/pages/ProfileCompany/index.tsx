@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
+import { BsFillPencilFill } from 'react-icons/bs';
 import styles from './styles.module.scss';
 
 import avatarCompany from '../../assets/avatar-company.png';
 import background from '../../assets/banner.png';
 import description from '../../assets/description.png';
 
-import { BsFillPencilFill } from 'react-icons/bs';
 import Header from '../../components/Header';
 import { AuthContext } from '../../contexts/auth';
 
