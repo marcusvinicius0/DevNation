@@ -1,17 +1,21 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
 
+import { BsBuilding } from 'react-icons/bs';
+import { ImUser } from 'react-icons/im';
+import Button from '../../components/Button';
 import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';
 
 export default function SignIn() {
+  const { signInCompany } = useContext(CompanyContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
+  const [modeLoginSelectedIsUser, setModeLoginSelectedIsUser] = useState<boolean>(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();

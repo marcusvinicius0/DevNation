@@ -102,4 +102,80 @@
       }
     }
   }
+
+  .profile {
+    width: 90%;
+    margin: 0 auto;
+    background: #fff;
+    margin: 2rem auto 2rem auto;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+
+    .banner {
+      width: 100%;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+      }
+
+      button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--blue-500);
+        border: 0;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 100%;
+        padding: 0.5rem;
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    .containerInfos {
+      width: 100%;
+      position: relative;
+      padding: 0rem 3rem 1rem 3rem;
+
+      img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        position: absolute;
+        top: -7.7rem;
+        left: 3rem;
+      }
+
+      .infos {
+        margin-top: 0rem;
+        position: relative;
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        button {
+          position: absolute;
+          top: 0.5rem;
+          right: 0rem;
+          background: var(--blue-500);
+          border: 0;
+          color: #fff;
+          font-weight: 600;
+          border-radius: 1rem;
+          padding: 0.3rem 2rem;
+          align-items: center;
+          display: flex;
+
+          svg {
+            margin-right: 0.3rem;
+          }
+        }
+      }
+    }
+  }
 }
