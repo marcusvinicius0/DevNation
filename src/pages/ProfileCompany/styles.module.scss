@@ -151,11 +151,15 @@
       }
 
       .infos {
-        margin-top: 0rem;
+        margin-top: 0.3rem;
         position: relative;
 
         h1 {
           font-size: 1.5rem;
+        }
+
+        p {
+          width: 50%;
         }
 
         button {
@@ -176,6 +180,51 @@
           }
         }
       }
+    }
+  }
+
+  .postsAndOpportunities {
+    width: 90%;
+    margin: 0 auto;
+    margin: 2rem auto 2rem auto;
+    border-radius: 0.25rem;
+    height: 50vh;
+    display: flex;
+    gap: 1rem;
+
+    .posts {
+      width: 50%;
+
+      .createPost {
+        width: 100%;
+        background: #fff;
+        border-radius: 0.5rem;
+        border: 1px solid rgb(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem;
+        display: flex;
+        gap: 2rem;
+
+        img {
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          border-radius: 100%;
+        }
+
+        textarea {
+          width: 100%;
+          border-radius: 10rem;
+          height: 50px;
+          padding: 0.85rem 0 0 1rem;
+          font-weight: 700;
+          resize: none;
+          border: 1px solid rgb(0, 0, 0, 0.4);
+        }
+      }
+    }
+
+    .opportunities {
+      width: 50%;
     }
   }
 }

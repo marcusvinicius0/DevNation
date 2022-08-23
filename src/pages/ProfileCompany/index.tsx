@@ -88,6 +88,22 @@ export default function ProfileCompany() {
             </div>
           </div>
         </div>
+        <div className={styles.postsAndOpportunities}>
+          <div className={styles.posts}>
+            <div className={styles.createPost}>
+              <img src={avatarCompany} alt="" />
+              <textarea placeholder="Começar publicação" />
+            </div>
+          </div>
+          <div className={styles.opportunities}>
+            <header>
+              <h1>Minhas vagas</h1>
+            </header>
+            <div className={styles.listOpportunities}>
+              <div className={styles.opportunitie}></div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
