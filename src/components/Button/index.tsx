@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 type ButtonProps = {
   children: React.ReactNode;
   loading?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
   // button || submit
   type: 'button' | 'submit';
 };

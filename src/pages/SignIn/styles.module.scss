@@ -78,6 +78,34 @@
         }
       }
 
+      .modeLogin {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        button {
+          padding: 0.4rem;
+          width: 50%;
+          outline: none;
+          background: 0;
+          border: 2px solid #000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.3rem;
+          border-radius: 0.5rem;
+        }
+
+        .selected {
+          background: var(--blue-500);
+          border: 0;
+          color: #fff;
+        }
+      }
+
       .form {
         display: flex;
         align-items: center;

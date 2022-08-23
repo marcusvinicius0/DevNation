@@ -1,21 +1,25 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import firebase from '../services/firebaseConnection';
+import { UserSignedContext } from './signed';
 
 import {
   CompanyContextData,
   CompanyProps,
   ContextProviderProps,
   SignUpCompanyProps,
+  UserSignedProps,
 } from './types';
 
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
 
 function CompanyProvider({ children }: ContextProviderProps) {
+  const { changeUser } = useContext(UserSignedContext);
   const [company, setCompany] = useState<CompanyProps | null>(null);
   const [companies, setCompanies] = useState<CompanyProps[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
   // const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -93,6 +97,21 @@ function CompanyProvider({ children }: ContextProviderProps) {
             isUser: false,
           };
 
+          const dataToChangeUser: UserSignedProps = {
+            bannerUserUrl: res.data()?.companyLogoUrl,
+            email: value.user?.email || '',
+            id: res.id,
+            name: res.data()?.name || '',
+            role: res.data()?.companyRole,
+            description: res.data()?.description,
+            location: res.data()?.location,
+            site: res.data()?.site,
+            imageUserUrl: res.data()?.companyLogoUrl,
+            isVerified: res.data()?.companyIsVerified,
+            isUser: false,
+          };
+
+          changeUser(dataToChangeUser);
           setCompany(data);
           storageCompany(data);
           toast.success('Seja bem vindo(a) de volta!');
@@ -112,6 +131,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
     location,
     companyRole,
   }: SignUpCompanyProps) {
+    setLoadingAuth(true);
     await firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -138,10 +158,13 @@ function CompanyProvider({ children }: ContextProviderProps) {
           })
           .then(() => {
             toast.success('Cadastro feito com sucesso. Agora faça seu login!');
+            setLoadingAuth(false);
           });
       })
       .catch((error) => {
         console.log(error);
+        toast.error('Oops, algo deu errado. Tente novamente mais tarde.');
+        setLoadingAuth(false);
       });
   }
 
@@ -161,6 +184,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
         company,
         companies,
         loading,
+        loadingAuth,
       }}
     >
       {children}

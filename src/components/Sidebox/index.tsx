@@ -44,17 +44,17 @@ export default function Sidebox() {
       <p className={styles.role}>{user?.role}</p>
       <hr />
       <div className={styles.routesBox}>
-        <Link to="/profile">
+        <Link to={user?.isUser ? '/profile' : '/profile-company'}>
           <span>
             <FaUserCircle color="var(--soft-blue)" size={24} />
-            <p>Meu perfil</p>
+            <p>{user?.isUser ? 'Meu perfil' : 'Minha empresa'}</p>
           </span>
         </Link>
 
-        <Link to="/myprojects">
+        <Link to={user?.isUser ? '/myprojects' : 'myopportunities'}>
           <span>
             <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
-            <p>Meus projetos</p>
+            <p>{user?.isUser ? 'Meus projetos' : 'Minhas vagas'}</p>
           </span>
         </Link>
 

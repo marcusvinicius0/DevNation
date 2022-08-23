@@ -1,0 +1,181 @@
+.container {
+  margin-top: 4rem;
+  width: 100%;
+
+  .header {
+    background: #fff;
+    width: 100%;
+    display: flex;
+    padding: 2rem 4rem 1rem 4rem;
+    gap: 1rem;
+    align-items: center;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+
+    img {
+      width: 40px;
+      height: 40px;
+      object-fit: cover;
+      border-radius: 100%;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+      font-weight: 500;
+    }
+
+    span {
+      background: rgb(0, 0, 0, 0.3);
+      padding: 0.1rem 0.4rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: 0.25rem;
+    }
+
+    button {
+      margin-left: auto;
+      background: var(--blue-500);
+      padding: 0.5rem 2rem;
+      border-radius: 1rem;
+      border: 0;
+      color: #fff;
+      font-weight: 600;
+    }
+  }
+
+  .warnings {
+    padding: 1rem;
+    width: 90%;
+    background: #fff;
+    margin: 2rem auto 0 auto;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+
+    header {
+      h1 {
+        font-size: 1.2rem;
+      }
+      p {
+        font-size: 0.8rem;
+      }
+    }
+
+    .cards {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      gap: 1rem;
+
+      .card {
+        border: 1px solid rgb(0, 0, 0, 0.1);
+        border-radius: 0.25rem;
+        width: 33%;
+        display: flex;
+        padding: 1rem;
+
+        img {
+          width: 70px;
+          height: 70px;
+          object-fit: cover;
+        }
+
+        div {
+          width: 100%;
+          h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+          }
+
+          p {
+            font-size: 0.8rem;
+          }
+
+          button {
+            margin-top: 0.5rem;
+            margin-left: auto;
+            padding: 0.2rem 1rem;
+            border-radius: 1rem;
+            color: #fff;
+            background-color: var(--blue-500);
+            border: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .profile {
+    width: 90%;
+    margin: 0 auto;
+    background: #fff;
+    margin: 2rem auto 2rem auto;
+    border-radius: 0.25rem;
+    border: 1px solid rgb(0, 0, 0, 0.1);
+
+    .banner {
+      width: 100%;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 30vh;
+        object-fit: cover;
+      }
+
+      button {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--blue-500);
+        border: 0;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 100%;
+        padding: 0.5rem;
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    .containerInfos {
+      width: 100%;
+      position: relative;
+      padding: 0rem 3rem 1rem 3rem;
+
+      img {
+        width: 120px;
+        height: 120px;
+        object-fit: cover;
+        position: absolute;
+        top: -7.7rem;
+        left: 3rem;
+      }
+
+      .infos {
+        margin-top: 0rem;
+        position: relative;
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        button {
+          position: absolute;
+          top: 0.5rem;
+          right: 0rem;
+          background: var(--blue-500);
+          border: 0;
+          color: #fff;
+          font-weight: 600;
+          border-radius: 1rem;
+          padding: 0.3rem 2rem;
+          align-items: center;
+          display: flex;
+
+          svg {
+            margin-right: 0.3rem;
+          }
+        }
+      }
+    }
+  }
+}

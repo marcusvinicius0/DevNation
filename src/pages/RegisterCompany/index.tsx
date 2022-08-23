@@ -1,9 +1,10 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
 
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { toast } from 'react-toastify';
+import Button from '../../components/Button';
 import { Input } from '../../components/Utils/Input';
 import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';
@@ -16,15 +17,14 @@ export default function SignIn() {
   const [companyLocation, setCompanyLocation] = useState('');
   const [companyRole, setCompanyRole] = useState('');
   const [numberOfEmployees, setNumberOfEmployees] = useState('');
-  const [isBoolean, setIsBoolean] = useState(false);
+  const [firstForm, setFirstForm] = useState(false);
 
-  const history = useHistory();
-  const { signUpCompany } = useContext(CompanyContext);
+  const { signUpCompany, loadingAuth } = useContext(CompanyContext);
 
   function handleContinue(e: FormEvent) {
     e.preventDefault();
     if (email !== '' && companyName !== '' && password !== '' && confirmPassword !== '') {
-      if (password === confirmPassword) setIsBoolean(true);
+      if (password === confirmPassword) setFirstForm(true);
       else toast.error('Senhas não conferem.');
     } else {
       toast.warning('Complete todos os campos!');
@@ -41,7 +41,6 @@ export default function SignIn() {
       location: companyLocation,
       companyRole,
     });
-    history.push('/signin');
   }
 
   return (
@@ -64,7 +63,7 @@ export default function SignIn() {
           <p>Encontre os melhores talentos para sua empresa!</p>
         </header>
 
-        {isBoolean === false ? (
+        {firstForm === false ? (
           <form className={styles.form1} onSubmit={handleContinue}>
             <Input
               label="Nome da Empresa"
@@ -93,43 +92,44 @@ export default function SignIn() {
             </button>
           </form>
         ) : (
-          <form className={styles.form2} onSubmit={handleRegister}>
-            <Input
-              label="Localidade da empresa"
-              value={companyLocation}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyLocation(e.target.value)}
-            />
-            <Input
-              label="Com o que a empresa trabalha?"
-              value={companyRole}
-              onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyRole(e.target.value)}
-            />
+          <>
+            <form className={styles.form2} onSubmit={handleRegister}>
+              <Input
+                label="Localidade da empresa"
+                value={companyLocation}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyLocation(e.target.value)}
+              />
+              <Input
+                label="Com o que a empresa trabalha?"
+                value={companyRole}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyRole(e.target.value)}
+              />
 
-            <label>
-              Quantidade de funcionários
-              <select
-                value={numberOfEmployees}
-                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                  setNumberOfEmployees(e.target.value)
-                }
-              >
-                <option>1-10</option>
-                <option>11-50</option>
-                <option>50-100</option>
-                <option>100-200</option>
-                <option>200+</option>
-              </select>
-            </label>
+              <label>
+                Quantidade de funcionários
+                <select
+                  value={numberOfEmployees}
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    setNumberOfEmployees(e.target.value)
+                  }
+                >
+                  <option>1-10</option>
+                  <option>11-50</option>
+                  <option>50-100</option>
+                  <option>100-200</option>
+                  <option>200+</option>
+                </select>
+              </label>
 
-            <button className={styles.buttonToHandleRegister} type="submit">
-              Cadastrar
-            </button>
-
-            <button className={styles.back} onClick={() => setIsBoolean(false)}>
+              <Button type="submit" loading={loadingAuth}>
+                Cadastrar
+              </Button>
+            </form>
+            <button className={styles.back} type="button" onClick={() => setFirstForm(false)}>
               <IoIosArrowRoundBack />
               Voltar
             </button>
-          </form>
+          </>
         )}
       </div>
     </div>

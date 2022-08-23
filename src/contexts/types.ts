@@ -16,14 +16,14 @@ export interface UserSignedProps {
   email: string;
   name: string;
   role: string;
-  imageUserUrl: string;
-  bannerUserUrl: string;
-  description: string;
-  isVerified: boolean;
-  location: string;
-  github: string;
-  linkedin: string;
-  site: string;
+  imageUserUrl?: string;
+  bannerUserUrl?: string;
+  description?: string;
+  isVerified?: boolean;
+  location?: string;
+  github?: string;
+  linkedin?: string;
+  site?: string;
   isUser: boolean;
 }
 
@@ -76,6 +76,7 @@ export interface CompanyContextData {
   company: CompanyProps | null;
   companies: CompanyProps[] | [];
   loading: boolean;
+  loadingAuth: boolean;
 }
 
 export interface UserSignedData {

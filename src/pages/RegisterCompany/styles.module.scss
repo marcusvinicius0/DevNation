@@ -121,21 +121,20 @@
         font-size: 1.1rem;
         font-weight: 600;
       }
-
-      .back {
-        display: flex;
-        align-items: center;
-        margin: 0 auto;
-        background: none;
-        outline: none;
-        border: none;
-
-        svg {
-          margin-right: 0.3rem;
-        }
-      }
     }
 
+    .back {
+      display: flex;
+      align-items: center;
+      margin: -100px auto 0px;
+      background: none;
+      outline: none;
+      border: none;
+
+      svg {
+        margin-right: 0.3rem;
+      }
+    }
     .forgotPassword {
       span {
         color: var(--blue-500);

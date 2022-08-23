@@ -9,7 +9,9 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
+import avatarCompany from '../../assets/avatar-company.png';
 import avatar from '../../assets/avatar.png';
+
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/auth';
 import styles from './styles.module.scss';
@@ -32,6 +34,7 @@ export default function Header() {
       if (String(item.name).toLowerCase().includes(value.toLowerCase())) {
         filterUsers.push(item);
         setUserFilters(filterUsers);
+        console.log(item);
       }
     });
   }
@@ -43,10 +46,10 @@ export default function Header() {
           {userFilters?.map((item: UserSignedProps) => (
             <Link onClick={() => {}} to={`/user/${item.id}`} key={item.id}>
               <FiSearch size={20} />
-              {item.imageUserUrl === null ? (
-                <img src={avatar} alt="usuario-perfil" />
-              ) : (
+              {item.imageUserUrl ? (
                 <img src={item.imageUserUrl} alt="usuario-perfil" />
+              ) : (
+                <img src={user?.isUser ? avatar : avatarCompany} alt="usuario-perfil" />
               )}
               <div>
                 <span>
