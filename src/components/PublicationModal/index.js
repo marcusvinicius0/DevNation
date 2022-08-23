@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { AiFillPicture } from 'react-icons/ai';
+import { AiFillPicture, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { BiCaretDown, BiWorld } from 'react-icons/bi';
 import { FaBriefcase, FaChartBar } from 'react-icons/fa';
 import { FiX } from 'react-icons/fi';
@@ -7,6 +7,7 @@ import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
 import firebase from 'firebase/app';
+
 
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
@@ -17,11 +18,15 @@ export default function PublicModal({ close }) {
   const [text, setText] = useState('');
   const [imagePublication, setImagePublication] = useState(null);
   const [imagePublicationUrl, setImagePublicationUrl] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const { user } = useContext(AuthContext);
   const { handleCreatePublication } = usePublications();
 
   async function handleSave(e) {
     e.preventDefault();
+    setLoading(true);
+
     if (imagePublication) {
       await firebase
         .storage()
@@ -43,6 +48,7 @@ export default function PublicModal({ close }) {
               })
                 .then(() => {
                   toast.success('Publicação feita com sucesso.');
+                  setLoading(false);
                   setText('');
                   setImagePublication(null);
                   setImagePublicationUrl(null);
@@ -50,11 +56,13 @@ export default function PublicModal({ close }) {
                   console.log(text);
                 })
                 .catch((err) => {
+                  setLoading(false);
                   console.log(err);
                 });
             });
         })
         .catch((error) => {
+          setLoading(false);
           console.log(error);
           toast.error('Ops, algo deu errado.');
         });
@@ -63,6 +71,7 @@ export default function PublicModal({ close }) {
         (res) => {
           console.log(res);
           toast.success('Publicação feita com sucesso.');
+          setLoading(false);
           setText('');
           setImagePublication(null);
           setImagePublicationUrl(null);
@@ -152,14 +161,23 @@ export default function PublicModal({ close }) {
               </button>
             </div>
 
-            {text === '' ? (
+            {!text ? (
               <button type="submit" className={styles.buttonToHandlePublication} disabled>
                 Publicar
               </button>
             ) : (
-              <button type="submit" className={styles.buttonToHandlePublication}>
-                Publicar
-              </button>
+              <div>
+                {loading ? (
+                  <button type="submit" className={styles.buttonToHandlePublication} disabled>
+                    <AiOutlineLoading3Quarters />
+                  </button>
+                )
+                  :
+                  <button type="submit" className={styles.buttonToHandlePublication}>
+                    Publicar
+                  </button>
+                }
+              </div>
             )}
           </div>
         </form>

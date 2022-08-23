@@ -21,7 +21,7 @@ export default function PublicationsProfile({ publications, user }) {
               <span>{user.name}</span>
               <p>{user.role}</p>
               <time>
-                {format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+                {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
                   locale: ptBR,
                 })}
               </time>

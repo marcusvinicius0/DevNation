@@ -184,8 +184,22 @@
         &:disabled {
           background: rgba(0, 0, 0, 0.4);
           cursor: not-allowed;
+
+          svg {
+            animation: animate 1.5s infinite;
+          }
         }
       }
     }
+  }
+}
+
+@keyframes animate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

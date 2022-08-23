@@ -102,7 +102,7 @@ export default function Post({ publication }) {
             </Link>
             <p>{publication.user_role}</p>
             <time>
-              {format(new Date(publication.created_at), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+              {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
                 locale: ptBR,
               })}
             </time>
