@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdVerified } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
 import styles from './styles.module.scss';
@@ -16,11 +16,11 @@ import NewsBox from '../../components/NewsBox';
 import ProjectsProfile from '../../components/ProjectsProfile';
 import PublicationsProfile from '../../components/PublicationsProfile';
 import Stacks from '../../components/Stacks';
-import { AuthContext } from '../../contexts/auth';
+import { UserSignedContext } from '../../contexts/signed';
 import { usePublications } from '../../hooks/usePublications';
 
 export default function Profile() {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(UserSignedContext);
   const { loadUserPublications, userPublications } = usePublications();
 
   const [editProfileModal, setEditProfileModal] = useState(false);
@@ -35,7 +35,7 @@ export default function Profile() {
   }, []);
 
   useEffect(() => {
-    loadUserPublications(user.uid);
+    loadUserPublications(user?.id || '');
   }, []);
 
   function toggleEditProfileModal() {
@@ -60,13 +60,13 @@ export default function Profile() {
             <div className={styles.picturesBox}>
               <img
                 className={styles.banner}
-                src={user.bannerUrl === null ? banner : user.bannerUrl}
+                src={user?.bannerUserUrl === null ? banner : user?.bannerUserUrl}
                 alt="banner"
               />
               <img
                 onClick={toggleProfilePictureModal}
                 className={styles.profilePic}
-                src={user.avatarUrl === null ? avatar : user.avatarUrl}
+                src={user?.imageUserUrl === null ? avatar : user?.imageUserUrl}
                 alt="Foto de perfil"
               />
 
@@ -81,19 +81,19 @@ export default function Profile() {
                   <RiPencilLine size={25} color="var(--black)" />
                 </button>
                 <span className={styles.name}>
-                  <p>{user.name}</p>
-                  {user.isVerified && <MdVerified />}
+                  <p>{user?.name}</p>
+                  {user?.isVerified && <MdVerified />}
                 </span>
-                <p className={styles.role}>{user.role}</p>
-                <p className={styles.place}>{user.location}</p>
+                <p className={styles.role}>{user?.role}</p>
+                <p className={styles.place}>{user?.location}</p>
               </div>
 
               <div className={styles.socialMedias}>
-                <a href={user.linkedin} rel="noreferrer" target="_blank">
+                <a href={user?.linkedin} rel="noreferrer" target="_blank">
                   <img src={inLogo} alt="linkedin" width={30} height={30} />
                 </a>
 
-                <a href={user.github} rel="noreferrer" target="_blank">
+                <a href={user?.github} rel="noreferrer" target="_blank">
                   <img src={ghLogo} alt="github" width={30} height={30} />
                 </a>
               </div>
@@ -101,10 +101,10 @@ export default function Profile() {
           </div>
           <div className={styles.aboutMe}>
             <h1>Sobre mim</h1>
-            {user.aboutMe === '' ? <p>Sem informações.</p> : <p>{user.aboutMe}</p>}
+            {user?.description === '' ? <p>Sem informações.</p> : <p>{user?.description}</p>}
           </div>
-          <ProjectsProfile user_id={user.uid} state_button />
-          <Stacks user_id={user.uid} state_button />
+          <ProjectsProfile user_id={user?.id} state_button />
+          <Stacks user_id={user?.id} state_button />
           <PublicationsProfile publications={userPublications} user={user} />
         </div>
         <NewsBox />

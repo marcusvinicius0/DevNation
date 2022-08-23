@@ -8,12 +8,14 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
 import {
-	HandleCreatePublicationRequest,
-	LikeOrDeslikeRequest,
-	LikesObject,
-	PublicationObject,
-	PublicationsProviderProps,
-	RegisterNewComment, ReturnOfLikeOrDeslike, UsePublicationsHookData
+  HandleCreatePublicationRequest,
+  LikeOrDeslikeRequest,
+  LikesObject,
+  PublicationObject,
+  PublicationsProviderProps,
+  RegisterNewComment,
+  ReturnOfLikeOrDeslike,
+  UsePublicationsHookData,
 } from './types';
 
 import apiDsn from '../services/apiDsn';
@@ -26,7 +28,10 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
   const [loadingPublications, setLoadingPublications] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
   const [publication, setPublication] = useState<PublicationObject | {}>({});
-	const [resLikeOrDeslike, setResLikeOrDeslike] = useState<ReturnOfLikeOrDeslike>({ type: "", likes: []})
+  const [resLikeOrDeslike, setResLikeOrDeslike] = useState<ReturnOfLikeOrDeslike>({
+    type: '',
+    likes: [],
+  });
 
   async function loadPublications() {
     setLoadingPublications(true);
@@ -41,9 +46,9 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
     setLoadingPublications(false);
   }
 
-  async function loadUserPublications(user_id: string) {
+  async function loadUserPublications(userId: string) {
     setLoadingPublications(true);
-    await apiDsn.get('/user/publications', { params: { user_id } }).then((res) => {
+    await apiDsn.get('/user/publications', { params: { userId } }).then((res) => {
       setUserPublications(res.data);
     });
     setLoadingPublications(false);
@@ -52,20 +57,20 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
   async function handleCreatePublication({
     publication,
     user,
-    image_publication_url,
+    imagePublicationUrl,
   }: HandleCreatePublicationRequest) {
     setLoading(true);
     const data: PublicationObject = {
       id: '',
       publication: String(publication),
-      user_id: user.uid,
-      image_publication_url,
-      user_name: user.name,
-      user_role: user.role,
-      user_is_verified: user.isVerified,
-      user_avatar_url: user.avatarUrl,
-      created_at: new Date(),
-      updated_at: new Date(),
+      userId: user.uid,
+      imagePublicationUrl,
+      userName: user.name,
+      userRole: user.role,
+      userIsVerified: user.isVerified,
+      userAvatarUrl: user.avatarUrl,
+      createdAt: new Date(),
+      updatedAt: new Date(),
       likes: [],
       comments: [],
     };
@@ -75,7 +80,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
     setLoading(false);
   }
 
-  async function handleDeletePublication(publication_id: string) {
+  async function handleDeletePublication(publicationId: string) {
     Swal.fire({
       title: 'Você tem certeza?',
       text: 'A publicação será deletada!',
@@ -86,57 +91,57 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
       confirmButtonText: 'Sim, deletar!',
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await apiDsn.delete('/publications', { params: { publication_id } }).then(() => {
+        await apiDsn.delete('/publications', { params: { publicationId } }).then(() => {
           toast.success('Publicação deletada com sucesso.');
-          const filteredPublications = publications.filter((publi) => publi.id !== publication_id);
+          const filteredPublications = publications.filter((publi) => publi.id !== publicationId);
           setPublications(filteredPublications);
         });
       }
     });
   }
 
-  async function likeOrDeslikePublication({ user_id, publication_id }: LikeOrDeslikeRequest) {
-		await apiDsn
-      .post('/likes', { user_id, publication_id })
+  async function likeOrDeslikePublication({ userId, publicationId }: LikeOrDeslikeRequest) {
+    await apiDsn
+      .post('/likes', { userId, publicationId })
       .then((res) => {
         const arrayPublicationsIds: string[] = [];
 
         publications.forEach((item) => arrayPublicationsIds.push(item.id));
-        const idx = arrayPublicationsIds.indexOf(publication_id);
+        const idx = arrayPublicationsIds.indexOf(publicationId);
 
         const dataLike: LikesObject = {
           id: res.data.id,
-          created_at: res.data.created_at,
-          publication_id: res.data.publication_id,
+          createdAt: res.data.createdAt,
+          publicationId: res.data.publicationId,
           type: res.data.type,
-          updated_at: res.data.updated_at,
-          user_id: res.data.user_id,
+          updatedAt: res.data.updatedAt,
+          userId: res.data.userId,
         };
 
         if (res.data.type === 'like') {
           const array: PublicationObject[] = publications;
           array[idx].likes?.push(dataLike);
           setPublications(array);
-          setResLikeOrDeslike({ type: 'like', likes: array[idx].likes || [] })
+          setResLikeOrDeslike({ type: 'like', likes: array[idx].likes || [] });
         }
         const array: PublicationObject[] = publications;
 
         const index: number =
           array[idx].likes?.findIndex(
-            (item) => item.user_id === user_id && item.publication_id === publication_id
+            (item) => item.userId === userId && item.publicationId === publicationId
           ) || -1;
         array[idx].likes?.splice(index, 1);
         setPublications(array);
-        setResLikeOrDeslike({ type: 'deslike', likes: array[idx].likes || []});
+        setResLikeOrDeslike({ type: 'deslike', likes: array[idx].likes || [] });
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
-  async function loadPublicationById(publication_id: string) {
+  async function loadPublicationById(publicationId: string) {
     setLoading(true);
-    const res = await apiDsn.get('/publications/details', { params: { publication_id } });
+    const res = await apiDsn.get('/publications/details', { params: { publicationId } });
     if (res) {
       setPublication(res.data);
     }
@@ -145,22 +150,22 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
 
   async function registerNewComment({
     comment,
-    publication_id,
-    user_id,
-    user_name,
-    user_role,
-    user_avatar_url,
-    user_is_verified,
+    publicationId,
+    userId,
+    userName,
+    userRole,
+    userAvatarUrl,
+    userIsVerified,
   }: RegisterNewComment) {
     setLoading(true);
     const data = {
       comment,
-      publication_id,
-      user_id,
-      user_name,
-      user_role,
-      user_avatar_url,
-      user_is_verified,
+      publicationId,
+      userId,
+      userName,
+      userRole,
+      userAvatarUrl,
+      userIsVerified,
     };
     await apiDsn
       .post('/comments', data)
@@ -188,7 +193,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
         publication,
         registerNewComment,
         loading,
-				resLikeOrDeslike
+        resLikeOrDeslike,
       }}
     >
       {children}

@@ -1,14 +1,23 @@
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
+import React from 'react';
 import { BiBookmark, BiHeart, BiMessageRounded, BiShare } from 'react-icons/bi';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import avatar from '../../assets/avatar.png';
+import { UserSignedProps } from '../../contexts/types';
 import { usePublications } from '../../hooks/usePublications';
 
-export default function PublicationsProfile({ publications, user }) {
-  const { likePublication } = usePublications();
+import { PublicationObject } from '../../hooks/types';
+
+interface PublicationsProfileProps {
+  publications: PublicationObject[];
+  user: UserSignedProps | null;
+}
+
+export default function PublicationsProfile({ publications, user }: PublicationsProfileProps) {
+  const { likeOrDeslikePublication } = usePublications();
 
   return (
     <div className={styles.publicationsProfile}>
@@ -16,10 +25,13 @@ export default function PublicationsProfile({ publications, user }) {
       {publications.map((publication) => (
         <div key={publication.id} className={styles.post}>
           <header>
-            <img src={user.avatar_url === null ? avatar : user.avatar_url} alt="Avatar foto" />
+            <img
+              src={user?.imageUserUrl === null ? avatar : user?.imageUserUrl}
+              alt="Avatar foto"
+            />
             <div>
-              <span>{user.name}</span>
-              <p>{user.role}</p>
+              <span>{user?.name}</span>
+              <p>{user?.role}</p>
               <time>
                 {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
                   locale: ptBR,
@@ -37,7 +49,11 @@ export default function PublicationsProfile({ publications, user }) {
           )}
 
           <footer>
-            <button onClick={() => likePublication(user.uid, publication.id)}>
+            <button
+              onClick={() =>
+                likeOrDeslikePublication({ userId: user?.id || '', publicationId: publication.id })
+              }
+            >
               <BiHeart />
               <span>0</span>
             </button>

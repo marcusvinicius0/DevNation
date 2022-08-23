@@ -8,9 +8,9 @@ export default function SignIn() {
     <div className={styles.mainContainer}>
       <div className={styles.logoContainer}>
         <div className={styles.contentContainer}>
-          <h1>devsocialnetwork.com</h1>
+          <h1>devnation.com</h1>
           <p>
-            devsocialnetwork.com é o melhor lugar para encontrar talentos na área de tecnologia. Nós
+            devnation.com é o melhor lugar para encontrar talentos na área de tecnologia. <br />Nós
             estamos sempre deixando nosso melhor.
           </p>
           <span>Vem fazer parte!</span>

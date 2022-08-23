@@ -1,20 +1,31 @@
 import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { BsBuilding } from 'react-icons/bs';
+import { ImUser } from 'react-icons/im';
 import { Input } from '../../components/Utils/Input';
 import { AuthContext } from '../../contexts/auth';
+
+import Button from '../../components/Button';
+import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';
 
 export default function SignIn() {
+  const { signInCompany } = useContext(CompanyContext);
+  const { signIn, loadingAuth } = useContext(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const { signIn } = useContext(AuthContext);
+  const [modeLoginSelectedIsUser, setModeLoginSelectedIsUser] = useState<boolean>(false);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (email !== '' && password !== '') {
-      signIn(email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      if (modeLoginSelectedIsUser) {
+        signIn(email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      } else {
+        signInCompany(email.replaceAll(' ', ''), password.replaceAll(' ', ''));
+      }
     }
   }
 
@@ -44,6 +55,22 @@ export default function SignIn() {
             </p>
           </header>
           <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.modeLogin}>
+              <button
+                onClick={() => setModeLoginSelectedIsUser(true)}
+                className={modeLoginSelectedIsUser ? `${styles.selected}` : ''}
+                type="button"
+              >
+                <ImUser /> <span>Indivíduo</span>{' '}
+              </button>
+              <button
+                onClick={() => setModeLoginSelectedIsUser(false)}
+                className={modeLoginSelectedIsUser ? '' : `${styles.selected}`}
+                type="button"
+              >
+                <BsBuilding /> <span>Empresa</span>{' '}
+              </button>
+            </div>
             <Input
               type="email"
               label="E-mail"
@@ -56,12 +83,12 @@ export default function SignIn() {
               value={password}
               onChange={(e: any) => setPassword(e.target.value)}
             />
-            <button className={styles.buttonToHandleSignIn} type="submit">
+            <Button type="submit" loading={loadingAuth}>
               Acessar
-            </button>
+            </Button>
           </form>
 
-          <Link to="/" className={styles.forgotPassword}>
+          <Link to="/forgot-password" className={styles.forgotPassword}>
             Esqueceu a senha? <span>Recupere-a</span>.
           </Link>
         </div>

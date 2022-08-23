@@ -1,25 +1,26 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import firebase from '../services/firebaseConnection';
+import { UserSignedContext } from './signed';
 
-import { AuthContextData, AuthProviderProps, SignUpProps, UserProps } from './types';
+import { AuthContextData, AuthProviderProps, SignUpProps, UserSignedProps } from './types';
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [user, setUser] = useState<UserProps | null>(null);
-  const [users, setUsers] = useState<UserProps[] | []>([]);
+  const [users, setUsers] = useState<UserSignedProps[] | []>([]);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  // const [token, setToken] = useState(null);
+
+  const { user, changeUser } = useContext(UserSignedContext);
 
   useEffect(() => {
     function loadStorage() {
-      const storageUserData = localStorage.getItem('UserSystem');
+      const storageUserData = localStorage.getItem('InfoUserSystem');
 
       if (storageUserData) {
-        setUser(JSON.parse(storageUserData));
+        changeUser(JSON.parse(storageUserData));
         setLoading(false);
       }
 
@@ -36,21 +37,23 @@ function AuthProvider({ children }: AuthProviderProps) {
         .collection('users')
         .get()
         .then((snapshot) => {
-          const allUsers: UserProps[] = [];
+          const allUsers: UserSignedProps[] = [];
 
           snapshot.forEach((userData) => {
-            const dataUser: UserProps = {
-              uid: userData.id,
+            const dataUser: UserSignedProps = {
+              id: userData.id,
               name: userData.data().name,
-              avatarUrl: userData.data().avatarUrl,
-              bannerUrl: userData.data().bannerUrl,
+              imageUserUrl: userData.data().avatarUrl,
+              bannerUserUrl: userData.data().bannerUrl,
               role: userData.data().role,
               email: userData.data().email,
-              aboutMe: userData.data().aboutMe,
+              description: userData.data().aboutMe,
               location: userData.data().location,
               linkedin: userData.data().linkedin,
               github: userData.data().github,
               isVerified: userData.data().verified,
+              site: '',
+              isUser: true,
             };
             allUsers.push(dataUser);
           });
@@ -61,8 +64,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     loadUsers();
   }, []);
 
-  function storageUser(data: UserProps) {
-    localStorage.setItem('UserSystem', JSON.stringify(data));
+  function storageUser(data: UserSignedProps) {
+    localStorage.setItem('InfoUserSystem', JSON.stringify(data));
   }
 
   async function signIn(email: string, password: string) {
@@ -77,21 +80,23 @@ function AuthProvider({ children }: AuthProviderProps) {
         const res = await firebase.firestore().collection('users').doc(uid).get();
 
         if (res) {
-          const data: UserProps = {
-            uid: res.id,
+          const data: UserSignedProps = {
+            id: res.id,
             name: res.data()?.name || '',
-            avatarUrl: res.data()?.avatarUrl,
-            bannerUrl: res.data()?.bannerUrl,
+            imageUserUrl: res.data()?.avatarUrl,
+            bannerUserUrl: res.data()?.bannerUrl,
             email: value.user?.email || '',
             role: res.data()?.role,
-            aboutMe: res.data()?.aboutMe,
+            description: res.data()?.aboutMe,
             location: res.data()?.location,
             linkedin: res.data()?.linkedin,
             github: res.data()?.github,
             isVerified: res.data()?.verified,
+            site: '',
+            isUser: true,
           };
 
-          setUser(data);
+          changeUser(data);
           storageUser(data);
           setLoadingAuth(false);
           toast.success('Seja bem vindo(a) de volta!');
@@ -130,7 +135,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           })
           .then(() => {
             setLoadingAuth(false);
-            toast.success('Cadastro feito com sucesso. Seja bem vindo(a)!');
+            toast.success('Cadastro feito com sucesso. Agora faça seu login!');
           });
       })
       .catch((error) => {
@@ -141,8 +146,8 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   async function signOut() {
     await firebase.auth().signOut();
-    localStorage.removeItem('UserSystem');
-    setUser(null);
+    localStorage.removeItem('InfoUserSystem');
+    changeUser(null);
   }
 
   return (

@@ -1,5 +1,5 @@
 import CircularProgress from '@mui/material/CircularProgress';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import { usePublications } from '../../hooks/usePublications';
 import Post from '../Post';

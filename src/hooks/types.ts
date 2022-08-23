@@ -6,49 +6,49 @@ export interface PublicationsProviderProps {
 
 export interface LikesObject {
   id: string;
-  user_id: string;
-  created_at: string;
+  userId: string;
+  createdAt: string;
   type?: 'like' | 'deslike';
-  updated_at: string;
-  publication_id: string;
+  updatedAt: string;
+  publicationId: string;
 }
 
 export interface CommentsObject {
   id: string;
-  user_id: string;
+  userId: string;
   comment: string;
-  created_at: string;
-  updated_at: string;
-  user_name: string;
-  user_role: string;
-  user_avatar_url: string;
-  user_is_verified: boolean;
-  publication_id: string;
+  createdAt: string;
+  updatedAt: string;
+  userName: string;
+  userRole: string;
+  userAvatarUrl: string;
+  userIsVerified: boolean;
+  publicationId: string;
 }
 
 export interface PublicationObject {
   id: string;
   publication: string;
-  user_id: string;
-  image_publication_url?: null | string;
-  updated_at: Date | string;
-  created_at: Date | string;
-  user_avatar_url: string;
-  user_name: string;
-  user_role: string;
-  user_is_verified: boolean;
+  userId: string;
+  imagePublicationUrl?: null | string;
+  updatedAt: Date | string;
+  createdAt: Date | string;
+  userAvatarUrl: string;
+  userName: string;
+  userRole: string;
+  userIsVerified: boolean;
   likes?: LikesObject[] | null | undefined;
   comments?: CommentsObject[] | null;
 }
 
 export interface RegisterNewComment {
   comment: string;
-  publication_id: string;
-  user_id: string;
-  user_name: string;
-  user_role: string;
-  user_avatar_url: string;
-  user_is_verified: boolean;
+  publicationId: string;
+  userId: string;
+  userName: string;
+  userRole: string;
+  userAvatarUrl: string;
+  userIsVerified: boolean;
 }
 
 export interface UserProps {
@@ -68,18 +68,18 @@ export interface UserProps {
 export interface HandleCreatePublicationRequest {
   publication: PublicationObject;
   user: UserProps;
-  image_publication_url: string;
+  imagePublicationUrl: string;
 }
 
 export interface HandleCreateCommentRequest {
   comment: CommentsObject;
   user: UserProps;
-  image_publication_url: string;
+  imagePublicationUrl: string;
 }
 
 export interface LikeOrDeslikeRequest {
-  user_id: string;
-  publication_id: string;
+  userId: string;
+  publicationId: string;
 }
 
 export interface ReturnOfLikeOrDeslike {
@@ -90,17 +90,17 @@ export interface ReturnOfLikeOrDeslike {
 export interface UsePublicationsHookData {
   publications: PublicationObject[];
   loadPublications: () => Promise<void>;
-  handleDeletePublication: (publication_id: string) => Promise<void>;
+  handleDeletePublication: (publicationId: string) => Promise<void>;
   loadingPublications: boolean;
   handleCreatePublication: ({
     publication,
     user,
-    image_publication_url,
+    imagePublicationUrl,
   }: HandleCreatePublicationRequest) => Promise<void>;
-  loadUserPublications: (user_id: string) => Promise<void>;
+  loadUserPublications: (userId: string) => Promise<void>;
   userPublications: PublicationObject[];
-  likeOrDeslikePublication: ({ user_id, publication_id }: LikeOrDeslikeRequest) => Promise<void>;
-  loadPublicationById: (publication_id: string) => Promise<void>;
+  likeOrDeslikePublication: ({ userId, publicationId }: LikeOrDeslikeRequest) => Promise<void>;
+  loadPublicationById: (publicationId: string) => Promise<void>;
   publication: PublicationObject | {};
   registerNewComment: (data: RegisterNewComment) => Promise<void>;
   loading: boolean;

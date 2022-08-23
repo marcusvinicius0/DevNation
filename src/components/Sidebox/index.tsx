@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { AiFillGithub } from 'react-icons/ai';
 import { BsBookmarkFill } from 'react-icons/bs';
 import { FaEnvelopeOpenText, FaUserCircle } from 'react-icons/fa';
@@ -10,44 +10,51 @@ import { toast } from 'react-toastify';
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
 import { AuthContext } from '../../contexts/auth';
+import { UserSignedContext } from '../../contexts/signed';
 import styles from './styles.module.scss';
 
 export default function Sidebox() {
-  const { signOut, user } = useContext(AuthContext);
-  const avatarUrl = user && user.avatarUrl;
+  const { signOut } = useContext(AuthContext);
+  const { user } = useContext(UserSignedContext);
+
+  //   const avatarUrl = user && user.imageUserUrl;
 
   return (
     <div className={styles.sideBox}>
       <div className={styles.bannerBox}>
-        <img src={user.bannerUrl === null ? banner : user.bannerUrl} alt="banner" />
+        {!user?.bannerUserUrl ? (
+          <img src={banner} alt="usuario-perfil" />
+        ) : (
+          <img src={user?.imageUserUrl} alt="usuario-perfil" />
+        )}
       </div>
       <div className={styles.pictureBox}>
-        <Link to="/profile">
-          {avatarUrl === null ? (
-            <img src={avatar} alt="foto avatar" />
+        <Link to={user?.isUser ? '/profile' : '/profile-company'}>
+          {!user?.imageUserUrl ? (
+            <img src={avatar} alt="usuario-perfil" />
           ) : (
-            <img src={avatarUrl} alt="foto usuario" />
+            <img src={user?.imageUserUrl} alt="usuario-perfil" />
           )}
         </Link>
       </div>
       <span className={styles.userName}>
-        <p>{user.name}</p>
-        {user.isVerified && <MdVerified />}
+        <p>{user?.name}</p>
+        {user?.isVerified && <MdVerified />}
       </span>
-      <p className={styles.role}>{user.role}</p>
+      <p className={styles.role}>{user?.role}</p>
       <hr />
       <div className={styles.routesBox}>
-        <Link to="/profile">
+        <Link to={user?.isUser ? '/profile' : '/profile-company'}>
           <span>
             <FaUserCircle color="var(--soft-blue)" size={24} />
-            <p>Meu perfil</p>
+            <p>{user?.isUser ? 'Meu perfil' : 'Minha empresa'}</p>
           </span>
         </Link>
 
-        <Link to="/myprojects">
+        <Link to={user?.isUser ? '/myprojects' : 'myopportunities'}>
           <span>
             <FaEnvelopeOpenText color="var(--soft-blue)" size={22} />
-            <p>Meus projetos</p>
+            <p>{user?.isUser ? 'Meus projetos' : 'Minhas vagas'}</p>
           </span>
         </Link>
 

@@ -1,3 +1,4 @@
+import React from 'react';
 import { Switch } from 'react-router-dom';
 import Route from './Route';
 
@@ -9,6 +10,8 @@ import Contributors from '../pages/Contributors';
 import Dashboard from '../pages/Dashboard';
 import Followers from '../pages/Followers';
 import Home from '../pages/Home';
+import Message from '../pages/Message';
+import MyProjects from '../pages/MyProjects';
 import News from '../pages/News';
 import NewsAlura from '../pages/News/alura';
 import NewsDevelopers from '../pages/News/desenvolvedores';
@@ -16,6 +19,7 @@ import NewsMetaVerso from '../pages/News/metaverso';
 import NewsLawProject from '../pages/News/projetoLei';
 import Opportunities from '../pages/Opportunities';
 import Profile from '../pages/Profile';
+import ProfileCompany from '../pages/ProfileCompany';
 import ProfileUser from '../pages/ProfileUser';
 import ProjectDocumentation from '../pages/ProjectDocumentation';
 import Publication from '../pages/Publication';
@@ -24,10 +28,6 @@ import Repositories from '../pages/Repositories';
 import Repository from '../pages/Repository';
 import Suggestions from '../pages/Suggestions';
 import Updates from '../pages/Updates';
-
-import MyProjects from '../pages/MyProjects';
-
-import Message from '../pages/Message';
 
 export default function MyRoutes() {
   return (
@@ -59,6 +59,7 @@ export default function MyRoutes() {
       <Route exact path="/message" component={Message} isPrivate />
       <Route exact path="/publication/:id" component={Publication} isPrivate />
       <Route exact path="/opportunities" component={Opportunities} isPrivate />
+      <Route exact path="/profile-company" component={ProfileCompany} isPrivate />
     </Switch>
   );
 }
