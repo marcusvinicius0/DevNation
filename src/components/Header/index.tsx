@@ -9,7 +9,9 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
+import avatarCompany from '../../assets/avatar-company.png';
 import avatar from '../../assets/avatar.png';
+
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/auth';
 import styles from './styles.module.scss';
@@ -47,7 +49,7 @@ export default function Header() {
               {item.imageUserUrl ? (
                 <img src={item.imageUserUrl} alt="usuario-perfil" />
               ) : (
-                <img src={avatar} alt="usuario-perfil" />
+                <img src={user?.isUser ? avatar : avatarCompany} alt="usuario-perfil" />
               )}
               <div>
                 <span>
