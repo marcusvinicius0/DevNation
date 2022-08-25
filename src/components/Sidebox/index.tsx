@@ -44,7 +44,7 @@ export default function Sidebox() {
       <p className={styles.role}>{user?.role}</p>
       <hr />
       <div className={styles.routesBox}>
-        <Link to={user?.isUser ? '/profile' : '/profile-company'}>
+        <Link to={user?.isUser ? '/profile' : '/company/user'}>
           <span>
             <FaUserCircle color="var(--soft-blue)" size={24} />
             <p>{user?.isUser ? 'Meu perfil' : 'Minha empresa'}</p>

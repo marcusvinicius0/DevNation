@@ -7,6 +7,7 @@ export interface AuthProviderProps {
 
 export interface SignUpProps {
   name: string;
+  username: string;
   email: string;
   password: string;
 }
@@ -25,6 +26,7 @@ export interface UserSignedProps {
   linkedin?: string;
   site?: string;
   isUser: boolean;
+  username: string;
 }
 
 export interface AuthContextData {

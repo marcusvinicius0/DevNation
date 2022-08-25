@@ -6,6 +6,7 @@ import ForgotPassword from '../pages/ForgotPassword';
 import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 
+import Company from '../pages/Company';
 import Contributors from '../pages/Contributors';
 import Dashboard from '../pages/Dashboard';
 import Followers from '../pages/Followers';
@@ -19,7 +20,6 @@ import NewsMetaVerso from '../pages/News/metaverso';
 import NewsLawProject from '../pages/News/projetoLei';
 import Opportunities from '../pages/Opportunities';
 import Profile from '../pages/Profile';
-import ProfileCompany from '../pages/ProfileCompany';
 import ProfileUser from '../pages/ProfileUser';
 import ProjectDocumentation from '../pages/ProjectDocumentation';
 import Publication from '../pages/Publication';
@@ -59,7 +59,7 @@ export default function MyRoutes() {
       <Route exact path="/message" component={Message} isPrivate />
       <Route exact path="/publication/:id" component={Publication} isPrivate />
       <Route exact path="/opportunities" component={Opportunities} isPrivate />
-      <Route exact path="/profile-company" component={ProfileCompany} isPrivate />
+      <Route exact path="/company/:username" component={Company} isPrivate />
     </Switch>
   );
 }

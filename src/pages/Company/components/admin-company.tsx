@@ -1,15 +1,20 @@
 import React, { useContext } from 'react';
-import styles from './styles.module.scss';
+import styles from '../styles.module.scss';
 
-import avatarCompany from '../../assets/avatar-company.png';
-import background from '../../assets/banner.png';
-import description from '../../assets/description.png';
+import avatarCompany from '../../../assets/avatar-company.png';
+import background from '../../../assets/banner.png';
+import description from '../../../assets/description.png';
+import noHasOpp from '../../../assets/noHasOpp.png';
+import noHasPub from '../../../assets/noHasPub.png';
 
+import { AiFillPicture, AiOutlineGithub } from 'react-icons/ai';
+import { BiBriefcase } from 'react-icons/bi';
 import { BsFillPencilFill } from 'react-icons/bs';
-import Header from '../../components/Header';
-import { AuthContext } from '../../contexts/auth';
+import { FiVideo } from 'react-icons/fi';
+import Header from '../../../components/Header';
+import { AuthContext } from '../../../contexts/auth';
 
-export default function ProfileCompany() {
+export default function AdminCompany() {
   const { user } = useContext(AuthContext);
 
   return (
@@ -82,6 +87,7 @@ export default function ProfileCompany() {
                 Rede social para o aumento de networking de desenvolvedores, analistas e
                 recrutadores na área de tecnologia.
               </p>
+              <span>Desenvolvimento de software</span>
               <button>
                 <BsFillPencilFill /> Editar página
               </button>
@@ -91,15 +97,48 @@ export default function ProfileCompany() {
         <div className={styles.postsAndOpportunities}>
           <div className={styles.posts}>
             <div className={styles.createPost}>
-              <img src={avatarCompany} alt="" />
-              <textarea placeholder="Começar publicação" />
+              <div className={styles.boxTextarea}>
+                <img src={avatarCompany} alt="" />
+                <textarea placeholder="Começar publicação" />
+              </div>
+              <div className={styles.contentActions}>
+                <button>
+                  <AiFillPicture size={22} color="var(--soft-blue)" />
+                  <span>Foto</span>
+                </button>
+                <button>
+                  <FiVideo size={22} color="var(--soft-blue)" />
+                  <span>Vídeo</span>
+                </button>
+                <button>
+                  <BiBriefcase size={22} color="var(--soft-blue)" />
+                  <span>Projeto</span>
+                </button>
+                <button>
+                  <AiOutlineGithub size={22} color="var(--soft-blue)" />
+                  <span>Repositório</span>
+                </button>
+              </div>
+            </div>
+            <div className={styles.flexPosts}>
+              <div className={styles.noHasPosts}>
+                <img src={noHasPub} alt="" />
+                <span>Você ainda não publicou nada.</span>
+                <p>Interaja com seu público na DevNation.</p>
+              </div>
             </div>
           </div>
           <div className={styles.opportunities}>
             <header>
               <h1>Minhas vagas</h1>
+              <button>Cadastrar vaga</button>
             </header>
             <div className={styles.listOpportunities}>
+              <div className={styles.noHasOpportunities}>
+                <img src={noHasOpp} alt="" />
+                <span>Você ainda não publicou nada.</span>
+                <p>Interaja com seu público na DevNation.</p>
+              </div>
               <div className={styles.opportunitie}></div>
             </div>
           </div>

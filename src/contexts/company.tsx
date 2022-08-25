@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
-import firebase from '../services/firebaseConnection';
 import { UserSignedContext } from './signed';
 
 import {
@@ -9,7 +7,6 @@ import {
   CompanyProps,
   ContextProviderProps,
   SignUpCompanyProps,
-  UserSignedProps,
 } from './types';
 
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
@@ -38,34 +35,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
   }, []);
 
   useEffect(() => {
-    async function loadCompanies() {
-      await firebase
-        .firestore()
-        .collection('companies')
-        .get()
-        .then((snapshot) => {
-          const allCompanies: CompanyProps[] = [];
-
-          snapshot.forEach((userData) => {
-            const dataUser: CompanyProps = {
-              id: userData.id,
-              name: userData.data().name,
-              companyLogoUrl: userData.data().companyLogoUrl,
-              companyBannerUrl: userData.data().bannerUrl,
-              companyRole: userData.data().companyRole,
-              email: userData.data().email,
-              description: userData.data().description,
-              location: userData.data().location,
-              site: userData.data().site,
-              companyIsVerified: userData.data().companyIsVerified,
-              isUser: false,
-            };
-            allCompanies.push(dataUser);
-          });
-
-          setCompanies(allCompanies);
-        });
-    }
+    async function loadCompanies() {}
     loadCompanies();
   }, []);
 
@@ -74,53 +44,37 @@ function CompanyProvider({ children }: ContextProviderProps) {
   }
 
   async function signInCompany(email: string, password: string) {
-    await firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(async (value) => {
-        const uid: string = value.user?.uid || '';
-
-        const res = await firebase.firestore().collection('companies').doc(uid).get();
-
-        if (res) {
-          const data: CompanyProps = {
-            id: res.id,
-            name: res.data()?.name || '',
-            quantityOfEmployee: res.data()?.quantityOfEmployee,
-            companyLogoUrl: res.data()?.companyLogoUrl,
-            email: value.user?.email || '',
-            companyRole: res.data()?.companyRole,
-            description: res.data()?.description,
-            location: res.data()?.location,
-            site: res.data()?.site,
-            companyIsVerified: res.data()?.companyIsVerified,
-            isUser: false,
-          };
-
-          const dataToChangeUser: UserSignedProps = {
-            bannerUserUrl: res.data()?.companyLogoUrl,
-            email: value.user?.email || '',
-            id: res.id,
-            name: res.data()?.name || '',
-            role: res.data()?.companyRole,
-            description: res.data()?.description,
-            location: res.data()?.location,
-            site: res.data()?.site,
-            imageUserUrl: res.data()?.companyLogoUrl,
-            isVerified: res.data()?.companyIsVerified,
-            isUser: false,
-          };
-
-          changeUser(dataToChangeUser);
-          setCompany(data);
-          storageCompany(data);
-          toast.success('Seja bem vindo(a) de volta!');
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error('Oops, algo deu errado. Tente novamente mais tarde.');
-      });
+    // if (res) {
+    //   const data: CompanyProps = {
+    //     id: res.id,
+    //     name: res.data()?.name || '',
+    //     quantityOfEmployee: res.data()?.quantityOfEmployee,
+    //     companyLogoUrl: res.data()?.companyLogoUrl,
+    //     email: value.user?.email || '',
+    //     companyRole: res.data()?.companyRole,
+    //     description: res.data()?.description,
+    //     location: res.data()?.location,
+    //     site: res.data()?.site,
+    //     companyIsVerified: res.data()?.companyIsVerified,
+    //     isUser: false,
+    //   };
+    //   const dataToChangeUser: UserSignedProps = {
+    //     bannerUserUrl: res.data()?.companyLogoUrl,
+    //     email: value.user?.email || '',
+    //     id: res.id,
+    //     name: res.data()?.name || '',
+    //     role: res.data()?.companyRole,
+    //     description: res.data()?.description,
+    //     location: res.data()?.location,
+    //     site: res.data()?.site,
+    //     imageUserUrl: res.data()?.companyLogoUrl,
+    //     isVerified: res.data()?.companyIsVerified,
+    //     isUser: false,
+    //   };
+    //   changeUser(dataToChangeUser);
+    //   setCompany(data);
+    //   storageCompany(data);
+    //   toast.success('Seja bem vindo(a) de volta!');
   }
 
   async function signUpCompany({
@@ -132,44 +86,9 @@ function CompanyProvider({ children }: ContextProviderProps) {
     companyRole,
   }: SignUpCompanyProps) {
     setLoadingAuth(true);
-    await firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(async (value) => {
-        const uid: string = value.user?.uid || '';
-
-        await firebase
-          .firestore()
-          .collection('companies')
-          .doc(uid)
-          .set({
-            id: uid,
-            name,
-            email,
-            quantityOfEmployee,
-            companyLogoUrl: null,
-            companyBannerUrl: null,
-            companyIsVerified: false,
-            companyRole,
-            description: '',
-            location,
-            site: '',
-            createdAt: new Date(),
-          })
-          .then(() => {
-            toast.success('Cadastro feito com sucesso. Agora faça seu login!');
-            setLoadingAuth(false);
-          });
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error('Oops, algo deu errado. Tente novamente mais tarde.');
-        setLoadingAuth(false);
-      });
   }
 
   async function signOut() {
-    await firebase.auth().signOut();
     localStorage.removeItem('InfoUserSystem');
     setCompany(null);
   }
