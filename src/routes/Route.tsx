@@ -1,6 +1,6 @@
 /* eslint-disable react/require-default-props */
 import React, { useContext } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { AuthContext } from '../contexts/auth';
 
 interface RouteWrapperProps {
@@ -20,13 +20,13 @@ export default function RouteWrapper({
     return <div />;
   }
 
-  if (!signed && isPrivate) {
-    return <Redirect to="/" />;
-  }
+  //   if (!signed && isPrivate) {
+  //     return <Redirect to="/" />;
+  //   }
 
-  if (signed && !isPrivate) {
-    return <Redirect to="/dashboard" />;
-  }
+  //   if (signed && !isPrivate) {
+  //     return <Redirect to="/dashboard" />;
+  //   }
 
   return <Route {...rest} render={(props) => <Component {...props} />} />;
 }

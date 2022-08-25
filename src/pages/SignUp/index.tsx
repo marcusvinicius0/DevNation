@@ -10,6 +10,7 @@ import styles from '../SignIn/styles.module.scss';
 export default function SignUp() {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [passwordAgain, setPasswordAgain] = useState<string>('');
 
@@ -29,6 +30,7 @@ export default function SignUp() {
     if (name !== '' && email !== '' && password !== '' && passwordAgain !== '') {
       await signUp({
         name,
+        username,
         email: email.replaceAll(' ', ''),
         password: password.replaceAll(' ', ''),
       }).then(() => {
@@ -81,6 +83,11 @@ export default function SignUp() {
               label="Nome"
               value={name}
               onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+            />
+            <Input
+              label="Nome de usuário"
+              value={username}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
             />
             <Input
               label="E-mail"
