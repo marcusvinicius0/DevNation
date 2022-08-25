@@ -72,7 +72,7 @@ export default function Contributors() {
         <hr />
         <ContributorsBox
           img={contributors[3]}
-          name="Pedro Henrique da Silva "
+          name="Pedro Henrique da Silva"
           roles="Desenvolvedor Front End | JavaScript | ReactJs | TypeScript | NodeJs | Redux"
           linkGH="https://github.com/Dev-Pedrosv"
           linkIn="https://www.linkedin.com/in/pedroh-dev/"
