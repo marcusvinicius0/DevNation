@@ -38,7 +38,7 @@ export default function SignUp() {
         setEmail('');
         setPassword('');
         setPasswordAgain('');
-        history.push('/signin');
+        // history.push('/signin');
       });
     } else {
       toast.warning('Preencha todos os campos.');

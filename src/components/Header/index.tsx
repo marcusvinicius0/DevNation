@@ -9,8 +9,7 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
-import avatarCompany from '../../assets/avatar-company.png';
-import avatar from '../../assets/avatar.png';
+import { default as avatar, default as avatarCompany } from '../../assets/avatar.png';
 
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/auth';
