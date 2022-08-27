@@ -67,7 +67,7 @@ export interface UserProps {
 
 export interface HandleCreatePublicationRequest {
   publication: PublicationObject;
-  user: UserProps;
+  userId: string;
   imagePublicationUrl: string;
 }
 
@@ -94,7 +94,7 @@ export interface UsePublicationsHookData {
   loadingPublications: boolean;
   handleCreatePublication: ({
     publication,
-    user,
+    userId,
     imagePublicationUrl,
   }: HandleCreatePublicationRequest) => Promise<void>;
   loadUserPublications: (userId: string) => Promise<void>;

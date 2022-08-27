@@ -32,7 +32,13 @@ export default function SeeUser({ username }: SeeUserProps) {
 
   const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
   const [modalProfileBanner, setModalProfileBanner] = useState<boolean>(false);
-  const [profileUser, setProfileUser] = useState<UserProps | null>(null);
+  const [profileUser, setProfileUser] = useState<UserProps | null>({
+    email: '',
+    id: '',
+    isVerified: false,
+    name: '',
+    username: '',
+  });
 
   useEffect(() => {
     const goTop = () => {
@@ -61,6 +67,7 @@ export default function SeeUser({ username }: SeeUserProps) {
           setProfileUser(data);
         })
         .catch((err) => {
+          setProfileUser(null);
           console.log(err);
         });
     }
