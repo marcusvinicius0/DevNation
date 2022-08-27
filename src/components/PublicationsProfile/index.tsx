@@ -6,14 +6,14 @@ import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import avatar from '../../assets/avatar.png';
-import { UserSignedProps } from '../../contexts/types';
 import { usePublications } from '../../hooks/usePublications';
 
 import { PublicationObject } from '../../hooks/types';
+import { UserProps } from '../../pages/User/types';
 
 interface PublicationsProfileProps {
   publications: PublicationObject[];
-  user: UserSignedProps | null;
+  user: UserProps | null;
 }
 
 export default function PublicationsProfile({ publications, user }: PublicationsProfileProps) {
@@ -22,57 +22,61 @@ export default function PublicationsProfile({ publications, user }: Publications
   return (
     <div className={styles.publicationsProfile}>
       <h3>Minhas publicações</h3>
-      {publications.map((publication) => (
-        <div key={publication.id} className={styles.post}>
-          <header>
-            <img
-              src={user?.imageUserUrl === null ? avatar : user?.imageUserUrl}
-              alt="Avatar foto"
-            />
-            <div>
-              <span>{user?.name}</span>
-              <p>{user?.role}</p>
-              <time>
-                {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
-                  locale: ptBR,
-                })}
-              </time>
+      {publications.length > 0 &&
+        publications.map((publication) => (
+          <div key={publication.id} className={styles.post}>
+            <header>
+              <img
+                src={user?.imageUserUrl === null ? avatar : user?.imageUserUrl}
+                alt="Avatar foto"
+              />
+              <div>
+                <span>{user?.name}</span>
+                <p>{user?.role}</p>
+                <time>
+                  {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
+                    locale: ptBR,
+                  })}
+                </time>
+              </div>
+            </header>
+            <div className={styles.contentPost}>
+              <p>{publication.publication}</p>
             </div>
-          </header>
-          <div className={styles.contentPost}>
-            <p>{publication.publication}</p>
-          </div>
-          {publication.imagePublicationUrl && (
-            <div className={styles.mediaPost}>
-              <img src={publication.imagePublicationUrl} alt="Foto post" />
-            </div>
-          )}
+            {publication.imagePublicationUrl && (
+              <div className={styles.mediaPost}>
+                <img src={publication.imagePublicationUrl} alt="Foto post" />
+              </div>
+            )}
 
-          <footer>
-            <button
-              onClick={() =>
-                likeOrDeslikePublication({ userId: user?.id || '', publicationId: publication.id })
-              }
-            >
-              <BiHeart />
-              <span>0</span>
-            </button>
-            <button onClick={() => toast.warning('Em breve...')}>
-              <BiMessageRounded />
-              <span>0</span>
-            </button>
-            <button onClick={() => toast.warning('Em breve...')}>
-              <BiShare />
-              <span>0</span>
-            </button>
-            <button onClick={() => toast.warning('Em breve...')}>
-              <BiBookmark />
-              <span>0</span>
-            </button>
-          </footer>
-        </div>
-      ))}
-      {publications.length === 0 && <p>Sem publicações.</p>}
+            <footer>
+              <button
+                onClick={() =>
+                  likeOrDeslikePublication({
+                    userId: user?.id || '',
+                    publicationId: publication.id,
+                  })
+                }
+              >
+                <BiHeart />
+                <span>0</span>
+              </button>
+              <button onClick={() => toast.warning('Em breve...')}>
+                <BiMessageRounded />
+                <span>0</span>
+              </button>
+              <button onClick={() => toast.warning('Em breve...')}>
+                <BiShare />
+                <span>0</span>
+              </button>
+              <button onClick={() => toast.warning('Em breve...')}>
+                <BiBookmark />
+                <span>0</span>
+              </button>
+            </footer>
+          </div>
+        ))}
+      {publications.length === 0 && <p className={styles.parapraphNoHasPub}>Sem publicações.</p>}
     </div>
   );
 }

@@ -15,8 +15,9 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const { user, changeUser } = useContext(UserSignedContext);
   const history = useHistory();
+
+  const { user, changeUser } = useContext(UserSignedContext);
 
   useEffect(() => {
     function loadStorage() {
