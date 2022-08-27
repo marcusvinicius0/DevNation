@@ -70,7 +70,7 @@ export default function SignUp() {
         />
       </div>
 
-      <div className={styles.loginContainer}>
+      <div className={styles.registerContainer}>
         <div>
           <header>
             <h2>Faça seu cadastro!</h2>
@@ -111,7 +111,7 @@ export default function SignUp() {
             </Button>
           </form>
 
-          <Link to="/" className={styles.forgotPassword}>
+          <Link to="/" className={styles.hasAccount}>
             Já tem uma conta? <span>Fazer login</span>.
           </Link>
         </div>

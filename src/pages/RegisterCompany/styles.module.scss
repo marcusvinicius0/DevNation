@@ -51,12 +51,14 @@
   .registerContainer {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 1rem;
     width: 50%;
     height: 100%;
-    padding: 5rem 9rem 5rem 9rem;
+    padding: 3rem 9rem 5rem 9rem;
 
     header {
+      margin-bottom: 1rem;
+
       h2 {
         font-size: 2rem;
       }
@@ -66,6 +68,13 @@
         span {
           color: var(--blue-500);
         }
+      }
+    }
+
+    .hasAccount {
+      margin-top: 0rem;
+      span {
+        color: var(--blue-500);
       }
     }
 
@@ -126,7 +135,7 @@
     .back {
       display: flex;
       align-items: center;
-      margin: -100px auto 0px;
+      margin: 0 auto 0 auto;
       background: none;
       outline: none;
       border: none;

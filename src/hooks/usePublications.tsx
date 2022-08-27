@@ -39,6 +39,7 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
       .get('/publications')
       .then((res) => {
         setPublications(res.data);
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -56,26 +57,17 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
 
   async function handleCreatePublication({
     publication,
-    user,
+    userId,
     imagePublicationUrl,
   }: HandleCreatePublicationRequest) {
     setLoading(true);
-    const data: PublicationObject = {
-      id: '',
-      publication: String(publication),
-      userId: user.uid,
+    const data: HandleCreatePublicationRequest = {
+      publication,
+      userId,
       imagePublicationUrl,
-      userName: user.name,
-      userRole: user.role,
-      userIsVerified: user.isVerified,
-      userAvatarUrl: user.avatarUrl,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      likes: [],
-      comments: [],
     };
     await apiDsn.post('/publications', data).then(() => {
-      setPublications([data, ...publications]);
+      //   setPublications([data, ...publications]);
     });
     setLoading(false);
   }

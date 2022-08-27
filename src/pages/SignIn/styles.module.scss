@@ -57,7 +57,7 @@
     justify-content: space-between;
     width: 50%;
     height: 100%;
-    padding: 5rem 9rem 5rem 9rem;
+    padding: 3rem 9rem 5rem 9rem;
 
     div {
       display: flex;
@@ -132,6 +132,19 @@
           color: var(--blue-500);
         }
       }
+
+      .hasAccount {
+        margin-top: 2rem;
+        span {
+          color: var(--blue-500);
+        }
+      }
+    }
+  }
+
+  .registerContainer {
+    .form {
+      margin-top: 1rem;
     }
   }
 }

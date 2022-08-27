@@ -9,13 +9,22 @@ import { Input } from '../../components/Utils/Input';
 import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';
 
+const typesOfRoles = [
+  'Desenvolvimento de Software',
+  'Tecnologia, informação e internet',
+  'Marketing',
+  'Imobiliária',
+  'Serviços de recursos humanos',
+];
+
 export default function SignIn() {
-  const [companyName, setCompanyName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [companyLocation, setCompanyLocation] = useState('');
-  const [companyRole, setCompanyRole] = useState('');
+  const [companyName, setCompanyName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [companyLocation, setCompanyLocation] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
+  const [companyRole, setCompanyRole] = useState<string>('');
   const [numberOfEmployees, setNumberOfEmployees] = useState('');
   const [firstForm, setFirstForm] = useState(false);
 
@@ -49,7 +58,7 @@ export default function SignIn() {
         <div className={styles.contentContainer}>
           <h1>devnation.com</h1>
           <p>devnation.com é o local perfeito pra você encontrar talentos na área de tecnologia.</p>
-          <Link to="/register">Voltar para home</Link>
+          <Link to="/">Voltar para home</Link>
         </div>
         <img
           src="https://piauihoje.com/uploads/imagens/tecno-divulgacao-1654806461.jpeg"
@@ -71,6 +80,11 @@ export default function SignIn() {
               onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyName(e.target.value)}
             />
             <Input
+              label="Usuário da Empresa"
+              value={username}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+            />
+            <Input
               label="E-mail"
               value={email}
               onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
@@ -90,6 +104,9 @@ export default function SignIn() {
             <button className={styles.buttonToHandleContinue} type="submit">
               Continuar
             </button>
+            <Link to="/" className={styles.hasAccount}>
+              Já tem uma conta? <span>Fazer login</span>.
+            </Link>
           </form>
         ) : (
           <>
@@ -99,11 +116,21 @@ export default function SignIn() {
                 value={companyLocation}
                 onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyLocation(e.target.value)}
               />
-              <Input
-                label="Com o que a empresa trabalha?"
-                value={companyRole}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setCompanyRole(e.target.value)}
-              />
+
+              <label>
+                Setor da empresa
+                <select
+                  value={numberOfEmployees}
+                  placeholder="Com o que a empresa trabalha?"
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                    setNumberOfEmployees(e.target.value)
+                  }
+                >
+                  {typesOfRoles.map((type) => (
+                    <option>{type}</option>
+                  ))}
+                </select>
+              </label>
 
               <label>
                 Quantidade de funcionários
