@@ -1,34 +1,44 @@
-import firebase from 'firebase/app';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { MdVerified } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
-import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import avatar from '../../assets/avatar.png';
-import banner from '../../assets/banner.png';
-import ghLogo from '../../assets/github.png';
-import inLogo from '../../assets/linkedin.png';
-import ChatModal from '../../components/ChatModal';
-import EditProfileModal from '../../components/EditProfileModal';
-import Header from '../../components/Header';
-import ModalEditProfileBanner from '../../components/ModalEditProfileBanner';
-import NewsBox from '../../components/NewsBox';
-import NotFoundUser from '../../components/NotFoundUser';
-import ProjectsProfile from '../../components/ProjectsProfile';
-import PublicationsProfile from '../../components/PublicationsProfile';
-import Stacks from '../../components/Stacks';
-import { AuthContext } from '../../contexts/auth';
-import { usePublications } from '../../hooks/usePublications';
+import avatar from '../../../../assets/avatar.png';
+import banner from '../../../../assets/banner.png';
+import ghLogo from '../../../../assets/github.png';
+import inLogo from '../../../../assets/linkedin.png';
 
-export default function ProfileUser() {
+import ChatModal from '../../../../components/ChatModal';
+import EditProfileModal from '../../../../components/EditProfileModal';
+import Header from '../../../../components/Header';
+import ModalEditProfileBanner from '../../../../components/ModalEditProfileBanner';
+import NewsBox from '../../../../components/NewsBox';
+import NotFoundUser from '../../../../components/NotFoundUser';
+import ProjectsProfile from '../../../../components/ProjectsProfile';
+import PublicationsProfile from '../../../../components/PublicationsProfile';
+import Stacks from '../../../../components/Stacks';
+import { AuthContext } from '../../../../contexts/auth';
+import { usePublications } from '../../../../hooks/usePublications';
+import apiDsn from '../../../../services/apiDsn';
+import { UserProps } from '../../types';
+
+interface SeeUserProps {
+  username: string;
+}
+
+export default function SeeUser({ username }: SeeUserProps) {
   const { user } = useContext(AuthContext);
-  const { id } = useParams();
   const { loadUserPublications, userPublications } = usePublications();
 
-  const [editProfileModal, setEditProfileModal] = useState(false);
-  const [modalProfileBanner, setModalProfileBanner] = useState(false);
-  const [profileUser, setProfileUser] = useState('');
+  const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
+  const [modalProfileBanner, setModalProfileBanner] = useState<boolean>(false);
+  const [profileUser, setProfileUser] = useState<UserProps | null>({
+    email: '',
+    id: '',
+    isVerified: false,
+    name: '',
+    username: '',
+  });
 
   useEffect(() => {
     const goTop = () => {
@@ -38,44 +48,35 @@ export default function ProfileUser() {
   }, []);
 
   async function loadUser() {
-    if (id) {
-      await firebase
-        .firestore()
-        .collection('users')
-        .doc(id)
-        .get()
-        .then((snapshot) => {
-          if (snapshot.data()) {
-            const data = {
-              about_me: snapshot.data()?.aboutMe,
-              avatar_url: snapshot.data().avatarUrl,
-              banner_url: snapshot.data().bannerUrl,
-              email: snapshot.data().email,
-              location: snapshot.data().location,
-              name: snapshot.data().name,
-              id: snapshot.id,
-              role: snapshot.data().role,
-              linkedin: snapshot.data().linkedin,
-              github: snapshot.data().github,
-              is_verified: snapshot.data().verified,
-            };
-            console.log(data);
-            setProfileUser(data);
-          } else {
-            setProfileUser(null);
-          }
+    if (username) {
+      await apiDsn
+        .get('/users/detail', { params: { username } })
+        .then((res) => {
+          let data: UserProps = {
+            bannerUrl: res.data.bannerUrl,
+            company: res.data.company,
+            name: res.data.name,
+            id: res.data.id,
+            email: res.data.email,
+            isVerified: res.data.isVerified,
+            updatedAt: res.data.updatedAt,
+            createdAt: res.data.createdAt,
+            imageUserUrl: res.data.imageUserUrl,
+            username,
+          };
+          setProfileUser(data);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch((err) => {
           setProfileUser(null);
+          console.log(err);
         });
     }
   }
 
   useEffect(() => {
     loadUser();
-    loadUserPublications(id);
-  }, [id]);
+    // loadUserPublications(username);
+  }, [username]);
 
   function toggleEditProfileModal() {
     setEditProfileModal(!editProfileModal);
@@ -98,16 +99,16 @@ export default function ProfileUser() {
                 <div className={styles.picturesBox}>
                   <img
                     className={styles.banner}
-                    src={profileUser.banner_url === null ? banner : profileUser.banner_url}
+                    src={profileUser.bannerUrl == null ? banner : profileUser.bannerUrl}
                     alt="banner"
                   />
                   <img
                     className={styles.profilePic}
-                    src={profileUser.avatar_url === null ? avatar : profileUser.avatar_url}
+                    src={profileUser.imageUserUrl == null ? avatar : profileUser.imageUserUrl}
                     alt="Foto de perfil"
                   />
 
-                  {user.uid === profileUser.id && (
+                  {user?.id === profileUser.id && (
                     <button className={styles.editBanner} onClick={toggleModalProfileBanner}>
                       <RiPencilLine size={25} color="var(--black)" />
                     </button>
@@ -115,37 +116,39 @@ export default function ProfileUser() {
                 </div>
 
                 <div className={styles.infoBox}>
-                  {user.uid === profileUser.id && (
+                  {user?.id === profileUser.id && (
                     <button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
                       <RiPencilLine size={25} color="var(--black)" />
                     </button>
                   )}
                   <span className={styles.name}>
                     <p>{profileUser.name}</p>
-                    {profileUser.is_verified && <MdVerified />}
+                    {profileUser.isVerified && <MdVerified />}
                   </span>
                   <p className={styles.role}>{profileUser.role}</p>
                   <p className={styles.place}>{profileUser.location}</p>
 
                   <div className={styles.socialMedias}>
-                    <a href={profileUser.linkedin} rel="noreferrer" target="_blank">
+                    <a href={profileUser.linkedin || undefined} rel="noreferrer" target="_blank">
                       <img src={inLogo} alt="linkedin" width={30} height={30} />
                     </a>
 
-                    <a href={profileUser.github} rel="noreferrer" target="_blank">
+                    <a href={profileUser.github || undefined} rel="noreferrer" target="_blank">
                       <img src={ghLogo} alt="github" width={30} height={30} />
                     </a>
                   </div>
                 </div>
               </div>
               <div className={styles.aboutMe}>
-                <h1>Sobre mim</h1>
-                {profileUser.about_me === '' ? (
+                <header>
+                  <h1>Sobre mim</h1>
+                </header>
+                {profileUser.description == null ? (
                   <p>Sem informações.</p>
                 ) : (
-                  <p>{profileUser.about_me}</p>
+                  <p>{profileUser.description}</p>
                 )}
-                {user.uid === profileUser.id && (
+                {user?.id === profileUser.id && (
                   <button type="button">
                     <RiPencilLine size={22} />
                   </button>

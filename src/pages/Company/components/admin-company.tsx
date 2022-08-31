@@ -6,7 +6,7 @@ import { FiVideo } from 'react-icons/fi';
 
 import styles from '../styles.module.scss';
 
-import avatarCompany from '../../../assets/avatar-company.png';
+import avatarCompany from '../../../assets/avatar.png';
 import background from '../../../assets/banner.png';
 import description from '../../../assets/description.png';
 import noHasOpp from '../../../assets/noHasOpp.png';

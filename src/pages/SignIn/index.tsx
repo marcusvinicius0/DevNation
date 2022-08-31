@@ -16,7 +16,7 @@ export default function SignIn() {
   const { signIn, loadingAuth } = useContext(AuthContext);
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [modeLoginSelectedIsUser, setModeLoginSelectedIsUser] = useState<boolean>(false);
+  const [modeLoginSelectedIsUser, setModeLoginSelectedIsUser] = useState<boolean>(true);
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();

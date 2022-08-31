@@ -29,7 +29,7 @@ export default function Sidebox() {
         )}
       </div>
       <div className={styles.pictureBox}>
-        <Link to={user?.isUser ? '/profile' : '/profile-company'}>
+        <Link to={user?.isUser ? `/user/${user?.username}` : '/profile-company'}>
           {!user?.imageUserUrl ? (
             <img src={avatar} alt="usuario-perfil" />
           ) : (
@@ -44,7 +44,7 @@ export default function Sidebox() {
       <p className={styles.role}>{user?.role}</p>
       <hr />
       <div className={styles.routesBox}>
-        <Link to={user?.isUser ? '/profile' : '/company/user'}>
+        <Link to={user?.isUser ? `/user/${user?.username}` : '/company/user'}>
           <span>
             <FaUserCircle color="var(--soft-blue)" size={24} />
             <p>{user?.isUser ? 'Meu perfil' : 'Minha empresa'}</p>
