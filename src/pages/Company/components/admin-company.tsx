@@ -1,4 +1,9 @@
 import React, { useContext } from 'react';
+import { AiFillPicture, AiOutlineGithub } from 'react-icons/ai';
+import { BiBriefcase } from 'react-icons/bi';
+import { BsFillPencilFill } from 'react-icons/bs';
+import { FiVideo } from 'react-icons/fi';
+
 import styles from '../styles.module.scss';
 
 import avatarCompany from '../../../assets/avatar-company.png';
@@ -7,10 +12,6 @@ import description from '../../../assets/description.png';
 import noHasOpp from '../../../assets/noHasOpp.png';
 import noHasPub from '../../../assets/noHasPub.png';
 
-import { AiFillPicture, AiOutlineGithub } from 'react-icons/ai';
-import { BiBriefcase } from 'react-icons/bi';
-import { BsFillPencilFill } from 'react-icons/bs';
-import { FiVideo } from 'react-icons/fi';
 import Header from '../../../components/Header';
 import { AuthContext } from '../../../contexts/auth';
 
@@ -139,7 +140,7 @@ export default function AdminCompany() {
                 <span>Você ainda não publicou nada.</span>
                 <p>Interaja com seu público na DevNation.</p>
               </div>
-              <div className={styles.opportunitie}></div>
+              <div className={styles.opportunitie} />
             </div>
           </div>
         </div>

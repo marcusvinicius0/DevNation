@@ -38,28 +38,29 @@ export default function MyRoutes() {
       <Route exact path="/forgot-password" component={ForgotPassword} />
       <Route exact path="/register-company" component={RegisterCompany} />
 
-      <Route exact path="/dashboard" component={Dashboard} isPrivate />
-      <Route exact path="/profile" component={Profile} isPrivate />
-      <Route exact path="/user/:id" component={ProfileUser} isPrivate />
-      <Route exact path="/followers" component={Followers} isPrivate />
-      <Route exact path="/repositories" component={Repositories} isPrivate />
-      <Route exact path="/repository/:repository" component={Repository} isPrivate />
-      <Route exact path="/contributors" component={Contributors} isPrivate />
-      <Route exact path="/suggestions" component={Suggestions} isPrivate />
-      <Route exact path="/documentation" component={ProjectDocumentation} isPrivate />
-      <Route exact path="/updates" component={Updates} isPrivate />
+      {/* private routes */}
+      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/profile" component={Profile} />
+      <Route exact path="/user/:id" component={ProfileUser} />
+      <Route exact path="/followers" component={Followers} />
+      <Route exact path="/repositories" component={Repositories} />
+      <Route exact path="/repository/:repository" component={Repository} />
+      <Route exact path="/contributors" component={Contributors} />
+      <Route exact path="/suggestions" component={Suggestions} />
+      <Route exact path="/documentation" component={ProjectDocumentation} />
+      <Route exact path="/updates" component={Updates} />
 
-      <Route exact path="/news" component={News} isPrivate />
-      <Route exact path="/news/alura" component={NewsAlura} isPrivate />
-      <Route exact path="/news/law-project" component={NewsLawProject} isPrivate />
-      <Route exact path="/news/metaverso" component={NewsMetaVerso} isPrivate />
-      <Route exact path="/news/developers-lack" component={NewsDevelopers} isPrivate />
+      <Route exact path="/news" component={News} />
+      <Route exact path="/news/alura" component={NewsAlura} />
+      <Route exact path="/news/law-project" component={NewsLawProject} />
+      <Route exact path="/news/metaverso" component={NewsMetaVerso} />
+      <Route exact path="/news/developers-lack" component={NewsDevelopers} />
 
-      <Route exact path="/myprojects" component={MyProjects} isPrivate />
-      <Route exact path="/message" component={Message} isPrivate />
-      <Route exact path="/publication/:id" component={Publication} isPrivate />
-      <Route exact path="/opportunities" component={Opportunities} isPrivate />
-      <Route exact path="/company/:username" component={Company} isPrivate />
+      <Route exact path="/myprojects" component={MyProjects} />
+      <Route exact path="/message" component={Message} />
+      <Route exact path="/publication/:id" component={Publication} />
+      <Route exact path="/opportunities" component={Opportunities} />
+      <Route exact path="/company/:username" component={Company} />
     </Switch>
   );
 }

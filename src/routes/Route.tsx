@@ -14,7 +14,7 @@ export default function RouteWrapper({
   isPrivate,
   ...rest
 }: RouteWrapperProps) {
-  const { signed, loading } = useContext(AuthContext);
+  const { loading } = useContext(AuthContext);
 
   if (loading) {
     return <div />;

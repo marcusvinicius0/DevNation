@@ -25,7 +25,7 @@ export default function Sidebox() {
         {!user?.bannerUserUrl ? (
           <img src={banner} alt="usuario-perfil" />
         ) : (
-          <img src={user?.imageUserUrl} alt="usuario-perfil" />
+          <img src={user?.bannerUserUrl} alt="usuario-perfil" />
         )}
       </div>
       <div className={styles.pictureBox}>

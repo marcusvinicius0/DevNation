@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
+/* eslint-disable */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';

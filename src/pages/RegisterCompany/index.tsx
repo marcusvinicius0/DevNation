@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FormEvent, useContext, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
 
 import { IoIosArrowRoundBack } from 'react-icons/io';
 import { toast } from 'react-toastify';
@@ -8,6 +8,8 @@ import Button from '../../components/Button';
 import { Input } from '../../components/Utils/Input';
 import { CompanyContext } from '../../contexts/company';
 import styles from './styles.module.scss';
+
+
 
 export default function SignIn() {
   const [companyName, setCompanyName] = useState('');
@@ -20,6 +22,7 @@ export default function SignIn() {
   const [firstForm, setFirstForm] = useState(false);
 
   const { signUpCompany, loadingAuth } = useContext(CompanyContext);
+  const history = useHistory();
 
   function handleContinue(e: FormEvent) {
     e.preventDefault();
@@ -41,6 +44,15 @@ export default function SignIn() {
       location: companyLocation,
       companyRole,
     });
+    setCompanyName('')
+    setEmail('')
+    setPassword('')
+    setConfirmPassword('')
+    setCompanyLocation('')
+    setCompanyRole('')
+    setNumberOfEmployees('')
+    toast.success("Empresa cadastrada com sucesso!")
+    history.push('/signin');
   }
 
   return (

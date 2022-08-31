@@ -1,4 +1,5 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
+// eslint-disable react/jsx-no-constructed-context-values 
+/* eslint-disable */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { UserSignedContext } from './signed';
 
@@ -6,7 +7,7 @@ import {
   CompanyContextData,
   CompanyProps,
   ContextProviderProps,
-  SignUpCompanyProps,
+  SignUpCompanyProps
 } from './types';
 
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
@@ -35,7 +36,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
   }, []);
 
   useEffect(() => {
-    async function loadCompanies() {}
+    async function loadCompanies() { }
     loadCompanies();
   }, []);
 
