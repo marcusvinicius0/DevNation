@@ -27,6 +27,7 @@ export default function SignIn() {
   const [companyRole, setCompanyRole] = useState<string>('');
   const [numberOfEmployees, setNumberOfEmployees] = useState('');
   const [firstForm, setFirstForm] = useState(false);
+  const [site, setSite] = useState<string>('');
 
   const { signUpCompany, loadingAuth } = useContext(CompanyContext);
 
@@ -46,9 +47,10 @@ export default function SignIn() {
       name: companyName,
       email,
       password,
-      quantityOfEmployee: numberOfEmployees,
       location: companyLocation,
       companyRole,
+      site,
+      username,
     });
   }
 

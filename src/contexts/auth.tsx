@@ -117,6 +117,7 @@ function AuthProvider({ children }: AuthProviderProps) {
       .then((res) => {
         setLoadingAuth(false);
         history.push('/signin');
+        toast.success('Usuário cadastrado com sucesso.');
       })
       .catch((err) => {
         console.log(err);

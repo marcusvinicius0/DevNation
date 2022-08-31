@@ -1,5 +1,8 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import apiDsn from '../services/apiDsn';
 import { UserSignedContext } from './signed';
 
 import {
@@ -7,6 +10,7 @@ import {
   CompanyProps,
   ContextProviderProps,
   SignUpCompanyProps,
+  UserSignedProps,
 } from './types';
 
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
@@ -17,17 +21,17 @@ function CompanyProvider({ children }: ContextProviderProps) {
   const [companies, setCompanies] = useState<CompanyProps[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
+
+  const history = useHistory();
   // const [token, setToken] = useState(null);
 
   useEffect(() => {
     function loadStorage() {
       const storageCompanyData = localStorage.getItem('InfoUserSystem');
-
       if (storageCompanyData) {
         setCompany(JSON.parse(storageCompanyData));
         setLoading(false);
       }
-
       setLoading(false);
     }
 
@@ -44,48 +48,63 @@ function CompanyProvider({ children }: ContextProviderProps) {
   }
 
   async function signInCompany(email: string, password: string) {
-    // if (res) {
-    //   const data: CompanyProps = {
-    //     id: res.id,
-    //     name: res.data()?.name || '',
-    //     quantityOfEmployee: res.data()?.quantityOfEmployee,
-    //     companyLogoUrl: res.data()?.companyLogoUrl,
-    //     email: value.user?.email || '',
-    //     companyRole: res.data()?.companyRole,
-    //     description: res.data()?.description,
-    //     location: res.data()?.location,
-    //     site: res.data()?.site,
-    //     companyIsVerified: res.data()?.companyIsVerified,
-    //     isUser: false,
-    //   };
-    //   const dataToChangeUser: UserSignedProps = {
-    //     bannerUserUrl: res.data()?.companyLogoUrl,
-    //     email: value.user?.email || '',
-    //     id: res.id,
-    //     name: res.data()?.name || '',
-    //     role: res.data()?.companyRole,
-    //     description: res.data()?.description,
-    //     location: res.data()?.location,
-    //     site: res.data()?.site,
-    //     imageUserUrl: res.data()?.companyLogoUrl,
-    //     isVerified: res.data()?.companyIsVerified,
-    //     isUser: false,
-    //   };
-    //   changeUser(dataToChangeUser);
-    //   setCompany(data);
-    //   storageCompany(data);
-    //   toast.success('Seja bem vindo(a) de volta!');
+    setLoadingAuth(true);
+    await apiDsn
+      .post('/signincompany', { email, password })
+      .then((res) => {
+        if (res) {
+          const data: UserSignedProps = {
+            id: res.data.id,
+            name: res.data.name || '',
+            imageUserUrl: res.data.imageUserUrl,
+            bannerUserUrl: res.data.bannerUserUrl,
+            email: res.data.email || '',
+            role: res.data.role,
+            description: res.data.description,
+            location: res.data.location,
+            linkedin: '',
+            github: '',
+            isVerified: res.data.isVerified,
+            site: res.data.site,
+            isUser: false,
+            username: res.data.username,
+          };
+          changeUser(data);
+          storageCompany(data);
+          setLoadingAuth(false);
+          history.push('/dashboard');
+          toast.success('Seja bem vindo(a) de volta!');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Ops, algo deu errado!');
+        setLoadingAuth(false);
+      });
   }
 
   async function signUpCompany({
     name,
     email,
+    username,
     password,
-    quantityOfEmployee,
     location,
     companyRole,
+    site,
   }: SignUpCompanyProps) {
     setLoadingAuth(true);
+    await apiDsn
+      .post('/companies', { name, email, username, password, location, companyRole, site })
+      .then((res) => {
+        if (res) {
+          history.push('/sigin');
+          toast.success('Empresa cadastrada com sucesso!');
+          setLoadingAuth(false);
+        }
+      })
+      .catch((err) => {
+        toast.error('Ops, algo deu errado.');
+      });
   }
 
   async function signOut() {

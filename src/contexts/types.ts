@@ -65,9 +65,10 @@ export interface SignUpCompanyProps {
   name: string;
   email: string;
   password: string;
-  quantityOfEmployee: string;
+  username: string;
   location: string;
   companyRole: string;
+  site: string;
 }
 
 export interface CompanyContextData {
