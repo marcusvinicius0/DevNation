@@ -11,18 +11,18 @@ import PublicationsProvider from './hooks/usePublications';
 
 function App() {
   return (
-    <UserSignedProvider>
-      <AuthProvider>
-        <CompanyProvider>
-          <PublicationsProvider>
-            <BrowserRouter>
+    <BrowserRouter>
+      <UserSignedProvider>
+        <AuthProvider>
+          <CompanyProvider>
+            <PublicationsProvider>
               <ToastContainer autoClose={3000} />
               <MyRoutes />
-            </BrowserRouter>
-          </PublicationsProvider>
-        </CompanyProvider>
-      </AuthProvider>
-    </UserSignedProvider>
+            </PublicationsProvider>
+          </CompanyProvider>
+        </AuthProvider>
+      </UserSignedProvider>
+    </BrowserRouter>
   );
 }
 

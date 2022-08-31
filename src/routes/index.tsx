@@ -19,8 +19,6 @@ import NewsDevelopers from '../pages/News/desenvolvedores';
 import NewsMetaVerso from '../pages/News/metaverso';
 import NewsLawProject from '../pages/News/projetoLei';
 import Opportunities from '../pages/Opportunities';
-import Profile from '../pages/Profile';
-import ProfileUser from '../pages/ProfileUser';
 import ProjectDocumentation from '../pages/ProjectDocumentation';
 import Publication from '../pages/Publication';
 import RegisterCompany from '../pages/RegisterCompany';
@@ -28,6 +26,7 @@ import Repositories from '../pages/Repositories';
 import Repository from '../pages/Repository';
 import Suggestions from '../pages/Suggestions';
 import Updates from '../pages/Updates';
+import User from '../pages/User';
 
 export default function MyRoutes() {
   return (
@@ -39,8 +38,8 @@ export default function MyRoutes() {
       <Route exact path="/register-company" component={RegisterCompany} />
 
       <Route exact path="/dashboard" component={Dashboard} isPrivate />
-      <Route exact path="/profile" component={Profile} isPrivate />
-      <Route exact path="/user/:id" component={ProfileUser} isPrivate />
+      {/* <Route exact path="/profile" component={Profile} isPrivate />
+      <Route exact path="/user/:id" component={ProfileUser} isPrivate /> */}
       <Route exact path="/followers" component={Followers} isPrivate />
       <Route exact path="/repositories" component={Repositories} isPrivate />
       <Route exact path="/repository/:repository" component={Repository} isPrivate />
@@ -60,6 +59,7 @@ export default function MyRoutes() {
       <Route exact path="/publication/:id" component={Publication} isPrivate />
       <Route exact path="/opportunities" component={Opportunities} isPrivate />
       <Route exact path="/company/:username" component={Company} isPrivate />
+      <Route exact path="/user/:username" component={User} isPrivate />
     </Switch>
   );
 }
