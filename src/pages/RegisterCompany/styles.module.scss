@@ -54,7 +54,8 @@
     gap: 1rem;
     width: 50%;
     height: 100%;
-    padding: 3rem 9rem 5rem 9rem;
+    padding: 2rem 9rem 5rem 9rem;
+    justify-content: space-between;
 
     header {
       margin-bottom: 1rem;
@@ -101,9 +102,11 @@
 
     .form2 {
       height: 60%;
-      margin: auto 0;
+      width: 100%;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       gap: 1rem;
 
       label {

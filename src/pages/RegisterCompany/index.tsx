@@ -48,7 +48,7 @@ export default function SignIn() {
       email,
       password,
       location: companyLocation,
-      companyRole,
+      role: companyRole,
       site,
       username,
     });
@@ -122,11 +122,9 @@ export default function SignIn() {
               <label>
                 Setor da empresa
                 <select
-                  value={numberOfEmployees}
+                  value={companyRole}
                   placeholder="Com o que a empresa trabalha?"
-                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                    setNumberOfEmployees(e.target.value)
-                  }
+                  onChange={(e: ChangeEvent<HTMLSelectElement>) => setCompanyRole(e.target.value)}
                 >
                   {typesOfRoles.map((type) => (
                     <option>{type}</option>
@@ -134,21 +132,11 @@ export default function SignIn() {
                 </select>
               </label>
 
-              <label>
-                Quantidade de funcionários
-                <select
-                  value={numberOfEmployees}
-                  onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                    setNumberOfEmployees(e.target.value)
-                  }
-                >
-                  <option>1-10</option>
-                  <option>11-50</option>
-                  <option>50-100</option>
-                  <option>100-200</option>
-                  <option>200+</option>
-                </select>
-              </label>
+              <Input
+                label="Site da empresa"
+                value={site}
+                onChange={(e: ChangeEvent<HTMLInputElement>) => setSite(e.target.value)}
+              />
 
               <Button type="submit" loading={loadingAuth}>
                 Cadastrar
