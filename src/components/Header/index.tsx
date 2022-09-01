@@ -9,7 +9,8 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
-import { default as avatar, default as avatarCompany } from '../../assets/avatar.png';
+import avatarCompany from '../../assets/avatar-company.jpg';
+import avatar from '../../assets/avatar.png';
 
 import logo from '../../assets/logo.png';
 import { AuthContext } from '../../contexts/auth';
@@ -159,7 +160,7 @@ export default function Header() {
         <BsBellFill onClick={handleSoon} size={23} color="var(--soft-gray)" />
         <Link to="/profile">
           {!user?.imageUserUrl ? (
-            <img src={avatar} alt="usuario-perfil" />
+            <img src={user?.isUser ? avatar : avatarCompany} alt="usuario-perfil" />
           ) : (
             <img src={user?.imageUserUrl} alt="usuario-perfil" />
           )}

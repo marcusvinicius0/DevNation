@@ -1,11 +1,12 @@
 /* eslint-disable func-names */
 /* eslint-disable no-unused-vars */
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AiFillPicture, AiOutlineGithub } from 'react-icons/ai';
 import { BiBriefcase } from 'react-icons/bi';
 import { FiVideo } from 'react-icons/fi';
 import styles from './styles.module.scss';
 
+import avatarCompany from '../../assets/avatar-company.jpg';
 import avatar from '../../assets/avatar.png';
 import ChatModal from '../../components/ChatModal';
 import Feed from '../../components/Feed';
@@ -21,7 +22,7 @@ import { AuthContext } from '../../contexts/auth';
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
   const [showPostModal, setShowPostModal] = useState(false);
-  const [avatarUrl, setAvatarUrl] = useState(user && user.avatarUrl);
+  const [avatarUrl, setAvatarUrl] = useState(user && user?.imageUserUrl);
   const [editPublication, setEditPublication] = useState(false);
 
   function toggleEditPublication() {
@@ -42,7 +43,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     function loadToTop() {
-      let posicao = localStorage.getItem('posicaoScroll');
+      let posicao: any = localStorage.getItem('posicaoScroll');
 
       if (posicao) {
         /* Timeout necessário para funcionar no Chrome */
@@ -72,7 +73,7 @@ export default function Dashboard() {
           <div className={styles.createPublicationContainer}>
             <div className={styles.contentBox}>
               {!user?.imageUserUrl ? (
-                <img src={avatar} alt="usuario-perfil" />
+                <img src={user?.isUser ? avatar : avatarCompany} alt="usuario-perfil" />
               ) : (
                 <img src={user?.imageUserUrl} alt="usuario-perfil" />
               )}

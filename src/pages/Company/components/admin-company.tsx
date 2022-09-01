@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styles from '../styles.module.scss';
 
-import avatarCompany from '../../../assets/avatar.png';
+import avatarCompany from '../../../assets/avatar-company.jpg';
 import background from '../../../assets/banner.png';
 import description from '../../../assets/description.png';
 import noHasOpp from '../../../assets/noHasOpp.png';
