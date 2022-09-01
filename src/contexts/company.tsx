@@ -89,21 +89,22 @@ function CompanyProvider({ children }: ContextProviderProps) {
     username,
     password,
     location,
-    companyRole,
+    role,
     site,
   }: SignUpCompanyProps) {
     setLoadingAuth(true);
     await apiDsn
-      .post('/companies', { name, email, username, password, location, companyRole, site })
+      .post('/companies', { name, email, username, password, location, role, site })
       .then((res) => {
         if (res) {
-          history.push('/sigin');
+          history.push('/signin');
           toast.success('Empresa cadastrada com sucesso!');
           setLoadingAuth(false);
         }
       })
       .catch((err) => {
         toast.error('Ops, algo deu errado.');
+        setLoadingAuth(false);
       });
   }
 

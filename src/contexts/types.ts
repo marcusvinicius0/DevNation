@@ -67,7 +67,7 @@ export interface SignUpCompanyProps {
   password: string;
   username: string;
   location: string;
-  companyRole: string;
+  role: string;
   site: string;
 }
 
