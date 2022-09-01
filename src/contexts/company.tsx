@@ -50,7 +50,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
   async function signInCompany(email: string, password: string) {
     setLoadingAuth(true);
     await apiDsn
-      .post('/signincompany', { email, password })
+      .post('/companies/signin', { email, password })
       .then((res) => {
         if (res) {
           const data: UserSignedProps = {
