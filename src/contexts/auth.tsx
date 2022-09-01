@@ -77,7 +77,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     setLoadingAuth(true);
 
     await apiDsn
-      .post('/signin', { email, password })
+      .post('/users/signin', { email, password })
       .then((res) => {
         if (res) {
           const data: UserSignedProps = {
