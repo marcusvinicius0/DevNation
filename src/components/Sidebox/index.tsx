@@ -7,6 +7,7 @@ import { MdLightbulb, MdNewReleases, MdVerified } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
+import avatarCompany from '../../assets/avatar-company.jpg';
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
 import { AuthContext } from '../../contexts/auth';
@@ -31,7 +32,7 @@ export default function Sidebox() {
       <div className={styles.pictureBox}>
         <Link to={user?.isUser ? `/user/${user?.username}` : '/profile-company'}>
           {!user?.imageUserUrl ? (
-            <img src={avatar} alt="usuario-perfil" />
+            <img src={user?.isUser ? avatar : avatarCompany} alt="usuario-perfil" />
           ) : (
             <img src={user?.imageUserUrl} alt="usuario-perfil" />
           )}
