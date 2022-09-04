@@ -34,7 +34,6 @@ export interface AuthContextData {
   user: UserSignedProps | null;
   loading: boolean;
   signUp: ({ name, email, password }: SignUpProps) => Promise<void>;
-  signOut: () => Promise<void>;
   signIn: (email: string, password: string) => Promise<void>;
   loadingAuth: boolean;
   storageUser: (data: UserSignedProps) => void;
@@ -75,7 +74,6 @@ export interface CompanyContextData {
   signedAsCompany: boolean;
   signUpCompany: (data: SignUpCompanyProps) => Promise<void>;
   signInCompany: (email: string, password: string) => Promise<void>;
-  signOut: () => Promise<void>;
   company: CompanyProps | null;
   companies: CompanyProps[] | [];
   loading: boolean;
@@ -85,4 +83,8 @@ export interface CompanyContextData {
 export interface UserSignedData {
   changeUser: (dataUser: UserSignedProps | null) => void;
   user: UserSignedProps | null;
+  isAuthenticated: boolean;
+  loading: boolean;
+  changeStateIsAuthenticated: (type: boolean) => void;
+  handleLogout: () => void;
 }

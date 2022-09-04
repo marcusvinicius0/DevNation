@@ -38,8 +38,6 @@ export default function MyRoutes() {
       <Route exact path="/register-company" component={RegisterCompany} />
 
       <Route exact path="/dashboard" component={Dashboard} isPrivate />
-      {/* <Route exact path="/profile" component={Profile} isPrivate />
-      <Route exact path="/user/:id" component={ProfileUser} isPrivate /> */}
       <Route exact path="/followers" component={Followers} isPrivate />
       <Route exact path="/repositories" component={Repositories} isPrivate />
       <Route exact path="/repository/:repository" component={Repository} isPrivate />

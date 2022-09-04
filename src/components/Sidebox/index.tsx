@@ -10,13 +10,11 @@ import { toast } from 'react-toastify';
 import avatarCompany from '../../assets/avatar-company.jpg';
 import avatar from '../../assets/avatar.png';
 import banner from '../../assets/banner.png';
-import { AuthContext } from '../../contexts/auth';
 import { UserSignedContext } from '../../contexts/signed';
 import styles from './styles.module.scss';
 
 export default function Sidebox() {
-  const { signOut } = useContext(AuthContext);
-  const { user } = useContext(UserSignedContext);
+  const { user, handleLogout } = useContext(UserSignedContext);
 
   //   const avatarUrl = user && user.imageUserUrl;
 
@@ -87,7 +85,7 @@ export default function Sidebox() {
           </span>
         </Link>
 
-        <div className={styles.logoutBox} onClick={signOut}>
+        <div className={styles.logoutBox} onClick={handleLogout}>
           <IoLogOut color="var(--soft-blue)" size={25} />
           <p>Sair</p>
         </div>
