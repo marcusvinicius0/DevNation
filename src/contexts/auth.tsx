@@ -17,7 +17,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   const history = useHistory();
 
-  const { user, changeUser } = useContext(UserSignedContext);
+  const { user, changeUser, changeStateIsAuthenticated } = useContext(UserSignedContext);
 
   useEffect(() => {
     function loadStorage() {
@@ -100,6 +100,9 @@ function AuthProvider({ children }: AuthProviderProps) {
           changeUser(data);
           storageUser(data);
           setLoadingAuth(false);
+          changeStateIsAuthenticated(true);
+          apiDsn.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+          localStorage.setItem('token', JSON.stringify(res.data.token));
           history.push('/dashboard');
           toast.success('Seja bem vindo(a) de volta!');
         }
@@ -124,11 +127,6 @@ function AuthProvider({ children }: AuthProviderProps) {
       });
   }
 
-  async function signOut() {
-    localStorage.removeItem('InfoUserSystem');
-    changeUser(null);
-  }
-
   return (
     <AuthContext.Provider
       value={{
@@ -136,7 +134,6 @@ function AuthProvider({ children }: AuthProviderProps) {
         user,
         loading,
         signUp,
-        signOut,
         signIn,
         loadingAuth,
         storageUser,

@@ -16,14 +16,13 @@ import {
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
 
 function CompanyProvider({ children }: ContextProviderProps) {
-  const { changeUser } = useContext(UserSignedContext);
+  const { changeUser, changeStateIsAuthenticated } = useContext(UserSignedContext);
   const [company, setCompany] = useState<CompanyProps | null>(null);
   const [companies, setCompanies] = useState<CompanyProps[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
 
   const history = useHistory();
-  // const [token, setToken] = useState(null);
 
   useEffect(() => {
     function loadStorage() {
@@ -72,6 +71,9 @@ function CompanyProvider({ children }: ContextProviderProps) {
           changeUser(data);
           storageCompany(data);
           setLoadingAuth(false);
+          changeStateIsAuthenticated(true);
+          apiDsn.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+          localStorage.setItem('token', JSON.stringify(res.data.token));
           history.push('/dashboard');
           toast.success('Seja bem vindo(a) de volta!');
         }
@@ -108,18 +110,12 @@ function CompanyProvider({ children }: ContextProviderProps) {
       });
   }
 
-  async function signOut() {
-    localStorage.removeItem('InfoUserSystem');
-    setCompany(null);
-  }
-
   return (
     <CompanyContext.Provider
       value={{
         signedAsCompany: !!company,
         signUpCompany,
         signInCompany,
-        signOut,
         company,
         companies,
         loading,
