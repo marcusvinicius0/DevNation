@@ -68,6 +68,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
             isUser: false,
             username: res.data.username,
           };
+
           changeUser(data);
           storageCompany(data);
           setLoadingAuth(false);

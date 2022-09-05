@@ -27,7 +27,7 @@ export default function AdminCompany() {
           ) : (
             <img src={avatarCompany} alt="" />
           )}
-          <h1>Dev Social Network</h1>
+          <h1>{user?.name}</h1>
           <span>Versão do super administrador</span>
           <button>Cadastrar vaga</button>
         </div>
@@ -82,12 +82,9 @@ export default function AdminCompany() {
           <div className={styles.containerInfos}>
             <img src={avatarCompany} alt="" />
             <div className={styles.infos}>
-              <h1>DevNation</h1>
-              <p>
-                Rede social para o aumento de networking de desenvolvedores, analistas e
-                recrutadores na área de tecnologia.
-              </p>
-              <span>Desenvolvimento de software</span>
+              <h1>{user?.name}</h1>
+              <p>{user?.description}</p>
+              <span>{user?.role}</span>
               <button>
                 <BsFillPencilFill /> Editar página
               </button>

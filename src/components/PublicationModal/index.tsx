@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { AiFillPicture } from 'react-icons/ai';
 import { BiCaretDown, BiWorld } from 'react-icons/bi';
 import { FaBriefcase, FaChartBar } from 'react-icons/fa';
@@ -6,77 +6,28 @@ import { FiX } from 'react-icons/fi';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
-import firebase from 'firebase/app';
-
+import avatarCompany from '../../assets/avatar-company.jpg';
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 import { usePublications } from '../../hooks/usePublications';
 import styles from './styles.module.scss';
 
-export default function PublicModal({ close }) {
-  const [text, setText] = useState('');
-  const [imagePublication, setImagePublication] = useState(null);
-  const [imagePublicationUrl, setImagePublicationUrl] = useState(null);
+interface PublicModalProps {
+  close: () => void;
+}
+
+export default function PublicModal({ close }: PublicModalProps) {
+  const [text, setText] = useState<string>('');
+  const [imagePublication, setImagePublication] = useState<string | null>(null);
+  const [imagePublicationUrl, setImagePublicationUrl] = useState<string | null>(null);
   const { user } = useContext(AuthContext);
   const { handleCreatePublication } = usePublications();
-
-  async function handleSave(e) {
-    e.preventDefault();
-    if (imagePublication) {
-      await firebase
-        .storage()
-        .ref(`images/${user.uid}/${imagePublication.name}`)
-        .put(imagePublication)
-        .then(async () => {
-          await firebase
-            .storage()
-            .ref(`images/${user.uid}`)
-            .child(`${imagePublication.name}`)
-            .getDownloadURL()
-            .then(async (url) => {
-              const urlFoto = url;
-              const textVerified = text.replaceAll('  ', '').replaceAll('\n\n\n', '');
-              await handleCreatePublication({
-                publication: textVerified,
-                user,
-                image_publication_url: urlFoto,
-              })
-                .then(() => {
-                  toast.success('Publicação feita com sucesso.');
-                  setText('');
-                  setImagePublication(null);
-                  setImagePublicationUrl(null);
-                  close();
-                  console.log(text);
-                })
-                .catch((err) => {
-                  console.log(err);
-                });
-            });
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error('Ops, algo deu errado.');
-        });
-    } else {
-      await handleCreatePublication({ publication: text, user, image_publication_url: null }).then(
-        (res) => {
-          console.log(res);
-          toast.success('Publicação feita com sucesso.');
-          setText('');
-          setImagePublication(null);
-          setImagePublicationUrl(null);
-          close();
-        }
-      );
-    }
-  }
 
   function coming() {
     toast.warning('Em breve...');
   }
 
-  function handleFile(e) {
+  function handleFile(e: any) {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       if (
@@ -111,9 +62,13 @@ export default function PublicModal({ close }) {
           </button>
         </header>
         <div className={styles.infoUser}>
-          <img src={user.avatarUrl === null ? avatar : user.avatarUrl} alt="profile-pic" />
+          {!user?.imageUserUrl ? (
+            <img src={user?.isUser ? avatar : avatarCompany} alt="usuario-perfil" />
+          ) : (
+            <img src={user?.imageUserUrl} alt="usuario-perfil" />
+          )}
           <div>
-            <p className={styles.userName}>{user.name}</p>
+            <p className={styles.userName}>{user?.name}</p>
             <button>
               <BiWorld />
               <span>Todos</span>
@@ -121,7 +76,7 @@ export default function PublicModal({ close }) {
             </button>
           </div>
         </div>
-        <form onSubmit={handleSave}>
+        <form onSubmit={() => {}}>
           <textarea
             placeholder="No que você está pensando?"
             value={text}
