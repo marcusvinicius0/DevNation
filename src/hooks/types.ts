@@ -106,3 +106,15 @@ export interface UsePublicationsHookData {
   loading: boolean;
   resLikeOrDeslike: ReturnOfLikeOrDeslike;
 }
+
+export interface UseProjectsHookData {}
+
+export interface ProjectsProviderProps {
+  children: ReactNode;
+}
+
+export interface UseOpportunitiesHookData {}
+
+export interface OpportunitiesProviderProps {
+  children: ReactNode;
+}
