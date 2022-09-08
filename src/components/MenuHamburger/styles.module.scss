@@ -1,0 +1,31 @@
+.hamburguer {
+    display: none;
+    background: transparent;
+    flex-direction: column;
+    gap: 6px;
+    border: none;
+
+    @media screen and (max-width: 1000px) {
+        display: flex;
+    }
+
+    div {
+        width: 32px;
+        height: 3px;
+        background-color: #fafafa;
+        transition: 0.4s;
+    }
+
+    .line1 {
+        transform: rotate(-45deg) translate(-8px, 8px);
+    }
+
+    .line2 {
+        opacity: 0;
+    }
+
+    .line3 {
+        transform: rotate(45deg) translate(-5px, -5px);
+    }
+
+}
