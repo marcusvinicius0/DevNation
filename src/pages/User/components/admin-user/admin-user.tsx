@@ -59,6 +59,7 @@ export default function AdminUser({ username }: SeeUserProps) {
             username: res.data.username,
           };
           setProfileUser(data);
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -68,9 +69,6 @@ export default function AdminUser({ username }: SeeUserProps) {
 
   useEffect(() => {
     loadUser();
-    // loadUserPublications(username);
-    console.log(user);
-    console.log(profileUser);
   }, [username]);
 
   function toggleEditProfileModal() {
@@ -94,7 +92,7 @@ export default function AdminUser({ username }: SeeUserProps) {
                 <div className={styles.picturesBox}>
                   <img
                     className={styles.banner}
-                    src={profileUser.bannerUrl == null ? banner : profileUser.bannerUrl}
+                    src={profileUser.bannerUrl == '' ? banner : profileUser.bannerUrl}
                     alt="banner"
                   />
                   <img
@@ -102,32 +100,36 @@ export default function AdminUser({ username }: SeeUserProps) {
                     src={profileUser.imageUserUrl == null ? avatar : profileUser.imageUserUrl}
                     alt="Foto de perfil"
                   />
-
                   <button className={styles.editBanner} onClick={toggleModalProfileBanner}>
                     <RiPencilLine size={20} color="#fff" />
                   </button>
                 </div>
 
                 <div className={styles.infoBox}>
-                  <button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
-                    <RiPencilLine size={20} color="#fff" /> <p>Editar perfil</p>
-                  </button>
-                  <span className={styles.name}>
-                    <p>{profileUser.name}</p>
-                    {profileUser.isVerified && <MdVerified />}
-                  </span>
-                  <p className={styles.role}>{profileUser.role}</p>
-                  <p className={styles.place}>{profileUser.location}</p>
+                  <header>
+                    <span className={styles.name}>
+                      <p>{profileUser.name}</p>
+                      {profileUser.isVerified && <MdVerified />}
+                    </span>
+                    <button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
+                      <RiPencilLine size={20} color="#fff" /> <p>Editar perfil</p>
+                    </button>
+                    <div className={styles.socialMedias}>
+                      <a href={profileUser.linkedin || undefined} rel="noreferrer" target="_blank">
+                        <img src={inLogo} alt="linkedin" width={30} height={30} />
+                      </a>
 
-                  <div className={styles.socialMedias}>
-                    <a href={profileUser.linkedin || undefined} rel="noreferrer" target="_blank">
-                      <img src={inLogo} alt="linkedin" width={30} height={30} />
-                    </a>
-
-                    <a href={profileUser.github || undefined} rel="noreferrer" target="_blank">
-                      <img src={ghLogo} alt="github" width={30} height={30} />
-                    </a>
-                  </div>
+                      <a href={profileUser.github || undefined} rel="noreferrer" target="_blank">
+                        <img src={ghLogo} alt="github" width={30} height={30} />
+                      </a>
+                    </div>
+                  </header>
+                  <article>
+                    <div className={styles.moreInfo}>
+                      <p className={styles.role}>Desenvolvedor Front End | ReactJS</p>
+                      <p className={styles.location}>Recife, Pernambuco, Brasil</p>
+                    </div>
+                  </article>
                 </div>
               </div>
               <div className={styles.aboutMe}>

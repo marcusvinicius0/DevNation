@@ -1,4 +1,3 @@
-import firebase from 'firebase/app';
 import { useContext, useState } from 'react';
 import { FiUpload, FiX } from 'react-icons/fi';
 import { toast } from 'react-toastify';
@@ -31,39 +30,6 @@ export default function ModalEditProfileBanner({ close }) {
 
   async function handleUpload() {
     const currentUid = user.uid;
-
-    await firebase
-      .storage()
-      .ref(`images/${currentUid}/${bannerAvatar.name}`)
-      .put(bannerAvatar)
-      .then(async () => {
-        toast.success('Dados enviados com sucesso');
-
-        await firebase
-          .storage()
-          .ref(`images/${currentUid}`)
-          .child(bannerAvatar.name)
-          .getDownloadURL()
-          .then(async (url) => {
-            const urlBanner = url;
-
-            await firebase
-              .firestore()
-              .collection('users')
-              .doc(user.uid)
-              .update({
-                bannerUrl: urlBanner,
-              })
-              .then(() => {
-                const data = {
-                  ...user,
-                  bannerUrl: urlBanner,
-                };
-                setUser(data);
-                storageUser(data);
-              });
-          });
-      });
   }
 
   function handleSave(e) {

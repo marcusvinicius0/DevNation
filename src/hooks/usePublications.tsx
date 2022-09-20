@@ -18,16 +18,17 @@ import {
   UsePublicationsHookData,
 } from './types';
 
+import { PublicationInterface } from '../@types/Publication/types';
 import apiDsn from '../services/apiDsn';
 
 const PublicationsContext = createContext<UsePublicationsHookData>({} as UsePublicationsHookData);
 
 export default function PublicationsProvider({ children }: PublicationsProviderProps) {
-  const [publications, setPublications] = useState<PublicationObject[] | []>([]);
+  const [publications, setPublications] = useState<PublicationInterface[] | []>([]);
   const [userPublications, setUserPublications] = useState<PublicationObject[] | []>([]);
   const [loadingPublications, setLoadingPublications] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const [publication, setPublication] = useState<PublicationObject | {}>({});
+  const [publication, setPublication] = useState<PublicationInterface | {}>({});
   const [resLikeOrDeslike, setResLikeOrDeslike] = useState<ReturnOfLikeOrDeslike>({
     type: '',
     likes: [],
@@ -39,7 +40,6 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
       .get('/publications')
       .then((res) => {
         setPublications(res.data);
-        console.log(res);
       })
       .catch((err) => {
         console.log(err);
@@ -61,13 +61,16 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
     imagePublicationUrl,
   }: HandleCreatePublicationRequest) {
     setLoading(true);
-    const data: HandleCreatePublicationRequest = {
-      publication,
-      userId,
-      imagePublicationUrl,
-    };
-    await apiDsn.post('/publications', data).then(() => {
-      //   setPublications([data, ...publications]);
+    let data = new FormData();
+
+    console.log({ publication, userId, imagePublicationUrl });
+
+    data.append('publication', publication);
+    data.append('userId', userId);
+    data.append('imagePublicationUrl', imagePublicationUrl);
+
+    await apiDsn.post('/publications', data).then((res) => {
+      setPublications([res.data, ...publications]);
     });
     setLoading(false);
   }
@@ -96,9 +99,9 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
     await apiDsn
       .post('/likes', { userId, publicationId })
       .then((res) => {
-        const arrayPublicationsIds: string[] = [];
+        const arrayPublicationsIds: any[] = [];
 
-        publications.forEach((item) => arrayPublicationsIds.push(item.id));
+        publications.forEach(({ id }) => arrayPublicationsIds.push(id));
         const idx = arrayPublicationsIds.indexOf(publicationId);
 
         const dataLike: LikesObject = {
@@ -111,12 +114,12 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
         };
 
         if (res.data.type === 'like') {
-          const array: PublicationObject[] = publications;
+          const array: PublicationInterface[] = publications;
           array[idx].likes?.push(dataLike);
           setPublications(array);
           setResLikeOrDeslike({ type: 'like', likes: array[idx].likes || [] });
         }
-        const array: PublicationObject[] = publications;
+        const array: PublicationInterface[] = publications;
 
         const index: number =
           array[idx].likes?.findIndex(

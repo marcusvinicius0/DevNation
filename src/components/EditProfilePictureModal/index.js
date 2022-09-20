@@ -5,7 +5,6 @@ import styles from './styles.module.scss';
 
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
-import firebase from '../../services/firebaseConnection';
 
 export default function EditProfilePictureModal({ close }) {
   const { user, setUser, storageUser } = useContext(AuthContext);
@@ -31,40 +30,6 @@ export default function EditProfilePictureModal({ close }) {
 
   async function handleUpload() {
     const currentUid = user.uid;
-
-    await firebase
-      .storage()
-      .ref(`images/${currentUid}/${imageAvatar.name}`)
-      .put(imageAvatar)
-      .then(async () => {
-        toast.success('Dados enviados com sucesso!');
-
-        await firebase
-          .storage()
-          .ref(`images/${currentUid}`)
-          .child(imageAvatar.name)
-          .getDownloadURL()
-          .then(async (url) => {
-            const urlFoto = url;
-
-            await firebase
-              .firestore()
-              .collection('users')
-              .doc(user.uid)
-              .update({
-                avatarUrl: urlFoto,
-              })
-              .then(() => {
-                const data = {
-                  ...user,
-                  avatarUrl: urlFoto,
-                };
-                setUser(data);
-                storageUser(data);
-                close();
-              });
-          });
-      });
   }
 
   function handleSave(e) {

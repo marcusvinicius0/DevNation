@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import { AiFillPicture } from 'react-icons/ai';
 import { BiCaretDown, BiWorld } from 'react-icons/bi';
 import { FaBriefcase, FaChartBar } from 'react-icons/fa';
@@ -25,6 +25,22 @@ export default function PublicModal({ close }: PublicModalProps) {
 
   function coming() {
     toast.warning('Em breve...');
+  }
+
+  async function handleDataToCreatePublication(e: FormEvent) {
+    e.preventDefault();
+
+    try {
+      const data: any = {
+        publication: text,
+        userId: user?.id,
+        imagePublicationUrl: imagePublication,
+      };
+
+      await handleCreatePublication(data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function handleFile(e: any) {
@@ -76,7 +92,7 @@ export default function PublicModal({ close }: PublicModalProps) {
             </button>
           </div>
         </div>
-        <form onSubmit={() => {}}>
+        <form onSubmit={handleDataToCreatePublication}>
           <textarea
             placeholder="No que você está pensando?"
             value={text}

@@ -1,8 +1,6 @@
 /* eslint-disable camelcase */
 import React, { useEffect, useState } from 'react';
 
-import firebase from 'firebase/app';
-
 import { BsArrowRightShort } from 'react-icons/bs';
 
 import { Link } from 'react-router-dom';
@@ -35,30 +33,7 @@ export default function ProjectsProfile({ user_id, state_button }) {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    async function loadProjects() {
-      await firebase
-        .firestore()
-        .collection('projects')
-        .get()
-        .then((snapshot) => {
-          const arrayProjects = [];
-          snapshot.forEach((doc) => {
-            if (doc.data().user_id === user_id) {
-              const data = {
-                repo: doc.data().repo,
-                user_id: doc.data().user_id,
-                imageProjectUrl: doc.data().imageProjectUrl,
-                liveLink: doc.data().liveLink,
-                description: doc.data().description,
-                title: doc.data().title,
-                id: doc.id,
-              };
-              arrayProjects.push(data);
-            }
-          });
-          setProjects(arrayProjects);
-        });
-    }
+    async function loadProjects() {}
     loadProjects();
   }, [user_id]);
 

@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Button from '../../components/Button';
 
 import { Input } from '../../components/Utils/Input';
-import firebase from '../../services/firebaseConnection';
 import styles from './styles.module.scss';
 
 export default function ForgotPassword() {
@@ -14,20 +12,6 @@ export default function ForgotPassword() {
 
   function handlePassword() {
     setLoading(true);
-    const auth = firebase.auth();
-    auth
-      .sendPasswordResetEmail(email.replaceAll(' ', ''))
-      .then(() => {
-        toast.success('Sucesso. Verifique seu email para redefinição de senha');
-        setTimeout(() => history.push('/'), 1000);
-        setLoading(false);
-        setEmail('');
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(error.message);
-        setLoading(false);
-      });
   }
 
   return (

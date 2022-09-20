@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { FiX } from 'react-icons/fi';
 
-import firebase from 'firebase/app';
 import { FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/auth';
@@ -33,58 +32,6 @@ export default function AddProjectModal({ closeModal, reloadProjects }) {
       toast.warning('Favor, preencher todos os campos.');
       setLoading(false);
     } else {
-      await firebase
-        .storage()
-        .ref(`images/${user.uid}/${imageProject.name}`)
-        .put(imageProject)
-        .then(async () => {
-          await firebase
-            .storage()
-            .ref(`images/${user.uid}`)
-            .child(`${imageProject.name}`)
-            .getDownloadURL()
-            .then(async (url) => {
-              const urlFoto = url;
-              await firebase
-                .firestore()
-                .collection('projects')
-                .add({
-                  imageProjectUrl: urlFoto,
-                  title,
-                  description,
-                  repo,
-                  liveLink,
-                  user_id: user.uid,
-                })
-                .then(() => {
-                  toast.success('Projeto adicionado com sucesso.');
-                  setLoading(false);
-                  reloadProjects();
-                  closeModal();
-                  setImageProjectUrl(null);
-                  setImageProject(null);
-                  setTitle('');
-                  setDescription('');
-                  setRepo('');
-                  setLiveLink('');
-                })
-                .catch((error) => {
-                  console.log(error);
-                  toast.error('Ops, algo deu errado no DB.');
-                  setLoading(false);
-                });
-            })
-            .catch((error) => {
-              console.log(error);
-              toast.error('Ops, algo deu errado.');
-              setLoading(false);
-            });
-        })
-        .catch((error) => {
-          console.log(error);
-          toast.error('Ops, algo deu errado.');
-          setLoading(false);
-        });
     }
   }
 
