@@ -1,8 +1,6 @@
-import firebase from 'firebase/app';
 import { FiCheck, FiX } from 'react-icons/fi';
 
 import { useContext, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { AuthContext } from '../../contexts/auth';
 import styles from './styles.module.scss';
 
@@ -10,18 +8,7 @@ export default function ModalStacks({ handleCloseModal, allStacks, reloadStacks 
   const { user } = useContext(AuthContext);
   const [stacksAlreadyAdded, setStacksAlreadyAdded] = useState([]);
 
-  async function loadStacksAlreadyAdded() {
-    await firebase
-      .firestore()
-      .collection('users')
-      .doc(user.uid)
-      .get()
-      .then((snapshot) => {
-        if (snapshot.data().stacks.length > 0) {
-          setStacksAlreadyAdded(snapshot.data().stacks);
-        }
-      });
-  }
+  async function loadStacksAlreadyAdded() {}
 
   useEffect(() => {
     loadStacksAlreadyAdded();
@@ -36,20 +23,7 @@ export default function ModalStacks({ handleCloseModal, allStacks, reloadStacks 
     }
   }
 
-  async function handleSaveStacks() {
-    await firebase
-      .firestore()
-      .collection('users')
-      .doc(user.uid)
-      .update({
-        stacks: stacksAlreadyAdded,
-      })
-      .then(() => {
-        toast.success('Stacks editadas com sucesso.');
-        handleCloseModal();
-        reloadStacks();
-      });
-  }
+  async function handleSaveStacks() {}
 
   return (
     <div className={styles.containerModal}>

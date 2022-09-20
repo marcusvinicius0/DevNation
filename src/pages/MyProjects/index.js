@@ -1,8 +1,6 @@
-import firebase from 'firebase/app';
 import { useContext, useEffect, useState } from 'react';
 import { BsTrash } from 'react-icons/bs';
 import { FiPlus } from 'react-icons/fi';
-import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import AddProjectModal from '../../components/AddProjectModal';
@@ -24,47 +22,13 @@ export default function MyProjects() {
     goTop();
   }, []);
 
-  async function loadProjects() {
-    await firebase
-      .firestore()
-      .collection('projects')
-      .get()
-      .then((snapshot) => {
-        const arrayProjects = [];
-        snapshot.forEach((doc) => {
-          if (doc.data().user_id === user.uid) {
-            const data = {
-              repo: doc.data().repo,
-              user_id: doc.data().user_id,
-              imageProjectUrl: doc.data().imageProjectUrl,
-              liveLink: doc.data().liveLink,
-              description: doc.data().description,
-              title: doc.data().title,
-              id: doc.id,
-            };
-            arrayProjects.push(data);
-          }
-        });
-        setProjects(arrayProjects);
-      });
-  }
+  async function loadProjects() {}
 
   useEffect(() => {
     loadProjects();
   }, []);
 
-  async function handleDeleteProject(id) {
-    await firebase
-      .firestore()
-      .collection('projects')
-      .doc(id)
-      .delete()
-      .then((res) => {
-        console.log(res);
-        toast.success('Projeto deletado com sucesso.');
-        loadProjects();
-      });
-  }
+  async function handleDeleteProject(id) {}
 
   function handleCloseModalNewProject() {
     setModalNewProjectIsOpen(false);

@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import { AuthContext } from '../../contexts/auth';
-import firebase from '../../services/firebaseConnection';
 
 export default function EditProfileModal({ close }) {
   const { user, storageUser, setUser } = useContext(AuthContext);
@@ -23,40 +22,6 @@ export default function EditProfileModal({ close }) {
       toast.warning('Você deve indicar um nome!');
       return null;
     }
-
-    await firebase
-      .firestore()
-      .collection('users')
-      .doc(user.uid)
-      .update({
-        name,
-        role,
-        location,
-        aboutMe,
-        linkedin,
-        github,
-      })
-      .then(() => {
-        const data = {
-          ...user,
-          name,
-          role,
-          location,
-          aboutMe,
-          linkedin,
-          github,
-        };
-        toast.success('Dados editados com sucesso!');
-        setUser(data);
-        storageUser(data);
-        close();
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error('Oops, algo deu errado. Tente novamente mais tarde.');
-        setName(null);
-        return null;
-      });
     return null;
   }
 

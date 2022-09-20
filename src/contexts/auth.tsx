@@ -3,7 +3,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import apiDsn from '../services/apiDsn';
-import firebase from '../services/firebaseConnection';
 import { UserSignedContext } from './signed';
 
 import { AuthContextData, AuthProviderProps, SignUpProps, UserSignedProps } from './types';
@@ -35,37 +34,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   useEffect(() => {
-    async function loadUsers() {
-      await firebase
-        .firestore()
-        .collection('users')
-        .get()
-        .then((snapshot) => {
-          const allUsers: UserSignedProps[] = [];
-
-          snapshot.forEach((userData) => {
-            const dataUser: UserSignedProps = {
-              id: userData.id,
-              name: userData.data().name,
-              imageUserUrl: userData.data().avatarUrl,
-              bannerUserUrl: userData.data().bannerUrl,
-              role: userData.data().role,
-              email: userData.data().email,
-              description: userData.data().aboutMe,
-              location: userData.data().location,
-              linkedin: userData.data().linkedin,
-              github: userData.data().github,
-              isVerified: userData.data().verified,
-              site: '',
-              isUser: true,
-              username: '',
-            };
-            allUsers.push(dataUser);
-          });
-
-          setUsers(allUsers);
-        });
-    }
+    async function loadUsers() {}
     loadUsers();
   }, []);
 

@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { PublicationInterface } from '../@types/Publication/types';
 
 export interface PublicationsProviderProps {
   children: ReactNode;
@@ -27,11 +28,11 @@ export interface CommentsObject {
 }
 
 export interface PublicationObject {
-  id: string;
+  id?: string;
   publication: string;
   userId: string;
   imagePublicationUrl?: null | string;
-  updatedAt: Date | string;
+  updatedAt?: Date | string;
   createdAt: Date | string;
   userAvatarUrl: string;
   userName: string;
@@ -66,9 +67,9 @@ export interface UserProps {
 }
 
 export interface HandleCreatePublicationRequest {
-  publication: PublicationObject;
-  userId: string;
-  imagePublicationUrl: string;
+  publication: string | Blob;
+  userId: string | Blob;
+  imagePublicationUrl: Blob;
 }
 
 export interface HandleCreateCommentRequest {
@@ -88,7 +89,7 @@ export interface ReturnOfLikeOrDeslike {
 }
 
 export interface UsePublicationsHookData {
-  publications: PublicationObject[];
+  publications: PublicationInterface[];
   loadPublications: () => Promise<void>;
   handleDeletePublication: (publicationId: string) => Promise<void>;
   loadingPublications: boolean;

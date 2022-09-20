@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { BiBookmark, BiMessageRounded, BiShare, BiTrash } from 'react-icons/bi';
 import { HiHeart, HiOutlineHeart, HiSpeakerphone } from 'react-icons/hi';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
@@ -14,6 +14,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+import { PublicationInterface } from '../../@types/Publication/types';
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 import { usePublications } from '../../hooks/usePublications';
@@ -21,11 +22,20 @@ import styles from './styles.module.scss';
 
 const ITEM_HEIGHT = 48;
 
-export default function Post({ publication }) {
-  const [popoverActive, setPopoverActive] = useState(0);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [typeHeart, setTypeHeart] = useState('desliked');
-  const [numberOfLikes, setNumberOfLikes] = useState(publication.likes && publication.likes.length);
+const imagePath = 'https://api-devs-social-network.herokuapp.com/files/';
+
+interface PopoverProps {
+  publicationId: string;
+  userId: string;
+}
+
+export default function Post({ publication }: PublicationInterface) {
+  const [popoverActive, setPopoverActive] = useState<PopoverProps | null>(null);
+  const [anchorEl, setAnchorEl] = useState<boolean | null>(null);
+  const [typeHeart, setTypeHeart] = useState<string>('desliked');
+  const [numberOfLikes, setNumberOfLikes] = useState<number | undefined>(publication.likes.length);
+
+  console.log(publication);
 
   const open = Boolean(anchorEl);
 
@@ -33,15 +43,16 @@ export default function Post({ publication }) {
   const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } =
     usePublications();
 
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
+  const handleClick = (event: any) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
-  function verifyButtonLike({ likes }) {
-    const array = [];
-    if (likes?.length > 0) {
-      likes.forEach((item) => array.push(item.userId));
+  function verifyButtonLike({ likes }: any) {
+    const array: any = [];
 
-      if (array.indexOf(user.uid) > -1) {
+    if (likes?.length > 0) {
+      likes.forEach((item: any) => array.push(item.userId));
+
+      if (array.indexOf(user?.id) > -1) {
         setTypeHeart('liked');
       } else {
         setTypeHeart('desliked');
@@ -90,17 +101,17 @@ export default function Post({ publication }) {
     <Link to={`/publication/${publication.id}`} className={styles.postAnchor}>
       <div className={styles.post}>
         <header>
-          {publication.userAvatarUrl === null ? (
+          {publication.user.imageUserUrl === null ? (
             <img src={avatar} alt="foto avatar" />
           ) : (
-            <img src={publication.userAvatarUrl} alt="Avatar foto" />
+            <img src={publication.user.imageUserUrl} alt="Avatar foto" />
           )}
           <div>
             <Link to={`/user/${publication.userId}`}>
-              <span>{publication.userName}</span>
-              {publication.userIsVerified && <MdVerified />}
+              <span>{publication.user.name}</span>
+              {publication.user.isVerified && <MdVerified />}
             </Link>
-            <p>{publication.userRole}</p>
+            <p>{publication.user.role}</p>
             <time>
               {format(new Date(publication.createdAt), "EEEE ' • 'd' de 'MMMM' • 'k'h'mm'", {
                 locale: ptBR,
@@ -114,14 +125,14 @@ export default function Post({ publication }) {
         </div>
         {publication.imagePublicationUrl && (
           <div className={styles.mediaPost}>
-            <img src={publication.imagePublicationUrl} alt="Foto post" />
+            <img src={imagePath + publication.imagePublicationUrl} alt="Foto post" />
           </div>
         )}
         <footer>
           <button
             onClick={() =>
               handleLike({
-                userId: user.uid,
+                userId: user?.id,
                 publicationId: publication.id,
                 likes: publication.likes,
               })
@@ -160,7 +171,7 @@ export default function Post({ publication }) {
           aria-haspopup="true"
           onClick={(e) => {
             handleClick(e);
-            setPopoverActive({ publicationId: publication.id, userId: publication.userId });
+            setPopoverActive({ publicationId: publication.id, userId: publication.user.id });
           }}
           className={styles.buttonToSeeActions}
         >
@@ -182,7 +193,7 @@ export default function Post({ publication }) {
           },
         }}
       >
-        {user.uid === popoverActive.userId && (
+        {user?.id === popoverActive.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
               <button onClick={handleDelete} className={styles.buttonActionMenu}>

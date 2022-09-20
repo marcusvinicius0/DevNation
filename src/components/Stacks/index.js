@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { FiPlus } from 'react-icons/fi';
 
-import firebase from 'firebase/app';
 import { RiPencilLine } from 'react-icons/ri';
 import { allStacks } from './stacks.js';
 
@@ -14,23 +13,7 @@ export default function Stacks({ user_id, state_button }) {
   const [stacks, setStacks] = useState([]);
   const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
-  async function loadStacks() {
-    await firebase
-      .firestore()
-      .collection('users')
-      .doc(user_id)
-      .get()
-      .then((snap) => {
-        const { stacks } = snap.data();
-        const array = [];
-        allStacks.forEach((item) => {
-          if (stacks.indexOf(item.stack) > -1) {
-            array.push(item);
-          }
-        });
-        setStacks(array);
-      });
-  }
+  async function loadStacks() {}
 
   useEffect(() => {
     setStacks([]);
