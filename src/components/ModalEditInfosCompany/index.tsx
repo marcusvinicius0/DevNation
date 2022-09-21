@@ -6,13 +6,13 @@ import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 export default function EditInfoCompanyModal() {
-    const [nameCompany, setNameCompany] = useState('')
-    const [companyDescription, setCompanyDescription] = useState('')
-    const [locationCompany, setLocationCompany] = useState('')
-    const [companySite, setCompanySite] = useState('')
-    const [companyTitle, setLinkedIn] = useState('')
+    const [companyName, setCompanyName] = useState('');
+    const [companyDescription, setCompanyDescription] = useState('');
+    const [companyLocation, setCompanyLocation] = useState('');
+    const [companySite, setCompanySite] = useState('');
+    const [companyTitle, setCompanyTitle] = useState('');
 
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(true);
 
     function handleSubmit(e: any) {
         e.preventDefault();
@@ -22,7 +22,7 @@ export default function EditInfoCompanyModal() {
         } else {
             toast.info("Preencha todos os campos!")
         }
-    }
+    };
 
     return (
         // eslint-disable-next-line
@@ -44,8 +44,8 @@ export default function EditInfoCompanyModal() {
                                 <input
                                     type="text"
                                     placeholder="Nome da empresa"
-                                    value={nameCompany}
-                                    onChange={(e) => setNameCompany(e.target.value)}
+                                    value={companyName}
+                                    onChange={(e) => setCompanyName(e.target.value)}
                                 />
                             </label>
 
@@ -53,9 +53,9 @@ export default function EditInfoCompanyModal() {
                                 Site da empresa
                                 <input
                                     type="text"
-                                    placeholder="Descrição da empresa"
-                                    value={companyDescription}
-                                    onChange={(e) => setCompanyDescription(e.target.value)}
+                                    placeholder="Site da empresa"
+                                    value={companySite}
+                                    onChange={(e) => setCompanySite(e.target.value)}
                                 />
                             </label>
 
@@ -64,8 +64,8 @@ export default function EditInfoCompanyModal() {
                                 <input
                                     type="text"
                                     placeholder="Localidade da empresa"
-                                    value={locationCompany}
-                                    onChange={(e) => setLocationCompany(e.target.value)}
+                                    value={companyLocation}
+                                    onChange={(e) => setCompanyLocation(e.target.value)}
                                 />
                             </label>
 
@@ -73,8 +73,8 @@ export default function EditInfoCompanyModal() {
                                 Descrição da empresa
                                 <textarea
                                     placeholder="1200 caracteres max."
-                                    value={companySite}
-                                    onChange={(e) => setCompanySite(e.target.value)}
+                                    value={companyDescription}
+                                    onChange={(e) => setCompanyDescription(e.target.value)}
                                     maxLength={1200}
                                 />
                             </label>
@@ -85,7 +85,7 @@ export default function EditInfoCompanyModal() {
                                     type="text"
                                     placeholder="Título da empresa"
                                     value={companyTitle}
-                                    onChange={(e) => setLinkedIn(e.target.value)}
+                                    onChange={(e) => setCompanyTitle(e.target.value)}
                                 />
                             </label>
 
