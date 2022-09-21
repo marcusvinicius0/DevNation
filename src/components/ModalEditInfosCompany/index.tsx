@@ -5,22 +5,14 @@ import { toast } from 'react-toastify';
 
 import styles from './styles.module.scss';
 
-
-
-
-
 export default function EditInfoCompanyModal() {
-
-
     const [nameCompany, setNameCompany] = useState('')
     const [companyDescription, setCompanyDescription] = useState('')
     const [locationCompany, setLocationCompany] = useState('')
     const [companySite, setCompanySite] = useState('')
     const [companyTitle, setLinkedIn] = useState('')
 
-
     const [isOpen, setIsOpen] = useState(true)
-
 
     function handleSubmit(e: any) {
         e.preventDefault();
