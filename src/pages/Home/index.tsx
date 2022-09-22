@@ -13,45 +13,52 @@ export default function NewHome() {
 
   const [menuIsOpen, setMenuIsOpen] = useState(false);
 
-  function handleChangeMenuStats(e: any) {
+  function handleChangeMenuStats() {
     setMenuIsOpen(!menuIsOpen);
   }
 
   return (
     <div className={styles.containerHome}>
+
+
       <header className={styles.headerHome}>
-        <h1>
-          <a href="#logo" className={styles.logo}>
-            logo
-          </a>
-        </h1>
+        <div className={styles.grid}>
+          <nav>
+            <h1>
+              <a href="#logo" className={styles.logo}>
+                logo
+              </a>
+            </h1>
 
-        <nav className={menuIsOpen ? styles.listFade : undefined}>
-          <ul>
-            <li>
-              <Link to="/">Produtos</Link>
-            </li>
+            <div className={menuIsOpen ? styles.listFade : styles.menuLinks}>
+              <ul>
+                <li>
+                  <Link to="/">Produtos</Link>
+                </li>
 
-            <li>
-              <Link to="/">Sobre nós</Link>
-            </li>
+                <li>
+                  <Link to="/">Sobre nós</Link>
+                </li>
 
-            <li>
-              <Link to="/">Equipe</Link>
-            </li>
+                <li>
+                  <Link to="/">Equipe</Link>
+                </li>
 
-            <li>
-              <Link to="/signin">Login</Link>
-            </li>
-          </ul>
+                <li>
+                  <Link to="/signin">Login</Link>
+                </li>
+              </ul>
 
-          <Link className={styles.yourCompany} to="/register-company">
-            Sou empresa
-          </Link>
-        </nav>
+              <Link className={styles.yourCompany} to="/register-company">
+                Sou empresa
+              </Link>
+            </div>
 
-        <Hamburguer onClick={handleChangeMenuStats} boolean={menuIsOpen} />
+            <Hamburguer onClick={handleChangeMenuStats} boolean={menuIsOpen} />
+          </nav>
+        </div>
       </header>
+
 
       <section className={styles.sectionOne}>
         <div className={styles.grid}>
@@ -188,8 +195,8 @@ export default function NewHome() {
               </div>
             </ul>
           </div>
+          <span className={styles.copyright}>&copy; Copyright DevNation inc</span>
         </div>
-        <span className={styles.copyright}>&copy; Copyright DevNation inc</span>
       </footer>
     </div>
   );

@@ -25,9 +25,6 @@ html {
 
 .headerHome {
   background: var(--blue-500);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   padding: 20px 57px 20px 91px;
   border: 1px solid var(--blue-500);
 
@@ -40,17 +37,25 @@ html {
     opacity: 0.97;
   }
 
-  .logo {
-    background: #f4b02c;
-    padding: 7px 25px;
-    border-radius: 35px;
-    color: #fff;
-    font-weight: 500;
-    font-size: 1.5rem;
-    text-transform: uppercase;
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      background: #f4b02c;
+      padding: 7px 25px;
+      border-radius: 35px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+    }
   }
 
-  nav {
+
+
+  .menuLinks {
     display: flex;
     align-items: center;
 
@@ -153,11 +158,13 @@ html {
       justify-content: space-between;
       margin: 0 auto;
       width: 70vw;
+      max-width: 1400px;
 
       @media screen and (max-width: 1000px) {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        gap: 70px;
         text-align: center;
         width: 95vw;
       }
@@ -223,6 +230,7 @@ html {
 
       img {
         height: 400px;
+        max-width: 500px;
         width: 40%;
         object-fit: cover;
 
@@ -452,12 +460,6 @@ html {
           font-size: 1rem;
           line-height: 28px;
         }
-
-        span {
-          margin-top: 100px;
-          font-weight: 300;
-          font-size: 1rem;
-        }
       }
 
       .listFooter {
@@ -504,7 +506,10 @@ html {
       width: 100%;
       margin: 0 auto;
       display: flex;
-      justify-content: center;
+
+      @media screen and (max-width: 1100px) {
+        justify-content: center;
+      }
     }
   }
 }
