@@ -6,7 +6,6 @@ import Header from '../../components/Header';
 import { UserSignedContext } from '../../contexts/signed';
 import AdminUser from './components/admin-user/admin-user';
 import SeeUser from './components/user/user';
-
 interface ParamsProps {
   username: string;
 }
@@ -29,7 +28,7 @@ export default function User() {
     <>
       <Header />
       <div className={styles.container}>
-        {isAdmin ? <AdminUser username={username} /> : <SeeUser username={username} />}
+        {isAdmin ? <AdminUser username={username} /> : <SeeUser />}
       </div>
     </>
   );

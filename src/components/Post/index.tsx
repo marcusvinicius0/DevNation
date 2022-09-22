@@ -1,24 +1,24 @@
 /* eslint-disable camelcase */
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { MouseEvent, useContext, useEffect, useState } from 'react';
 import { BiBookmark, BiMessageRounded, BiShare, BiTrash } from 'react-icons/bi';
 import { HiHeart, HiOutlineHeart, HiSpeakerphone } from 'react-icons/hi';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { MdVerified } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import styles from './styles.module.scss';
 
-import CircularProgress from '@mui/material/CircularProgress';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import { PublicationInterface } from '../../@types/Publication/types';
+
 import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 import { usePublications } from '../../hooks/usePublications';
-import styles from './styles.module.scss';
 
 const ITEM_HEIGHT = 48;
 
@@ -29,13 +29,20 @@ interface PopoverProps {
   userId: string;
 }
 
-export default function Post({ publication }: PublicationInterface) {
-  const [popoverActive, setPopoverActive] = useState<PopoverProps | null>(null);
-  const [anchorEl, setAnchorEl] = useState<boolean | null>(null);
-  const [typeHeart, setTypeHeart] = useState<string>('desliked');
-  const [numberOfLikes, setNumberOfLikes] = useState<number | undefined>(publication.likes.length);
+interface PostProps {
+  publication: PublicationInterface;
+}
 
-  console.log(publication);
+export default function Post({ publication }: PostProps) {
+  const [popoverActive, setPopoverActive] = useState<PopoverProps>({
+    publicationId: '',
+    userId: '',
+  });
+  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const [typeHeart, setTypeHeart] = useState<string>('desliked');
+  //   const [numberOfLikes, setNumberOfLikes] = useState<number>(
+  //     0 || (publication.likes && publication.likes.length)
+  //   );
 
   const open = Boolean(anchorEl);
 
@@ -43,7 +50,7 @@ export default function Post({ publication }: PublicationInterface) {
   const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } =
     usePublications();
 
-  const handleClick = (event: any) => setAnchorEl(event.currentTarget);
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
 
   function verifyButtonLike({ likes }: any) {
@@ -66,36 +73,23 @@ export default function Post({ publication }: PublicationInterface) {
     verifyButtonLike({ publicationId: publication.id, likes: publication.likes });
   }, []);
 
-  async function handleDelete() {
-    await handleDeletePublication(popoverActive.publicationId);
-    handleClose();
-  }
+  //   async function handleDelete() {
+  //     await handleDeletePublication(popoverActive.publicationId);
+  //     handleClose();
+  //   }
 
-  function handleReportPublication() {
-    toast.success('Denuncia enviada com sucesso.');
-    handleClose();
-  }
-
-  async function handleLike({ userId, publicationId }) {
-    const res = await likeOrDeslikePublication({ userId, publicationId });
-    verifyButtonLike({ publicationId, likes: res.likes });
-    if (res.type === 'like') {
-      setTypeHeart('liked');
-      setNumberOfLikes(numberOfLikes + 1);
-    }
-    if (res.type === 'deslike') {
-      setTypeHeart('desliked');
-      setNumberOfLikes(numberOfLikes - 1);
-    }
-  }
-
-  if (loadingPublications) {
-    return (
-      <div className={styles.loading}>
-        <CircularProgress />
-      </div>
-    );
-  }
+  //   async function handleLike({ userId, publicationId }: handleLike) {
+  //     const res = await likeOrDeslikePublication({ userId, publicationId });
+  //     verifyButtonLike({ publicationId, likes: res.likes });
+  //     if (res.type === 'like') {
+  //       setTypeHeart('liked');
+  //       setNumberOfLikes(numberOfLikes + 1);
+  //     }
+  //     if (res.type === 'deslike') {
+  //       setTypeHeart('desliked');
+  //       setNumberOfLikes(numberOfLikes - 1);
+  //     }
+  //   }
 
   return (
     <Link to={`/publication/${publication.id}`} className={styles.postAnchor}>
@@ -129,15 +123,7 @@ export default function Post({ publication }: PublicationInterface) {
           </div>
         )}
         <footer>
-          <button
-            onClick={() =>
-              handleLike({
-                userId: user?.id,
-                publicationId: publication.id,
-                likes: publication.likes,
-              })
-            }
-          >
+          <button onClick={() => {}}>
             {typeHeart === 'liked' ? (
               <>
                 <HiHeart color="var(--red-500)" />
@@ -171,7 +157,7 @@ export default function Post({ publication }: PublicationInterface) {
           aria-haspopup="true"
           onClick={(e) => {
             handleClick(e);
-            setPopoverActive({ publicationId: publication.id, userId: publication.user.id });
+            setPopoverActive({ publicationId: publication.id || '', userId: publication.user.id });
           }}
           className={styles.buttonToSeeActions}
         >
@@ -196,7 +182,7 @@ export default function Post({ publication }: PublicationInterface) {
         {user?.id === popoverActive.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
-              <button onClick={handleDelete} className={styles.buttonActionMenu}>
+              <button onClick={() => {}} className={styles.buttonActionMenu}>
                 <BiTrash /> Excluir publicação
               </button>
             </div>
@@ -204,7 +190,7 @@ export default function Post({ publication }: PublicationInterface) {
         )}
         <MenuItem>
           <div className={styles.actionsBox}>
-            <button onClick={handleReportPublication} className={styles.buttonActionMenu}>
+            <button onClick={() => alert('Em breve...')} className={styles.buttonActionMenu}>
               <HiSpeakerphone /> <p>Denunciar publicação</p>
             </button>
           </div>

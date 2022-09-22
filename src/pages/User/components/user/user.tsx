@@ -8,6 +8,7 @@ import banner from '../../../../assets/banner.png';
 import ghLogo from '../../../../assets/github.png';
 import inLogo from '../../../../assets/linkedin.png';
 
+import { useParams } from 'react-router-dom';
 import ChatModal from '../../../../components/ChatModal';
 import EditProfileModal from '../../../../components/EditProfileModal';
 import Header from '../../../../components/Header';
@@ -26,8 +27,13 @@ interface SeeUserProps {
   username: string;
 }
 
-export default function SeeUser({ username }: SeeUserProps) {
+interface ParamsProps {
+  username: string;
+}
+
+export default function SeeUser() {
   const { user } = useContext(AuthContext);
+  const { username } = useParams<ParamsProps>();
   const { loadUserPublications, userPublications } = usePublications();
 
   const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
@@ -65,6 +71,7 @@ export default function SeeUser({ username }: SeeUserProps) {
             username,
           };
           setProfileUser(data);
+          console.log(res.data);
         })
         .catch((err) => {
           setProfileUser(null);
@@ -75,6 +82,7 @@ export default function SeeUser({ username }: SeeUserProps) {
 
   useEffect(() => {
     loadUser();
+    console.log('Na user normal', username);
     // loadUserPublications(username);
   }, [username]);
 
@@ -99,7 +107,7 @@ export default function SeeUser({ username }: SeeUserProps) {
                 <div className={styles.picturesBox}>
                   <img
                     className={styles.banner}
-                    src={profileUser.bannerUrl == null ? banner : profileUser.bannerUrl}
+                    src={profileUser.bannerUrl == '' ? banner : profileUser.bannerUrl}
                     alt="banner"
                   />
                   <img
@@ -107,36 +115,30 @@ export default function SeeUser({ username }: SeeUserProps) {
                     src={profileUser.imageUserUrl == null ? avatar : profileUser.imageUserUrl}
                     alt="Foto de perfil"
                   />
-
-                  {user?.id === profileUser.id && (
-                    <button className={styles.editBanner} onClick={toggleModalProfileBanner}>
-                      <RiPencilLine size={25} color="var(--black)" />
-                    </button>
-                  )}
                 </div>
 
                 <div className={styles.infoBox}>
-                  {user?.id === profileUser.id && (
-                    <button className={styles.editInfoProfile} onClick={toggleEditProfileModal}>
-                      <RiPencilLine size={25} color="var(--black)" />
-                    </button>
-                  )}
-                  <span className={styles.name}>
-                    <p>{profileUser.name}</p>
-                    {profileUser.isVerified && <MdVerified />}
-                  </span>
-                  <p className={styles.role}>{profileUser.role}</p>
-                  <p className={styles.place}>{profileUser.location}</p>
+                  <header>
+                    <span className={styles.name}>
+                      <p>{profileUser.name}</p>
+                      {profileUser.isVerified && <MdVerified />}
+                    </span>
+                    <div className={styles.socialMedias}>
+                      <a href={profileUser.linkedin || undefined} rel="noreferrer" target="_blank">
+                        <img src={inLogo} alt="linkedin" width={30} height={30} />
+                      </a>
 
-                  <div className={styles.socialMedias}>
-                    <a href={profileUser.linkedin || undefined} rel="noreferrer" target="_blank">
-                      <img src={inLogo} alt="linkedin" width={30} height={30} />
-                    </a>
-
-                    <a href={profileUser.github || undefined} rel="noreferrer" target="_blank">
-                      <img src={ghLogo} alt="github" width={30} height={30} />
-                    </a>
-                  </div>
+                      <a href={profileUser.github || undefined} rel="noreferrer" target="_blank">
+                        <img src={ghLogo} alt="github" width={30} height={30} />
+                      </a>
+                    </div>
+                  </header>
+                  <article>
+                    <div className={styles.moreInfo}>
+                      <p className={styles.role}>{profileUser.role}</p>
+                      <p className={styles.location}>{profileUser.location}</p>
+                    </div>
+                  </article>
                 </div>
               </div>
               <div className={styles.aboutMe}>

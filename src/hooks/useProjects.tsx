@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState } from 'react';
 
 import 'sweetalert2/src/sweetalert2.scss';
 
-import { ProjectsProviderProps, UseProjectsHookData } from './types';
+import { ProjectsProviderProps, UseProjectsHookData } from '../@types/Projects/types';
 
 const ProjectsContext = createContext<UseProjectsHookData>({} as UseProjectsHookData);
 
