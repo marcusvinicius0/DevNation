@@ -5,7 +5,10 @@ import React, { createContext, useContext, useState } from 'react';
 
 import 'sweetalert2/src/sweetalert2.scss';
 
-import { OpportunitiesProviderProps, UseOpportunitiesHookData } from './types';
+import {
+  OpportunitiesProviderProps,
+  UseOpportunitiesHookData,
+} from '../@types/Opportunities/types';
 
 const OpportunitiesContext = createContext<UseOpportunitiesHookData>(
   {} as UseOpportunitiesHookData

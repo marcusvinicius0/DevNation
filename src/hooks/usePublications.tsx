@@ -3,14 +3,11 @@
 /* eslint-disable camelcase */
 import React, { createContext, useContext, useState } from 'react';
 
-import { toast } from 'react-toastify';
-import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss';
 
 import {
   HandleCreatePublicationRequest,
   LikeOrDeslikeRequest,
-  LikesObject,
   PublicationObject,
   PublicationsProviderProps,
   RegisterNewComment,
@@ -76,62 +73,59 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
   }
 
   async function handleDeletePublication(publicationId: string) {
-    Swal.fire({
-      title: 'Você tem certeza?',
-      text: 'A publicação será deletada!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#399BE5',
-      cancelButtonColor: 'rgb(253, 33, 33)',
-      confirmButtonText: 'Sim, deletar!',
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        await apiDsn.delete('/publications', { params: { publicationId } }).then(() => {
-          toast.success('Publicação deletada com sucesso.');
-          const filteredPublications = publications.filter((publi) => publi.id !== publicationId);
-          setPublications(filteredPublications);
-        });
-      }
-    });
+    console.log(publicationId);
+    // Swal.fire({
+    //   title: 'Você tem certeza?',
+    //   text: 'A publicação será deletada!',
+    //   icon: 'warning',
+    //   showCancelButton: true,
+    //   confirmButtonColor: '#399BE5',
+    //   cancelButtonColor: 'rgb(253, 33, 33)',
+    //   confirmButtonText: 'Sim, deletar!',
+    // }).then(async (result) => {
+    //   if (result.isConfirmed) {
+    //     await apiDsn.delete('/publications', { params: { publicationId } }).then(() => {
+    //       toast.success('Publicação deletada com sucesso.');
+    //       const filteredPublications = publications.filter((publi) => publi.id !== publicationId);
+    //       setPublications(filteredPublications);
+    //     });
+    //   }
+    // });
   }
 
   async function likeOrDeslikePublication({ userId, publicationId }: LikeOrDeslikeRequest) {
-    await apiDsn
-      .post('/likes', { userId, publicationId })
-      .then((res) => {
-        const arrayPublicationsIds: any[] = [];
-
-        publications.forEach(({ id }) => arrayPublicationsIds.push(id));
-        const idx = arrayPublicationsIds.indexOf(publicationId);
-
-        const dataLike: LikesObject = {
-          id: res.data.id,
-          createdAt: res.data.createdAt,
-          publicationId: res.data.publicationId,
-          type: res.data.type,
-          updatedAt: res.data.updatedAt,
-          userId: res.data.userId,
-        };
-
-        if (res.data.type === 'like') {
-          const array: PublicationInterface[] = publications;
-          array[idx].likes?.push(dataLike);
-          setPublications(array);
-          setResLikeOrDeslike({ type: 'like', likes: array[idx].likes || [] });
-        }
-        const array: PublicationInterface[] = publications;
-
-        const index: number =
-          array[idx].likes?.findIndex(
-            (item) => item.userId === userId && item.publicationId === publicationId
-          ) || -1;
-        array[idx].likes?.splice(index, 1);
-        setPublications(array);
-        setResLikeOrDeslike({ type: 'deslike', likes: array[idx].likes || [] });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // await apiDsn
+    //   .post('/likes', { userId, publicationId })
+    //   .then((res) => {
+    //     const arrayPublicationsIds: any[] = [];
+    //     publications.forEach(( pub ) => arrayPublicationsIds.push(pub.publication.likes));
+    //     const idx = arrayPublicationsIds.indexOf(publicationId);
+    //     const dataLike: LikesObject = {
+    //       id: res.data.id,
+    //       createdAt: res.data.createdAt,
+    //       publicationId: res.data.publicationId,
+    //       type: res.data.type,
+    //       updatedAt: res.data.updatedAt,
+    //       userId: res.data.userId,
+    //     };
+    //     if (res.data.type === 'like') {
+    //       const array: PublicationInterface[] = publications;
+    //       array[idx].likes?.push(dataLike);
+    //       setPublications(array);
+    //       setResLikeOrDeslike({ type: 'like', likes: array[idx].likes || [] });
+    //     }
+    //     const array: PublicationInterface[] = publications;
+    //     const index: number =
+    //       array[idx].likes?.findIndex(
+    //         (item) => item.userId === userId && item.publicationId === publicationId
+    //       ) || -1;
+    //     array[idx].likes?.splice(index, 1);
+    //     setPublications(array);
+    //     setResLikeOrDeslike({ type: 'deslike', likes: array[idx].likes || [] });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }
 
   async function loadPublicationById(publicationId: string) {

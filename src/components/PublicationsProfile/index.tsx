@@ -54,7 +54,7 @@ export default function PublicationsProfile({ publications, user }: Publications
                 onClick={() =>
                   likeOrDeslikePublication({
                     userId: user?.id || '',
-                    publicationId: publication.id,
+                    publicationId: publication.id || '',
                   })
                 }
               >

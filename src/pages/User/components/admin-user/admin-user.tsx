@@ -59,7 +59,6 @@ export default function AdminUser({ username }: SeeUserProps) {
             username: res.data.username,
           };
           setProfileUser(data);
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -69,6 +68,7 @@ export default function AdminUser({ username }: SeeUserProps) {
 
   useEffect(() => {
     loadUser();
+    console.log('Na admin user', username);
   }, [username]);
 
   function toggleEditProfileModal() {
@@ -126,8 +126,8 @@ export default function AdminUser({ username }: SeeUserProps) {
                   </header>
                   <article>
                     <div className={styles.moreInfo}>
-                      <p className={styles.role}>Desenvolvedor Front End | ReactJS</p>
-                      <p className={styles.location}>Recife, Pernambuco, Brasil</p>
+                      <p className={styles.role}>{user?.role}</p>
+                      <p className={styles.location}>{user?.location}</p>
                     </div>
                   </article>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from '../styles.module.scss';
 
 import avatarCompany from '../../../assets/avatar-company.jpg';
@@ -12,10 +12,14 @@ import { BiBriefcase } from 'react-icons/bi';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
 import Header from '../../../components/Header';
+import EditInfoCompanyModal from '../../../components/ModalEditInfosCompany';
 import { AuthContext } from '../../../contexts/auth';
 
 export default function AdminCompany() {
+  const [modalEditInfosCompanyIsOpen, setModalEditInfosCompanyIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
+
+  const handleCloseModalEditInfosCompany = () => setModalEditInfosCompanyIsOpen(false);
 
   return (
     <>
@@ -85,7 +89,7 @@ export default function AdminCompany() {
               <h1>{user?.name}</h1>
               <p>{user?.description}</p>
               <span>{user?.role}</span>
-              <button>
+              <button onClick={() => setModalEditInfosCompanyIsOpen(true)}>
                 <BsFillPencilFill /> Editar página
               </button>
             </div>
@@ -141,6 +145,10 @@ export default function AdminCompany() {
           </div>
         </div>
       </div>
+      <EditInfoCompanyModal
+        modalEditInfosCompanyIsOpen={modalEditInfosCompanyIsOpen}
+        handleCloseModal={handleCloseModalEditInfosCompany}
+      />
     </>
   );
 }
