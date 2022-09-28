@@ -1,4 +1,4 @@
-# Projeto Dev Social Network 💻
+# Projeto DevNation 💻
 
 <img src="./src/assets/previewsocialdev.gif"/>
 
