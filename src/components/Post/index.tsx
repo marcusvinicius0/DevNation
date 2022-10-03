@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { PublicationInterface } from '../../@types/Publication/types';
 
 import avatar from '../../assets/avatar.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import { usePublications } from '../../hooks/usePublications';
 
 const ITEM_HEIGHT = 48;

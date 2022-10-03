@@ -4,9 +4,9 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import MyRoutes from './routes';
 
-import AuthProvider from './contexts/auth';
 import CompanyProvider from './contexts/company';
 import UserSignedProvider from './contexts/signed';
+import AuthProvider from './contexts/user';
 import PublicationsProvider from './hooks/usePublications';
 
 function App() {

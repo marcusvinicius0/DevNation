@@ -10,15 +10,13 @@ import inLogo from '../../../../assets/linkedin.png';
 
 import { useParams } from 'react-router-dom';
 import ChatModal from '../../../../components/ChatModal';
-import EditProfileModal from '../../../../components/EditProfileModal';
 import Header from '../../../../components/Header';
-import ModalEditProfileBanner from '../../../../components/ModalEditProfileBanner';
 import NewsBox from '../../../../components/NewsBox';
 import NotFoundUser from '../../../../components/NotFoundUser';
 import ProjectsProfile from '../../../../components/ProjectsProfile';
 import PublicationsProfile from '../../../../components/PublicationsProfile';
 import Stacks from '../../../../components/Stacks';
-import { AuthContext } from '../../../../contexts/auth';
+import { AuthContext } from '../../../../contexts/user';
 import { usePublications } from '../../../../hooks/usePublications';
 import apiDsn from '../../../../services/apiDsn';
 import { UserProps } from '../../types';
@@ -166,9 +164,9 @@ export default function SeeUser() {
         </>
       )}
 
-      {editProfileModal && <EditProfileModal close={toggleEditProfileModal} />}
+      {/* {editProfileModal && <EditProfileModal close={toggleEditProfileModal} />}
 
-      {modalProfileBanner && <ModalEditProfileBanner close={toggleModalProfileBanner} />}
+      {modalProfileBanner && <ModalEditProfileBanner close={toggleModalProfileBanner} />} */}
     </>
   );
 }

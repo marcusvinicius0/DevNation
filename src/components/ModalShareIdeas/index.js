@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { FiX } from 'react-icons/fi';
 import styles from './styles.module.scss';
 
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function ModalShareIdeas({ close }) {
   const { user } = useContext(AuthContext);

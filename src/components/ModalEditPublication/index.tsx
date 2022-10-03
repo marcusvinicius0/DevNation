@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import styles from './styles.module.scss';
 
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 interface ModalEditPublicationProps {
   close: () => void;

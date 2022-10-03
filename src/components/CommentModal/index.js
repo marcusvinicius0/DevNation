@@ -4,7 +4,7 @@ import { FiX } from 'react-icons/fi';
 import { AiFillPicture } from 'react-icons/ai';
 import { BsEmojiSmile } from 'react-icons/bs';
 import avatar from '../../assets/avatar.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import { usePublications } from '../../hooks/usePublications';
 import styles from './styles.module.scss';
 
