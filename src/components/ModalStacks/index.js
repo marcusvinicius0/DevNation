@@ -1,7 +1,7 @@
 import { FiCheck, FiX } from 'react-icons/fi';
 
 import { useContext, useEffect, useState } from 'react';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import styles from './styles.module.scss';
 
 export default function ModalStacks({ handleCloseModal, allStacks, reloadStacks }) {

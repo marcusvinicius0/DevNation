@@ -12,11 +12,10 @@ import { toast } from 'react-toastify';
 import avatarCompany from '../../assets/avatar-company.jpg';
 import avatar from '../../assets/avatar.png';
 
+import { UserSignedProps } from '../../@types/Signed/types';
 import logo from '../../assets/logo.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import styles from './styles.module.scss';
-
-import { UserSignedProps } from '../../contexts/types';
 
 export default function Header() {
   const { user, users } = useContext(AuthContext);
@@ -44,7 +43,7 @@ export default function Header() {
       return (
         <ul>
           {userFilters?.map((item: UserSignedProps) => (
-            <Link onClick={() => { }} to={`/user/${item.id}`} key={item.id}>
+            <Link onClick={() => {}} to={`/user/${item.id}`} key={item.id}>
               <FiSearch size={20} />
               {item.imageUserUrl ? (
                 <img src={item.imageUserUrl} alt="usuario-perfil" />

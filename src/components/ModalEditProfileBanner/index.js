@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import banner from '../../assets/banner.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function ModalEditProfileBanner({ close }) {
   const { user, setUser, storageUser } = useContext(AuthContext);

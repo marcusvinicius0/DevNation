@@ -13,7 +13,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 import avatar from '../../assets/avatar.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import { usePublications } from '../../hooks/usePublications';
 import CommentModal from '../CommentModal';
 import Comment from './Comment';

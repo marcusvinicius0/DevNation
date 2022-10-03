@@ -3,7 +3,7 @@ import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import styles from './styles.module.scss';
 
 import avatar from '../../assets/avatar.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function ChatModal() {
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);

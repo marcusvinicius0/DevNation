@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 
 import avatarCompany from '../../assets/avatar-company.jpg';
 import avatar from '../../assets/avatar.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import { usePublications } from '../../hooks/usePublications';
 import styles from './styles.module.scss';
 

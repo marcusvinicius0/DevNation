@@ -10,8 +10,8 @@ import {
   CompanyProps,
   ContextProviderProps,
   SignUpCompanyProps,
-  UserSignedProps,
-} from './types';
+} from '../@types/Company/types';
+import { UserSignedProps } from '../@types/Signed/types';
 
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
 

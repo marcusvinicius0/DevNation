@@ -13,7 +13,7 @@ import { BsFillPencilFill } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
 import Header from '../../../components/Header';
 import EditInfoCompanyModal from '../../../components/ModalEditInfosCompany';
-import { AuthContext } from '../../../contexts/auth';
+import { AuthContext } from '../../../contexts/user';
 
 export default function AdminCompany() {
   const [modalEditInfosCompanyIsOpen, setModalEditInfosCompanyIsOpen] = useState(false);

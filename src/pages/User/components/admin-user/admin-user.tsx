@@ -8,6 +8,7 @@ import banner from '../../../../assets/banner.png';
 import ghLogo from '../../../../assets/github.png';
 import inLogo from '../../../../assets/linkedin.png';
 
+import { EditUserProps } from '../../../../@types/User/types';
 import ChatModal from '../../../../components/ChatModal';
 import EditProfileModal from '../../../../components/EditProfileModal';
 import Header from '../../../../components/Header';
@@ -17,7 +18,7 @@ import NotFoundUser from '../../../../components/NotFoundUser';
 import ProjectsProfile from '../../../../components/ProjectsProfile';
 import PublicationsProfile from '../../../../components/PublicationsProfile';
 import Stacks from '../../../../components/Stacks';
-import { AuthContext } from '../../../../contexts/auth';
+import { AuthContext } from '../../../../contexts/user';
 import { usePublications } from '../../../../hooks/usePublications';
 import apiDsn from '../../../../services/apiDsn';
 import { UserProps } from '../../types';
@@ -57,6 +58,11 @@ export default function AdminUser({ username }: SeeUserProps) {
             createdAt: res.data.createdAt,
             imageUserUrl: res.data.imageUserUrl,
             username: res.data.username,
+            description: res.data.description,
+            role: res.data.role,
+            linkedin: res.data.linkedin,
+            location: res.data.location,
+            github: res.data.github,
           };
           setProfileUser(data);
         })
@@ -77,6 +83,18 @@ export default function AdminUser({ username }: SeeUserProps) {
 
   function toggleModalProfileBanner() {
     setModalProfileBanner(!modalProfileBanner);
+  }
+
+  function changeInfoUser({ name, role, description, location, github, linkedin }: EditUserProps) {
+    setProfileUser({
+      ...profileUser,
+      name,
+      role,
+      description,
+      location,
+      github,
+      linkedin,
+    } as UserProps);
   }
 
   return (
@@ -126,8 +144,8 @@ export default function AdminUser({ username }: SeeUserProps) {
                   </header>
                   <article>
                     <div className={styles.moreInfo}>
-                      <p className={styles.role}>{user?.role}</p>
-                      <p className={styles.location}>{user?.location}</p>
+                      <p className={styles.role}>{profileUser?.role}</p>
+                      <p className={styles.location}>{profileUser?.location}</p>
                     </div>
                   </article>
                 </div>
@@ -157,7 +175,9 @@ export default function AdminUser({ username }: SeeUserProps) {
         </>
       )}
 
-      {editProfileModal && <EditProfileModal close={toggleEditProfileModal} />}
+      {editProfileModal && (
+        <EditProfileModal close={toggleEditProfileModal} changeInfoUser={changeInfoUser} />
+      )}
 
       {modalProfileBanner && <ModalEditProfileBanner close={toggleModalProfileBanner} />}
     </>

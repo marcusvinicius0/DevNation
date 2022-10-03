@@ -4,7 +4,7 @@ import { FiX } from 'react-icons/fi';
 
 import { FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 import styles from './styles.module.scss';
 
 export default function AddProjectModal({ closeModal, reloadProjects }) {

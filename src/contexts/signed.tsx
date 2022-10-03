@@ -3,11 +3,11 @@ import React, { createContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import apiDsn from '../services/apiDsn';
 
-import { ContextProviderProps, UserSignedData, UserSignedProps } from './types';
+import { UserSignedData, UserSignedProps, UserSignedProviderProps } from '../@types/Signed/types';
 
 export const UserSignedContext = createContext<UserSignedData>({} as UserSignedData);
 
-function UserSignedProvider({ children }: ContextProviderProps) {
+function UserSignedProvider({ children }: UserSignedProviderProps) {
   const [user, setUser] = useState<UserSignedProps | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);

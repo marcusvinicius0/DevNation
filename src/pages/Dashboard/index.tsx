@@ -17,7 +17,7 @@ import ModalEditPublication from '../../components/ModalEditPublication';
 import NewsBox from '../../components/NewsBox';
 import PublicModal from '../../components/PublicationModal';
 import Sidebox from '../../components/Sidebox';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
