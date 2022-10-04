@@ -1,16 +1,27 @@
 /* eslint-disable no-shadow */
 /* eslint-disable camelcase */
-import { useEffect, useState } from 'react';
-import { FiPlus } from 'react-icons/fi';
+import React, { useEffect, useState } from 'react';
 
 import { RiPencilLine } from 'react-icons/ri';
-import { allStacks } from './stacks.js';
+import { allStacks } from './stacks';
 
 import ModalStacks from '../ModalStacks';
 import styles from './styles.module.scss';
 
-export default function Stacks({ user_id, state_button }) {
-  const [stacks, setStacks] = useState([]);
+interface StacksComponentProps {
+  userId: string;
+  stateButton: boolean;
+  isAdmin?: boolean;
+}
+
+export interface Stack {
+  stack: string;
+  icon: any;
+  color: string;
+}
+
+export default function Stacks({ userId, stateButton, isAdmin }: StacksComponentProps) {
+  const [stacks, setStacks] = useState<Stack[] | []>([]);
   const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
   async function loadStacks() {}
@@ -18,25 +29,16 @@ export default function Stacks({ user_id, state_button }) {
   useEffect(() => {
     setStacks([]);
     loadStacks();
-  }, [user_id]);
+  }, [userId]);
 
   return (
     <div className={styles.containerStacks}>
       <header>
         <h1>Minhas stacks</h1>
-        {state_button && (
+        {isAdmin && (
           <button onClick={() => setModalStacksIsActive(true)}>
-            {stacks >= [0] ? (
-              <>
-                <RiPencilLine />
-                <span> Editar stacks</span>
-              </>
-            ) : (
-              <>
-                <FiPlus />
-                <span>Adicionar stacks</span>
-              </>
-            )}
+            <RiPencilLine />
+            <span> Editar stacks</span>
           </button>
         )}
       </header>

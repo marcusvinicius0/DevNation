@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   SiAngular,
   SiCplusplus,
@@ -29,8 +30,9 @@ import {
   SiTypescript,
   SiVuedotjs,
 } from 'react-icons/si';
+import { Stack } from '.';
 
-export const allStacks = [
+export const allStacks: Stack[] = [
   {
     stack: 'HTML',
     icon: <SiHtml5 />,
