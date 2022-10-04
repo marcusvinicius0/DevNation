@@ -166,7 +166,7 @@ export default function AdminUser({ username }: SeeUserProps) {
                 )}
               </div>
               <ProjectsProfile user_id={profileUser.id} state_button={false} />
-              <Stacks user_id={profileUser.id} state_button={false} />
+              <Stacks userId={profileUser.id} stateButton={false} isAdmin={true} />
               <PublicationsProfile publications={userPublications} user={profileUser} />
             </div>
             <NewsBox />

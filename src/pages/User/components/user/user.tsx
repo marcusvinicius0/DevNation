@@ -155,7 +155,7 @@ export default function SeeUser() {
                 )}
               </div>
               <ProjectsProfile user_id={profileUser.id} state_button={false} />
-              <Stacks user_id={profileUser.id} state_button={false} />
+              <Stacks userId={profileUser.id} stateButton={false} />
               <PublicationsProfile publications={userPublications} user={profileUser} />
             </div>
             <NewsBox />
