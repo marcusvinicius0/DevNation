@@ -6,9 +6,15 @@ import { FiX } from 'react-icons/fi';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
+<<<<<<< HEAD
 import avatarCompany from '../../assets/avatar/avatar-company.jpg';
 import avatar from '../../assets/avatar/avatar.png';
 import { AuthContext } from '../../contexts/auth';
+=======
+import avatarCompany from '../../assets/avatar-company.jpg';
+import avatar from '../../assets/avatar.png';
+import { AuthContext } from '../../contexts/user';
+>>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
 import { usePublications } from '../../hooks/usePublications';
 import styles from './styles.module.scss';
 

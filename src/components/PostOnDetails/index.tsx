@@ -12,8 +12,13 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+<<<<<<< HEAD
 import avatar from '../../assets/avatar/avatar.png';
 import { AuthContext } from '../../contexts/auth';
+=======
+import avatar from '../../assets/avatar.png';
+import { AuthContext } from '../../contexts/user';
+>>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
 import { usePublications } from '../../hooks/usePublications';
 import CommentModal from '../CommentModal';
 import Comment from './Comment';

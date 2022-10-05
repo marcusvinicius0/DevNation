@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '../../components/Button';
 import { Input } from '../../components/Utils/Input';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 import styles from '../SignIn/styles.module.scss';
 

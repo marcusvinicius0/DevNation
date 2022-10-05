@@ -1,27 +1,47 @@
-import { useContext, useState } from 'react';
+import React, { FormEvent, useContext, useState } from 'react';
 import { FiX } from 'react-icons/fi';
-import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
-import { AuthContext } from '../../contexts/auth';
+import { EditUserProps } from '../../@types/User/types';
+import { AuthContext } from '../../contexts/user';
 
-export default function EditProfileModal({ close }) {
-  const { user, storageUser, setUser } = useContext(AuthContext);
+interface EditProfileUserProps {
+  close: () => void;
+  changeInfoUser: ({
+    userId,
+    name,
+    role,
+    description,
+    location,
+    linkedin,
+    github,
+  }: EditUserProps) => void;
+}
 
-  const [name, setName] = useState(user.name ? user.name : '');
-  const [role, setRole] = useState(user.role ? user.role : '');
-  const [location, setLocation] = useState(user.location ? user.location : '');
-  const [aboutMe, setAboutMe] = useState(user.aboutMe ? user.aboutMe : '');
-  const [linkedin, setLinkedin] = useState(user.linkedin ? user.linkedin : '');
-  const [github, setGithub] = useState(user.github ? user.github : '');
+export default function EditProfileModal({ close, changeInfoUser }: EditProfileUserProps) {
+  const { user, storageUser, editInformations } = useContext(AuthContext);
 
-  async function handleSave(e) {
+  const [name, setName] = useState(user?.name || '');
+  const [role, setRole] = useState(user?.role || '');
+  const [location, setLocation] = useState(user?.location || '');
+  const [aboutMe, setAboutMe] = useState(user?.description || '');
+  const [linkedin, setLinkedin] = useState(user?.linkedin || '');
+  const [github, setGithub] = useState(user?.github || '');
+
+  async function handleSave(e: FormEvent) {
     e.preventDefault();
-
-    if (name === '') {
-      toast.warning('Você deve indicar um nome!');
-      return null;
-    }
+    const data: EditUserProps = {
+      userId: user?.id || '',
+      name,
+      role,
+      description: aboutMe,
+      location,
+      linkedin,
+      github,
+    };
+    await editInformations(data).then(() => {
+      changeInfoUser(data);
+    });
     return null;
   }
 

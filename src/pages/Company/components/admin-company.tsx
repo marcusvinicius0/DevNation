@@ -12,9 +12,13 @@ import noHasPub from '../../../assets/images/noHasPub.png';
 
 import Header from '../../../components/Header';
 import EditInfoCompanyModal from '../../../components/ModalEditInfosCompany';
+<<<<<<< HEAD
 import { ModalRegisterVacancy } from '../../../components/ModalRegisterVacancy';
 import { AuthContext } from '../../../contexts/auth';
 import styles from '../styles.module.scss';
+=======
+import { AuthContext } from '../../../contexts/user';
+>>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
 
 export default function AdminCompany() {
   const [modalEditInfosCompanyIsOpen, setModalEditInfosCompanyIsOpen] = useState(false);

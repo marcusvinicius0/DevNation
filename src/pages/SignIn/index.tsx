@@ -2,7 +2,7 @@ import React, { FormEvent, useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Input } from '../../components/Utils/Input';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 import { BsBuilding } from 'react-icons/bs';
 import { ImUser } from 'react-icons/im';

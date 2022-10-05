@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 import AddProjectModal from '../../components/AddProjectModal';
 import Header from '../../components/Header';
 import Sidebox from '../../components/Sidebox';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function MyProjects() {
   const { user } = useContext(AuthContext);

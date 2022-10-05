@@ -6,7 +6,7 @@ import styles from './styles.module.scss';
 import avatar from '../../assets/avatar/avatar.png';
 import ChatModal from '../../components/ChatModal';
 import Header from '../../components/Header';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function Followers() {
   const { user } = useContext(AuthContext);

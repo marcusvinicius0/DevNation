@@ -2,6 +2,10 @@ import React from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import styles from './styles.module.scss';
 
+<<<<<<< HEAD
+=======
+import { AuthContext } from '../../contexts/user';
+>>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
 
 interface CloseModalProps {
   close: () => void;

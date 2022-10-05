@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
 import avatar from '../../assets/avatar.png';
-import { AuthContext } from '../../contexts/auth';
+import { AuthContext } from '../../contexts/user';
 
 export default function EditProfilePictureModal({ close }) {
   const { user, setUser, storageUser } = useContext(AuthContext);
