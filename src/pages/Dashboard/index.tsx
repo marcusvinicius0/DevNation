@@ -6,8 +6,8 @@ import { BiBriefcase } from 'react-icons/bi';
 import { FiVideo } from 'react-icons/fi';
 import styles from './styles.module.scss';
 
-import avatarCompany from '../../assets/avatar-company.jpg';
-import avatar from '../../assets/avatar.png';
+import avatarCompany from '../../assets/avatar/avatar-company.jpg';
+import avatar from '../../assets/avatar/avatar.png';
 import ChatModal from '../../components/ChatModal';
 import Feed from '../../components/Feed';
 import Footer from '../../components/Footer';

@@ -10,9 +10,10 @@ import { AuthContextData, AuthProviderProps, SignUpProps, UserSignedProps } from
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [users, setUsers] = useState<UserSignedProps[] | []>([]);
+  const [users] = useState<UserSignedProps[] | []>([]);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
+  // eslint-disable-next-line
 
   const history = useHistory();
 
@@ -34,8 +35,8 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   useEffect(() => {
-    async function loadUsers() {}
-    loadUsers();
+    // async function loadUsers() { }
+    // loadUsers();
   }, []);
 
   function storageUser(data: UserSignedProps) {
@@ -70,7 +71,7 @@ function AuthProvider({ children }: AuthProviderProps) {
           storageUser(data);
           setLoadingAuth(false);
           changeStateIsAuthenticated(true);
-          apiDsn.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
+          apiDsn.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
           localStorage.setItem('token', JSON.stringify(res.data.token));
           history.push('/dashboard');
           toast.success('Seja bem vindo(a) de volta!');
@@ -86,7 +87,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     setLoadingAuth(true);
     await apiDsn
       .post('/users', { name, username, email, password })
-      .then((res) => {
+      .then(() => {
         setLoadingAuth(false);
         history.push('/signin');
         toast.success('Usuário cadastrado com sucesso.');
@@ -97,6 +98,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   return (
+
     <AuthContext.Provider
       value={{
         signed: !!user,

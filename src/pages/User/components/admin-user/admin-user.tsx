@@ -3,10 +3,10 @@ import { MdVerified } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
 import styles from './styles.module.scss';
 
-import avatar from '../../../../assets/avatar.png';
-import banner from '../../../../assets/banner.png';
-import ghLogo from '../../../../assets/github.png';
-import inLogo from '../../../../assets/linkedin.png';
+import avatar from '../../../../assets/avatar/avatar.png';
+import banner from '../../../../assets/banners/banner.png';
+import ghLogo from '../../../../assets/images/github.png';
+import inLogo from '../../../../assets/images/linkedin.png';
 
 import ChatModal from '../../../../components/ChatModal';
 import EditProfileModal from '../../../../components/EditProfileModal';
@@ -28,7 +28,7 @@ interface SeeUserProps {
 
 export default function AdminUser({ username }: SeeUserProps) {
   const { user } = useContext(AuthContext);
-  const { loadUserPublications, userPublications } = usePublications();
+  const { userPublications } = usePublications();
 
   const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
   const [modalProfileBanner, setModalProfileBanner] = useState<boolean>(false);
@@ -46,7 +46,7 @@ export default function AdminUser({ username }: SeeUserProps) {
       await apiDsn
         .get('/users/detail', { params: { username } })
         .then((res) => {
-          let data: UserProps = {
+          const data: UserProps = {
             bannerUrl: res.data.bannerUrl,
             company: res.data.company,
             name: res.data.name,
@@ -92,7 +92,7 @@ export default function AdminUser({ username }: SeeUserProps) {
                 <div className={styles.picturesBox}>
                   <img
                     className={styles.banner}
-                    src={profileUser.bannerUrl == '' ? banner : profileUser.bannerUrl}
+                    src={profileUser.bannerUrl === '' ? banner : profileUser.bannerUrl}
                     alt="banner"
                   />
                   <img

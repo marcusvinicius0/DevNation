@@ -4,9 +4,9 @@ import styles from './styles.module.scss';
 
 import Hamburguer from '../../components/MenuHamburger';
 
-import ImageDevNation from '../../assets/dev-nation.svg';
-import People from '../../assets/image-home.svg';
-import Match from '../../assets/match-perfeito.svg';
+import People from '../../assets/images/image-home.svg';
+import Match from '../../assets/images/match-perfeito.svg';
+import ImageDevNation from '../../assets/logo/dev-nation.svg';
 
 export default function NewHome() {
   const history = useHistory();

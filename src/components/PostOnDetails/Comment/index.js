@@ -1,4 +1,4 @@
-import avatar from '../../../assets/avatar.png';
+import avatar from '../../../assets/avatar/avatar.png';
 import styles from './styles.module.scss';
 
 export default function Comment({ comment }) {

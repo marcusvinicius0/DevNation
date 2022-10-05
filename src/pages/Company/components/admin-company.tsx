@@ -1,25 +1,28 @@
 import React, { useContext, useState } from 'react';
-import styles from '../styles.module.scss';
-
-import avatarCompany from '../../../assets/avatar-company.jpg';
-import background from '../../../assets/banner.png';
-import description from '../../../assets/description.png';
-import noHasOpp from '../../../assets/noHasOpp.png';
-import noHasPub from '../../../assets/noHasPub.png';
 
 import { AiFillPicture, AiOutlineGithub } from 'react-icons/ai';
 import { BiBriefcase } from 'react-icons/bi';
 import { BsFillPencilFill } from 'react-icons/bs';
 import { FiVideo } from 'react-icons/fi';
+import avatarCompany from '../../../assets/avatar/avatar-company.jpg';
+import background from '../../../assets/banners/banner.png';
+import description from '../../../assets/images/description.png';
+import noHasOpp from '../../../assets/images/noHasOpp.png';
+import noHasPub from '../../../assets/images/noHasPub.png';
+
 import Header from '../../../components/Header';
 import EditInfoCompanyModal from '../../../components/ModalEditInfosCompany';
+import { ModalRegisterVacancy } from '../../../components/ModalRegisterVacancy';
 import { AuthContext } from '../../../contexts/auth';
+import styles from '../styles.module.scss';
 
 export default function AdminCompany() {
   const [modalEditInfosCompanyIsOpen, setModalEditInfosCompanyIsOpen] = useState(false);
+  const [modalRegisterVacancyIsOpen, setModalRegisterVacancyIsOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
   const handleCloseModalEditInfosCompany = () => setModalEditInfosCompanyIsOpen(false);
+  const handleCloseModalRegisterVacancy = () => setModalRegisterVacancyIsOpen(false);
 
   return (
     <>
@@ -33,7 +36,9 @@ export default function AdminCompany() {
           )}
           <h1>{user?.name}</h1>
           <span>Versão do super administrador</span>
-          <button>Cadastrar vaga</button>
+          <button onClick={() => setModalRegisterVacancyIsOpen(true)}>
+            Cadastrar vaga
+          </button>
         </div>
         <div className={styles.warnings}>
           <header>
@@ -132,7 +137,9 @@ export default function AdminCompany() {
           <div className={styles.opportunities}>
             <header>
               <h1>Minhas vagas</h1>
-              <button>Cadastrar vaga</button>
+              <button onClick={() => setModalRegisterVacancyIsOpen(true)}>
+                Cadastrar vaga
+              </button>
             </header>
             <div className={styles.listOpportunities}>
               <div className={styles.noHasOpportunities}>
@@ -140,7 +147,7 @@ export default function AdminCompany() {
                 <span>Você ainda não publicou nada.</span>
                 <p>Interaja com seu público na DevNation.</p>
               </div>
-              <div className={styles.opportunitie}></div>
+              {/* <div className={styles.opportunitie}></div> */}
             </div>
           </div>
         </div>
@@ -148,6 +155,10 @@ export default function AdminCompany() {
       <EditInfoCompanyModal
         modalEditInfosCompanyIsOpen={modalEditInfosCompanyIsOpen}
         handleCloseModal={handleCloseModalEditInfosCompany}
+      />
+      <ModalRegisterVacancy
+        modalIsOpen={modalRegisterVacancyIsOpen}
+        handleCloseModal={handleCloseModalRegisterVacancy}
       />
     </>
   );

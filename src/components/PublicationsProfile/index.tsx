@@ -5,7 +5,7 @@ import { BiBookmark, BiHeart, BiMessageRounded, BiShare } from 'react-icons/bi';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
-import avatar from '../../assets/avatar.png';
+import avatar from '../../assets/avatar/avatar.png';
 import { usePublications } from '../../hooks/usePublications';
 
 import { PublicationObject } from '../../hooks/types';

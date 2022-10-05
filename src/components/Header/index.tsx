@@ -9,10 +9,10 @@ import { FiSearch, FiX } from 'react-icons/fi';
 import { MdVerified } from 'react-icons/md';
 
 import { toast } from 'react-toastify';
-import avatarCompany from '../../assets/avatar-company.jpg';
-import avatar from '../../assets/avatar.png';
+import avatarCompany from '../../assets/avatar/avatar-company.jpg';
+import avatar from '../../assets/avatar/avatar.png';
 
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo/DNLogo.svg';
 import { AuthContext } from '../../contexts/auth';
 import styles from './styles.module.scss';
 
@@ -87,7 +87,7 @@ export default function Header() {
       <div className={styles.grid}>
         <div className={styles.headerContainer}>
           <Link className={styles.logoNavigation} to="/dashboard">
-            <img className={styles.logo} src={logo} alt="logo" />
+            <img className={styles.logo} width="60px" height="50px" src={logo} alt="logo" />
           </Link>
 
           <div className={styles.inputSearchUsers}>

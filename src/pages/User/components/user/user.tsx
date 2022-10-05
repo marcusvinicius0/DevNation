@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MdVerified } from 'react-icons/md';
 import { RiPencilLine } from 'react-icons/ri';
+import { useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import avatar from '../../../../assets/avatar.png';
-import banner from '../../../../assets/banner.png';
-import ghLogo from '../../../../assets/github.png';
-import inLogo from '../../../../assets/linkedin.png';
+import avatar from '../../../../assets/avatar/avatar.png';
+import banner from '../../../../assets/banners/banner.png';
+import ghLogo from '../../../../assets/images/github.png';
+import inLogo from '../../../../assets/images/linkedin.png';
 
-import { useParams } from 'react-router-dom';
 import ChatModal from '../../../../components/ChatModal';
 import EditProfileModal from '../../../../components/EditProfileModal';
 import Header from '../../../../components/Header';
@@ -23,9 +23,9 @@ import { usePublications } from '../../../../hooks/usePublications';
 import apiDsn from '../../../../services/apiDsn';
 import { UserProps } from '../../types';
 
-interface SeeUserProps {
-  username: string;
-}
+// interface SeeUserProps {
+//   username: string;
+// }
 
 interface ParamsProps {
   username: string;
@@ -34,7 +34,7 @@ interface ParamsProps {
 export default function SeeUser() {
   const { user } = useContext(AuthContext);
   const { username } = useParams<ParamsProps>();
-  const { loadUserPublications, userPublications } = usePublications();
+  const { userPublications } = usePublications();
 
   const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
   const [modalProfileBanner, setModalProfileBanner] = useState<boolean>(false);
@@ -58,7 +58,7 @@ export default function SeeUser() {
       await apiDsn
         .get('/users/detail', { params: { username } })
         .then((res) => {
-          let data: UserProps = {
+          const data: UserProps = {
             bannerUrl: res.data.bannerUrl,
             company: res.data.company,
             name: res.data.name,
@@ -107,7 +107,7 @@ export default function SeeUser() {
                 <div className={styles.picturesBox}>
                   <img
                     className={styles.banner}
-                    src={profileUser.bannerUrl == '' ? banner : profileUser.bannerUrl}
+                    src={profileUser.bannerUrl === '' ? banner : profileUser.bannerUrl}
                     alt="banner"
                   />
                   <img

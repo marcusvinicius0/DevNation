@@ -1,4 +1,5 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
+/* jshint sub:true */
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -10,7 +11,7 @@ import {
   CompanyProps,
   ContextProviderProps,
   SignUpCompanyProps,
-  UserSignedProps,
+  UserSignedProps
 } from './types';
 
 export const CompanyContext = createContext<CompanyContextData>({} as CompanyContextData);
@@ -18,7 +19,7 @@ export const CompanyContext = createContext<CompanyContextData>({} as CompanyCon
 function CompanyProvider({ children }: ContextProviderProps) {
   const { changeUser, changeStateIsAuthenticated } = useContext(UserSignedContext);
   const [company, setCompany] = useState<CompanyProps | null>(null);
-  const [companies, setCompanies] = useState<CompanyProps[] | []>([]);
+  const [companies] = useState<CompanyProps[] | []>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
 
@@ -37,10 +38,10 @@ function CompanyProvider({ children }: ContextProviderProps) {
     loadStorage();
   }, []);
 
-  useEffect(() => {
-    async function loadCompanies() {}
-    loadCompanies();
-  }, []);
+  // useEffect(() => {
+  //   async function loadCompanies() { }
+  //   loadCompanies();
+  // }, []);
 
   function storageCompany(data: CompanyProps) {
     localStorage.setItem('InfoUserSystem', JSON.stringify(data));
@@ -68,7 +69,6 @@ function CompanyProvider({ children }: ContextProviderProps) {
             isUser: false,
             username: res.data.username,
           };
-
           changeUser(data);
           storageCompany(data);
           setLoadingAuth(false);
@@ -107,6 +107,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
       })
       .catch((err) => {
         toast.error('Ops, algo deu errado.');
+        console.log(err);
         setLoadingAuth(false);
       });
   }

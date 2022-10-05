@@ -6,8 +6,8 @@ import { FiX } from 'react-icons/fi';
 import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { toast } from 'react-toastify';
 
-import avatarCompany from '../../assets/avatar-company.jpg';
-import avatar from '../../assets/avatar.png';
+import avatarCompany from '../../assets/avatar/avatar-company.jpg';
+import avatar from '../../assets/avatar/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 import { usePublications } from '../../hooks/usePublications';
 import styles from './styles.module.scss';

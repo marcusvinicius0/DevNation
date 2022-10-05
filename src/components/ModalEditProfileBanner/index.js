@@ -3,14 +3,14 @@ import { FiUpload, FiX } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
-import banner from '../../assets/banner.png';
+import banner from '../../assets/banners/banner.png';
 import { AuthContext } from '../../contexts/auth';
 
 export default function ModalEditProfileBanner({ close }) {
-  const { user, setUser, storageUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const [bannerUrl, setBannerUrl] = useState(user && user.bannerUrl); // picture preview
-  const [bannerAvatar, setBannerAvatar] = useState(null);
+  const [, setBannerAvatar] = useState(null);
 
   function handleFile(e) {
     if (e.target.files[0]) {
@@ -29,7 +29,7 @@ export default function ModalEditProfileBanner({ close }) {
   }
 
   async function handleUpload() {
-    const currentUid = user.uid;
+    // const currentUid = user.uid;
   }
 
   function handleSave(e) {

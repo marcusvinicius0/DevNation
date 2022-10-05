@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import notFoundUser from '../../assets/notfounduser.svg';
+import notFoundUser from '../../assets/images/notfounduser.svg';
 
 export default function NotFoundUser() {
   return (

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
-import githubLogo from '../../assets/github.png';
+import githubLogo from '../../assets/images/github.png';
 import ChatModal from '../../components/ChatModal';
 import Header from '../../components/Header';
 import JoinDiscord from '../../components/JoinDiscord';

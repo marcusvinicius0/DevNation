@@ -3,7 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import projetoLei from '../../assets/projeto-lei.jpg';
+import projetoLei from '../../assets/images/projeto-lei.jpg';
 import Header from '../../components/Header';
 
 export default function NewsLawProject() {

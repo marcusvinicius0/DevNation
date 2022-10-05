@@ -4,7 +4,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import aluraCurso from '../../assets/alura-curso.png';
+import aluraCurso from '../../assets/images/alura-curso.png';
 import Header from '../../components/Header';
 
 export default function NewsAlura() {

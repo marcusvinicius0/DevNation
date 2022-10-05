@@ -4,7 +4,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import developers from '../../assets/developers.jpg';
+import developers from '../../assets/images/developers.jpg';
 import Header from '../../components/Header';
 
 export default function NewsDevelopers() {

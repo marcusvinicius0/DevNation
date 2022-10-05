@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import avatar from '../../assets/avatar.png';
+import avatar from '../../assets/avatar/avatar.png';
 import Header from '../../components/Header';
 import PostOnDetails from '../../components/PostOnDetails';
 import Sidebox from '../../components/Sidebox';

@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import styles from './styles.module.scss';
 
-import bannerStar from '../../assets/bannerStar.png';
-import contributorOne from '../../assets/joao.png';
-import contributorTwo from '../../assets/marcus.jpeg';
-import contributorFifth from '../../assets/matheus.png';
-import contributorFour from '../../assets/pedro.jpg';
-import contributorThree from '../../assets/rafa.jpg';
+import bannerStar from '../../assets/banners/bannerStar.png';
+import contributorOne from '../../assets/images/joao.png';
+import contributorTwo from '../../assets/images/marcus.jpeg';
+import contributorFifth from '../../assets/images/matheus.png';
+import contributorFour from '../../assets/images/pedro.jpg';
+import contributorThree from '../../assets/images/rafa.jpg';
 import ContributorsBox from '../../components/ContributorsBox';
 import Header from '../../components/Header';
 

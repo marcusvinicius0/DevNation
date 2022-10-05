@@ -1,6 +1,6 @@
 import styles from './styles.module.scss';
 
-import bannerDiscord from '../../assets/bannerDiscord.png';
+import bannerDiscord from '../../assets/banners/bannerDiscord.png';
 
 export default function JoinDiscord() {
   return (

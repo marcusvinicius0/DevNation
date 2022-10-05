@@ -7,9 +7,9 @@ import { MdLightbulb, MdNewReleases, MdVerified } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import avatarCompany from '../../assets/avatar-company.jpg';
-import avatar from '../../assets/avatar.png';
-import banner from '../../assets/banner.png';
+import avatarCompany from '../../assets/avatar/avatar-company.jpg';
+import avatar from '../../assets/avatar/avatar.png';
+import banner from '../../assets/banners/banner.png';
 import { UserSignedContext } from '../../contexts/signed';
 import styles from './styles.module.scss';
 

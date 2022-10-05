@@ -6,7 +6,7 @@ import { FaBuilding, FaRegMoneyBillAlt } from 'react-icons/fa';
 import { GoGraph } from 'react-icons/go';
 import { HiLocationMarker } from 'react-icons/hi';
 import { RiPlaneFill } from 'react-icons/ri';
-import logo from '../../../assets/zenvia-logo.jpg';
+import logo from '../../../assets/logo/zenvia-logo.jpg';
 import styles from './styles.module.scss';
 
 export function Opportunitie() {

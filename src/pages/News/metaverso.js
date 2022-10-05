@@ -3,7 +3,7 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import metaVerso from '../../assets/metaverso.jpg';
+import metaVerso from '../../assets/images/metaverso.jpg';
 import Header from '../../components/Header';
 
 export default function NewsMetaVerso() {

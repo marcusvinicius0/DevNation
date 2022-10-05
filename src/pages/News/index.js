@@ -3,9 +3,9 @@ import { FaArrowLeft } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import aprendaProgramar from '../../assets/aprenda-programar.png';
-import qualLinguagem from '../../assets/qual-linguagem.png';
-import qualLinguagemEscolher from '../../assets/qual-utilizar.png';
+import aprendaProgramar from '../../assets/images/aprenda-programar.png';
+import qualLinguagem from '../../assets/images/qual-linguagem.png';
+import qualLinguagemEscolher from '../../assets/images/qual-utilizar.png';
 import Header from '../../components/Header';
 
 export default function NewsPage() {

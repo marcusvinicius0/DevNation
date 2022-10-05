@@ -1,17 +1,16 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import styles from './styles.module.scss';
 
-import { AuthContext } from '../../contexts/auth';
 
-interface ModalEditPublicationProps {
+interface CloseModalProps {
   close: () => void;
 }
 
-export default function ModalEditPublication({ close }: ModalEditPublicationProps) {
-  const { user } = useContext(AuthContext);
+export default function ModalEditPublication({ close }: CloseModalProps) {
+  // const { user } = useContext(AuthContext);
 
-  async function handleDelete() {}
+  // async function handleDelete() { }
 
   return (
     <div className={styles.container}>

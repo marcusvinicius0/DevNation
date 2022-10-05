@@ -8,17 +8,17 @@ import { IoEllipsisHorizontalSharp } from 'react-icons/io5';
 import { MdVerified } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import styles from './styles.module.scss';
 
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
+import styles from './styles.module.scss';
+
 import { PublicationInterface } from '../../@types/Publication/types';
 
-import avatar from '../../assets/avatar.png';
+import avatar from '../../assets/avatar/avatar.png';
 import { AuthContext } from '../../contexts/auth';
-import { usePublications } from '../../hooks/usePublications';
 
 const ITEM_HEIGHT = 48;
 
@@ -47,8 +47,8 @@ export default function Post({ publication }: PostProps) {
   const open = Boolean(anchorEl);
 
   const { user } = useContext(AuthContext);
-  const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } =
-    usePublications();
+  // const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } =
+  //   usePublications();
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
@@ -123,7 +123,7 @@ export default function Post({ publication }: PostProps) {
           </div>
         )}
         <footer>
-          <button onClick={() => {}}>
+          <button onClick={() => { }}>
             {typeHeart === 'liked' ? (
               <>
                 <HiHeart color="var(--red-500)" />
@@ -182,7 +182,7 @@ export default function Post({ publication }: PostProps) {
         {user?.id === popoverActive.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
-              <button onClick={() => {}} className={styles.buttonActionMenu}>
+              <button onClick={() => { }} className={styles.buttonActionMenu}>
                 <BiTrash /> Excluir publicação
               </button>
             </div>

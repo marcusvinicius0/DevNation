@@ -3,7 +3,7 @@ import { FaUsers } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import avatar from '../../assets/avatar.png';
+import avatar from '../../assets/avatar/avatar.png';
 import ChatModal from '../../components/ChatModal';
 import Header from '../../components/Header';
 import { AuthContext } from '../../contexts/auth';

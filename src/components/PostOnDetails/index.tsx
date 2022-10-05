@@ -12,7 +12,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import avatar from '../../assets/avatar.png';
+import avatar from '../../assets/avatar/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 import { usePublications } from '../../hooks/usePublications';
 import CommentModal from '../CommentModal';
@@ -25,7 +25,7 @@ import {
   ParamsProps,
   PopoverActiveProps,
   PublicationProps,
-  VerifyButtonLike,
+  VerifyButtonLike
 } from './types';
 
 const ITEM_HEIGHT = 48;

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styles from './styles.module.scss';
 
-import bannerTecno from '../../assets/banner-tecno.jpg';
+import bannerTecno from '../../assets/banners/banner-tecno.jpg';
 import Header from '../../components/Header';
 import { Opportunitie } from './Opportunitie';
 import { SelectComponent } from './Select';

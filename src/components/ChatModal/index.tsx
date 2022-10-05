@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 import styles from './styles.module.scss';
 
-import avatar from '../../assets/avatar.png';
+import avatar from '../../assets/avatar/avatar.png';
 import { AuthContext } from '../../contexts/auth';
 
 export default function ChatModal() {

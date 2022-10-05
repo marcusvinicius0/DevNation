@@ -3,7 +3,7 @@ import { HiOutlinePencilAlt } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-import logonews from '../../assets/logonews.png';
+import logonews from '../../assets/logo/logonews.png';
 
 export default function NewsBox() {
   return (

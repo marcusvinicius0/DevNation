@@ -1,0 +1,126 @@
+.container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 630px;
+    border-radius: 8px;
+    margin: 3px auto 0 auto;
+
+    @media screen and (max-width: 630px) {
+        width: 90%;
+        max-width: none;
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+
+        h2 {
+            font-size: 1.3rem;
+            color: #252525;
+        }
+
+        button {
+            background-color: transparent;
+            max-height: 42px;
+            border-radius: 50%;
+            border: none;
+            outline: none;
+
+            svg {
+                cursor: pointer;
+
+                :hover {
+                    filter: brightness(1.5);
+                }
+
+                :active {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+
+        label {
+            display: block;
+            font-size: 0.9rem;
+            margin-top: 20px;
+
+            select {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        input {
+            display: block;
+            height: 40px;
+            width: 100%;
+            padding-left: 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: border 0.2s;
+
+            &:focus {
+                border: 1px solid var(--blue-500);
+            }
+
+            &:active {
+                border: 1px solid var(--blue-500);
+            }
+        }
+
+        textarea {
+            display: block;
+            height: 100px;
+            width: 100%;
+            padding: 8px 0 0 8px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            resize: none;
+
+            &:focus {
+                border: 1px solid var(--blue-500);
+            }
+
+            &:active {
+                border: 1px solid var(--blue-500);
+            }
+        }
+
+        button {
+            background-color: var(--blue-500);
+            margin: 20px 0;
+            height: 40px;
+            width: 100%;
+            color: #fff;
+            border: none;
+            outline: none;
+            border-radius: 8px;
+        }
+    }
+}

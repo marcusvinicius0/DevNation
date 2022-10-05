@@ -109,5 +109,5 @@ export default function EditInfoCompanyModal({
         </div>
       )}
     </>
-  );
+  )
 }
