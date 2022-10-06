@@ -8,6 +8,7 @@ import { AuthContext } from '../../contexts/user';
 interface EditProfileUserProps {
   close: () => void;
   changeInfoUser: ({
+    /* eslint-disable */
     userId,
     name,
     role,
@@ -15,10 +16,14 @@ interface EditProfileUserProps {
     location,
     linkedin,
     github,
+    /* eslint-enable */
   }: EditUserProps) => void;
 }
 
+
+
 export default function EditProfileModal({ close, changeInfoUser }: EditProfileUserProps) {
+  // eslint-disable-next-line
   const { user, storageUser, editInformations } = useContext(AuthContext);
 
   const [name, setName] = useState(user?.name || '');

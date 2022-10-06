@@ -3,13 +3,11 @@ import { FiUpload, FiX } from 'react-icons/fi';
 import { toast } from 'react-toastify';
 import styles from './styles.module.scss';
 
-<<<<<<< HEAD
+
 import banner from '../../assets/banners/banner.png';
-import { AuthContext } from '../../contexts/auth';
-=======
-import banner from '../../assets/banner.png';
 import { AuthContext } from '../../contexts/user';
->>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
+
+
 
 export default function ModalEditProfileBanner({ close }) {
   const { user } = useContext(AuthContext);

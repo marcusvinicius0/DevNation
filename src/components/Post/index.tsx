@@ -17,14 +17,10 @@ import styles from './styles.module.scss';
 
 import { PublicationInterface } from '../../@types/Publication/types';
 
-<<<<<<< HEAD
 import avatar from '../../assets/avatar/avatar.png';
-import { AuthContext } from '../../contexts/auth';
-=======
-import avatar from '../../assets/avatar.png';
+
 import { AuthContext } from '../../contexts/user';
-import { usePublications } from '../../hooks/usePublications';
->>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
+
 
 const ITEM_HEIGHT = 48;
 
