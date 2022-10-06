@@ -5,7 +5,6 @@
   position: relative;
   width: 100%;
   transition: 0.3s;
-  cursor: pointer;
 
   @media (max-width: 600px) {
     border-radius: 0rem;
@@ -141,10 +140,6 @@
         color: var(--soft-blue);
       }
     }
-  }
-
-  &:hover {
-    background: rgb(0, 0, 0, 0.0001);
   }
 
   button {

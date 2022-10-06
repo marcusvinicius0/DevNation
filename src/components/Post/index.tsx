@@ -20,7 +20,7 @@ import { PublicationInterface } from '../../@types/Publication/types';
 import avatar from '../../assets/avatar/avatar.png';
 
 import { AuthContext } from '../../contexts/user';
-
+import { usePublications } from '../../hooks/usePublications';
 
 const ITEM_HEIGHT = 48;
 
@@ -49,11 +49,10 @@ export default function Post({ publication }: PostProps) {
   const open = Boolean(anchorEl);
 
   const { user } = useContext(AuthContext);
-  // const { handleDeletePublication, loadingPublications, likeOrDeslikePublication } =
-  //   usePublications();
+  const { handleDeletePublication } = usePublications();
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
+  const handleClosePopover = () => setAnchorEl(null);
 
   function verifyButtonLike({ likes }: any) {
     const array: any = [];
@@ -75,10 +74,10 @@ export default function Post({ publication }: PostProps) {
     verifyButtonLike({ publicationId: publication.id, likes: publication.likes });
   }, []);
 
-  //   async function handleDelete() {
-  //     await handleDeletePublication(popoverActive.publicationId);
-  //     handleClose();
-  //   }
+  async function handleDelete() {
+    await handleDeletePublication(popoverActive.publicationId);
+    handleClosePopover();
+  }
 
   //   async function handleLike({ userId, publicationId }: handleLike) {
   //     const res = await likeOrDeslikePublication({ userId, publicationId });
@@ -94,7 +93,7 @@ export default function Post({ publication }: PostProps) {
   //   }
 
   return (
-    <Link to={`/publication/${publication.id}`} className={styles.postAnchor}>
+    <div className={styles.postAnchor}>
       <div className={styles.post}>
         <header>
           {publication.user.imageUserUrl === null ? (
@@ -125,7 +124,7 @@ export default function Post({ publication }: PostProps) {
           </div>
         )}
         <footer>
-          <button onClick={() => { }}>
+          <button onClick={() => {}}>
             {typeHeart === 'liked' ? (
               <>
                 <HiHeart color="var(--red-500)" />
@@ -173,7 +172,7 @@ export default function Post({ publication }: PostProps) {
         }}
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={handleClosePopover}
         PaperProps={{
           style: {
             maxHeight: ITEM_HEIGHT * 4.5,
@@ -184,7 +183,7 @@ export default function Post({ publication }: PostProps) {
         {user?.id === popoverActive.userId && (
           <MenuItem>
             <div className={styles.actionsBox}>
-              <button onClick={() => { }} className={styles.buttonActionMenu}>
+              <button onClick={handleDelete} className={styles.buttonActionMenu}>
                 <BiTrash /> Excluir publicação
               </button>
             </div>
@@ -198,6 +197,6 @@ export default function Post({ publication }: PostProps) {
           </div>
         </MenuItem>
       </Menu>
-    </Link>
+    </div>
   );
 }

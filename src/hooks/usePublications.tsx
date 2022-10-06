@@ -60,8 +60,6 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
     setLoading(true);
     let data = new FormData();
 
-    console.log({ publication, userId, imagePublicationUrl });
-
     data.append('publication', publication);
     data.append('userId', userId);
     data.append('imagePublicationUrl', imagePublicationUrl);
@@ -73,24 +71,14 @@ export default function PublicationsProvider({ children }: PublicationsProviderP
   }
 
   async function handleDeletePublication(publicationId: string) {
-    console.log(publicationId);
-    // Swal.fire({
-    //   title: 'Você tem certeza?',
-    //   text: 'A publicação será deletada!',
-    //   icon: 'warning',
-    //   showCancelButton: true,
-    //   confirmButtonColor: '#399BE5',
-    //   cancelButtonColor: 'rgb(253, 33, 33)',
-    //   confirmButtonText: 'Sim, deletar!',
-    // }).then(async (result) => {
-    //   if (result.isConfirmed) {
-    //     await apiDsn.delete('/publications', { params: { publicationId } }).then(() => {
-    //       toast.success('Publicação deletada com sucesso.');
-    //       const filteredPublications = publications.filter((publi) => publi.id !== publicationId);
-    //       setPublications(filteredPublications);
-    //     });
-    //   }
-    // });
+    setLoading(true);
+
+    await apiDsn.delete('/publications', { params: { publicationId } }).then((res) => {
+      const publicationsFiltered = publications.filter((pub) => publicationId !== pub.id);
+      setPublications(publicationsFiltered);
+    });
+
+    setLoading(false);
   }
 
   async function likeOrDeslikePublication({ userId, publicationId }: LikeOrDeslikeRequest) {
