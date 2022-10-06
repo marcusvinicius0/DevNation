@@ -12,14 +12,10 @@ import { toast } from 'react-toastify';
 import avatarCompany from '../../assets/avatar/avatar-company.jpg';
 import avatar from '../../assets/avatar/avatar.png';
 
-<<<<<<< HEAD
-import logo from '../../assets/logo/DNLogo.svg';
-import { AuthContext } from '../../contexts/auth';
-=======
 import { UserSignedProps } from '../../@types/Signed/types';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo/logo.png';
 import { AuthContext } from '../../contexts/user';
->>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
+
 import styles from './styles.module.scss';
 
 export default function Header() {
@@ -48,7 +44,7 @@ export default function Header() {
       return (
         <ul>
           {userFilters?.map((item: UserSignedProps) => (
-            <Link onClick={() => {}} to={`/user/${item.id}`} key={item.id}>
+            <Link onClick={() => { }} to={`/user/${item.id}`} key={item.id}>
               <FiSearch size={20} />
               {item.imageUserUrl ? (
                 <img src={item.imageUserUrl} alt="usuario-perfil" />

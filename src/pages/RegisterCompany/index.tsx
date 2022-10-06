@@ -25,7 +25,7 @@ export default function SignIn() {
   const [companyLocation, setCompanyLocation] = useState<string>('');
   const [username, setUsername] = useState<string>('');
   const [companyRole, setCompanyRole] = useState<string>('');
-  const [numberOfEmployees, setNumberOfEmployees] = useState('');
+  // const [numberOfEmployees, setNumberOfEmployees] = useState('');
   const [firstForm, setFirstForm] = useState(false);
   const [site, setSite] = useState<string>('');
 

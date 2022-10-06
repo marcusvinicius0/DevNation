@@ -34,8 +34,10 @@ export default function SeeUser() {
   const { username } = useParams<ParamsProps>();
   const { userPublications } = usePublications();
 
+  /* eslint-disable */
   const [editProfileModal, setEditProfileModal] = useState<boolean>(false);
   const [modalProfileBanner, setModalProfileBanner] = useState<boolean>(false);
+  /* eslint-enable */
   const [profileUser, setProfileUser] = useState<UserProps | null>({
     email: '',
     id: '',
@@ -84,13 +86,13 @@ export default function SeeUser() {
     // loadUserPublications(username);
   }, [username]);
 
-  function toggleEditProfileModal() {
-    setEditProfileModal(!editProfileModal);
-  }
+  // function toggleEditProfileModal() {
+  //   setEditProfileModal(!editProfileModal);
+  // }
 
-  function toggleModalProfileBanner() {
-    setModalProfileBanner(!modalProfileBanner);
-  }
+  // function toggleModalProfileBanner() {
+  //   setModalProfileBanner(!modalProfileBanner);
+  // }
 
   return (
     <>

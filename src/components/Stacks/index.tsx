@@ -14,17 +14,26 @@ interface StacksComponentProps {
   isAdmin?: boolean;
 }
 
+interface DefaultStacksComponentProps {
+  userId: string;
+  stateButton: boolean;
+  isAdmin: null;
+}
+
 export interface Stack {
   stack: string;
   icon: any;
   color: string;
 }
 
-export default function Stacks({ userId, stateButton, isAdmin }: StacksComponentProps) {
+// eslint-disable-next-line
+export default function Stacks({ userId, stateButton, isAdmin }: StacksComponentProps | DefaultStacksComponentProps) {
   const [stacks, setStacks] = useState<Stack[] | []>([]);
   const [modalStacksIsActive, setModalStacksIsActive] = useState(false);
 
-  async function loadStacks() {}
+  async function loadStacks() {
+    console.log("Cheguei aqui")
+  }
 
   useEffect(() => {
     setStacks([]);

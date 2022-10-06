@@ -3,13 +3,10 @@ import { FiX } from 'react-icons/fi';
 
 import { AiFillPicture } from 'react-icons/ai';
 import { BsEmojiSmile } from 'react-icons/bs';
-<<<<<<< HEAD
+
 import avatar from '../../assets/avatar/avatar.png';
-import { AuthContext } from '../../contexts/auth';
-=======
-import avatar from '../../assets/avatar.png';
 import { AuthContext } from '../../contexts/user';
->>>>>>> c28e85e7310a8baa59a6901e23674d257c3f5c2e
+
 import { usePublications } from '../../hooks/usePublications';
 import styles from './styles.module.scss';
 
