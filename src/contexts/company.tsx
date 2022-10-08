@@ -76,6 +76,7 @@ function CompanyProvider({ children }: ContextProviderProps) {
           storageCompany(data);
           setLoadingAuth(false);
           changeStateIsAuthenticated(true);
+          // eslint-disable-next-line
           apiDsn.defaults.headers.common['Authorization'] = `Bearer ${res.data.token}`;
           localStorage.setItem('token', JSON.stringify(res.data.token));
           history.push('/dashboard');

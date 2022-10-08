@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
+import { toast } from "react-toastify";
+import apiDsn from "../../services/apiDsn";
 import styles from './styles.module.scss';
 
 interface CloseModalProps {
@@ -7,22 +9,63 @@ interface CloseModalProps {
     handleCloseModal: () => void;
 };
 
+interface RegisterVacancyProps {
+    id: string;
+    role: string;
+    description: string;
+    experienceLevel: string;
+    modality: string;
+    company: string;
+    vacancyType: string;
+    salary?: number | null | string;
+    contractType?: string
+}
+
 export function ModalRegisterVacancy({ handleCloseModal, modalIsOpen }: CloseModalProps) {
     const [role, setRole] = useState('');
     const [description, setDescription] = useState('');
     const [experienceLevel, setExperienceLevel] = useState('');
     const [modality, setModality] = useState('');
     const [company, setCompany] = useState('');
-    const [locality, setLocality] = useState('');
     const [vacancyType, setVacancyType] = useState('');
     const [salary, setSalary] = useState('');
     const [contractType, setContractType] = useState('');
 
     const isOpen = modalIsOpen;
 
-    function handleSubmit(e: any) {
+    const [vacancyData, setVacancyData] = useState({});
+
+    async function handleSubmit(e: any) {
         e.preventDefault();
-        console.log(experienceLevel);
+        await apiDsn
+            .post("/opportunities", {
+                role,
+                description,
+                experienceLevel,
+                modality,
+                company,
+                vacancyType,
+                salary,
+                contractType
+            })
+            .then((res) => {
+                const data: RegisterVacancyProps = {
+                    id: res.data.id,
+                    role: role,
+                    description: description,
+                    experienceLevel: experienceLevel,
+                    modality: modality,
+                    company: company,
+                    vacancyType: vacancyType,
+                    salary: salary,
+                    contractType: contractType
+                }
+                setVacancyData(data);
+            })
+            .catch((err) => {
+                console.log(err);
+                toast.error("Erro ao cadastrar a vaga");
+            })
     }
 
 
@@ -100,16 +143,6 @@ export function ModalRegisterVacancy({ handleCloseModal, modalIsOpen }: CloseMod
                                     placeholder="Nome da empresa"
                                     value={company}
                                     onChange={(e) => setCompany(e.target.value)}
-                                />
-                            </label>
-
-                            <label>
-                                Localidade da vaga
-                                <input
-                                    type="text"
-                                    placeholder="Localidade"
-                                    value={locality}
-                                    onChange={(e) => setLocality(e.target.value)}
                                 />
                             </label>
 

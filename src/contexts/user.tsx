@@ -17,10 +17,10 @@ import { UserSignedProps } from '../@types/Signed/types';
 export const AuthContext = createContext<UserAuthContextData>({} as UserAuthContextData);
 
 function AuthProvider({ children }: UserAuthProviderProps) {
+  // eslint-disable-next-line
   const [users, setUsers] = useState<UserSignedProps[] | []>([]);
   const [loadingAuth, setLoadingAuth] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
-  // eslint-disable-next-line
 
   const history = useHistory();
 
